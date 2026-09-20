@@ -5,6 +5,9 @@
 ========================= */
 .apps { border-top: var(--hair); }
 
+/* Connect the large heading to the first row without losing breathing room */
+#applications .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
+
 .app-row {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -16,11 +19,36 @@
 .app-row:hover { padding-left: clamp(0px, 1vw, 0.75rem); }
 
 .app-row__head { min-width: 0; }
+.app-row__meta { display: flex; align-items: center; gap: 0.9rem; }
 .app-idx {
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     color: var(--ink-3);
     font-variant-numeric: tabular-nums;
+}
+.app-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
+.app-live__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink);
+    animation: livePulse 2.6s var(--ease) infinite;
+}
+@keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .app-live__dot { animation: none; }
 }
 .app-name {
     font-size: clamp(1.7rem, 4.6vw, 3rem);
@@ -44,6 +72,31 @@
 .app-flow .arw { color: var(--ink-2); }
 
 .app-row__body { min-width: 0; }
+
+.app-preview {
+    margin: 0 0 1.6rem;
+    border: 1px solid var(--line-strong);
+    background: var(--ink);
+}
+.app-preview__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) contrast(1.03);
+    transition: filter 0.7s var(--ease-soft);
+}
+.app-row:hover .app-preview__img { filter: grayscale(0); }
+.app-preview__cap {
+    padding: 0.6rem 0.8rem;
+    background: var(--bg);
+    border-top: var(--hair);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
 .app-desc { color: var(--ink-2); font-size: 1rem; max-width: 56ch; }
 
 .app-metric {

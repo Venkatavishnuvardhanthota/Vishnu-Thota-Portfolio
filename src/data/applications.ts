@@ -6,6 +6,8 @@
  * The "View project" link routes to the existing case-study page rather than
  * duplicating project data, so this model stores only what the showcase needs.
  */
+export type PreviewType = 'screenshot' | 'illustrative';
+
 export interface Application {
   id: string;
   number: string;
@@ -22,6 +24,20 @@ export interface Application {
   projectRoute: string;
   /** Source repository */
   githubUrl: string;
+  /** Status label shown beside the number, e.g. "Live" */
+  status: string;
+  /** Compact workflow: project work → application → live experience */
+  workflow: string[];
+  /** Preview asset path (public/) */
+  previewImage: string;
+  /** Intrinsic preview dimensions, used to reserve layout space */
+  previewWidth: number;
+  previewHeight: number;
+  /** Descriptive alt text for the preview */
+  previewAlt: string;
+  previewType: PreviewType;
+  /** Honest caption shown under the preview */
+  previewCaption: string;
 }
 
 export const APPLICATIONS: Application[] = [
@@ -37,6 +53,15 @@ export const APPLICATIONS: Application[] = [
     liveUrl: 'https://customer-churn-prediction-0001.streamlit.app/',
     projectRoute: '/projects/customer-churn',
     githubUrl: 'https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction',
+    status: 'Live',
+    workflow: ['Data', 'ML model', 'Streamlit', 'Live'],
+    previewImage: '/app-previews/customer-churn.webp',
+    previewWidth: 1152,
+    previewHeight: 720,
+    previewAlt:
+      'Screenshot of the live Customer Churn Predictor app: its sidebar shows the Random Forest model with an AUC score of 0.8343, and the main area holds a customer profile form with tenure, charges and service fields.',
+    previewType: 'screenshot',
+    previewCaption: 'Captured from the live application',
   },
   {
     id: 'product-sentiment',
@@ -50,5 +75,14 @@ export const APPLICATIONS: Application[] = [
     liveUrl: 'https://prduct-sentiment-dashboard.streamlit.app/',
     projectRoute: '/projects/product-sentiment',
     githubUrl: 'https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard',
+    status: 'Live',
+    workflow: ['NLP', 'Analysis', 'Streamlit', 'Live'],
+    previewImage: '/app-previews/product-sentiment.webp',
+    previewWidth: 1152,
+    previewHeight: 720,
+    previewAlt:
+      'Screenshot of the live Product Review Sentiment Analyzer app: a review text box with an Analyze Review button, beside a dataset benchmark table of positive, negative and neutral shares from 568,454 reviews.',
+    previewType: 'screenshot',
+    previewCaption: 'Captured from the live application',
   },
 ];

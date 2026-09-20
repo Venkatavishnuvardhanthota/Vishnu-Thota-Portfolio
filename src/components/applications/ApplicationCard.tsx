@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { Fragment, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import type { Application } from '../../data/applications';
 
@@ -18,14 +18,42 @@ export default function ApplicationCard({ app, index }: ApplicationCardProps) {
   return (
     <article className="app-row reveal" style={style}>
       <div className="app-row__head">
-        <span className="app-idx">{app.number}</span>
+        <div className="app-row__meta">
+          <span className="app-idx">{app.number}</span>
+          <span className="app-live">
+            <span className="app-live__dot" aria-hidden="true" />
+            {app.status}
+          </span>
+        </div>
         <h3 className="app-name">{app.title}</h3>
-        <span className="app-flow">
-          Project <span className="arw" aria-hidden="true">→</span> Live Application
+        <span className="app-flow" aria-label={`Workflow: ${app.workflow.join(', then ')}`}>
+          {app.workflow.map((step, i) => (
+            <Fragment key={step}>
+              {i > 0 && (
+                <span className="arw" aria-hidden="true">
+                  →
+                </span>
+              )}
+              <span>{step}</span>
+            </Fragment>
+          ))}
         </span>
       </div>
 
       <div className="app-row__body">
+        <figure className="app-preview">
+          <img
+            className="app-preview__img"
+            src={app.previewImage}
+            alt={app.previewAlt}
+            width={app.previewWidth}
+            height={app.previewHeight}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption className="app-preview__cap">{app.previewCaption}</figcaption>
+        </figure>
+
         <p className="app-desc">{app.description}</p>
 
         <div className="app-metric">
