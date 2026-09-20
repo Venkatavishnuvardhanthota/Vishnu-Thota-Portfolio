@@ -622,36 +622,6 @@
         .focus li .d { color: var(--ink-2); font-size: 0.9rem; grid-column: 2; }
 
         /* =========================
-           EDUCATION
-        ========================== */
-        .edu-list { border-top: var(--hair); }
-        .edu-item {
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr) auto;
-            gap: clamp(1rem, 3vw, 2.5rem);
-            align-items: baseline;
-            padding-block: clamp(1.4rem, 3vw, 2rem);
-            border-bottom: var(--hair);
-        }
-        .edu-item .yr { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
-        .edu-main .deg { font-size: clamp(1.2rem, 2.6vw, 1.7rem); font-weight: 600; letter-spacing: -0.02em; }
-        .edu-main .inst { color: var(--ink-2); margin-top: 0.35rem; font-size: 0.98rem; }
-        .edu-main .meta { color: var(--ink-3); margin-top: 0.5rem; font-size: 0.86rem; }
-        .edu-side { text-align: right; color: var(--ink-2); font-size: 0.86rem; max-width: 26ch; }
-        .ph {
-            border-bottom: 1px dashed var(--line-strong);
-            color: var(--ink-3);
-        }
-        .edu-note {
-            margin-top: 1.75rem;
-            font-size: 0.85rem;
-            color: var(--ink-3);
-            display: flex;
-            gap: 0.6em;
-            align-items: baseline;
-        }
-
-        /* =========================
            CONTACT
         ========================== */
         .contact { border-top: var(--hair); }
@@ -754,9 +724,6 @@
 
             .cap-panel__content { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding-left: 0; }
             .cap-head { grid-template-columns: auto minmax(0, 1fr) auto; }
-
-            .edu-item { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
-            .edu-side { text-align: left; }
 
             .clink { grid-template-columns: minmax(0, 1fr) auto; }
             .clink .k { grid-column: 1 / -1; }
@@ -1154,39 +1121,12 @@
                     <div class="sec-head__body">
                         <div class="sec-title-row">
                             <h2 class="display-l" id="edu-title">Education</h2>
-                            <p class="sec-note">Formal study behind the work. Details below are placeholders ready to be filled in.</p>
+                            <p class="sec-note">The academic path behind the work — from diploma to B.Tech, in progress.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="edu-list reveal">
-                    <!-- Replace the placeholder text in each .edu-item with your real details.
-                         Do not publish until institution / degree / dates are accurate. -->
-                    <article class="edu-item">
-                        <span class="yr"><span class="ph">Start — End</span></span>
-                        <div class="edu-main">
-                            <div class="deg"><span class="ph">Degree / Program</span></div>
-                            <div class="inst"><span class="ph">Institution Name</span></div>
-                            <div class="meta"><span class="ph">Field of study · Location</span></div>
-                        </div>
-                        <div class="edu-side"><span class="ph">Relevant coursework, grade, or note</span></div>
-                    </article>
-
-                    <article class="edu-item">
-                        <span class="yr"><span class="ph">Start — End</span></span>
-                        <div class="edu-main">
-                            <div class="deg"><span class="ph">Degree / Program</span></div>
-                            <div class="inst"><span class="ph">Institution Name</span></div>
-                            <div class="meta"><span class="ph">Field of study · Location</span></div>
-                        </div>
-                        <div class="edu-side"><span class="ph">Relevant coursework, grade, or note</span></div>
-                    </article>
-                </div>
-
-                <p class="edu-note reveal">
-                    <span aria-hidden="true">✎</span>
-                    <span>Education entries are intentionally left as editable placeholders — no institutions or dates have been invented.</span>
-                </p>
+                <div id="education-root"></div>
             </div>
         </section>
 

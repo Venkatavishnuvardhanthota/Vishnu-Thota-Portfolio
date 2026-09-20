@@ -1,0 +1,179 @@
+/* =========================
+   EDUCATION — academic progression timeline
+   Rendered by src/components/education — shares the global design tokens
+   and the .reveal motion primitive defined in index.html.
+========================= */
+#education .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
+
+.edu-tl { border-top: var(--hair); padding-top: clamp(1.6rem, 3.4vw, 2.6rem); }
+
+/* ---- one stage = year milestone + entry; the rail runs through both ---- */
+.edu-stage { position: relative; }
+.edu-stage::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1.9rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-strong);
+}
+
+/* ---- year milestones ---- */
+.edu-node {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding-top: 1.35rem;
+}
+.edu-node--future { padding-bottom: 0.6rem; }
+.edu-node__mark {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--ink);
+    flex: none;
+    position: relative;
+    z-index: 1;
+}
+.edu-node--future .edu-node__mark { background: var(--bg); border: 1px solid var(--ink-3); }
+.edu-node__year {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 4.4vw, 2.9rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+}
+.edu-node--future .edu-node__year { color: var(--ink-3); }
+
+/* ---- study stage ---- */
+.edu-entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: start;
+    margin-left: 34px;
+    padding: 1rem 0 clamp(1.8rem, 4vw, 2.8rem);
+}
+.edu-entry::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 1.7rem;
+    width: 24px;
+    height: 1px;
+    background: var(--line-strong);
+}
+
+.edu-entry__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+}
+.edu-num {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+}
+.edu-period {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
+.edu-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
+.edu-status__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink);
+}
+
+.edu-degree {
+    font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+}
+.edu-field {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    color: var(--ink-2);
+    margin-top: 0.3rem;
+    max-width: 42ch;
+}
+.edu-inst { color: var(--ink-2); font-size: 0.95rem; margin-top: 0.65rem; }
+
+/* ---- CGPA: prominent but restrained ---- */
+.edu-score {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    text-align: right;
+    padding-top: 1rem;
+}
+.edu-score__v {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+}
+.edu-score__l {
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .edu-stage, .edu-node, .edu-entry, .edu-score { transition: none; }
+}
+
+/* ---- Tablet: tighten the rail and gaps ---- */
+@media (max-width: 1099px) {
+    .edu-entry { margin-left: 28px; }
+    .edu-entry::before { left: -23px; width: 18px; }
+}
+
+/* ---- Mobile: clean vertical flow, CGPA stays prominent ---- */
+@media (max-width: 560px) {
+    .edu-node { gap: 0.9rem; }
+    .edu-entry {
+        grid-template-columns: minmax(0, 1fr);
+        margin-left: 24px;
+        gap: 0;
+    }
+    .edu-entry::before { left: -19px; width: 14px; }
+    .edu-score {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 0.6rem;
+        text-align: left;
+        padding-top: 0;
+        margin-top: 1rem;
+    }
+}
