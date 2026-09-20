@@ -1,0 +1,113 @@
+/* =========================
+   DEPLOYED APPLICATIONS
+   Rendered by src/components/applications — shares the global design tokens
+   and the .tags / .tag / .project__link primitives defined in index.html.
+========================= */
+.apps { border-top: var(--hair); }
+
+.app-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding-block: clamp(1.8rem, 4vw, 2.8rem);
+    border-bottom: var(--hair);
+    transition: padding-left 0.5s var(--ease);
+}
+.app-row:hover { padding-left: clamp(0px, 1vw, 0.75rem); }
+
+.app-row__head { min-width: 0; }
+.app-idx {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+}
+.app-name {
+    font-size: clamp(1.7rem, 4.6vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+}
+.app-flow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 1.1rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+.app-flow .arw { color: var(--ink-2); }
+
+.app-row__body { min-width: 0; }
+.app-desc { color: var(--ink-2); font-size: 1rem; max-width: 56ch; }
+
+.app-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    padding-top: 1.1rem;
+    border-top: var(--hair);
+}
+.app-metric__v {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--ink);
+}
+.app-metric__l {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.app-row .tags { margin-top: 1.3rem; }
+
+.app-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.5rem;
+    margin-top: 1.75rem;
+}
+.app-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.72em 1.2em;
+    border: 1px solid var(--ink);
+    transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft),
+        border-color 0.35s var(--ease-soft);
+}
+.app-cta .arw { display: inline-block; transition: transform 0.4s var(--ease); }
+.app-cta:hover .arw { transform: translate(3px, -3px); }
+
+/* Primary — the live deployment is the headline action */
+.app-cta--primary { background: var(--ink); color: var(--bg); }
+.app-cta--primary:hover { background: transparent; color: var(--ink); }
+
+/* Secondary — routes to the existing case study */
+.app-cta--secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.app-cta--secondary:hover { border-color: var(--ink); }
+
+/* ---- Responsive: stack head/body and go full-width on touch ---- */
+@media (max-width: 1099px) {
+    .app-row { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+}
+@media (max-width: 560px) {
+    .app-links { gap: 0.75rem; }
+    .app-cta { flex: 1 1 100%; justify-content: center; }
+    .app-name { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+}

@@ -594,8 +594,16 @@
         .about__body p { color: var(--ink-2); margin-bottom: 1.25rem; max-width: 62ch; font-size: 1.02rem; }
         .about__body p strong { color: var(--ink); font-weight: 600; }
 
+        .about__list-title {
+            margin-top: clamp(2rem, 4vw, 2.75rem);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+        }
         .focus {
-            margin-top: 2.5rem;
+            margin-top: 1rem;
             border-top: var(--hair);
         }
         .focus li {
@@ -823,10 +831,11 @@
 
             <nav class="nav__links" aria-label="Primary">
                 <a class="nav__link" href="#about">About</a>
-                <a class="nav__link" href="#work">Work</a>
-                <a class="nav__link" href="#capabilities">Capabilities</a>
-                <a class="nav__link" href="#education">Education</a>
+                <a class="nav__link" href="#work">Projects</a>
+                <a class="nav__link" href="#applications">Applications</a>
+                <a class="nav__link" href="#skills">Skills</a>
                 <a class="nav__link" href="#certifications">Certifications</a>
+                <a class="nav__link" href="#education">Education</a>
                 <a class="nav__link" href="#contact">Contact</a>
                 <!-- Replace # with resume PDF path -->
                 <a class="nav__resume" href="#" aria-label="Download résumé (PDF)">Résumé <span class="arw" aria-hidden="true">↗</span></a>
@@ -848,11 +857,12 @@
         </div>
         <nav class="overlay__nav" aria-label="Mobile">
             <a href="#about"><span class="num">01</span>About</a>
-            <a href="#work"><span class="num">02</span>Work</a>
-            <a href="#capabilities"><span class="num">03</span>Capabilities</a>
-            <a href="#education"><span class="num">04</span>Education</a>
+            <a href="#work"><span class="num">02</span>Projects</a>
+            <a href="#applications"><span class="num">03</span>Applications</a>
+            <a href="#skills"><span class="num">04</span>Skills</a>
             <a href="#certifications"><span class="num">05</span>Certifications</a>
-            <a href="#contact"><span class="num">06</span>Contact</a>
+            <a href="#education"><span class="num">06</span>Education</a>
+            <a href="#contact"><span class="num">07</span>Contact</a>
         </nav>
         <div class="overlay__foot">
             <!-- Replace # with resume PDF path -->
@@ -908,10 +918,44 @@
                     </div>
                 </div>
 
-                <a class="scroll-cue fade" href="#work" style="transition-delay:0.95s" aria-label="Scroll to selected work">
+                <a class="scroll-cue fade" href="#about" style="transition-delay:0.95s" aria-label="Scroll to about">
                     <span class="label">Scroll</span>
                     <span class="arw" aria-hidden="true">↓</span>
                 </a>
+            </div>
+        </section>
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+        <section class="section section--rule" id="about" aria-labelledby="about-title">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="sec-index">01 / About</span>
+                    <div class="sec-head__body">
+                        <h2 class="display-l" id="about-title">About</h2>
+                    </div>
+                </div>
+
+                <div class="about__grid">
+                    <div class="about__sticky reveal">
+                        <p class="label label--ink">Data Science &amp; Analytics</p>
+                        <p class="label" style="color:var(--ink-3); margin-top:0.6rem">Student · Data Analyst / Data Scientist</p>
+                    </div>
+                    <div class="about__body reveal" style="--d:0.1s">
+                        <p class="about__intro">I work at the intersection of data, analysis, and applied machine learning.</p>
+                        <p>I'm a <strong>Data Science &amp; Analytics</strong> student focused on turning raw data into structured insights, predictive models, dashboards, and useful applications. My work spans exploratory data analysis, cleaning and wrangling, statistical analysis, machine learning, natural-language processing, business intelligence, and visualization — and increasingly the application development that turns analysis into something people can actually use.</p>
+                        <p>I'm drawn to practical problems: forecasting demand, testing a marketing change, predicting churn, reading sentiment at scale. Across these projects I own the work end to end, from raw data through models and dashboards to deployment — and two of them now run as live, public applications. I care about honest analysis and clear communication: making results understandable and useful for technical and non-technical audiences alike, without overstating what the data supports.</p>
+
+                        <h3 class="about__list-title">How I Work</h3>
+                        <ul class="focus">
+                            <li><span class="n">01</span><span class="t">Analytical Thinking</span><span class="d">Breaking complex problems into measurable questions and examining the data behind them.</span></li>
+                            <li><span class="n">02</span><span class="t">End-to-End Ownership</span><span class="d">Working across data preparation, analysis, modeling, visualization, and deployment.</span></li>
+                            <li><span class="n">03</span><span class="t">Clear Communication</span><span class="d">Communicating data-driven findings to both technical and non-technical audiences.</span></li>
+                            <li><span class="n">04</span><span class="t">Continuous Learning</span><span class="d">Strengthening technical depth through practical projects, experimentation, and applied work.</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -921,10 +965,10 @@
         <section class="section section--rule" id="work" aria-labelledby="work-title">
             <div class="wrap">
                 <div class="sec-head reveal">
-                    <span class="sec-index">01 / Work</span>
+                    <span class="sec-index">02 / Projects</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
-                            <h2 class="display-l" id="work-title">Selected<br />Work</h2>
+                            <h2 class="display-l" id="work-title">Selected<br />Projects</h2>
                             <p class="sec-note">Seven selected data, analytics, and machine-learning projects — forecasting, experimentation, churn, sentiment, and pricing. Hover or focus a row to preview it; open a row for the full case study.</p>
                         </div>
                     </div>
@@ -941,15 +985,35 @@
         </section>
 
         <!-- =========================
-             CAPABILITIES
+             DEPLOYED APPLICATIONS
         ========================== -->
-        <section class="section section--rule" id="capabilities" aria-labelledby="cap-title">
+        <section class="section section--rule" id="applications" aria-labelledby="apps-title">
             <div class="wrap">
                 <div class="sec-head reveal">
-                    <span class="sec-index">02 / Capabilities</span>
+                    <span class="sec-index">03 / Applications</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
-                            <h2 class="display-l" id="cap-title">Capabilities</h2>
+                            <h2 class="display-l" id="apps-title">Deployed<br />Applications</h2>
+                            <p class="sec-note">Two projects shipped as live, public Streamlit applications — open them in a browser and interact with the model directly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deployed Applications render here from the React app (src/components/applications). -->
+                <div id="applications-root"></div>
+            </div>
+        </section>
+
+        <!-- =========================
+             SKILLS
+        ========================== -->
+        <section class="section section--rule" id="skills" aria-labelledby="cap-title">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="sec-index">04 / Skills</span>
+                    <div class="sec-head__body">
+                        <div class="sec-title-row">
+                            <h2 class="display-l" id="cap-title">Skills</h2>
                             <p class="sec-note">What I do across the data-to-product pipeline. Select a discipline to expand.</p>
                         </div>
                     </div>
@@ -1065,34 +1129,38 @@
         </section>
 
         <!-- =========================
-             ABOUT
+             CERTIFICATIONS
         ========================== -->
-        <section class="section section--rule" id="about" aria-labelledby="about-title">
+        <section class="section section--rule" id="certifications" aria-labelledby="cert-title">
             <div class="wrap">
                 <div class="sec-head reveal">
-                    <span class="sec-index">03 / About</span>
+                    <span class="sec-index">05 / Certifications</span>
                     <div class="sec-head__body">
-                        <h2 class="display-l" id="about-title">About</h2>
+                        <div class="sec-title-row">
+                            <h2 class="display-l" id="cert-title">Certifications</h2>
+                            <p class="sec-note">Independent coursework and job simulations completed alongside projects.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="about__grid">
-                    <div class="about__sticky reveal">
-                        <p class="about__intro">Turning raw data into decisions — then building the systems that keep those decisions running.</p>
-                        <p class="label" style="color:var(--ink-3)">Student · Aspiring Data Analyst / Data Scientist</p>
-                    </div>
-                    <div class="about__body reveal" style="--d:0.1s">
-                        <p>I'm a student and aspiring <strong>Data Analyst / Data Scientist</strong> interested in turning raw data into useful decisions and building systems around it. My work sits where analysis meets software.</p>
-                        <p>Across my projects I've explored <strong>data analysis</strong>, <strong>machine learning</strong>, <strong>experimentation</strong>, <strong>natural-language processing</strong>, <strong>forecasting</strong>, <strong>dashboards</strong>, <strong>AI automation</strong>, and <strong>full-stack development</strong> — moving from exploratory analysis and predictive models to interactive dashboards and deployed applications.</p>
-                        <p>I care about clear thinking, honest analysis, and interfaces that make complex information easy to read. I'm currently building across forecasting, experimentation, and applied AI, and I'm open to opportunities where data meets product.</p>
+                <div class="cert-list">
+                    <article class="cert reveal">
+                        <span class="idx">01</span>
+                        <div>
+                            <div class="cert__name">Data Analytics Job Simulation</div>
+                            <div class="cert__meta">Deloitte · via Forage</div>
+                        </div>
+                        <span class="cert__type">Virtual Experience</span>
+                    </article>
 
-                        <ul class="focus">
-                            <li><span class="n">/01</span><span class="t">Analysis &amp; Experimentation</span><span class="d">Exploratory analysis, SQL, statistics, A/B testing.</span></li>
-                            <li><span class="n">/02</span><span class="t">Modeling &amp; Forecasting</span><span class="d">Regression, classification, time-series prediction.</span></li>
-                            <li><span class="n">/03</span><span class="t">Language &amp; Automation</span><span class="d">NLP, sentiment analysis, AI-API workflows.</span></li>
-                            <li><span class="n">/04</span><span class="t">Visualization &amp; Software</span><span class="d">Dashboards, full-stack apps, deployment.</span></li>
-                        </ul>
-                    </div>
+                    <article class="cert reveal" style="--d:0.08s">
+                        <span class="idx">02</span>
+                        <div>
+                            <div class="cert__name">IBM Data Science Professional Certificate</div>
+                            <div class="cert__meta">IBM · Professional Certificate</div>
+                        </div>
+                        <span class="cert__type">Professional</span>
+                    </article>
                 </div>
             </div>
         </section>
@@ -1103,7 +1171,7 @@
         <section class="section section--rule" id="education" aria-labelledby="edu-title">
             <div class="wrap">
                 <div class="sec-head reveal">
-                    <span class="sec-index">04 / Education</span>
+                    <span class="sec-index">06 / Education</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
                             <h2 class="display-l" id="edu-title">Education</h2>
@@ -1144,49 +1212,12 @@
         </section>
 
         <!-- =========================
-             CERTIFICATIONS
-        ========================== -->
-        <section class="section section--rule" id="certifications" aria-labelledby="cert-title">
-            <div class="wrap">
-                <div class="sec-head reveal">
-                    <span class="sec-index">05 / Certifications</span>
-                    <div class="sec-head__body">
-                        <div class="sec-title-row">
-                            <h2 class="display-l" id="cert-title">Certifications</h2>
-                            <p class="sec-note">Independent coursework and job simulations completed alongside projects.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cert-list">
-                    <article class="cert reveal">
-                        <span class="idx">01</span>
-                        <div>
-                            <div class="cert__name">Data Analytics Job Simulation</div>
-                            <div class="cert__meta">Deloitte · via Forage</div>
-                        </div>
-                        <span class="cert__type">Virtual Experience</span>
-                    </article>
-
-                    <article class="cert reveal" style="--d:0.08s">
-                        <span class="idx">02</span>
-                        <div>
-                            <div class="cert__name">IBM Data Science Professional Certificate</div>
-                            <div class="cert__meta">IBM · Professional Certificate</div>
-                        </div>
-                        <span class="cert__type">Professional</span>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================
              CONTACT
         ========================== -->
         <section class="section section--rule contact" id="contact" aria-labelledby="contact-title">
             <div class="wrap">
                 <div class="contact__head">
-                    <span class="sec-index reveal">06 / Contact</span>
+                    <span class="sec-index reveal">07 / Contact</span>
                     <h2 class="contact__title reveal" id="contact-title" style="--d:0.05s">
                         Let's build<br />something<br /><span class="accent">useful.</span>
                     </h2>
@@ -1384,7 +1415,7 @@
             /* =========================
                ACTIVE NAV LINK
             ========================== */
-            var sections = ['about', 'work', 'capabilities', 'education', 'certifications', 'contact'];
+            var sections = ['about', 'work', 'applications', 'skills', 'certifications', 'education', 'contact'];
             var navLinks = {};
             Array.prototype.forEach.call(document.querySelectorAll('.nav__link'), function (a) {
                 var id = a.getAttribute('href').replace('#', '');
