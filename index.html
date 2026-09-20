@@ -448,77 +448,10 @@
         /* =========================
            WORK
         ========================== */
-        .projects { border-top: var(--hair); }
+        /* Project list rows (.projects, .prow*) and case-study detail (.pd*)
+           styles moved to src/styles/projects.css — loaded by the React app. */
 
-        /* ---- Project list rows (editorial, collapsed by default) ---- */
-        .prow { border-bottom: var(--hair); position: relative; }
-        .prow__main {
-            display: grid;
-            grid-template-areas: "num title cat arrow";
-            grid-template-columns: auto minmax(0, 1fr) auto auto;
-            align-items: center;
-            gap: clamp(1rem, 3vw, 2.5rem);
-            padding-block: clamp(1.4rem, 3.2vw, 2.3rem);
-            color: var(--ink);
-            transition: padding-left 0.5s var(--ease);
-        }
-        .prow:hover .prow__main,
-        .prow:focus-within .prow__main,
-        .prow.is-open .prow__main { padding-left: clamp(0px, 1.2vw, 1rem); }
-        .prow__num { grid-area: num; font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-        .prow__title {
-            grid-area: title;
-            color: inherit;
-            text-decoration: none;
-            font-size: clamp(1.5rem, 4.4vw, 3rem);
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1.02;
-            text-transform: uppercase;
-        }
-        .prow__cat { grid-area: cat; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); text-align: right; max-width: 24ch; }
-        .prow__arrow { grid-area: arrow; font-size: 1.35rem; line-height: 1; color: var(--ink-2); transition: transform 0.4s var(--ease), color 0.3s var(--ease-soft); }
-        .prow:hover .prow__arrow,
-        .prow:focus-within .prow__arrow,
-        .prow.is-open .prow__arrow { transform: translateX(6px); color: var(--ink); }
-
-        .prow__toggle {
-            grid-area: toggle;
-            display: none;
-            align-items: center;
-            gap: 0.5em;
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--ink-2);
-            border: var(--hair);
-            border-radius: 999px;
-            padding: 0.4em 0.9em;
-        }
-        .prow__toggle .tg { display: inline-block; transition: transform 0.35s var(--ease); }
-        .prow.is-open .prow__toggle .tg { transform: rotate(45deg); }
-
-        .prow__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--ease); }
-        .prow:hover .prow__panel,
-        .prow:focus-within .prow__panel,
-        .prow.is-open .prow__panel { grid-template-rows: 1fr; }
-        .prow__panel-inner { overflow: hidden; visibility: hidden; opacity: 0; transition: opacity 0.4s var(--ease-soft), visibility 0s linear 0.5s; }
-        .prow:hover .prow__panel-inner,
-        .prow:focus-within .prow__panel-inner,
-        .prow.is-open .prow__panel-inner { opacity: 1; visibility: visible; transition: opacity 0.45s var(--ease-soft) 0.05s, visibility 0s; }
-        .prow__panel-content {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-            gap: clamp(1.5rem, 4vw, 3.5rem);
-            padding: 0 clamp(0px, 1.2vw, 1rem) clamp(1.6rem, 3.2vw, 2.4rem) clamp(0px, 4.6vw, 4.1rem);
-        }
-        .prow__desc { color: var(--ink-2); max-width: 52ch; font-size: 0.98rem; line-height: 1.6; margin-bottom: 1.2rem; }
-        .prow__metric { border-left: 2px solid var(--ink); padding-left: 0.9rem; }
-        .prow__metric .v { font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; }
-        .prow__metric .l { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-top: 0.25rem; }
-        .prow__aside { display: flex; flex-direction: column; gap: 1.1rem; align-items: flex-start; }
-
-        /* ---- Shared figure / tags / link primitives (list preview + case study) ---- */
+        /* ---- Shared figure / tags / link primitives (used across sections) ---- */
         .figure {
             position: relative;
             background: var(--bg-panel);
@@ -552,7 +485,6 @@
             background: transparent;
             transition: color 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft);
         }
-        .prow:hover .tag, .prow.is-open .tag { color: var(--ink); border-color: var(--line-strong); }
         .project__link {
             display: inline-flex;
             align-items: center;
@@ -574,67 +506,6 @@
             gap: 1rem;
             flex-wrap: wrap;
         }
-
-        /* =========================
-           PROJECT DETAIL (CASE STUDY)
-        ========================== */
-        body.route-detail #main,
-        body.route-detail .nav,
-        body.route-detail .footer { display: none; }
-        .view-detail[hidden] { display: none; }
-
-        .pd__bar {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--bg);
-            border-bottom: var(--hair);
-        }
-        .pd__bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
-        .pd__back { display: inline-flex; align-items: center; gap: 0.6em; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); }
-        .pd__back .arw { display: inline-block; transition: transform 0.35s var(--ease); }
-        .pd__back:hover .arw { transform: translateX(-4px); }
-
-        .pd { padding-block: clamp(2.5rem, 6vh, 4.5rem) var(--section-y); }
-        .pd__kicker { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
-        .pd__title { font-size: clamp(2.3rem, 8vw, 6.2rem); line-height: 0.95; letter-spacing: -0.035em; text-transform: uppercase; font-weight: 700; }
-        .pd__summary { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(1.15rem, 2.2vw, 1.6rem); line-height: 1.4; color: var(--ink-2); max-width: 56ch; margin-top: 1.6rem; }
-        .pd__links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.2rem; }
-
-        .pd__metrics {
-            margin-top: clamp(2rem, 5vh, 3.5rem);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 1px;
-            background: var(--line);
-            border: var(--hair);
-        }
-        .pd__metric { background: var(--bg); padding: clamp(1.1rem, 2.4vw, 1.6rem); }
-        .pd__metric .v { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.02em; }
-        .pd__metric .l { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); margin-top: 0.35rem; }
-        .pd__metric .n { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.3rem; }
-
-        .pd__section {
-            border-top: var(--hair);
-            padding-block: clamp(2rem, 5vh, 3.4rem);
-            display: grid;
-            grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr);
-            gap: clamp(1.5rem, 4vw, 4rem);
-        }
-        .pd__sec-head { display: flex; flex-direction: column; gap: 0.4rem; }
-        .pd__sec-num { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-3); }
-        .pd__sec-title { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
-        .pd__body p { color: var(--ink-2); margin-bottom: 1rem; max-width: 64ch; line-height: 1.65; }
-        .pd__body p:last-child { margin-bottom: 0; }
-        .pd__body ul { display: flex; flex-direction: column; gap: 0.6rem; }
-        .pd__body ul li { position: relative; padding-left: 1.2rem; color: var(--ink-2); line-height: 1.55; }
-        .pd__body ul li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 1px; background: var(--ink); }
-        .pd__body .kv { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
-        .pd__body .kv dt { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding-top: 0.2rem; }
-        .pd__body .kv dd { color: var(--ink-2); }
-        .pd__figure { margin-top: 1.75rem; }
-        .pd__figure .figure { aspect-ratio: 16 / 7; }
-        .pd__next { border-top: var(--hair); padding-block: clamp(1.5rem, 3vw, 2.25rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
         /* =========================
            CAPABILITIES
@@ -889,12 +760,6 @@
             .portrait { max-height: 44vh; max-width: 380px; margin-inline: auto; width: 100%; }
             .hero__statement { margin-left: 0; }
 
-            .prow__main { grid-template-areas: "num title arrow" "num cat arrow"; grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.4rem clamp(1rem, 3vw, 2rem); }
-            .prow__cat { text-align: left; }
-            .prow__panel-content { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; padding-left: 0; }
-            .pd__section { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
-            .pd__figure .figure { aspect-ratio: 4 / 3; }
-
             .about__grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
             .about__sticky { position: static; }
 
@@ -917,23 +782,11 @@
             .display-xl { font-size: clamp(2.5rem, 15vw, 4rem); }
             .contact__title { font-size: clamp(2.4rem, 15vw, 4rem); }
             .figure { aspect-ratio: 4 / 3.1; }
-            .prow__title { font-size: clamp(1.35rem, 7vw, 2rem); }
-            .pd__metrics { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
         }
 
         @media (max-width: 400px) {
             :root { --gutter: 1.1rem; }
             .wordmark { font-size: 0.95rem; }
-        }
-
-        /* Touch devices: expansion is driven by the explicit toggle, never by hover */
-        @media (hover: none) {
-            .prow__toggle { display: inline-flex; }
-            .prow__main { grid-template-areas: "num title toggle arrow" "num cat toggle arrow"; grid-template-columns: auto minmax(0, 1fr) auto auto; }
-            .prow:hover .prow__panel { grid-template-rows: 0fr; }
-            .prow:hover .prow__panel-inner { opacity: 0; visibility: hidden; }
-            .prow.is-open .prow__panel { grid-template-rows: 1fr; }
-            .prow.is-open .prow__panel-inner { opacity: 1; visibility: visible; }
         }
 
         /* =========================
@@ -953,9 +806,6 @@
             .reveal { opacity: 1 !important; transform: none !important; }
             .figure.reveal { clip-path: none !important; }
             .scroll-cue .arw { animation: none !important; }
-            .prow:hover .prow__arrow, .prow:focus-within .prow__arrow, .prow.is-open .prow__arrow { transform: none !important; }
-            .prow:hover .prow__main, .prow:focus-within .prow__main, .prow.is-open .prow__main { padding-left: 0 !important; }
-            .prow__panel, .prow__panel-inner { transition-duration: 0.001ms !important; }
         }
     </style>
 </head>
@@ -1041,8 +891,8 @@
 
                     <div class="hero__right">
                         <figure class="portrait fade" id="portrait" style="transition-delay:0.5s; margin:0">
-                            <!-- Hero portrait: place hero-portrait.png next to index.html -->
-                            <img src="hero-portrait.png"
+                            <!-- Hero portrait: place hero-portrait.png in public/ (served at /hero-portrait.png) -->
+                            <img src="/hero-portrait.png"
                                  alt="Black-and-white studio portrait of Thota Venkata Vishnu Vardhan"
                                  width="900" height="1110"
                                  decoding="async"
@@ -1080,7 +930,7 @@
                     </div>
                 </div>
 
-                <div class="projects" id="projectList"></div>
+                <div class="projects" id="root"></div>
 
                 <div class="work-foot reveal">
                     <span class="label" style="color:var(--ink-3)">Selected projects · 2 of many</span>
@@ -1374,11 +1224,6 @@
     </main>
 
     <!-- =========================
-         PROJECT DETAIL VIEW (routed case studies)
-    ========================== -->
-    <div class="view-detail" id="view-detail" hidden></div>
-
-    <!-- =========================
          FOOTER
     ========================== -->
     <footer class="footer">
@@ -1567,477 +1412,6 @@
         })();
     </script>
 
-    <!-- =========================
-         PROJECTS: DATA + ROUTING + CASE STUDIES
-         Single-source project data drives both the editorial list
-         and the routed case-study pages (hash routing keeps direct
-         URLs, refresh, and back/forward working with no server).
-    ========================== -->
-    <script>
-    (function () {
-        'use strict';
-
-        /* =========================
-           PROJECT DATA (verified facts only)
-        ========================== */
-        var GH = 'https://github.com/Venkatavishnuvardhanthota/';
-        var PROJECTS = [
-            {
-                id: 'rossmann', number: '01',
-                title: 'Rossmann Store Sales Forecasting',
-                category: 'Data Science / Forecasting',
-                shortDescription: 'Store-level sales forecasting across the Rossmann chain, benchmarking a Prophet baseline against a tuned XGBoost model on a chronological holdout.',
-                technologies: ['Python', 'Pandas', 'Scikit-learn', 'XGBoost', 'Prophet'],
-                githubUrl: GH + 'rossmann-sales-forecasting', liveUrl: null,
-                previewMetric: { v: '17.13% store-day MAPE', l: 'Chronological 84-day holdout' },
-                metrics: [
-                    { v: '1,115', l: 'Stores' },
-                    { v: '84-day', l: 'Chronological holdout' },
-                    { v: '17.13%', l: 'Store-day MAPE' },
-                    { v: '8.20%', l: 'Chain-wide daily MAPE' }
-                ],
-                visual: 'forecast',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'A time-series forecasting project that predicts store-level sales for the Rossmann chain using historical sales data, comparing a statistical baseline against a gradient-boosted model.' },
-                    { num: '02', title: 'The Problem', type: 'para', text: 'Retail planners need reliable store-day sales forecasts. The challenge is a large, multi-store time series with trend, seasonality, and calendar effects that a single global model must capture without leaking future information.' },
-                    { num: '03', title: 'Data', type: 'kv', items: [['Scope', '1,115 stores'], ['Validation', '84-day chronological holdout'], ['Leakage control', 'Time-ordered split, no shuffling']] },
-                    { num: '04', title: 'Approach', type: 'list', items: ['Time-series preparation and feature engineering on historical sales', 'Prophet fitted as a forecasting benchmark', 'XGBoost trained as the final model', 'Performance validated on the held-out 84-day window'] },
-                    { num: '05', title: 'Results', type: 'metrics', items: [ { v: '17.13%', l: 'Store-day MAPE' }, { v: '~1,062', l: 'MAE' }, { v: '~1,493', l: 'RMSE' }, { v: '8.20%', l: 'Chain-wide daily MAPE' } ] },
-                    { num: '06', title: 'Key Insights', type: 'list', items: ['Aggregating to chain-wide daily totals smooths store-level noise, lowering MAPE from 17.13% to 8.20%', 'A chronological holdout is essential: random splits would overstate forecast quality', 'Prophet provides a transparent benchmark against which the XGBoost model is judged'] },
-                    { num: '07', title: 'Technology', type: 'tags' },
-                    { num: '08', title: 'Links', type: 'links' }
-                ]
-            },
-            {
-                id: 'ab-testing', number: '02',
-                title: 'Marketing A/B Testing Analysis',
-                category: 'Data Analytics / Experimentation',
-                shortDescription: 'A two-proportion experiment on 588,101 marketing records testing whether an ad variant lifts conversion, with hypothesis testing and a confidence interval.',
-                technologies: ['Python', 'Pandas', 'Statistical Testing'],
-                githubUrl: GH + 'ab-testing-analysis', liveUrl: null,
-                previewMetric: { v: '+43.1% relative lift', l: 'p = 1.71e-13 · statistically significant' },
-                metrics: [
-                    { v: '588,101', l: 'Records' },
-                    { v: '2.55%', l: 'Ad conversion' },
-                    { v: '1.79%', l: 'Control conversion' },
-                    { v: '+43.1%', l: 'Relative lift' }
-                ],
-                visual: 'ab',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'An experiment analysis that compares a marketing ad variant against a control to determine whether the observed difference in conversion is statistically meaningful rather than chance.' },
-                    { num: '02', title: 'Hypothesis & Experiment', type: 'para', text: 'Null hypothesis: the ad and control convert at the same rate. Alternative: the ad converts at a higher rate. Traffic is split between variants and conversions recorded per group.' },
-                    { num: '03', title: 'Data', type: 'kv', items: [['Records', '588,101'], ['Design', 'Two-group conversion experiment'], ['Outcome', 'Binary conversion per record']] },
-                    { num: '04', title: 'Statistical Test', type: 'kv', items: [['Test', 'Two-proportion z-test'], ['Statistic', 'z = 7.37'], ['Significance', 'p = 1.71e-13'], ['Interval', '95% CI: +0.60 to +0.94 percentage points']] },
-                    { num: '05', title: 'Results', type: 'metrics', items: [ { v: '2.55%', l: 'Ad conversion' }, { v: '1.79%', l: 'Control conversion' }, { v: '+0.77 pp', l: 'Absolute lift' }, { v: '+43.1%', l: 'Relative lift' } ] },
-                    { num: '06', title: 'Business Impact', type: 'para', text: 'The lift is both statistically significant and practically material: the 95% confidence interval (+0.60 to +0.94 percentage points) excludes zero, supporting rollout of the ad variant over the control.' },
-                    { num: '07', title: 'Technology', type: 'tags' },
-                    { num: '08', title: 'Links', type: 'links' }
-                ]
-            },
-            {
-                id: 'customer-churn', number: '03',
-                title: 'Customer Churn Prediction',
-                category: 'Machine Learning / Classification',
-                shortDescription: 'A Random Forest churn classifier over 7,043 customers and 21 features, with SMOTE rebalancing and a Streamlit prediction application.',
-                technologies: ['Python', 'Scikit-learn', 'Random Forest', 'SMOTE', 'Streamlit'],
-                githubUrl: GH + 'customer-churn-prediction', liveUrl: null,
-                previewMetric: { v: 'AUC-ROC 0.8343', l: 'Random Forest with SMOTE' },
-                metrics: [
-                    { v: '7,043', l: 'Customers' },
-                    { v: '21', l: 'Features' },
-                    { v: '0.8343', l: 'AUC-ROC' },
-                    { v: 'Streamlit', l: 'Prediction application' }
-                ],
-                visual: 'churn',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'A supervised classification project that predicts which customers are likely to churn, pairing a balanced-tree model with an interactive Streamlit application for scoring customers.' },
-                    { num: '02', title: 'The Problem', type: 'para', text: 'Churn is typically rare relative to retention, so a naive classifier can score well on accuracy while missing the customers who actually leave. The project targets discrimination quality on the minority class.' },
-                    { num: '03', title: 'Data', type: 'kv', items: [['Customers', '7,043'], ['Features', '21'], ['Imbalance handling', 'SMOTE oversampling of the minority class']] },
-                    { num: '04', title: 'Approach', type: 'list', items: ['Feature preparation across 21 customer attributes', 'SMOTE applied to rebalance the churn class', 'Random Forest trained as the classifier', 'Evaluated with AUC-ROC to measure ranking quality'] },
-                    { num: '05', title: 'Results', type: 'metrics', items: [ { v: '0.8343', l: 'AUC-ROC' }, { v: '7,043', l: 'Customers scored' }, { v: '21', l: 'Input features' } ] },
-                    { num: '06', title: 'Application', type: 'para', text: 'The model is exposed through a Streamlit application, allowing a customer profile to be entered and a churn prediction returned interactively.' },
-                    { num: '07', title: 'Technology', type: 'tags' },
-                    { num: '08', title: 'Links', type: 'links' }
-                ]
-            },
-            {
-                id: 'product-sentiment', number: '04',
-                title: 'Product Review Sentiment Analysis',
-                category: 'NLP / Data Visualization',
-                shortDescription: 'Sentiment analysis over 568,454 Amazon food reviews using VADER and TextBlob, surfaced through an interactive Plotly + Streamlit dashboard.',
-                technologies: ['Python', 'VADER', 'TextBlob', 'TF-IDF', 'WordCloud', 'Plotly', 'Streamlit'],
-                githubUrl: GH + 'product-sentiment-dashboard', liveUrl: null,
-                previewMetric: { v: '88.2% positive', l: 'VADER agreement with star ratings: 79.6%' },
-                metrics: [
-                    { v: '568,454', l: 'Amazon food reviews' },
-                    { v: '88.2%', l: 'Overall positive rate' },
-                    { v: '79.6%', l: 'VADER accuracy vs star ratings' }
-                ],
-                visual: 'sentiment',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'A natural-language-processing project that scores product-review sentiment at scale and presents the distribution, drivers, and disagreement through an interactive dashboard.' },
-                    { num: '02', title: 'Review Corpus', type: 'kv', items: [['Source', 'Amazon food reviews'], ['Size', '568,454 reviews'], ['Signal', 'Free text plus star ratings']] },
-                    { num: '03', title: 'NLP Pipeline', type: 'list', items: ['VADER lexicon scoring for sentiment polarity', 'TextBlob as a comparative sentiment estimator', 'TF-IDF to surface discriminative review terms', 'WordCloud visualization of prominent vocabulary'] },
-                    { num: '04', title: 'Dashboard', type: 'para', text: 'Results are presented in an interactive dashboard built with Plotly and Streamlit, letting a reader filter and explore sentiment across the corpus.' },
-                    { num: '05', title: 'Results', type: 'metrics', items: [ { v: '88.2%', l: 'Overall positive rate' }, { v: '79.6%', l: 'VADER accuracy vs star ratings' }, { v: '568,454', l: 'Reviews analyzed' } ] },
-                    { num: '06', title: 'Error Analysis', type: 'para', text: 'Comparing VADER polarity against the review star rating gives 79.6% agreement, quantifying where lexicon sentiment diverges from stated rating and guiding interpretation of the remaining cases.' },
-                    { num: '07', title: 'Technology', type: 'tags' },
-                    { num: '08', title: 'Links', type: 'links' }
-                ]
-            },
-            {
-                id: 'retail-sales', number: '05',
-                title: 'Retail Sales Analysis',
-                category: 'Data Analytics / Business Intelligence',
-                shortDescription: 'An exploratory analysis of US Superstore sales in Python with a Power BI dashboard of revenue, profit, and seasonal patterns.',
-                technologies: ['Python', 'Pandas', 'Power BI'],
-                githubUrl: GH + 'retail-sales-dashboard', liveUrl: null,
-                previewMetric: { v: '$0.84M — Technology', l: 'Highest-revenue category' },
-                metrics: [
-                    { v: '$0.84M', l: 'Technology revenue (top category)' },
-                    { v: 'California', l: 'Highest-revenue state' },
-                    { v: 'November', l: 'Peak sales month' },
-                    { v: '2.49%', l: 'Furniture profit margin' }
-                ],
-                visual: 'retail',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'A business-intelligence project that explores US Superstore sales to understand where revenue and profit come from, and where the business loses money.' },
-                    { num: '02', title: 'Data', type: 'kv', items: [['Dataset', 'US Superstore retail sales'], ['Tooling', 'Python EDA + Power BI']] },
-                    { num: '03', title: 'Approach', type: 'list', items: ['Exploratory data analysis in Python across category, subcategory, state, and month', 'Profit and margin analysis to locate loss-making lines', 'Power BI dashboard summarizing revenue, profit, and seasonality'] },
-                    { num: '04', title: 'Findings', type: 'list', visual: 'retail', items: ['Technology is the highest-revenue category at $0.84M', 'Tables and Bookcases are loss-making subcategories', 'California is the highest-revenue state', 'November is the peak sales month', 'Furniture carries a thin 2.49% profit margin'] },
-                    { num: '05', title: 'Key Insights', type: 'para', text: 'Revenue concentration and thin furniture margins point to a mix problem: top-line growth is driven by Technology while parts of Furniture erode profit, suggesting pricing or cost review on the loss-making subcategories.' },
-                    { num: '06', title: 'Technology', type: 'tags' },
-                    { num: '07', title: 'Links', type: 'links' }
-                ]
-            },
-            {
-                id: 'banking-churn', number: '06',
-                title: 'Banking Churn Analysis',
-                category: 'Data Analytics / SQL / BI',
-                shortDescription: 'A SQL-and-Power BI analysis of 10,127 bank customers identifying attrition drivers, behavioral indicators, and revenue at risk.',
-                technologies: ['MySQL', 'SQL CTEs & window functions', 'Python / Pandas', 'Power BI / DAX'],
-                githubUrl: GH + 'banking-churn-analysis', liveUrl: null,
-                previewMetric: { v: '16.07% attrition', l: '$13.24M revenue at risk identified' },
-                metrics: [
-                    { v: '10,127', l: 'Customers' },
-                    { v: '16.07%', l: 'Attrition rate' },
-                    { v: '-0.37', l: 'Total_Trans_Ct correlation' },
-                    { v: '$13.24M', l: 'Revenue at risk' }
-                ],
-                visual: 'banking',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'An analytical study of bank-customer attrition that combines SQL analysis with a Power BI report to quantify who leaves, why, and what revenue is exposed.' },
-                    { num: '02', title: 'The Problem', type: 'para', text: 'Customer attrition erodes recurring revenue. The analysis aims to size the attrition problem and surface behavioral indicators that separate attrited from retained customers.' },
-                    { num: '03', title: 'SQL Analysis', type: 'list', items: ['MySQL as the analytical store', 'CTEs to stage customer-level aggregations', 'Window functions for comparative and running metrics', 'Python/Pandas for correlation and summary analysis'] },
-                    { num: '04', title: 'Behavioral Indicators', type: 'kv', items: [['Transaction activity', 'Attrited customers average 44.9 transactions vs 68.7 for existing'], ['Strongest signal', 'Total_Trans_Ct correlates with attrition at -0.37'], ['Interpretation', 'Declining transaction engagement precedes attrition']] },
-                    { num: '05', title: 'Results', type: 'metrics', items: [ { v: '16.07%', l: 'Attrition rate' }, { v: '$13.24M', l: 'Revenue at risk' }, { v: '10,127', l: 'Customers analyzed' } ] },
-                    { num: '06', title: 'Reporting', type: 'para', text: 'Findings are delivered through a Power BI report using DAX measures, letting stakeholders explore attrition and revenue-at-risk by segment.' },
-                    { num: '07', title: 'Technology', type: 'tags' },
-                    { num: '08', title: 'Links', type: 'links' }
-                ]
-            },
-            {
-                id: 'house-price', number: '07',
-                title: 'House Price Prediction',
-                category: 'Machine Learning / Regression',
-                shortDescription: 'A regression study on 545 property records comparing Linear Regression and Random Forest with feature engineering and GridSearchCV tuning.',
-                technologies: ['Python', 'Pandas', 'Scikit-learn', 'Linear Regression', 'Random Forest', 'StandardScaler', 'GridSearchCV'],
-                githubUrl: GH + 'House_Price_Prediction', liveUrl: null,
-                previewMetric: { v: 'R² 0.6583', l: 'Linear Regression · MAE ~₹970,043' },
-                metrics: [
-                    { v: '545', l: 'Original records' },
-                    { v: '0.6583', l: 'Linear Regression R²' },
-                    { v: '~₹970,043', l: 'Linear Regression MAE' },
-                    { v: '~₹1,324,507', l: 'Linear Regression RMSE' }
-                ],
-                visual: 'house',
-                sections: [
-                    { num: '01', title: 'Overview', type: 'para', text: 'A supervised regression project that predicts house prices from property characteristics, comparing a linear baseline with a tree-based model under a consistent tuning pipeline.' },
-                    { num: '02', title: 'The Problem', type: 'para', text: 'Property pricing depends on many interacting characteristics. The goal is a model that generalizes to unseen properties and quantifies its own error in currency terms.' },
-                    { num: '03', title: 'Data', type: 'kv', items: [['Records', '545 original property records'], ['Preparation', 'Feature engineering on property characteristics']] },
-                    { num: '04', title: 'Approach', type: 'list', items: ['Feature engineering from raw property attributes', 'StandardScaler for scale-sensitive models', 'GridSearchCV for hyperparameter selection', 'Linear Regression baseline and Random Forest comparison'] },
-                    { num: '05', title: 'Results', type: 'metrics', items: [ { v: '0.6583', l: 'Linear Regression R²' }, { v: '~₹970,043', l: 'Linear Regression MAE' }, { v: '~₹1,324,507', l: 'Linear Regression RMSE' } ] },
-                    { num: '06', title: 'Key Insights', type: 'para', text: 'Reporting error in rupees (MAE ~₹970,043) makes model quality interpretable to a non-technical audience, while R² 0.6583 indicates the linear baseline explains roughly two-thirds of price variance.' },
-                    { num: '07', title: 'Technology', type: 'tags' },
-                    { num: '08', title: 'Links', type: 'links' }
-                ]
-            }
-        ];
-
-        /* =========================
-           HELPERS
-        ========================== */
-        function esc(s) {
-            return String(s).replace(/[&<>"']/g, function (c) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-            });
-        }
-        function byId(id) {
-            for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].id === id) return PROJECTS[i];
-            return null;
-        }
-        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        var touchOnly = window.matchMedia('(hover: none)');
-
-        /* =========================
-           CASE-STUDY VISUALS (deterministic, verified metrics only)
-        ========================== */
-        function axisFrame() {
-            return '<line x1="60" y1="330" x2="980" y2="330" stroke="var(--line-strong)" stroke-width="1" />'
-                 + '<line x1="60" y1="40" x2="60" y2="330" stroke="var(--line-strong)" stroke-width="1" />';
-        }
-        function labelText(x, y, t, anchor, size) {
-            return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor || 'start') + '" font-size="' + (size || 15) + '" fill="var(--ink-3)" letter-spacing="1.4">' + esc(t) + '</text>';
-        }
-        function buildVisual(key) {
-            var s = '<svg viewBox="0 0 1040 380" role="img" preserveAspectRatio="xMidYMid meet">';
-            if (key === 'forecast') {
-                s += '<g stroke="var(--line-soft)" stroke-width="1"><line x1="60" y1="90" x2="980" y2="90"/><line x1="60" y1="170" x2="980" y2="170"/><line x1="60" y1="250" x2="980" y2="250"/></g>' + axisFrame();
-                s += '<path d="M90 290 L210 268 L330 276 L450 240 L570 250 L690 214" fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round"/>';
-                s += '<path d="M690 214 L780 200 L870 176 L950 168" fill="none" stroke="var(--ink-2)" stroke-width="2.4" stroke-dasharray="8 7"/>';
-                s += '<path d="M690 214 L780 186 L870 156 L950 146 L950 192 L870 198 L780 216 L690 214 Z" fill="var(--ink)" opacity="0.06"/>';
-                s += '<circle cx="690" cy="214" r="4.5" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>';
-                s += labelText(950, 130, 'FORECAST', 'end') + labelText(90, 70, '1,115 STORES · 84-DAY HOLDOUT · 17.13% STORE-DAY MAPE');
-            } else if (key === 'ab') {
-                s += axisFrame();
-                s += '<rect x="300" y="211" width="120" height="119" fill="var(--ink)" opacity="0.35"/>';
-                s += '<rect x="560" y="160" width="120" height="170" fill="var(--ink)"/>';
-                s += '<line x1="620" y1="120" x2="620" y2="200" stroke="var(--ink)" stroke-width="1.6"/><line x1="596" y1="120" x2="644" y2="120" stroke="var(--ink)" stroke-width="1.6"/><line x1="596" y1="200" x2="644" y2="200" stroke="var(--ink)" stroke-width="1.6"/>';
-                s += labelText(360, 356, 'CONTROL 1.79%', 'middle') + labelText(620, 356, 'AD 2.55%', 'middle');
-                s += labelText(980, 70, '95% CI +0.60 TO +0.94 PP', 'end') + labelText(60, 70, 'Z = 7.37 · P = 1.71E-13');
-            } else if (key === 'churn') {
-                s += axisFrame();
-                s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';
-                s += '<rect x="60" y="150" width="' + Math.round(920 * 0.8343) + '" height="40" fill="var(--ink)"/>';
-                s += labelText(60, 130, 'AUC-ROC 0.8343') + labelText(980, 240, '7,043 CUSTOMERS · 21 FEATURES · SMOTE', 'end');
-            } else if (key === 'sentiment') {
-                s += axisFrame();
-                s += '<rect x="60" y="150" width="920" height="46" fill="none" stroke="var(--line-strong)"/>';
-                s += '<rect x="60" y="150" width="' + Math.round(920 * 0.882) + '" height="46" fill="var(--ink)"/>';
-                s += labelText(60, 130, '88.2% OVERALL POSITIVE') + labelText(980, 246, 'VADER VS STAR RATINGS: 79.6% AGREEMENT', 'end');
-            } else if (key === 'retail') {
-                s += axisFrame();
-                s += '<rect x="140" y="120" width="150" height="210" fill="var(--ink)"/>';
-                s += labelText(215, 356, 'TECHNOLOGY $0.84M', 'middle');
-                s += labelText(420, 150, 'HIGHEST-REVENUE CATEGORY');
-                s += labelText(420, 190, 'CALIFORNIA · TOP STATE');
-                s += labelText(420, 230, 'NOVEMBER · PEAK MONTH');
-                s += labelText(420, 270, 'FURNITURE MARGIN 2.49%');
-                s += labelText(420, 310, 'TABLES & BOOKCASES · LOSS-MAKING');
-            } else if (key === 'banking') {
-                s += axisFrame();
-                s += '<rect x="240" y="180" width="130" height="150" fill="var(--ink)" opacity="0.4"/>';
-                s += '<rect x="520" y="100" width="130" height="230" fill="var(--ink)"/>';
-                s += labelText(305, 356, 'ATTRITED 44.9', 'middle') + labelText(585, 356, 'EXISTING 68.7', 'middle');
-                s += labelText(60, 70, 'AVG TRANSACTIONS · TOTAL_TRANS_CT CORR -0.37') + labelText(980, 70, 'ATTRITION 16.07% · $13.24M AT RISK', 'end');
-            } else if (key === 'house') {
-                s += axisFrame();
-                s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';
-                s += '<rect x="60" y="150" width="' + Math.round(920 * 0.6583) + '" height="40" fill="var(--ink)"/>';
-                s += labelText(60, 130, 'LINEAR REGRESSION R² 0.6583') + labelText(980, 240, 'MAE ~₹970,043 · RMSE ~₹1,324,507 · 545 RECORDS', 'end');
-            }
-            s += '</svg>';
-            return s;
-        }
-
-        /* =========================
-           LIST RENDERER
-        ========================== */
-        function rowHTML(p) {
-            return '<li class="prow reveal" data-id="' + p.id + '">'
-                + '<div class="prow__main">'
-                +   '<span class="prow__num">' + esc(p.number) + '</span>'
-                +   '<a class="prow__title" href="#/projects/' + p.id + '">' + esc(p.title) + '</a>'
-                +   '<span class="prow__cat">' + esc(p.category) + '</span>'
-                +   '<button class="prow__toggle" type="button" aria-expanded="false" aria-controls="pp-' + p.id + '"><span class="tg" aria-hidden="true">+</span><span>Preview</span></button>'
-                +   '<span class="prow__arrow" aria-hidden="true">&#8594;</span>'
-                + '</div>'
-                + '<div class="prow__panel" id="pp-' + p.id + '"><div class="prow__panel-inner"><div class="prow__panel-content">'
-                +   '<div>'
-                +     '<p class="prow__desc">' + esc(p.shortDescription) + '</p>'
-                +     '<div class="prow__metric"><div class="v">' + esc(p.previewMetric.v) + '</div><div class="l">' + esc(p.previewMetric.l) + '</div></div>'
-                +   '</div>'
-                +   '<div class="prow__aside">'
-                +     '<ul class="tags" aria-label="Key technologies">' + p.technologies.slice(0, 5).map(function (t) { return '<li class="tag">' + esc(t) + '</li>'; }).join('') + '</ul>'
-                +     '<a class="project__link" href="#/projects/' + p.id + '">View case study <span class="arw" aria-hidden="true">&#8599;</span></a>'
-                +   '</div>'
-                + '</div></div></div>'
-                + '</li>';
-        }
-        function renderList() {
-            var host = document.getElementById('projectList');
-            if (!host) return;
-            host.innerHTML = '<ul class="projects__list" style="list-style:none;margin:0;padding:0">' + PROJECTS.map(rowHTML).join('') + '</ul>';
-        }
-
-        /* =========================
-           DETAIL RENDERER
-        ========================== */
-        function sectionHTML(sec, p) {
-            var body = '';
-            if (sec.type === 'para') body = '<p>' + esc(sec.text) + '</p>';
-            else if (sec.type === 'list') body = '<ul>' + sec.items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
-            else if (sec.type === 'kv') body = '<dl class="kv">' + sec.items.map(function (kv) { return '<dt>' + esc(kv[0]) + '</dt><dd>' + esc(kv[1]) + '</dd>'; }).join('') + '</dl>';
-            else if (sec.type === 'metrics') body = '<div class="pd__metrics" style="margin-top:0">' + sec.items.map(function (m) { return '<div class="pd__metric"><div class="v">' + esc(m.v) + '</div><div class="l">' + esc(m.l) + '</div></div>'; }).join('') + '</div>';
-            else if (sec.type === 'tags') body = '<ul class="tags">' + p.technologies.map(function (t) { return '<li class="tag">' + esc(t) + '</li>'; }).join('') + '</ul>';
-            else if (sec.type === 'links') {
-                body = '<div class="pd__links" style="margin-top:0">'
-                     + '<a class="project__link" href="' + esc(p.githubUrl) + '" target="_blank" rel="noopener noreferrer">GitHub repository <span class="arw" aria-hidden="true">&#8599;</span></a>'
-                     + (p.liveUrl ? '<a class="project__link" href="' + esc(p.liveUrl) + '" target="_blank" rel="noopener noreferrer">Live application <span class="arw" aria-hidden="true">&#8599;</span></a>' : '')
-                     + '</div>';
-            }
-            var fig = '';
-            if (sec.visual) {
-                fig = '<div class="pd__figure"><div class="figure">' + buildVisual(sec.visual) + '<span class="fig-tag">Illustrative — verified metrics</span></div></div>';
-            }
-            return '<section class="pd__section"><div class="pd__sec-head"><span class="pd__sec-num">' + esc(sec.num) + '</span><span class="pd__sec-title">' + esc(sec.title) + '</span></div><div class="pd__body">' + body + fig + '</div></section>';
-        }
-        function renderDetail(p) {
-            var idx = PROJECTS.indexOf(p);
-            var next = PROJECTS[(idx + 1) % PROJECTS.length];
-            var sections = p.sections.map(function (sec) {
-                // Attach the project visual to the results section for richness
-                if (sec.type === 'metrics' && !sec.visual && sec.num === '05') sec = Object.assign({}, sec, { visual: p.visual });
-                return sectionHTML(sec, p);
-            }).join('');
-            return ''
-                + '<div class="pd__bar"><div class="wrap pd__bar-inner">'
-                +   '<a class="pd__back" href="#work" data-back><span class="arw" aria-hidden="true">&#8592;</span> Back to Projects</a>'
-                +   '<span class="wordmark">Vishnu&nbsp;Vardhan<span class="dot">.</span></span>'
-                + '</div></div>'
-                + '<article class="pd wrap">'
-                +   '<header>'
-                +     '<div class="pd__kicker"><span class="label" style="color:var(--ink-3)">' + esc(p.number) + '</span><span class="label label--ink">' + esc(p.category) + '</span></div>'
-                +     '<h1 class="pd__title" id="pdTitle" tabindex="-1">' + esc(p.title) + '</h1>'
-                +     '<p class="pd__summary">' + esc(p.shortDescription) + '</p>'
-                +     '<div class="pd__links">'
-                +       '<a class="project__link" href="' + esc(p.githubUrl) + '" target="_blank" rel="noopener noreferrer">GitHub <span class="arw" aria-hidden="true">&#8599;</span></a>'
-                +       (p.liveUrl ? '<a class="project__link" href="' + esc(p.liveUrl) + '" target="_blank" rel="noopener noreferrer">Live application <span class="arw" aria-hidden="true">&#8599;</span></a>' : '')
-                +     '</div>'
-                +   '</header>'
-                +   '<div class="pd__metrics">' + p.metrics.map(function (m) { return '<div class="pd__metric"><div class="v">' + esc(m.v) + '</div><div class="l">' + esc(m.l) + '</div>' + (m.n ? '<div class="n">' + esc(m.n) + '</div>' : '') + '</div>'; }).join('') + '</div>'
-                +   sections
-                +   '<div class="pd__next">'
-                +     '<a class="project__link" href="#/projects/' + next.id + '">Next — ' + esc(next.title) + ' <span class="arw" aria-hidden="true">&#8594;</span></a>'
-                +     '<a class="project__link" href="#work" data-back><span class="arw" aria-hidden="true">&#8592;</span> Back to Projects</a>'
-                +   '</div>'
-                + '</article>';
-        }
-
-        /* =========================
-           ROUTER (hash-based: direct URL + refresh + history safe)
-        ========================== */
-        var PREFIX = '#/projects/';
-        var DEFAULT_TITLE = document.title;
-        var viewDetail = document.getElementById('view-detail');
-        var homeScroll = 0;
-        var wasDetail = false;
-
-        function parseRoute() {
-            var h = location.hash || '';
-            if (h.indexOf(PREFIX) === 0) return { view: 'detail', id: h.slice(PREFIX.length) };
-            return { view: 'home', anchor: h };
-        }
-        function showDetail(p) {
-            wasDetail = true;
-            document.body.classList.add('route-detail');
-            viewDetail.hidden = false;
-            viewDetail.innerHTML = renderDetail(p);
-            document.title = p.title + ' — Vishnu Vardhan';
-            window.scrollTo(0, 0);
-            var t = document.getElementById('pdTitle');
-            if (t && !reduceMotion.matches) t.focus({ preventScroll: true });
-        }
-        function showHome(anchor) {
-            document.body.classList.remove('route-detail');
-            viewDetail.hidden = true;
-            viewDetail.innerHTML = '';
-            document.title = DEFAULT_TITLE;
-            if (anchor && anchor.length > 1) {
-                var el = document.getElementById(anchor.slice(1));
-                if (el) { requestAnimationFrame(function () { el.scrollIntoView(); }); wasDetail = false; return; }
-            }
-            if (wasDetail) { window.scrollTo(0, homeScroll); }
-            wasDetail = false;
-        }
-        function route() {
-            var r = parseRoute();
-            if (r.view === 'detail') {
-                var p = byId(r.id);
-                if (p) { homeScroll = window.scrollY; showDetail(p); return; }
-            }
-            showHome(r.anchor);
-        }
-        window.addEventListener('hashchange', route);
-
-        /* =========================
-           LIST INTERACTIONS
-        ========================== */
-        function openProject(id) { location.hash = PREFIX + id; }
-        function wireList() {
-            var host = document.getElementById('projectList');
-            if (!host) return;
-            host.addEventListener('click', function (e) {
-                var toggle = e.target.closest('.prow__toggle');
-                if (toggle) {
-                    e.preventDefault(); e.stopPropagation();
-                    var row = toggle.closest('.prow');
-                    var open = row.classList.toggle('is-open');
-                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                    return;
-                }
-                if (e.target.closest('a')) return; // let links navigate natively
-                var li = e.target.closest('.prow');
-                if (!li) return;
-                if (touchOnly.matches) {
-                    var open2 = li.classList.toggle('is-open');
-                    var tg = li.querySelector('.prow__toggle');
-                    if (tg) tg.setAttribute('aria-expanded', open2 ? 'true' : 'false');
-                } else {
-                    openProject(li.getAttribute('data-id'));
-                }
-            });
-            // Space on a focused project title opens the case study (Enter is native)
-            host.addEventListener('keydown', function (e) {
-                if ((e.key === ' ' || e.key === 'Spacebar') && e.target.classList && e.target.classList.contains('prow__title')) {
-                    e.preventDefault();
-                    openProject(e.target.closest('.prow').getAttribute('data-id'));
-                }
-            });
-        }
-
-        /* Back links use real browser history when available */
-        document.addEventListener('click', function (e) {
-            var back = e.target.closest('[data-back]');
-            if (!back) return;
-            e.preventDefault();
-            if (window.history.length > 1) window.history.back();
-            else location.hash = '#work';
-        });
-
-        /* =========================
-           REVEAL FOR DYNAMIC ROWS
-        ========================== */
-        function observeReveals() {
-            var els = document.querySelectorAll('.reveal:not(.is-visible)');
-            if (reduceMotion.matches || !('IntersectionObserver' in window)) {
-                Array.prototype.forEach.call(els, function (el) { el.classList.add('is-visible'); });
-                return;
-            }
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
-            }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-            Array.prototype.forEach.call(els, function (el) { io.observe(el); });
-        }
-
-        /* =========================
-           INIT
-        ========================== */
-        renderList();
-        wireList();
-        observeReveals();
-        route();
-    })();
-    </script>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
