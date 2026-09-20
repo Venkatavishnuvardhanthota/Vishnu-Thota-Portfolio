@@ -3,24 +3,27 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import DeployedApplications from './components/applications/DeployedApplications';
+import CertificationsSection from './components/certifications/CertificationsSection';
 
 /**
  * Home is rendered unconditionally so the project list stays mounted (and keeps
  * its scroll-reveal state) while a case study is displayed. React Router drives
  * only the full-page detail overlay at /projects/:id.
  *
- * Deployed Applications is a second static-shell island: it is portaled into the
- * #applications-root placeholder inside the Applications <section>. Rendering it
- * from this same tree keeps it inside the shared BrowserRouter, so its
- * "View Project" links navigate client-side to the existing case studies.
+ * Deployed Applications and Certifications are static-shell islands: they are
+ * portaled into their #applications-root / #certifications-root placeholders
+ * inside the corresponding <section>s. Rendering them from this same tree keeps
+ * them inside the shared BrowserRouter, so their links navigate client-side.
  */
 export default function App() {
   const applicationsRoot = document.getElementById('applications-root');
+  const certificationsRoot = document.getElementById('certifications-root');
 
   return (
     <>
       <Home />
       {applicationsRoot ? createPortal(<DeployedApplications />, applicationsRoot) : null}
+      {certificationsRoot ? createPortal(<CertificationsSection />, certificationsRoot) : null}
       <Routes>
         <Route path="/projects/:id" element={<ProjectDetailPage />} />
         <Route path="*" element={null} />

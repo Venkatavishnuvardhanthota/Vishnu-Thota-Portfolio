@@ -652,28 +652,6 @@
         }
 
         /* =========================
-           CERTIFICATIONS
-        ========================== */
-        .cert-list { border-top: var(--hair); }
-        .cert {
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr) auto;
-            gap: clamp(1rem, 3vw, 2.5rem);
-            align-items: center;
-            padding-block: clamp(1.5rem, 3.4vw, 2.4rem);
-            border-bottom: var(--hair);
-            transition: padding-left 0.5s var(--ease);
-        }
-        .cert:hover { padding-left: clamp(0px, 1vw, 0.75rem); }
-        .cert .idx { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-3); }
-        .cert__name { font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
-        .cert__meta { color: var(--ink-2); margin-top: 0.4rem; font-size: 0.92rem; }
-        .cert__type {
-            font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
-            border: var(--hair); padding: 0.35em 0.8em; border-radius: 999px; white-space: nowrap;
-        }
-
-        /* =========================
            CONTACT
         ========================== */
         .contact { border-top: var(--hair); }
@@ -779,9 +757,6 @@
 
             .edu-item { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
             .edu-side { text-align: left; }
-
-            .cert { grid-template-columns: minmax(0, 1fr) auto; }
-            .cert .idx { display: none; }
 
             .clink { grid-template-columns: minmax(0, 1fr) auto; }
             .clink .k { grid-column: 1 / -1; }
@@ -1165,25 +1140,7 @@
                     </div>
                 </div>
 
-                <div class="cert-list">
-                    <article class="cert reveal">
-                        <span class="idx">01</span>
-                        <div>
-                            <div class="cert__name">Data Analytics Job Simulation</div>
-                            <div class="cert__meta">Deloitte · via Forage</div>
-                        </div>
-                        <span class="cert__type">Virtual Experience</span>
-                    </article>
-
-                    <article class="cert reveal" style="--d:0.08s">
-                        <span class="idx">02</span>
-                        <div>
-                            <div class="cert__name">IBM Data Science Professional Certificate</div>
-                            <div class="cert__meta">IBM · Professional Certificate</div>
-                        </div>
-                        <span class="cert__type">Professional</span>
-                    </article>
-                </div>
+                <div id="certifications-root"></div>
             </div>
         </section>
 

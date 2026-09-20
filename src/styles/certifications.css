@@ -1,0 +1,153 @@
+/* =========================
+   CERTIFICATIONS
+   Rendered by src/components/certifications — shares the global design
+   tokens and the .tags / .tag primitives defined in index.html.
+========================= */
+.certs { border-top: var(--hair); }
+
+/* Connect the large heading to the first row without losing breathing room */
+#certifications .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
+
+.cert-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+    padding-block: clamp(1.8rem, 4vw, 2.8rem);
+    border-bottom: var(--hair);
+    transition: padding-left 0.5s var(--ease);
+}
+.cert-row:hover { padding-left: clamp(0px, 1vw, 0.75rem); }
+
+.cert-row__main { min-width: 0; }
+.cert-idx {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+}
+.cert-name {
+    font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+}
+.cert-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.9rem;
+    margin-top: 0.6rem;
+    font-size: 0.92rem;
+    color: var(--ink-2);
+}
+.cert-meta__issuer { font-weight: 500; letter-spacing: 0.02em; }
+.cert-meta__date { color: var(--ink-3); }
+
+.cert-row__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+}
+.cert-chip {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    border: var(--hair);
+    padding: 0.35em 0.8em;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.cert-chip--ink { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.cert-desc { color: var(--ink-2); font-size: 1rem; max-width: 56ch; margin-top: 1.1rem; }
+
+.cert-row .tags { margin-top: 1.2rem; }
+
+.cert-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.9rem 1.5rem;
+    margin-top: 1.6rem;
+}
+.cert-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.72em 1.2em;
+    border: 1px solid var(--ink);
+    transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft),
+        border-color 0.35s var(--ease-soft);
+}
+.cert-cta .arw { display: inline-block; transition: transform 0.4s var(--ease); }
+.cert-cta:hover .arw { transform: translate(3px, -3px); }
+
+/* Primary — opening the real certificate document */
+.cert-cta--primary { background: var(--ink); color: var(--bg); }
+.cert-cta--primary:hover { background: transparent; color: var(--ink); }
+
+/* Secondary — public verification, kept deliberately light */
+.cert-cta--verify {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line-strong);
+    font-size: 0.72rem;
+    padding: 0.6em 1em;
+}
+.cert-cta--verify:hover { border-color: var(--ink); }
+
+/* ---- Preview: restrained hover/focus reveal, never required to act ---- */
+.cert-preview {
+    margin: 0;
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.45s var(--ease-soft), transform 0.45s var(--ease-soft);
+}
+.cert-row:hover .cert-preview,
+.cert-row:focus-within .cert-preview { opacity: 1; transform: none; }
+.cert-preview__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) contrast(1.03);
+    transition: filter 0.7s var(--ease-soft);
+}
+.cert-row:hover .cert-preview__img { filter: grayscale(0); }
+.cert-preview__cap {
+    padding: 0.6rem 0.8rem;
+    border-top: var(--hair);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cert-preview, .cert-preview__img, .cert-cta, .cert-cta .arw, .cert-row { transition: none; }
+    .cert-preview { transform: none; }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1099px) {
+    .cert-row { grid-template-columns: minmax(0, 1fr); }
+    /* No hover on touch: the preview hides instead of stacking inline */
+    .cert-preview { display: none; }
+}
+@media (max-width: 560px) {
+    .cert-links { gap: 0.75rem; }
+    .cert-cta { flex: 1 1 100%; justify-content: center; }
+    .cert-name { font-size: clamp(1.4rem, 7vw, 2rem); }
+}
