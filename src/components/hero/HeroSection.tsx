@@ -1,21 +1,29 @@
 import { useEffect, useState } from 'react';
 import '../../styles/hero.css';
+import { CONTACT_LINKS, type ContactLink } from '../../data/contact';
 
 const PORTRAIT_SRC = '/hero-portrait.png';
 const PORTRAIT_ALT = 'Black-and-white studio portrait of Thota Venkata Vishnu Vardhan';
+const NAME_LINES = ['Thota Venkata', 'Vishnu Vardhan'];
+/** Lower-right meta, in the order the composition wants them. Reused from
+ *  src/data/contact so the Hero can never drift from the Contact section. */
+const HERO_LINK_IDS = ['github', 'linkedin', 'email'];
+
+const heroLinks = HERO_LINK_IDS.map((id) => CONTACT_LINKS.find((l) => l.id === id)).filter(
+  (l): l is ContactLink => Boolean(l)
+);
 
 /**
- * The opening spread. Copy is fixed and verified, so it lives here rather than
- * in src/data — there is nothing to map over.
+ * Hero V2 — a layered masthead rather than a two-column spread: the name is an
+ * oversized background element, the portrait sits in front of it on the centre
+ * axis, and the professional context + links run along the bottom.
  *
- * Source order is the mobile reading order (role, name, statement, portrait,
- * description, foot rail); the layout re-places those same nodes into a
- * two-column grid from 561px up, so no second markup tree is needed.
+ * Source order is still the mobile reading order (name, portrait, role, lede,
+ * CTA, links), so no second tree is needed for small screens.
  *
- * The portrait is sized from the space the Hero actually has — see hero.css —
- * which keeps it uncropped at every viewport and every browser-zoom level.
- * Nothing here moves it on scroll: any transform on that box risks pushing it
- * out of the spread.
+ * The portrait is never cropped and never transforms on scroll — see hero.css,
+ * where its width is derived from the space the Hero actually has. The name is
+ * sized from its measured em width, so it spans the content column exactly.
  *
  * Entrance is driven by an `is-in` class rather than the shell's body.is-loaded,
  * because this section mounts after that class has already been applied.
@@ -48,39 +56,19 @@ export default function HeroSection() {
   return (
     <section className={`hero${isIn ? ' is-in' : ''}`} aria-labelledby="hero-name">
       <div className="wrap hero__inner">
-        <div className="hero__grid">
-          <p className="hero__role hero__rise" style={{ transitionDelay: '0.05s' }}>
-            <span className="hero__tick" aria-hidden="true" />
-            <span className="label label--ink">Data Analyst / Data Scientist</span>
-          </p>
-
+        <div className="hero__stage">
           <h1 className="hero__name" id="hero-name">
-            <span className="mask">
-              <span style={{ transitionDelay: '0.12s' }}>Thota Venkata Vishnu Vardhan</span>
-            </span>
-          </h1>
-
-          <div className="hero__statement">
-            <p className="hero__verse">
-              <span className="mask">
-                <span style={{ transitionDelay: '0.26s' }}>Turning raw data</span>
-              </span>
-              <span className="mask">
-                <span style={{ transitionDelay: '0.34s' }}>
-                  into <em className="hero__accent">decisions.</em>
+            {NAME_LINES.map((line, i) => (
+              <span
+                key={line}
+                className={`hero__name-line${i === 0 ? ' hero__name-line--ghost' : ''}`}
+              >
+                <span className="mask">
+                  <span style={{ transitionDelay: `${0.1 + i * 0.1}s` }}>{line}</span>
                 </span>
               </span>
-            </p>
-            <span className="hero__break" aria-hidden="true" />
-            <p className="hero__verse">
-              <span className="mask">
-                <span style={{ transitionDelay: '0.46s' }}>Building systems</span>
-              </span>
-              <span className="mask">
-                <span style={{ transitionDelay: '0.54s' }}>around it.</span>
-              </span>
-            </p>
-          </div>
+            ))}
+          </h1>
 
           <div className="hero__figure">
             <figure className={`portrait${portraitMissing ? ' portrait--missing' : ''}`}>
@@ -99,19 +87,51 @@ export default function HeroSection() {
               </div>
             </figure>
           </div>
-
-          <p className="hero__lede hero__rise" style={{ transitionDelay: '0.66s' }}>
-            Data analyst and scientist building end-to-end solutions — from exploratory analysis
-            and machine learning to deployed applications and interactive dashboards.
-          </p>
         </div>
 
-        <div className="hero__rail hero__rise" style={{ transitionDelay: '0.8s' }}>
-          <a className="hero__cue" href="#work" aria-label="Explore work — jump to selected projects">
-            <span className="label">Explore work</span>
-            <span className="arw" aria-hidden="true">↓</span>
-          </a>
-          <span className="label hero__tag">Analytics · ML · Software</span>
+        <div className="hero__foot">
+          <div className="hero__intro">
+            <p className="hero__role hero__rise" style={{ transitionDelay: '0.5s' }}>
+              <span className="hero__tick" aria-hidden="true" />
+              <span className="label label--ink">
+                Data Analyst<span className="hero__slash"> / </span>Data Scientist
+              </span>
+            </p>
+            <p className="hero__lede hero__rise" style={{ transitionDelay: '0.58s' }}>
+              Data analyst and scientist building end-to-end solutions — from exploratory analysis
+              and machine learning to deployed applications and interactive dashboards.
+            </p>
+            <a
+              className="hero__cue hero__rise"
+              href="#work"
+              aria-label="Explore work — jump to selected projects"
+              style={{ transitionDelay: '0.66s' }}
+            >
+              <span className="label">Explore work</span>
+              <span className="arw" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+
+          <ul className="hero__links hero__rise" style={{ transitionDelay: '0.74s' }}>
+            {heroLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  className="label"
+                  href={link.href}
+                  {...(link.external
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                >
+                  <span>{link.label}</span>
+                  <span className="arw" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

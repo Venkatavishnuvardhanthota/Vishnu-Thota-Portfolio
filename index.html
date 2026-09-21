@@ -4,6 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Must run before the browser restores the scroll position: `scroll-behavior:
+         smooth` below makes Chrome animate its own restore, which reads as the page
+         sliding after a reload. Anchor clicks are user gestures, so smooth returns on
+         the first one and link scrolling is unchanged. -->
+    <script>
+        (function () {
+            'use strict';
+            var root = document.documentElement;
+            root.classList.add('js');
+            root.style.scrollBehavior = 'auto';
+            function restore() {
+                root.style.scrollBehavior = '';
+                for (var i = 0; i < EVENTS.length; i++) {
+                    removeEventListener(EVENTS[i], restore, true);
+                }
+            }
+            var EVENTS = ['pointerdown', 'keydown', 'wheel'];
+            for (var i = 0; i < EVENTS.length; i++) {
+                addEventListener(EVENTS[i], restore, { passive: true, capture: true });
+            }
+        })();
+    </script>
+
     <!-- =========================
          SEO / METADATA
     ========================== -->
@@ -75,6 +98,11 @@
             scroll-behavior: smooth;
             scroll-padding-top: calc(var(--nav-h) + 24px);
         }
+        /* The Hero island renders into an empty div, so before React mounts the
+           document is one hero shorter than it will be. Browser scroll
+           restoration then lands on the wrong page and has to correct itself.
+           Mirrors --hero-height in src/styles/hero.css. */
+        html.js #hero-root:empty { min-height: min(100svh, 60rem); }
         body {
             background: var(--bg);
             color: var(--ink);
@@ -554,7 +582,11 @@
         /* =========================
            ANIMATION / REVEAL
         ========================== */
-        .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); transition-delay: var(--d, 0s); }
+        /* overflow-anchor: on reload the browser restores the scroll position
+           against the *visual* box of the topmost visible element. An un-revealed
+           .reveal sits 26px below where it will be, so restoring without this
+           landed 26px low and the page then corrected itself — the reported jump. */
+        .reveal { opacity: 0; transform: translateY(26px); overflow-anchor: none; transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); transition-delay: var(--d, 0s); }
         .reveal.is-visible { opacity: 1; transform: none; }
 
         .figure.reveal { opacity: 1; transform: none; clip-path: inset(0 0 100% 0); transition: clip-path 1.15s var(--ease); transition-delay: var(--d, 0s); }
