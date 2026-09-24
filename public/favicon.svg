@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Three-V monogram. Geometry derived from the selected reference mark:
+       six equal-length lines, one shared baseline, 38.66-degree diagonals. -->
+  <style>
+    .v { fill: none; stroke: #111111; stroke-width: 2.6089; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-color-scheme: dark) { .v { stroke: #F7F7F5; } }
+  </style>
+  <g class="v">
+    <path d="M4.5045 40.8574 L27.1905 40.8574 L13.0187 23.1426"/>
+    <path d="M17.8281 23.1426 L32 40.8574 L46.1719 23.1426"/>
+    <path d="M59.4955 40.8574 L36.8095 40.8574 L50.9813 23.1426"/>
+  </g>
+</svg>
