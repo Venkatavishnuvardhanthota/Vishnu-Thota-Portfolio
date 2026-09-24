@@ -30,8 +30,8 @@
     <!-- =========================
          SEO / METADATA
     ========================== -->
-    <title>Thota Venkata Vishnu Vardhan — Data Analyst &amp; Data Scientist</title>
-    <meta name="description" content="Portfolio of Thota Venkata Vishnu Vardhan — data science and analytics: machine learning, business intelligence, data visualization, and natural language processing." />
+    <title>Thota Venkata Vishnu Vardhan — Data Analyst / Data Scientist</title>
+    <meta name="description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst and data scientist: seven data projects in machine learning, BI and NLP, two of them live." />
     <meta name="author" content="Thota Venkata Vishnu Vardhan" />
     <meta name="theme-color" content="#F7F7F5" />
 
@@ -45,19 +45,27 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-    <!-- canonical + og:url stay unset until the production domain is known -->
+    <!-- Homepage canonical and the homepage social/open-graph values below are the
+         same metadata authored as HOME_META in src/data/site.ts. projectRoutePages()
+         in vite.config.ts copies this document to projects/<id>/index.html at build
+         time, rewriting each of those slots per route, so a case study answers with
+         its own title/description/canonical/og:url in the original HTML rather than
+         homepage values that client-side JS would have to correct. The plugin fails
+         the build if this block drifts from HOME_META or if any slot is duplicated. -->
+    <link rel="canonical" href="https://vishnu-thota.vercel.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Thota Venkata Vishnu Vardhan — Data Analyst &amp; Data Scientist" />
-    <meta property="og:description" content="Turning raw data into decisions. Selected work across data science, analytics, machine learning, business intelligence, and NLP." />
-    <meta property="og:image" content="hero-portrait.png" />
+    <meta property="og:url" content="https://vishnu-thota.vercel.app/" />
+    <meta property="og:title" content="Thota Venkata Vishnu Vardhan — Data Analyst / Data Scientist" />
+    <meta property="og:description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst and data scientist: seven data projects in machine learning, BI and NLP, two of them live." />
+    <meta property="og:image" content="https://vishnu-thota.vercel.app/hero-portrait.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Thota Venkata Vishnu Vardhan — Data Analyst &amp; Data Scientist" />
-    <meta name="twitter:description" content="Turning raw data into decisions. Building systems around it." />
-    <meta name="twitter:image" content="hero-portrait.png" />
+    <meta name="twitter:title" content="Thota Venkata Vishnu Vardhan — Data Analyst / Data Scientist" />
+    <meta name="twitter:description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst and data scientist: seven data projects in machine learning, BI and NLP, two of them live." />
+    <meta name="twitter:image" content="https://vishnu-thota.vercel.app/hero-portrait.png" />
 
     <!-- =========================
          FONTS (CDN)
