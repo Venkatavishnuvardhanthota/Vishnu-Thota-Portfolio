@@ -27,6 +27,23 @@
         })();
     </script>
 
+    <!-- Reads the stored choice and stamps <html data-theme> while the head is still
+         parsing, before any paint, so a returning Dark visitor never sees a Light
+         flash. Deliberately not consulting prefers-color-scheme: the site starts in
+         Light and only changes when the reader uses the control. The read is wrapped
+         because storage can throw in private-mode/locked-down contexts; the fallback
+         there is the default Light. -->
+    <script>
+        (function () {
+            'use strict';
+            var theme = 'light';
+            try {
+                if (window.localStorage.getItem('theme') === 'dark') { theme = 'dark'; }
+            } catch (e) { /* storage unavailable: stay on Light */ }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
     <!-- =========================
          SEO / METADATA
     ========================== -->
@@ -83,6 +100,10 @@
            DESIGN TOKENS
         ========================== */
         :root {
+            /* Native UI (scrollbar, form widgets, text-select caret) follows the
+               active scheme; the page's own palette is the eight tokens below. */
+            color-scheme: light;
+
             --bg:            #F7F7F5;
             --bg-panel:      #FFFFFF;
             --ink:           #111111;
@@ -105,6 +126,29 @@
             --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 
             --hair: 1px solid var(--line);
+        }
+
+        /* Dark is the same design with a different palette: it re-declares only the
+           eight colour tokens, under their existing names and in their existing
+           roles, and nothing else. Every rule in this document — and in the six
+           section stylesheets — already reads colours through these tokens, so
+           --hair, ::selection, the focus outline, the Skills plus/minus mark, the
+           nav's translucent scrolled state and the token-coloured case-study SVGs
+           all follow without a single per-component override. Spacing, type,
+           geometry and motion are untouched by definition.
+           --ink-3/--line-soft/--line-strong are the tertiary, softer and stronger
+           steps of the two scales the five named colours anchor. */
+        html[data-theme="dark"] {
+            color-scheme: dark;
+
+            --bg:            #000000;
+            --bg-panel:      #0A0A0A;
+            --ink:           #F5F5F2;
+            --ink-2:         #A7A7A2;
+            --ink-3:         #6F6F6A;
+            --line:          #292929;
+            --line-soft:     #1A1A1A;
+            --line-strong:   #3A3A3A;
         }
 
         /* =========================
@@ -310,6 +354,25 @@
         .nav__resume .arw { transition: transform 0.35s var(--ease); display: inline-block; }
         .nav__resume:hover .arw { transform: translate(2px, -2px); }
 
+        /* The theme control: icon-only, no surface, no radius, and the same
+           --ink-2 → --ink hover as .nav__link, so it reads as header type set to
+           an icon rather than a widget bolted on. Both glyphs ship in the markup
+           and the active theme picks one in CSS, so toggling needs no icon swap. */
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.75rem;
+            height: 1.5rem;
+            color: var(--ink-2);
+            transition: color 0.3s var(--ease-soft);
+        }
+        .theme-toggle:hover { color: var(--ink); }
+        .theme-toggle svg { width: 1.05rem; height: 1.05rem; }
+        .theme-toggle .icon-sun { display: none; }
+        html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+        html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
         .menu-btn { display: none; }
 
         /* =========================
@@ -378,6 +441,13 @@
             align-items: center;
             padding-top: 1.5rem;
             border-top: var(--hair);
+        }
+        /* Groups the theme control with the role label instead of becoming a third
+           space-between item, which would slide the label off the right edge. */
+        .overlay__foot-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.1rem;
         }
 
         /* =========================
@@ -611,6 +681,165 @@
         .figure.reveal { opacity: 1; transform: none; clip-path: inset(0 0 100% 0); transition: clip-path 1.15s var(--ease); transition-delay: var(--d, 0s); }
         .figure.reveal.is-visible { clip-path: inset(0 0 0 0); }
 
+        /* Colour-only cross-fade for the theme switch, applied through a class the
+           controller drops after ~200ms. A permanent universal transition on * would
+           win on specificity over the per-element transitions above — the nav's
+           scroll state, the accordion, .reveal — and clobber them, so the sweep is
+           deliberately short-lived and lists only the animatable colour properties.
+           Layout, type scale and geometry are never transitioned. */
+        html.theme-anim,
+        html.theme-anim body,
+        html.theme-anim *,
+        html.theme-anim *::before,
+        html.theme-anim *::after {
+            transition: background-color 0.18s linear, border-color 0.18s linear,
+                        color 0.18s linear, fill 0.18s linear, stroke 0.18s linear,
+                        outline-color 0.18s linear, text-decoration-color 0.18s linear !important;
+        }
+
+        /* =========================
+           CUSTOM CURSOR
+        ========================== */
+        /* A DOM mark rather than `cursor: url()`. A cursor image is fetched as an
+           external resource, so it cannot read var(--ink) — it would need one file
+           per theme plus colour logic in JS, and Chrome/Windows clip oversized
+           cursor bitmaps. As inline SVG it strokes through the existing token, so
+           Light/Dark inversion costs nothing and the geometry is *the same nodes*
+           in both themes. The native pointer is only hidden, never moved, so the
+           click point stays exactly where the browser puts it. */
+
+        /* Shared height across variants: both marks span the same 20.3237 units of
+           the 64-box vertically, so equal rendered height means equal stroke weight
+           and equal optical mass — only the width differs (one V vs three). */
+        .cursor {
+            --cur-w: 26px;
+            --cur-h: 9.18px;
+            --cur-smooth: 60ms;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            z-index: 300;
+            pointer-events: none;
+            opacity: 0;
+            will-change: transform;
+            transition: opacity 0.12s linear;
+        }
+        .cursor[data-variant="favicon"]  { --cur-w: 26px; }
+        .cursor[data-variant="simple-v"] { --cur-w: 14px; }
+        /* Smoothing is enabled only once a first position has been committed (see
+           the CUSTOM CURSOR script), so the mark never sweeps in from 0,0. */
+        .cursor.is-on {
+            opacity: 1;
+            transition: transform var(--cur-smooth) linear, opacity 0.12s linear;
+        }
+
+        .cursor__mark {
+            position: absolute;
+            display: none;
+            /* Bottom-centre of the mark sits on the pointer coordinate. The middle
+               V's vertex is the only downward point this geometry offers, so it is
+               the hotspot; centring horizontally keeps the click point dead middle.
+               Placed with left/top, not transform, so the hover scale below can own
+               transform-origin on that same point.
+               max-width: none defeats the reset's `svg { max-width: 100% }`, which
+               here resolves against a zero-width containing block. */
+            left: calc(var(--cur-w) / -2);
+            top: calc(var(--cur-h) * -1);
+            width: var(--cur-w);
+            height: var(--cur-h);
+            max-width: none;
+            overflow: visible;
+            stroke: var(--ink);
+            transform-origin: 50% 100%;
+            transition: transform 0.22s var(--ease-soft);
+        }
+        .cursor[data-variant="favicon"]  .cursor__mark--favicon,
+        .cursor[data-variant="simple-v"] .cursor__mark--simple-v { display: block; }
+        /* One affordance, one shape: interactive targets get a whisper of scale
+           about the hotspot. The geometry itself never changes per element. */
+        .cursor.is-hover .cursor__mark { transform: scale(1.16); }
+
+        @media (hover: hover) and (pointer: fine) {
+            /* The script sets `has-cursor` off the same media query; the query here
+               is the safety net for a pointer appearing mid-session.
+
+               Which regions the mark owns is declared once, as an inherited `--ptr`
+               token, and read back by the script through the element's computed
+               `cursor` — so the DOM mark can never disagree with the cursor the
+               browser is drawing. A token rather than plain `cursor:` rules because
+               plain rules do not reach a text block's inline children: `* { cursor }`
+               outranks anything inherited, so a <span> inside a <p> resolved to
+               `none` and the mark sat on top of selectable prose. An inherited custom
+               property does reach them, while a `--ptr` declared on the element still
+               beats what it inherits — which is what lets the rules below hand whole
+               regions to the I-beam and take specific ones back. */
+            html.has-cursor { --ptr: none; }
+            html.has-cursor,
+            html.has-cursor * { cursor: var(--ptr, none); }
+
+            /* Prose keeps the I-beam: it is the only hint that a region can be
+               drag-selected, and the mark only ever obscures it there. `li` is on
+               this list because this DOM writes prose as list items — the About
+               focus sentences and the case-study bullets on a project page are both
+               <li> text with no p or heading around them. `:where()` keeps every
+               "this is text" rule below the "this is a control" rules, so which of
+               the two wins is decided by the control alone and never by which text
+               list happened to match. */
+            html.has-cursor :where(p, h1, h2, h3, h4, figcaption, blockquote, dt, dd, td, th, li) {
+                --ptr: text;
+            }
+            /* The prose above is only part of the site's text: labels, index
+               numbers, tags, chips, dates and metrics are all bare <span>/<div>
+               leaves, and selecting them is just as real. ":not(:has(*))" is what
+               separates them from the decorations — without it the rule would fire
+               on every wrapper on the page and the mark would vanish entirely.
+               ":not([aria-hidden])" then covers the few decorations that hold no
+               text at all but do take up space, like a dot or a node marker. */
+            html.has-cursor :where(span, div):not(:has(*)):not([aria-hidden="true"]) {
+                --ptr: text;
+            }
+            /* Four containers that are not leaves yet speak their own words, so no
+               rule above reaches them: the header wordmark, the live/status pills and
+               the footer credit line. */
+            html.has-cursor :where(.wordmark, .app-live, .edu-status, .footer__meta) {
+                --ptr: text;
+            }
+            /* A <li> that exists to wrap a control is chrome, not prose: the three
+               contact link-list items sit 6.5px taller than the link inside them, so
+               without this the I-beam would flicker in that gutter on every pass. A
+               list item with no control in it stays prose. */
+            html.has-cursor li:has(a[href], button) {
+                --ptr: none;
+            }
+            /* Last, and the widest: a control owns its whole subtree. A link label,
+               a row's title and description, an icon path — all part of the thing you
+               are about to activate, so none of them may trade the mark for an
+               I-beam. `:is(*)` on the descendant leg costs nothing, which keeps this
+               at (0,2,2) and above the text rules at (0,2,1) and (0,1,1) without a
+               single !important. */
+            html.has-cursor :is(a[href], button, [role="button"], summary, label, .prow),
+            html.has-cursor :is(a[href], button, [role="button"], summary, label, .prow) :is(*) {
+                --ptr: none;
+            }
+            /* Native widgets are dormant on this site today — there is no form
+               field anywhere — but none of them should be left with a custom-only
+               cursor once one exists, and a field nested in its own <label> must
+               still outvote the control rule just above, hence the second selector.
+               `[data-native-cursor]` opts a node in. */
+            html.has-cursor :is(input, textarea, select, [contenteditable="true"], [data-native-cursor]),
+            html.has-cursor :is(a[href], button, [role="button"], summary, label, .prow) :is(input, textarea, select, [contenteditable="true"], [data-native-cursor]) {
+                --ptr: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            /* The mark stays; the chasing does not. The universal transition sweep
+               further down already makes the hover scale instant. */
+            .cursor { --cur-smooth: 0ms; }
+        }
+
         /* =========================
            RESPONSIVE
         ========================== */
@@ -666,6 +895,12 @@
             }
             .reveal { opacity: 1 !important; transform: none !important; }
             .figure.reveal { clip-path: none !important; }
+            /* The sweep above out-specifies the universal transition-duration: 0
+               rule, so it is switched off here as well as skipped in JS. */
+            html.theme-anim, html.theme-anim body,
+            html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+                transition: none !important;
+            }
         }
     </style>
 </head>
@@ -690,6 +925,11 @@
                 <a class="nav__link" href="#education">Education</a>
                 <a class="nav__link" href="#contact">Contact</a>
                 <a class="nav__resume" href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download résumé, PDF opens in a new tab">Résumé <span class="arw" aria-hidden="true">↗</span></a>
+
+                <button type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
+                    <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M5.2 18.8l1.6-1.6M17.2 6.8l1.6-1.6"/></svg>
+                </button>
             </nav>
 
             <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="overlay" aria-label="Open menu">
@@ -717,7 +957,13 @@
         </nav>
         <div class="overlay__foot">
             <a class="project__link" href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="arw" aria-hidden="true">↗</span></a>
-            <span class="label">Data Analyst / Data Scientist</span>
+            <span class="overlay__foot-meta">
+                <button type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
+                    <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M5.2 18.8l1.6-1.6M17.2 6.8l1.6-1.6"/></svg>
+                </button>
+                <span class="label">Data Analyst / Data Scientist</span>
+            </span>
         </div>
     </div>
 
@@ -1028,6 +1274,30 @@
         </div>
     </footer>
 
+    <!-- =========================
+         CUSTOM CURSOR
+    ========================== -->
+    <!-- The two candidate marks. Every path below is copied verbatim from
+         public/favicon.svg, which is unchanged: the three-V mark is its full
+         geometry, and the single-V mark is its centre V alone. Each viewBox is
+         that path set's exact stroked bounding box (ink bounds padded by
+         half of 2.6089 for the round caps), so the mark fills its box and the
+         two share one vertical span. Colour comes from var(--ink) in CSS. -->
+    <div class="cursor" id="cursor" data-variant="favicon" aria-hidden="true">
+        <svg class="cursor__mark cursor__mark--favicon" viewBox="3.20005 21.83815 57.6 20.3237">
+            <g fill="none" stroke-width="2.6089" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5045 40.8574 L27.1905 40.8574 L13.0187 23.1426"/>
+                <path d="M17.8281 23.1426 L32 40.8574 L46.1719 23.1426"/>
+                <path d="M59.4955 40.8574 L36.8095 40.8574 L50.9813 23.1426"/>
+            </g>
+        </svg>
+        <svg class="cursor__mark cursor__mark--simple-v" viewBox="16.52365 21.83815 30.9527 20.3237">
+            <g fill="none" stroke-width="2.6089" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.8281 23.1426 L32 40.8574 L46.1719 23.1426"/>
+            </g>
+        </svg>
+    </div>
+
     <script>
         /* =========================
            UTILITIES
@@ -1036,6 +1306,52 @@
             'use strict';
             var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
             var prefersReduced = function () { return reduce.matches; };
+
+            /* =========================
+               THEME TOGGLE
+            ========================== */
+            /* The pre-paint script in <head> has already applied the stored theme;
+               this is only the controller. One handler serves both the header and
+               the mobile-menu instance, which is how the header already duplicates
+               its wordmark and résumé link across the two — no shared state needed
+               because the theme lives on <html data-theme>, not in the buttons. */
+            var STORAGE_KEY = 'theme';
+            var SURFACE = { light: '#F7F7F5', dark: '#000000' };
+            var root = document.documentElement;
+            var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+            var themeButtons = document.querySelectorAll('.theme-toggle');
+            var animTimer = null;
+
+            function currentTheme() {
+                return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            }
+            function actionLabel(theme) {
+                return theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+            }
+            function syncControls(theme) {
+                var label = actionLabel(theme);
+                Array.prototype.forEach.call(themeButtons, function (btn) {
+                    btn.setAttribute('aria-label', label);
+                    btn.setAttribute('title', label);
+                });
+                if (themeColorMeta) themeColorMeta.setAttribute('content', SURFACE[theme]);
+            }
+            function setTheme(theme, sweep) {
+                root.setAttribute('data-theme', theme);
+                syncControls(theme);
+                try { window.localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* choice lasts for the session only */ }
+                if (!sweep) return;
+                root.classList.add('theme-anim');
+                clearTimeout(animTimer);
+                animTimer = setTimeout(function () { root.classList.remove('theme-anim'); }, 200);
+            }
+
+            syncControls(currentTheme());
+            Array.prototype.forEach.call(themeButtons, function (btn) {
+                btn.addEventListener('click', function () {
+                    setTheme(currentTheme() === 'dark' ? 'light' : 'dark', !prefersReduced());
+                });
+            });
 
             /* =========================
                NAV SCROLL STATE
@@ -1175,6 +1491,97 @@
             ========================== */
             var yearEl = document.getElementById('year');
             if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            /* =========================
+               CUSTOM CURSOR
+            ========================== */
+            /* CURSOR_VARIANT is the single development switch between the two
+               candidate marks. Allowed values:
+                 'favicon'   — the three-V monogram, favicon.svg geometry verbatim
+                 'simple-v'  — that monogram's centre V, alone
+               Anything else falls back to 'favicon'. It is a build-time comparison
+               aid, not a user setting: nothing in the page reads it, writes it or
+               offers a control for it. */
+            var CURSOR_VARIANT = 'favicon';
+
+            /* One hover rule for every interactive target, so the mark keeps a
+               single identity. '.prow' is listed because a project row opens its
+               case study from a click handler on the <li>, which no element
+               selector would otherwise reach. Mirrors the `--ptr: none` rule. */
+            var CURSOR_HOVER = 'a[href], button, [role="button"], summary, label, .prow';
+
+            var cursor = document.getElementById('cursor');
+            var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+            var cursorPlaced = false;
+            var cursorBound = false;
+            var cursorYielded = false;
+
+            function paintCursor() {
+                cursor.classList.toggle('is-on', cursorPlaced && !cursorYielded);
+            }
+
+            function onCursorMove(e) {
+                if (e.pointerType === 'touch') return;
+                var at = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)';
+                if (!cursorPlaced) {
+                    cursorPlaced = true;
+                    cursor.style.transform = at;
+                    /* Flush this first position while no transform transition is
+                       declared, so smoothing can never sweep the mark in from 0,0. */
+                    void cursor.offsetWidth;
+                }
+                /* Position keeps tracking through a yield, so the mark is already at
+                   the pointer when it returns — it never catches up from where it hid. */
+                cursor.style.transform = at;
+                paintCursor();
+            }
+
+            /* The pointer decides *where* the mark goes; the element under it decides
+               whether the mark is wanted at all. Any computed `cursor` that is not
+               `none` means the browser is drawing its own there — an I-beam over
+               prose, the platform cursor on a native widget — so the mark yields and
+               leaves that region to it. Read on target change only, never per move: a
+               forced style flush every frame would collide with the smoothing
+               transition. `is-hover` is re-evaluated in the same pass, which retires
+               the pointerout listener this replaces. */
+            function onCursorOver(e) {
+                var t = e.target;
+                cursorYielded = window.getComputedStyle(t).cursor !== 'none';
+                cursor.classList.toggle('is-hover',
+                    !cursorYielded && !!(t.closest && t.closest(CURSOR_HOVER)));
+                paintCursor();
+            }
+            function onCursorLeave() {
+                cursor.classList.remove('is-on', 'is-hover');
+            }
+
+            function bindCursor(listen) {
+                var at = listen ? 'addEventListener' : 'removeEventListener';
+                window[at]('pointermove', onCursorMove, { passive: true });
+                document[at]('pointerover', onCursorOver);
+                document[at]('pointerleave', onCursorLeave);
+                cursorBound = listen;
+            }
+
+            /* Pointer *capability*, not viewport width: a touchscreen laptop with a
+               mouse gets the mark, a phone held sideways does not, and plugging a
+               pointer in mid-session applies immediately. */
+            function syncCursor() {
+                var wanted = finePointer.matches;
+                root.classList.toggle('has-cursor', wanted);
+                if (wanted !== cursorBound) bindCursor(wanted);
+                if (!wanted) {
+                    cursorYielded = false;
+                    cursor.classList.remove('is-on', 'is-hover');
+                }
+            }
+
+            if (cursor) {
+                cursor.setAttribute('data-variant', CURSOR_VARIANT === 'simple-v' ? 'simple-v' : 'favicon');
+                syncCursor();
+                if (finePointer.addEventListener) finePointer.addEventListener('change', syncCursor);
+                else if (finePointer.addListener) finePointer.addListener(syncCursor);
+            }
         })();
     </script>
 
