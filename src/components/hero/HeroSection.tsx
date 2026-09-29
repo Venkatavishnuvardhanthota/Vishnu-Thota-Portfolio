@@ -93,12 +93,10 @@ export default function HeroSection() {
           <div className="hero__intro">
             <p className="hero__role hero__rise" style={{ transitionDelay: '0.5s' }}>
               <span className="hero__tick" aria-hidden="true" />
-              <span className="label label--ink">
-                Data Analyst<span className="hero__slash"> / </span>Data Scientist
-              </span>
+              <span className="label label--ink">Data Analyst</span>
             </p>
             <p className="hero__lede hero__rise" style={{ transitionDelay: '0.58s' }}>
-              Data analyst and scientist building end-to-end solutions — from exploratory analysis
+              Data analyst building end-to-end solutions — from exploratory analysis
               and machine learning to deployed applications and interactive dashboards.
             </p>
             <a

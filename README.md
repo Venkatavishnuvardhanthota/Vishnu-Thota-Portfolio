@@ -1,8 +1,8 @@
 # Thota Venkata Vishnu Vardhan
 
-**Data Analyst / Data Scientist**
+**Data Analyst**
 
-> Data analyst and scientist building end-to-end solutions — from exploratory analysis and
+> Data analyst building end-to-end solutions — from exploratory analysis and
 > machine learning to deployed applications and interactive dashboards.
 
 This repository is the source of my personal portfolio site: a case-study-driven overview of

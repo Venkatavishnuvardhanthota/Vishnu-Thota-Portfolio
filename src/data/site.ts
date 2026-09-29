@@ -29,9 +29,9 @@ export interface PageMeta {
  */
 export const HOME_META: PageMeta = {
   url: `${SITE_ORIGIN}/`,
-  title: 'Thota Venkata Vishnu Vardhan — Data Analyst / Data Scientist',
+  title: 'Thota Venkata Vishnu Vardhan — Data Analyst',
   description:
-    'Portfolio of Thota Venkata Vishnu Vardhan, data analyst and data scientist: seven data projects in machine learning, BI and NLP, two of them live.',
+    'Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live.',
   ogType: 'website',
 };
 
