@@ -15,7 +15,7 @@ selected data work, two live applications, certifications, education, and contac
 **Links:** [GitHub](https://github.com/Venkatavishnuvardhanthota) ·
 [LinkedIn](https://www.linkedin.com/in/venkata-vishnu-vardhan-thota) ·
 [Email](mailto:venkatavishnuvardhanthota@gmail.com) ·
-[Résumé (PDF)](public/resume/VishnuThota_CV.pdf)
+[Résumé (PDF)](public/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf)
 
 ---
 
@@ -230,7 +230,7 @@ fails on any TypeScript error.
 ├── tsconfig.json               # Strict TypeScript, react-jsx, bundler resolution
 ├── public/
 │   ├── hero-portrait.png       # 942×1128 cut-out portrait (used uncropped)
-│   ├── resume/                 # VishnuThota_CV.pdf
+│   ├── resume/                 # Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf
 │   ├── certificates/           # 3 certificate PDFs
 │   ├── cert-previews/          # 3 WebP certificate previews
 │   ├── app-previews/           # 2 WebP screenshots from the live apps
@@ -317,4 +317,4 @@ intelligence.
 | Email | [venkatavishnuvardhanthota@gmail.com](mailto:venkatavishnuvardhanthota@gmail.com) |
 | LinkedIn | [linkedin.com/in/venkata-vishnu-vardhan-thota](https://www.linkedin.com/in/venkata-vishnu-vardhan-thota) |
 | GitHub | [github.com/Venkatavishnuvardhanthota](https://github.com/Venkatavishnuvardhanthota) |
-| Résumé | [VishnuThota_CV.pdf](public/resume/VishnuThota_CV.pdf) |
+| Résumé | [Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf](public/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf) |

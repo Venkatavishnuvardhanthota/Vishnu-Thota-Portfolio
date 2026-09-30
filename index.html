@@ -47,8 +47,8 @@
     <!-- =========================
          SEO / METADATA
     ========================== -->
-    <title>Thota Venkata Vishnu Vardhan — Data Analyst</title>
-    <meta name="description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live." />
+    <title>Venkata Vishnu Vardhan Thota — Data Analyst | SQL, Python, Power BI</title>
+    <meta name="description" content="Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, forecasting, churn and sentiment projects with live demos. Open to internships and entry-level roles." />
     <meta name="author" content="Thota Venkata Vishnu Vardhan" />
     <meta name="theme-color" content="#F7F7F5" />
 
@@ -74,14 +74,14 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vishnu-thota.vercel.app/" />
-    <meta property="og:title" content="Thota Venkata Vishnu Vardhan — Data Analyst" />
-    <meta property="og:description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live." />
+    <meta property="og:title" content="Venkata Vishnu Vardhan Thota — Data Analyst | SQL, Python, Power BI" />
+    <meta property="og:description" content="Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, forecasting, churn and sentiment projects with live demos. Open to internships and entry-level roles." />
     <meta property="og:image" content="https://vishnu-thota.vercel.app/hero-portrait.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Thota Venkata Vishnu Vardhan — Data Analyst" />
-    <meta name="twitter:description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live." />
+    <meta name="twitter:title" content="Venkata Vishnu Vardhan Thota — Data Analyst | SQL, Python, Power BI" />
+    <meta name="twitter:description" content="Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, forecasting, churn and sentiment projects with live demos. Open to internships and entry-level roles." />
     <meta name="twitter:image" content="https://vishnu-thota.vercel.app/hero-portrait.png" />
 
     <!-- =========================
@@ -101,7 +101,7 @@
         ========================== */
         :root {
             /* Native UI (scrollbar, form widgets, text-select caret) follows the
-               active scheme; the page's own palette is the eight tokens below. */
+               active scheme; the page's own palette is the twelve tokens below. */
             color-scheme: light;
 
             --bg:            #F7F7F5;
@@ -112,6 +112,15 @@
             --line:          #D9D9D5;
             --line-soft:     #E7E7E3;
             --line-strong:   #C7C7C1;
+
+            /* Three steps the Header + Hero needed and the eight-colour core did
+               not carry: the nav's own link ink, the Hero's value line, and the
+               one non-monochrome colour on the site — the green that says
+               "available". Both themes declare all three, so nothing downstream
+               of these ever hard-codes a colour. */
+            --nav-ink:       #2B2B2B;
+            --hero-body:     #333333;
+            --status:        #1B7A3D;
 
             --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -129,8 +138,9 @@
         }
 
         /* Dark is the same design with a different palette: it re-declares only the
-           eight colour tokens, under their existing names and in their existing
-           roles, and nothing else. Every rule in this document — and in the six
+           colour tokens — the eight core ones plus the three Header/Hero steps —
+           under their existing names and in their existing roles, and nothing else.
+           Every rule in this document — and in the six
            section stylesheets — already reads colours through these tokens, so
            --hair, ::selection, the focus outline, the Skills plus/minus mark, the
            nav's translucent scrolled state and the token-coloured case-study SVGs
@@ -149,6 +159,10 @@
             --line:          #292929;
             --line-soft:     #1A1A1A;
             --line-strong:   #3A3A3A;
+
+            --nav-ink:       #ECECEC;
+            --hero-body:     #C9C9C4;
+            --status:        #3ECF72;
         }
 
         /* =========================
@@ -315,57 +329,112 @@
         .nav__links {
             display: flex;
             align-items: center;
-            gap: clamp(1rem, 2.2vw, 2.1rem);
+            /* The visible gap is two thirds padding: each link carries 12px of
+               inline padding as part of its hit area, so the adjacent boxes
+               already read as 24px of air. The flex gap therefore has to be
+               small for the row to read as one tight instrument rather than
+               seven separate controls — and it is the only dial, because
+               shrinking the links themselves would shrink the targets. */
+            gap: clamp(0px, 0.15vw, 0.25rem);
         }
         .nav__link {
             position: relative;
-            font-size: 0.86rem;
+            font-size: 0.9375rem;
             font-weight: 500;
             letter-spacing: 0.01em;
-            color: var(--ink-2);
-            padding-block: 0.35rem;
+            line-height: 1.6;
+            color: var(--nav-ink);
+            /* 24px of line box + 10px above and below = a 44px target. */
+            padding: 10px 12px;
             transition: color 0.3s var(--ease-soft);
         }
         .nav__link::after {
             content: "";
             position: absolute;
-            left: 0; right: 0; bottom: 0;
+            left: 0; right: 0; bottom: 6px;
             height: 1px;
             background: var(--ink);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.45s var(--ease);
         }
-        .nav__link:hover, .nav__link.is-active { color: var(--ink); }
+        .nav__link:hover { color: var(--ink); }
+        .nav__link.is-active { color: var(--ink); font-weight: 600; }
         .nav__link:hover::after, .nav__link.is-active::after { transform: scaleX(1); }
 
+        /* The résumé control is the header's one filled surface, and it is the
+           inverse of the page it sits on: black on the light header, white on
+           the dark one. That falls out of --ink/--bg rather than being written
+           twice, because the two tokens are exactly the pair the theme swaps —
+           so there is no second rule to keep in step, and no grey in either
+           mode. The box is the 36px the header asked for; the 44px touch target
+           is bought with a ::before band, which belongs to the link, so the
+           drawn size and the hit size answer to different constraints.
+           `download` rather than a new tab: a reader who wants the PDF should
+           not lose the page that offered it, and the ↗ that used to sit here
+           promised the wrong thing. */
         .nav__resume {
+            position: relative;
             display: inline-flex;
             align-items: center;
             gap: 0.4em;
-            margin-left: clamp(0.5rem, 1.5vw, 1.25rem);
-            padding-left: clamp(0.75rem, 1.5vw, 1.25rem);
-            border-left: var(--hair);
-            font-size: 0.82rem;
+            margin-left: clamp(0.5rem, 1.2vw, 1.1rem);
+            height: 36px;
+            padding-inline: 0.95rem;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            background: var(--ink);
+            color: var(--bg);
+            font-size: 0.875rem;
             font-weight: 500;
+            letter-spacing: 0.01em;
+            transition: background-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft);
+        }
+        .nav__resume::before {
+            content: "";
+            position: absolute;
+            inset-inline: 0;
+            inset-block: -4px;
+        }
+        /* Hover empties the fill instead of dimming it — a translucent black
+           would read as the grey capsule this one deliberately is not. */
+        .nav__resume:hover {
+            background: transparent;
             color: var(--ink);
-            letter-spacing: 0.02em;
         }
         .nav__resume .arw { transition: transform 0.35s var(--ease); display: inline-block; }
-        .nav__resume:hover .arw { transform: translate(2px, -2px); }
+        .nav__resume:hover .arw { transform: translateY(2px); }
 
         /* The theme control: icon-only, no surface, no radius, and the same
            --ink-2 → --ink hover as .nav__link, so it reads as header type set to
            an icon rather than a widget bolted on. Both glyphs ship in the markup
-           and the active theme picks one in CSS, so toggling needs no icon swap. */
+           and the active theme picks one in CSS, so toggling needs no icon swap.
+           The box is 44×44 with the glyph centred in it: the 13.6px of empty box
+           on each side is what makes the target reachable without a background,
+           and it is also the reason the header gap below only needs a few px. */
         .theme-toggle {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 1.75rem;
-            height: 1.5rem;
+            width: 2.75rem;
+            height: 2.75rem;
             color: var(--ink-2);
             transition: color 0.3s var(--ease-soft);
+        }
+        /* Résumé and theme are two controls, not one capsule with a tail: the
+           nav's own gap is tuned for link-to-link air, so it cannot also be the
+           thing that separates a filled capsule from an icon. This margin is the
+           deliberate distance between them — a plain flex gap on one item, with
+           no border, divider or shared surface anywhere in it.
+           The negative right margin is the other half of the ask: the theme
+           control belongs to the edge of the window, not to the end of the link
+           row, so it bleeds back out through the gutter until 0.875rem of box
+           separates it from the viewport — about 28px from the glyph itself,
+           which is breathing space without contact. Above 1440px the header
+           stops following the window and keeps the composition's own edge. */
+        .nav__links .theme-toggle {
+            margin-left: clamp(0.375rem, 0.75vw, 0.75rem);
+            margin-right: calc(0.875rem - var(--gutter));
         }
         .theme-toggle:hover { color: var(--ink); }
         .theme-toggle svg { width: 1.05rem; height: 1.05rem; }
@@ -919,12 +988,12 @@
             <nav class="nav__links" aria-label="Primary">
                 <a class="nav__link" href="#about">About</a>
                 <a class="nav__link" href="#work">Projects</a>
-                <a class="nav__link" href="#applications">Applications</a>
+                <a class="nav__link" href="#applications">Live&nbsp;Apps</a>
                 <a class="nav__link" href="#skills">Skills</a>
                 <a class="nav__link" href="#certifications">Certifications</a>
                 <a class="nav__link" href="#education">Education</a>
                 <a class="nav__link" href="#contact">Contact</a>
-                <a class="nav__resume" href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download résumé, PDF opens in a new tab">Résumé <span class="arw" aria-hidden="true">↗</span></a>
+                <a class="nav__resume" href="/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf" download>Résumé <span class="arw" aria-hidden="true">↓</span></a>
 
                 <button type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
                     <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
@@ -949,14 +1018,14 @@
         <nav class="overlay__nav" aria-label="Mobile">
             <a href="#about"><span class="num">01</span>About</a>
             <a href="#work"><span class="num">02</span>Projects</a>
-            <a href="#applications"><span class="num">03</span>Applications</a>
+            <a href="#applications"><span class="num">03</span>Live Apps</a>
             <a href="#skills"><span class="num">04</span>Skills</a>
             <a href="#certifications"><span class="num">05</span>Certifications</a>
             <a href="#education"><span class="num">06</span>Education</a>
             <a href="#contact"><span class="num">07</span>Contact</a>
         </nav>
         <div class="overlay__foot">
-            <a class="project__link" href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="arw" aria-hidden="true">↗</span></a>
+            <a class="project__link" href="/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="arw" aria-hidden="true">↗</span></a>
             <span class="overlay__foot-meta">
                 <button type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
                     <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
@@ -1265,7 +1334,7 @@
                 <a href="https://github.com/Venkatavishnuvardhanthota" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/venkata-vishnu-vardhan-thota" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="mailto:venkatavishnuvardhanthota@gmail.com">Email</a>
-                <a href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer">Résumé</a>
+                <a href="/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé</a>
             </nav>
             <div class="footer__meta">
                 <span id="year">2026</span> · Thota Venkata Vishnu Vardhan

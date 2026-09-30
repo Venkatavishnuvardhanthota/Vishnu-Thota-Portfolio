@@ -34,4 +34,4 @@ export const CONTACT_LINKS: ContactLink[] = [
 ];
 
 /** Single résumé target shared by the nav, this section, and the footer. */
-export const RESUME_URL = '/resume/VishnuThota_CV.pdf';
+export const RESUME_URL = '/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf';

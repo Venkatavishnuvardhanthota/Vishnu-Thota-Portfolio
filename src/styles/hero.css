@@ -1,315 +1,169 @@
 /* =========================
-   HERO V2 — layered masthead: oversized name behind a centred portrait, with
-   the professional context running along the foot.
-   Rendered by src/components/hero. Reuses the global tokens, the .label class
-   and the --ease curves defined in index.html; .mask lives here because the
-   Hero is its only consumer.
+   HERO — editorial masthead: the complete name set big and condensed on one
+   line across the very top, the portrait directly below it, and the two copy
+   blocks pushed out to the edges of the viewport so the figure stands between
+   them. Rendered by src/components/hero.
+   Colours come only from the tokens declared in index.html's two palette
+   blocks; nothing here states a value.
 ========================= */
 
 .hero {
-    /* ---- the vertical bands, declared once ---------------------------
-       Everything the composition has to pay for before the figure is drawn is
-       named here and consumed by the box that draws it, so the portrait's
-       budget is derived from the live layout instead of a constant that can
-       drift. */
-    --hero-pad-top: calc(var(--nav-h) + clamp(1.125rem, 2.6vh, 2.5rem));
-    --hero-pad-bottom: clamp(0.85rem, 1.8vh, 1.6rem);
-    --stage-gap: clamp(1.125rem, 2.2vh, 2rem);
-
-    /* One viewport, but no more than one: a taller CSS viewport (lower browser
-       zoom, a 4K desktop) rescales the spread instead of stretching it. */
+    /* ---- the figure: one term, chosen so that browser zoom cannot move it ---
+       Zoom rescales the CSS viewport instead of the drawing: on a fixed
+       1440x900 screen 90% reports 1600 CSS px and 150% reports 960. A width in
+       vw therefore grows in CSS px exactly as fast as zoom shrinks them, and
+       the same ~566px of desk comes out at every step — that is the whole
+       mechanism, no script and no reading of the zoom level. Height is never a
+       second dial: the cut-out is uncropped, so the 942/1128 source ratio turns
+       566px of width into 678px of height.
+       Every term is viewport-relative, because anything pinned in CSS px keeps
+       its own size while the page shrinks around it — which is exactly what
+       made the figure collapse between 110% and 125%. The three terms are the
+       same number on a 16:10 window and each is the veto on a different shape:
+         . 39.3vw   the share of the window the composition gives the subject —
+                    binds on every window narrower than 1622 CSS px;
+         . 62.89svh the fold's share: name band + gap + figure + the Hero's own
+                    padding fill one screen, so the head is never far below it;
+         . 40rem    a rail for genuinely wide desks, where an uncapped figure
+                    would leave the two copy blocks a strip of measure. It
+                    engages above 1622 CSS px, outside the 90–150% band being
+                    stabilised. */
+    --fig-w: min(39.3vw, 62.89svh, 40rem);
+    /* ---- the name ---------------------------------------------------------
+       One line, four words, Impact first. The face is the point: a condensed
+       grotesque whose measured advance for this exact string — four words plus
+       three 0.16em gaps, at -0.01em tracking — is 12.5759em, so the divisor is
+       that advance over the 90% fill that reads as edge-to-edge while leaving
+       ~130px of slack to absorb a classic scrollbar. 90% of --name-track is the
+       brief's "85–95% of the available Hero width".
+       --name-track is the full-bleed body's own content box, restated here
+       because a custom property cannot read an element back. It is viewport
+       arithmetic rather than the 1440px column it used to be, which is what
+       makes the masthead grow with the window and stay physically constant
+       under zoom by the same mechanism as the figure. --mast-max is the only
+       term that stops: 10.5rem lets the name keep growing to a 2560 desk at an
+       88% fill — the same relationship it has at 1440 — and holds it there
+       instead of setting the name at 260px on a 4K window. */
+    --name-track: calc(100vw - 2 * var(--gutter));
+    --mast-max: 10.5rem;
+    --mast-size: min(calc(var(--name-track) / 14), var(--mast-max));
+    --word-space: 0.16em;
+    --mast-line: 0.86;
+    /* The clear air between the last line of type and the top of the portrait.
+       It is a row gap, not a z-index: the figure cannot reach the glyphs at all.
+       Impact sets its caps high in the box and has almost no room below the
+       baseline, so this gap is measured from the ink rather than from the box —
+       3.1vh is ~28px on the 900px desk, which leaves ~16px of it between the
+       baseline and the crown of the hair. */
+    --name-air: clamp(0.9rem, 3.1vh, 2.25rem);
+    --col-air: clamp(0.75rem, 1.6vw, 1.75rem);
+    /* The copy columns start beside the figure's shoulders, which reach the
+       edge of the box from ~0.6 of its height down: at 0.3 the blocks sit
+       level with the chin and finish above the fold while the subject keeps
+       running below them. */
+    --copy-drop: 0.3;
+    /* Mirrored by `html.js #hero-root:empty` in index.html, which reserves the
+       same box before the island mounts. */
     --hero-height: min(100svh, 60rem);
-
-    /* ---- the name, measured rather than guessed ----------------------
-       "VISHNU VARDHAN" advances 8.128em in Hanken Grotesk 700 at -0.02em
-       tracking, so the size factor is 1/8.35 rather than 1/8.128: the extra 2.7%
-       is headroom for the fallback face, which is measurably wider. Division by
-       a var() number is not portable, so the reciprocal is what is written out.
-       The masthead is deliberately wider than the reading column: it bleeds to
-       --name-edge from the viewport, which is where the extra scale comes from.
-       The edge is the dial that sets how much of the screen the name claims: at
-       4vw the box measures 92% of the viewport at 1440, which leaves the figure
-       (whose own ceiling is vertical, see below) the dominant partner without
-       the lettering dropping to heading scale. */
-    --name-edge: clamp(0.5rem, 4vw, 6rem);
-    --name-factor: 0.1198;
-    --name-tracking: -0.02em;
-    --name-line-height: 0.82;
-    --name-lines: 2;
-
-    /* ---- the foot -----------------------------------------------------
-       The left column is role + lede + CTA; its height is summed from the bands
-       that draw it so the figure's budget matches the real box.
-       --foot-lede-lines is the measured wrap count, --foot-extra the stacked
-       links row the mobile foot adds. The budget has to be an over-estimate:
-       the Hero ends up exactly one viewport tall plus whatever the foot
-       actually takes beyond what was reserved, so a token that runs short is
-       what pushes the CTA below the fold.
-       --lede-size is deliberately NOT viewport-fluid: the measure below is
-       derived from it, and both the wrap count (which the budget reserves) and
-       the width the figure is allowed to claim (which the measure leaves over)
-       have to stay the same at 1280 and at 1920.
-       --ch-ratio is measured: one ch of Hanken Grotesk is 0.56em. */
-    --lede-size: 1.03rem;
-    --lede-line-height: 1.62;
-    --lede-line: calc(var(--lede-size) * var(--lede-line-height));
-    --lede-ch: 32;
-    --ch-ratio: 0.56;
-    --lede-measure: calc(var(--lede-ch) * var(--ch-ratio) * var(--lede-size));
-    /* The foot runs on the Hero's own outer grid line rather than the shell's
-       content column: the composition is a full-bleed one, and pinning the
-       lower-left copy and the lower-right links nearer the edges is what gives
-       the centred subject the horizontal room it needs to reach close to half
-       the screen. Same construction as --name-w, so the two stay aligned. */
-    --foot-edge: clamp(1.25rem, 3vw, 3rem);
-    --foot-role-line: 1.2rem;
-    --foot-cta-line: 1.2rem;
-    --foot-gap-a: 0.85rem;
-    --foot-gap-b: 1.05rem;
-    --foot-lede-lines: 5;
-    --foot-extra: 0px;
-    --foot-block: calc(
-        var(--foot-role-line) + var(--foot-gap-a)
-        + var(--foot-lede-lines) * var(--lede-line)
-        + var(--foot-gap-b) + var(--foot-cta-line)
-        + var(--foot-extra)
-    );
-
-    /* ---- how the figure is placed ------------------------------------
-       Two moves, and they are what makes the subject large AND low:
-       . It RISES --name-overlap of its own height into the masthead, which is
-         the "name behind the portrait" layering: the whole two-line block sits
-         behind the head, so the lettering reads on either side of the subject.
-         The reciprocal --name-rise-scale (1 / (1 - 0.331)) gives that height
-         back to the budget. There is a ceiling on this: the figure's top may
-         not climb above the masthead's own top, which needs overlap x height
-         <= the name block.
-       . It DESCENDS past the stage, into the band the foot occupies, and stops
-         --figure-bottom-air above the Hero's own bottom edge. The foot's
-         columns sit left and right of the subject, so the descent costs no
-         readability and buys ~200px of figure.
-       Because the stage's row and the descent together span from just below the
-       nav to just above the fold, the figure's real ceiling is the Hero's height
-       minus the air above the head and the air below the body — every other
-       band (masthead, gap, foot) is something it is allowed to overlap:
-
-         height_max = hero-height - nav-height - air-above-head - bottom-air
-
-       That identity is why the masthead's size is not a donor: shrinking the
-       name buys the figure no vertical room, it only lowers the overlap needed
-       to reach a given height. The two air terms are the whole budget, so they
-       are set tight here, and every pixel of them is checked against the nav and
-       the CTA in the renders rather than assumed. */
-    --name-overlap: 0.331;
-    --name-rise-scale: 1.4948;
-    --figure-bottom-air: clamp(0.25rem, 0.55vh, 0.75rem);
-    --foot-descent: calc(
-        var(--foot-block) + var(--stage-gap)
-        + var(--hero-pad-bottom) - var(--figure-bottom-air)
-    );
-    /* Air kept between the foot's lede column and the figure's edge. The
-       subject's own ink reaches the frame edge from ~52% of its height down
-       (measured on the source alpha), so for the descending part the box rule
-       below is the honest one — there is no transparent margin to spend.
-       Expressed in vw so the clearance it buys is the same ~16px of *physical*
-       air at every zoom step instead of a fixed CSS amount that shrinks
-       relative to the screen at low zoom and grows at high zoom. */
-    --flank-gap: clamp(0.75rem, 1.15vw, 1.75rem);
-
-    /* ---- the desktop width model: one primary term, two guards ---------
-       Browser zoom rescales the CSS viewport: on a fixed 1440px-wide screen,
-       80% zoom reports 1800 CSS px and 125% reports 1152. A width written in vw
-       therefore grows in CSS px exactly as fast as zoom shrinks them, which is
-       what keeps the subject the same size ON THE DESK when the zoom changes.
-       That single vw term is the whole desktop sizing mechanism; the only two
-       things allowed to override it are the ones the composition cannot survive
-       without —
-
-         min( clamp(min, C·vw, max)   primary: viewport-proportional
-             , flanks                the lede column it must not touch
-             , height )              a window too short to hold it
-
-       The sweep at 80/90/100/110/125% on a physical 1440x900 screen shows
-       exactly where each applies: the vw term sizes the subject at 90, 100 and
-       110%, and the flank guard is what binds at 80% and 125%, where the two
-       foot columns close in on the centre line. The height guard does not bind
-       anywhere in that band — it engages only on genuinely short windows such
-       as 1536x864.
-       Tuned from the renders, not from arithmetic: the flank ceiling is a
-       property of the foot's own geometry, so raising this number moves the
-       middle of the zoom band and nothing at the ends. */
-    --portrait-view-scale: 41.75vw;
-    /* The clamp's outer rails. Each one is reached — 48rem at 1920 wide and
-       above, 30rem below ~1150 CSS px — but never last: wherever a rail binds,
-       the flank ceiling measured there is already lower (709 at 1920, 418 at
-       1100). So the rails cap the term for its own sake and the guards, not the
-       rails, decide the width. */
-    --portrait-view-min: 30rem;
-    --portrait-view-max: 48rem;
 
     position: relative;
     display: grid;
+    align-content: center;
     min-height: var(--hero-height);
-    padding-top: var(--hero-pad-top);
-    padding-bottom: var(--hero-pad-bottom);
+    padding-block: calc(var(--nav-h) + clamp(0.75rem, 1.8vh, 1.75rem)) clamp(0.75rem, 1.6vh, 1.5rem);
+    /* The masthead is nowrap by design; on a column too narrow for it this clips
+       the spill rather than letting the document scroll sideways. */
     overflow: hidden;
 }
 
 /* An unsupported unit inside var() invalidates the whole declaration rather than
-   falling back to the previous one, so the no-svh case is handled here. */
+   falling back, so both svh cases are restated here. */
 @supports not (height: 100svh) {
-    .hero { --hero-height: min(100vh, 60rem); }
-}
-
-/* ---- the measured column ---------------------------------------------
-   The container is the content column itself, so every cqw below is 1% of the
-   space the masthead actually has — never 100vw, which counts the scrollbar and
-   ignores the site's max content width. */
-.hero__inner {
-    container-type: inline-size;
-    --stage-w: 100cqw;
-    /* The masthead's box: the reading column, widened by the gutter it may
-       reach into, minus the air it must still leave at the viewport edge. The
-       stage below claims exactly this width with negative inline margins, so it
-       is a real box rather than something overflowing its parent. */
-    --name-w: calc(var(--stage-w) + 2 * (var(--gutter) - var(--name-edge)));
-    /* The foot's box, in the same reference frame as the figure's width terms.
-       Declared from --stage-w rather than from 100vw so it never counts the
-       scrollbar, which would over-report the room the lede column leaves. */
-    --foot-w: calc(var(--stage-w) + 2 * (var(--gutter) - var(--foot-edge)));
-
-    display: grid;
-    grid-template-rows: 1fr auto;
-    row-gap: var(--stage-gap);
-}
-
-/* Engines without container queries fall back to the same column width, written
-   out from the shell's own tokens. --name-w is inherited by reference: it is
-   defined on .hero__inner above in terms of --stage-w, and var() resolves
-   against the winning declaration of --stage-w on this same element. */
-@supports not (width: 1cqw) {
-    .hero__inner {
-        --stage-w: calc(min(100vw, var(--maxw)) - 2 * var(--gutter));
-        /* slightly tighter: 100vw over-reports by the scrollbar width */
-        --name-factor: 0.118;
+    .hero {
+        --hero-height: min(100vh, 60rem);
+        --fig-w: min(39.3vw, 62.89vh, 40rem);
     }
 }
 
-/* =========================
-   LAYER 1–3 — the stage: name behind, portrait in front
-========================== */
-.hero__stage {
-    /* The masthead is wider than the reading column, and it gets that width
-       from negative inline margins rather than from overflowing it: the box
-       moves out and grows by the same amount, so the grid track never stretches
-       and everything the stage centres — the name and the figure together —
-       stays on the viewport's centre line. min-width:0 keeps the grid item's
-       automatic minimum size from reopening that gap. */
-    min-width: 0;
-    margin-inline: calc(var(--name-edge) - var(--gutter));
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Any slack the width ceiling leaves collects evenly above and below the
-       stack, so the figure never floats away from the foot. */
-    justify-content: center;
+/* ---- the composition ----------------------------------------------------
+   Five items over two rows, in a body that spans the whole viewport instead of
+   the 1440px reading column. The heading owns the first row end to end; the
+   figure, dropped into the middle track of the second row, is what the name is
+   centred on and what the outer tracks are measured around. The two copy blocks
+   take those outer tracks — each half of everything the figure does not use —
+   and are pushed down the row to stand beside the figure's lower body, one
+   anchored to the left edge and the other to the right. Nothing is absolutely
+   positioned: every block below the nav is in flow, which is what keeps the
+   actions with the content they follow rather than with the bottom of the
+   section, and what makes a collision between the name and the picture
+   impossible rather than merely hidden. */
+.hero__body {
+    display: grid;
+    /* The outer tracks are `1fr`, so the copy sits out by the viewport edges and
+       the portrait keeps its own centred band: the gap between a block and the
+       figure is whatever the window allows, with --col-air as its floor. Equal
+       tracks are also what centres the figure — no explicit centring term can
+       drift, because both sides take the same share of the leftover. */
+    padding-inline: var(--gutter);
+    grid-template-columns: minmax(0, 1fr) var(--fig-w) minmax(0, 1fr);
+    column-gap: var(--col-air);
+    row-gap: var(--name-air);
+    align-items: start;
 }
 
+.hero__name { grid-column: 1 / -1; grid-row: 1; }
+.hero__figure { grid-column: 2; grid-row: 2; }
+.hero__identity { grid-column: 1; grid-row: 2; }
+.hero__proof { grid-column: 3; grid-row: 2; }
+
+/* =========================
+   MASTHEAD — the complete name on one condensed line, centred on the figure's
+   axis, sized from the viewport so it reads as the widest thing on the page.
+   Impact is asked for by name, and it is a system face: the chain falls back
+   through the two condensed families that ship beside it and only then to the
+   sans. It carries one weight, so 400 is the real letterform rather than a
+   synthetic bold of it. The surname's lighter ink is the one colour break inside
+   the string — nothing is outlined out of existence.
+========================== */
 .hero__name {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    margin: 0;
-    font-family: var(--sans);
-    font-weight: 700;
-    font-size: calc(var(--name-w) * var(--name-factor));
-    line-height: var(--name-line-height);
-    letter-spacing: var(--name-tracking);
-    text-transform: uppercase;
+    margin-block: 0;
     text-align: center;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-weight: 400;
+    font-size: var(--mast-size);
+    line-height: var(--mast-line);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
     color: var(--ink);
 }
-.hero__name-line { display: block; }
-/* The FIRST line is drawn as an outline and the second solid, so the masthead
-   reads as one typographic mass receding behind the figure and landing in front
-   of it, and the solid line sits at the subject's face where the eye settles.
-   The stroke is a hair heavier than a rule colour and uses --ink-3 rather than
-   --line-strong: at this size a 2px outline in a rule grey disappears against
-   the portrait's mid-tones. */
-.hero__name-line--ghost {
-    color: transparent;
-    -webkit-text-stroke-width: calc(var(--name-w) * var(--name-factor) * 0.013);
-    -webkit-text-stroke-color: var(--ink-3);
+/* One flex line, centred, with the word space carried as a gap so the four
+   words read as a single name rather than as four justified columns. The gap is
+   part of the measured advance behind --mast-size, so changing it changes the
+   divisor. */
+.hero__words {
+    display: flex;
+    justify-content: center;
+    gap: var(--word-space);
 }
+.hero__word { min-width: 0; white-space: nowrap; }
+.hero__word--surname { color: var(--ink-2); }
 
-/* ---- portrait ---------------------------------------------------------
-   Uncropped by construction: width is chosen, height follows the source
-   942/1128 ratio at height:auto, so there is no object-fit, no fixed-height
-   box and no viewport-height crop anywhere.
-     from-view:   the PRIMARY desktop term — a share of the CSS viewport, so the
-                  subject holds its size on the desk as browser zoom changes.
-                  See --portrait-view-* above.
-     from-flanks: the clear space between the foot's lede column and the Hero's
-                  centre line, doubled, because the figure is centred. This is
-                  the text-collision guard, and it is the only term that ever
-                  overrides the vw one: it binds at 80% and at 125%, where the
-                  columns close in on the centre.
-     from-height: what the Hero has left once the masthead is paid for, grown
-                  back twice over — by the share of itself that rises into the
-                  masthead, and by the distance it is allowed to descend into
-                  the foot band. Floored so a window too short to hold it
-                  scrolls instead of shrinking the subject to nothing. Binds
-                  only in short windows (1536x864), not in the 80-125% band. */
+/* =========================
+   PORTRAIT — uncropped by construction: the centre track sets the width and
+   the source ratio the component states sets the height. The grid places it one
+   row under the heading, so it is never stacked over the name and needs no
+   stacking context of its own.
+========================== */
 .hero__figure {
-    --name-block: calc(
-        var(--name-w) * var(--name-factor)
-        * var(--name-line-height) * var(--name-lines)
-    );
-    --stage-free: calc(
-        var(--hero-height)
-        - var(--hero-pad-top) - var(--hero-pad-bottom)
-        - var(--stage-gap) - var(--foot-block)
-        - var(--name-block)
-    );
-    --portrait-from-view: clamp(
-        var(--portrait-view-min),
-        var(--portrait-view-scale),
-        var(--portrait-view-max)
-    );
-    --portrait-from-height: max(
-        11rem,
-        calc(
-            (var(--stage-free) + var(--foot-descent))
-            * var(--name-rise-scale) * 942 / 1128
-        )
-    );
-    --portrait-from-flanks: calc(
-        var(--foot-w) - 2 * (var(--lede-measure) + var(--flank-gap))
-    );
-    --portrait-width: min(
-        var(--portrait-from-view),
-        var(--portrait-from-flanks),
-        var(--portrait-from-height)
-    );
-    --portrait-height: calc(var(--portrait-width) * 1128 / 942);
-
-    position: relative;
-    z-index: 2;
-    width: var(--portrait-width);
-    /* The figure rises into the masthead — this is the whole "name behind the
-       portrait" effect, and it is what the budget above already paid for. */
-    margin-top: calc(-1 * var(--name-overlap) * var(--portrait-height));
-    /* …and descends into the foot band, whose columns sit either side of it. */
-    margin-bottom: calc(-1 * var(--foot-descent));
+    width: var(--fig-w);
+    justify-self: center;
+    align-self: start;
 }
 .portrait { position: relative; margin: 0; }
 .portrait__img {
     display: block;
     width: 100%;
     height: auto;
-    /* holds the exact box while the file decodes, so nothing reflows */
-    aspect-ratio: 942 / 1128;
 }
 .portrait__fallback {
     display: none;
@@ -321,7 +175,12 @@
         linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px) 0 0 / 34px 100%,
         var(--bg-panel);
 }
-.portrait--missing .portrait__fallback { display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.portrait--missing .portrait__fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
 .portrait--missing .portrait__img { display: none; }
 .portrait__fallback span {
     font-size: 0.72rem;
@@ -333,114 +192,158 @@
 }
 
 /* =========================
-   LAYER 4–5 — the foot: context left, quiet links right
+   LEFT STACK — the role, the tools, the value line, the availability pill and
+   the actions, in that order and all in flow, anchored to the viewport's left
+   edge. The name is not repeated here: the masthead above the portrait is the
+   only place it is written. The status badge reads as the end of the argument
+   rather than as a banner over the page, and the buttons follow it down the same
+   column instead of being pinned to the section's bottom edge.
 ========================== */
-.hero__foot {
-    position: relative;
-    z-index: 3;
-    /* Same negative-inline-margin move the stage uses, so the foot's two columns
-       sit on --foot-edge from the viewport instead of on the shell's gutter —
-       and so the figure's --portrait-from-flanks rule, which is written against
-       --foot-w, describes the box that is actually drawn. */
+.hero__identity {
+    display: grid;
+    gap: 0.5rem;
+    justify-self: start;
+    margin-top: calc(var(--fig-w) * var(--copy-drop));
     min-width: 0;
-    margin-inline: calc(var(--foot-edge) - var(--gutter));
-
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: clamp(1.25rem, 3vw, 3rem);
 }
-.hero__intro {
-    flex: 0 1 auto;
-    min-width: 0;
-    /* The column is capped at exactly the measure the figure's flank rule
-       reserves, so nothing inside it — not the role row with its tick, not the
-       CTA — can quietly reach further right than the budget assumed. That is
-       what the wider foot exposed at 1280: the role row measured 329px against
-       a 295px reserve and the figure's box started overlapping it. */
-    max-width: var(--lede-measure);
-}
-
-/* The foot is the only place the Hero speaks in body copy, so its labels run a
-   step above the shell's .label — enough to read as a deliberate tier, not
-   enough to compete with the masthead. */
-.hero__foot .label { font-size: 0.8rem; }
-
-/* Block-level flex, not inline-flex: an inline-level box sits in a line box,
-   which adds the strut's descender beneath it and makes the foot ~12px per band
-   taller than the budget reserves — exactly the drift that pushed the CTA below
-   the fold at 1440x900. */
 .hero__role {
-    display: flex;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+.hero__tools {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+}
+.hero__value {
+    /* Read as a measure, not as the column: the ch cap is what holds the line
+       count down while the track itself stays wide enough for the tools line. */
+    max-width: 46ch;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--hero-body);
+}
+
+/* =========================
+   STATUS — one line of availability, bordered like the nav's résumé pill
+========================== */
+.hero__status {
+    display: inline-flex;
     align-items: center;
-    gap: 0.85em;
-    line-height: var(--foot-role-line);
-}
-.hero__tick { width: 1.25rem; flex: none; height: 1px; background: var(--ink); }
-/* the one serif note in the Hero: the slash between the two titles */
-.hero__slash {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.25em;
-    letter-spacing: 0;
+    gap: 0.65em;
+    justify-self: start;
+    max-width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.4em 0.95em;
+    border: var(--hair);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
     color: var(--ink-2);
 }
+.hero__dot {
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--status);
+}
 
-/* The measure is derived from the same tokens the figure's budget uses, so the
-   width the lede actually takes and the width the flank rule leaves for the
-   figure can never disagree. It stays on the lede rather than the column
-   because ch resolves against the element's own font-size. */
-.hero__lede {
-    margin-top: var(--foot-gap-a);
-    max-width: var(--lede-measure);
-    font-size: var(--lede-size);
-    line-height: var(--lede-line-height);
+/* =========================
+   PROOF — the right block: the figures, the degree, the place, the ways in.
+   It is anchored by its right edge instead of filled into the track, so every
+   line starts at the same x and the block reads as one composition at the
+   viewport's right — without any of the text being right-aligned.
+========================== */
+.hero__proof {
+    display: grid;
+    gap: 0.55rem;
+    align-content: start;
+    justify-self: end;
+    margin-top: calc(var(--fig-w) * var(--copy-drop));
+    min-width: 0;
+}
+.hero__proof-line {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+}
+.hero__meta {
+    font-size: 0.9375rem;
+    line-height: 1.5;
     color: var(--ink-2);
 }
-
-.hero__cue {
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    gap: 0.7em;
-    margin-top: var(--foot-gap-b);
-    line-height: var(--foot-cta-line);
-}
-.hero__cue .label { transition: color 0.3s var(--ease-soft); }
-.hero__cue:hover .label { color: var(--ink); }
-.hero__cue .arw {
-    display: inline-block;
-    color: var(--ink-2);
-    transition: transform 0.35s var(--ease);
-}
-.hero__cue:hover .arw { transform: translate(2px, -2px); }
-
 .hero__links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.6rem;
-    margin: 0;
-    padding: 0;
-    text-align: right;
+    display: grid;
+    gap: 0.1rem;
+    margin-top: 0.5rem;
 }
-/* --ink-2, not --ink-3: the column is secondary to the masthead but has to hold
-   its own against the figure it sits beside. */
+/* One row per way to reach him, each tall enough to be a target in its own
+   right on a touchscreen. */
+.hero__links li {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+}
 .hero__links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
-    color: var(--ink-2);
-    transition: color 0.3s var(--ease-soft);
+    gap: 0.55em;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--ink);
+    overflow-wrap: anywhere;
 }
-.hero__links a:hover { color: var(--ink); }
+.hero__links a:hover span:not(.arw) { text-decoration: underline; text-underline-offset: 3px; }
 .hero__links .arw { display: inline-block; transition: transform 0.35s var(--ease); }
 .hero__links a:hover .arw { transform: translate(2px, -2px); }
+.hero__icon { width: 15px; height: 15px; flex: none; }
 
 /* =========================
-   ENTRANCE — driven by .is-in on the section
+   ACTIONS — 48px pills, one filled and one outlined
+========================== */
+.hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+.hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    min-height: 48px;
+    padding-inline: 1.4rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background-color 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft),
+        color 0.3s var(--ease-soft);
+}
+.hero__btn--primary {
+    background: var(--ink);
+    color: var(--bg);
+}
+.hero__btn--primary:hover { background: var(--ink-2); }
+.hero__btn--primary .arw { transition: transform 0.35s var(--ease); }
+.hero__btn--primary:hover .arw { transform: translateY(2px); }
+.hero__btn--secondary {
+    border: var(--hair);
+    color: var(--ink);
+}
+.hero__btn--secondary:hover { border-color: var(--line-strong); }
+
+/* =========================
+   ENTRANCE — a mask on the two words, a lift on the rest, a fade on the figure
 ========================== */
 .hero .mask { display: block; overflow: hidden; }
 .hero .mask > span {
@@ -457,7 +360,6 @@
 }
 .hero.is-in .hero__rise { opacity: 1; transform: none; }
 
-/* The portrait rises with its own box, so the reveal can never clip it. */
 .portrait__img {
     opacity: 0;
     transform: translateY(16px);
@@ -466,72 +368,94 @@
 .hero.is-in .portrait__img { opacity: 1; transform: translateY(0); }
 
 /* =========================
-   TABLET — nothing structural changes: the masthead and the centred figure are
-   the composition at this size too. Only the air and the figure's share of the
-   column are retuned, and the Hero stays one viewport tall because the figure
-   is still capped by the same height budget.
-     Two of the desktop model's terms drop out here: the descent, because the
-   foot is narrower than the figure at these widths so the columns no longer
-   flank it, and the vw term, because zoom compensation is a desktop concern —
-   sizing off the viewport would size the subject off the SCREEN rather than off
-   the column, and a 1024px tablet would get a 470px figure. What the figure is
-   left with is min(share of the column, height budget).
-     The masthead overlap is the single move the desktop model starts from, and
-     --name-rise-scale is its reciprocal (1 / (1 - 0.42)).
+   TABLET / NARROW — the figure and the masthead keep the same sizing terms,
+   because a window measured in CSS px cannot tell a narrow desk from a zoomed
+   one and the brief is a composition that does not move when the zoom does.
+   What gives way is the arrangement: the copy stops standing in the two outer
+   tracks — they are down to ~226px of measure by 930 CSS px — and takes the full
+   column one row below the figure, which is also where the reading order already
+   puts it. Both blocks take the left edge there, since one column has no right
+   side to anchor to. The line has to sit below 960, because 960 is where a
+   1440x900 desk lands at 150% zoom and the three-track framing has to hold for
+   every step the brief names.
+   --mast-size needs no override: the name's track is the body's content box at
+   both arrangements, and the body keeps the same padding either way.
 ========================== */
-@media (max-width: 1099px) {
-    .hero {
-        --hero-pad-top: calc(var(--nav-h) + clamp(2rem, 6vh, 4rem));
-        --hero-pad-bottom: clamp(1.5rem, 3.5vh, 2.5rem);
-        --stage-gap: clamp(1.5rem, 3.4vh, 2.5rem);
-        --name-overlap: 0.42;
-        --name-rise-scale: 1.7241;
-        --foot-descent: 0px;
-        --portrait-share: 0.6;
-        padding-top: var(--hero-pad-top);
-        padding-bottom: var(--hero-pad-bottom);
+@media (max-width: 929px) {
+    .hero__body {
+        grid-template-columns: minmax(0, 1fr);
+        /* One column: this gap is the name-to-portrait air and the space between
+           the stacked blocks below the figure, so it answers to both. */
+        row-gap: clamp(1rem, 2.4vh, 1.75rem);
     }
-    /* The foot stacks under the figure instead of flanking it, so the
-       collision guard has nothing left to protect and leaves the model. */
+    .hero__name {
+        grid-column: 1;
+        grid-row: 1;
+    }
     .hero__figure {
-        --portrait-width: min(
-            calc(var(--stage-w) * var(--portrait-share)),
-            var(--portrait-from-height)
-        );
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .hero__identity {
+        grid-column: 1;
+        grid-row: 3;
+        justify-self: start;
+        margin-top: 0;
+    }
+    .hero__proof {
+        grid-column: 1;
+        grid-row: 4;
+        justify-self: start;
+        margin-top: 0;
+    }
+    .hero__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 clamp(1rem, 3vw, 2.5rem);
+        margin-top: 0.75rem;
     }
 }
 
 /* =========================
-   MOBILE — stacked foot, larger figure share, name keeps its two lines
+   MOBILE — one column, and the composition is its own reading order: the name,
+   then the portrait under it, then identity with the status pill and the actions
+   under the value line, then proof. The name stops being one line here, because
+   four words across a 355px column would set the masthead in 25px type — smaller
+   than the copy under it. Two lines of two words take the same column at nearly
+   double the size, which is what a masthead is for; the flex row wraps itself
+   into that pair, and the divisor is the longer pair's measured advance (6.4126em
+   for VENKATA VISHNU, 6.245em for VARDHAN THOTA, gaps included) against a 94%
+   fill — enough span to read as a masthead, and far enough from 100% that a third
+   word (10.225em) can never join a line.
 ========================== */
-@media (max-width: 560px) {
+@media (max-width: 700px) {
     .hero {
-        --hero-pad-top: calc(var(--nav-h) + 2rem);
-        --name-line-height: 0.9;
-        --portrait-share: 0.72;
-        /* the foot stacks, so the links row is reserved on top of the intro */
-        --foot-lede-lines: 5;
-        --foot-extra: calc(1.75rem + 2.2rem);
-        padding-top: var(--hero-pad-top);
-        /* The figure is capped by the column here, so the stage would collect
-           ~190px of leftover as a void between the portrait and the foot. Let
-           the composition take its own height and centre the block in the
-           viewport instead, so the slack becomes air around the spread. */
-        align-content: center;
+        /* The figure's own term goes to a share of the phone's width: at these
+           sizes the fold is the binding constraint, not the desk, and a single
+           column spends its height on four stacked blocks instead of on one
+           subject standing between two blocks of copy. */
+        --fig-w: min(58vw, 17rem);
+        --mast-size: calc(var(--name-track) / 6.8);
     }
-    .hero__foot {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.75rem;
+    .hero__words { flex-wrap: wrap; }
+    .hero__body {
+        /* Four rows have to reach the actions inside one phone screen. */
+        row-gap: clamp(0.75rem, 2vh, 1.25rem);
     }
-    .hero__links {
-        align-items: flex-start;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.35rem 1.5rem;
-        text-align: left;
-        width: 100%;
+    .hero__identity,
+    .hero__proof {
+        justify-self: stretch;
+        margin-top: 0.5rem;
     }
+    .hero__status { justify-self: start; }
+    .hero__value { max-width: none; }
+}
+
+@media (max-width: 400px) {
+    .hero__role { font-size: 1.6rem; }
+    .hero__tools,
+    .hero__value,
+    .hero__proof-line { font-size: 1.0625rem; }
 }
 
 /* =========================
@@ -543,7 +467,10 @@
     .portrait__img {
         transform: none !important;
         opacity: 1 !important;
+        transition: none !important;
     }
-    .hero__cue .arw,
-    .hero__links .arw { transition: none !important; }
+    .hero__links .arw,
+    .hero__btn .arw {
+        transition: none !important;
+    }
 }
