@@ -30,14 +30,15 @@ const NAME_WORDS = ['Venkata', 'Vishnu', 'Vardhan', 'Thota'];
    above it, so nothing here repeats it in the normal state. */
 const NAME_PLATE = 'Venkata Vishnu Vardhan Thota';
 const ROLE = 'Data Analyst';
-const TOOLS = 'SQL · Python · Power BI · Tableau';
+const TOOLS = 'SQL · Excel · Power BI · Tableau · Python';
 const VALUE_LINE =
-  'I turn messy data into clear decisions — A/B testing, sales forecasting, ' +
-  'churn prediction and sentiment analysis, with 2 projects live as public apps.';
+  'I turn raw data into decisions with SQL, Excel and dashboards — ' +
+  'A/B tests, sales forecasting and churn analysis.';
 const STATUS = 'Available immediately · Internship or full-time';
-/* Owner-supplied. The repository states no location anywhere else, so this is
-   the one Hero line that is not read off a data file. */
-const LOCATION = 'Kadapa, Andhra Pradesh, India';
+/* Owner-supplied, and the only Hero line that is not read off a data file. The
+   About card and the Contact section still print the previous town — both live
+   outside this section, so they are reported rather than edited here. */
+const LOCATION = 'Proddatur, Andhra Pradesh, India';
 
 /** The proof line is assembled from the records the sections below render:
  *  PROJECTS is the list the case studies come from, APPLICATIONS the entries
@@ -64,10 +65,11 @@ const PROOF = [
   .join(' · ');
 
 /* The degree and its end year are read from the Education record; "AI &" is the
-   Hero's own short form of the field that section spells out in full. */
+   Hero's own short form of the field that section spells out in full. The stage
+   is worded as where the reader is now rather than as a graduating class. */
 const BTECH = EDUCATION.find((entry) => entry.id === 'btech');
 const EDUCATION_LINE = BTECH
-  ? `${BTECH.degree} ${BTECH.field.replace('Artificial Intelligence', 'AI')} · Class of ${BTECH.endYear}`
+  ? `${BTECH.degree} ${BTECH.field.replace('Artificial Intelligence', 'AI')} · Final year (${BTECH.endYear})`
   : '';
 
 const PROFILE_IDS = ['github', 'linkedin'];
