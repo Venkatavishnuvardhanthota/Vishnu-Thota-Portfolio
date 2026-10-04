@@ -1,4 +1,4 @@
-# Thota Venkata Vishnu Vardhan
+# Venkata Vishnu Vardhan Thota
 
 **Data Analyst**
 
@@ -50,7 +50,7 @@ itself; nothing is estimated. Source code for all seven is public.
 | 04 | [Product Review Sentiment Analysis](https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard) | NLP | **568,454** reviews analyzed · 88.2% positive · 79.6% VADER agreement with star ratings | VADER, TextBlob, TF-IDF, Plotly |
 | 05 | [Retail Sales Analysis](https://github.com/Venkatavishnuvardhanthota/retail-sales-dashboard) | Business intelligence | Technology leads at **$0.84M** revenue; Tables and Bookcases identified as loss-making | Python, Pandas, Power BI |
 | 06 | [Banking Churn Analysis](https://github.com/Venkatavishnuvardhanthota/banking-churn-analysis) | SQL / BI | **16.07%** attrition, **$13.24M** revenue at risk across 10,127 customers; transaction count is the strongest signal (r = −0.37) | MySQL, CTEs & window functions, Power BI / DAX |
-| 07 | [House Price Prediction](https://github.com/Venkatavishnuvardhanthota/House_Price_Prediction) | Regression | **R² 0.6583**, MAE ≈ **₹970,043** on 545 property records | Linear Regression, Random Forest, GridSearchCV |
+| 07 | [House Price Prediction](https://github.com/Venkatavishnuvardhanthota/House-Price-Prediction) | Regression | **R² 0.6583**, MAE **₹966,320** on 545 property records · GridSearchCV-tuned Random Forest scored **R² 0.5977** on the same split | Python, Pandas, Scikit-learn, Matplotlib |
 
 Each project route (`/projects/:id`) renders its case study from typed data, including
 deterministic inline-SVG charts generated from the verified metrics.
@@ -229,7 +229,7 @@ fails on any TypeScript error.
 ├── vite.config.ts              # Vite + React plugin
 ├── tsconfig.json               # Strict TypeScript, react-jsx, bundler resolution
 ├── public/
-│   ├── hero-portrait.png       # 942×1128 cut-out portrait (used uncropped)
+│   ├── hero-portrait.webp    # 1225×1284 cut-out portrait (used uncropped)
 │   ├── resume/                 # Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf
 │   ├── certificates/           # 3 certificate PDFs
 │   ├── cert-previews/          # 3 WebP certificate previews

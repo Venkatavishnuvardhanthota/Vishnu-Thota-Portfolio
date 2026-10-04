@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PROJECTS } from '../../data/projects';
 import type { CaseStudySection, Project } from '../../types/project';
 import { buildVisual } from './visuals';
@@ -107,6 +107,11 @@ interface ProjectDetailProps {
   project: Project;
 }
 
+/** The route state the home page attaches when it sends a reader here. */
+interface OriginState {
+  from?: string;
+}
+
 /**
  * Full-page case study for a single project. Rendered through a portal to
  * document.body by ProjectDetailPage while `body.route-detail` hides the shell.
@@ -115,26 +120,35 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
   const navigate = useNavigate();
   const idx = PROJECTS.indexOf(project);
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
+  /* Where the reader came from decides how this page lets them leave. Arriving from
+     the Skills section or from Live Apps means the entry behind this one is their own
+     place in the page — a scroll position they were holding when they clicked — so the
+     control is a plain Back. Arriving any other way, including a case study URL opened
+     directly, has no such entry, and walking history would leave the site: that
+     control names the Projects section and goes there. */
+  const origin = useLocation().state as OriginState | null;
+  const fromList = origin?.from === 'skills' || origin?.from === 'live-apps';
+  const backLabel = fromList ? 'Back' : 'Back to Projects';
 
   const goBack = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (window.history.length > 1) {
+    if (fromList) {
       navigate(-1);
-    } else {
-      navigate('/');
-      window.setTimeout(() => {
-        const el = document.getElementById('work');
-        if (el) el.scrollIntoView();
-      }, 0);
+      return;
     }
+    navigate('/#projects');
+    window.setTimeout(() => {
+      const el = document.getElementById('projects');
+      if (el) el.scrollIntoView();
+    }, 0);
   };
 
   return (
     <>
       <div className="pd__bar">
         <div className="wrap pd__bar-inner">
-          <a className="pd__back" href="/#work" onClick={goBack}>
-            <span className="arw" aria-hidden="true">←</span> Back to Projects
+          <a className="pd__back" href="/#projects" onClick={goBack}>
+            <span className="arw" aria-hidden="true">←</span> {backLabel}
           </a>
           <span className="wordmark">
             Vishnu&nbsp;Vardhan<span className="dot">.</span>
@@ -194,8 +208,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           <Link className="project__link" to={`/projects/${next.id}`}>
             Next — {next.title} <span className="arw" aria-hidden="true">→</span>
           </Link>
-          <a className="project__link" href="/#work" onClick={goBack}>
-            <span className="arw" aria-hidden="true">←</span> Back to Projects
+          <a className="project__link" href="/#projects" onClick={goBack}>
+            <span className="arw" aria-hidden="true">←</span> {backLabel}
           </a>
         </div>
       </article>

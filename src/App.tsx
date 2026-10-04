@@ -1,6 +1,6 @@
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Route, Routes, useMatch } from 'react-router-dom';
+import { Route, Routes, useMatch, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import HeroSection from './components/hero/HeroSection';
@@ -47,11 +47,46 @@ function useRouteMetaSync() {
     setContent('description', meta.description);
     setContent('og:type', meta.ogType);
     setContent('og:url', meta.url);
-    setContent('og:title', meta.title);
-    setContent('og:description', meta.description);
-    setContent('twitter:title', meta.title);
-    setContent('twitter:description', meta.description);
+    setContent('og:title', meta.socialTitle);
+    setContent('og:description', meta.socialDescription);
+    setContent('twitter:title', meta.socialTitle);
+    setContent('twitter:description', meta.socialDescription);
   }, [meta.url]);
+}
+
+/**
+ * The Skills section stays in the static shell, so its used-across project names are
+ * plain `<a href="/projects/…">` and following one reloads the document — which puts
+ * the reader at the top of a page they were halfway down. Those clicks are handed to
+ * the router that already owns this page's history instead of a second navigation
+ * stack, and the entry says where the reader came from so the case study's Back
+ * control can read as a way out rather than a link to the project list. Nothing about
+ * which group was open travels with it: all five are open, and the section has no
+ * script of its own. Everything that is not a case-study link, and every click the
+ * browser should keep for itself (non-primary button, modifier key, already
+ * prevented), is left alone.
+ */
+function useShellCaseStudyLinks() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const skills = document.getElementById('skills');
+    if (!skills) return;
+
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      const anchor = target ? target.closest<HTMLAnchorElement>('a[href^="/projects/"]') : null;
+      const href = anchor ? anchor.getAttribute('href') : null;
+      if (!href) return;
+      e.preventDefault();
+      navigate(href, { state: { from: 'skills' } });
+    };
+
+    skills.addEventListener('click', onClick);
+    return () => skills.removeEventListener('click', onClick);
+  }, [navigate]);
 }
 
 /**
@@ -68,6 +103,7 @@ function useRouteMetaSync() {
  */
 export default function App() {
   useRouteMetaSync();
+  useShellCaseStudyLinks();
 
   const heroRoot = document.getElementById('hero-root');
   const applicationsRoot = document.getElementById('applications-root');

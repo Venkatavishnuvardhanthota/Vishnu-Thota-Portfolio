@@ -52,18 +52,18 @@ const SLOTS: Slot[] = [
   },
   { name: 'og:type', ...attr('meta property="og:type"'), value: (m) => m.ogType },
   { name: 'og:url', ...attr('meta property="og:url"'), value: (m) => m.url },
-  { name: 'og:title', ...attr('meta property="og:title"'), value: (m) => m.title },
-  { name: 'og:description', ...attr('meta property="og:description"'), value: (m) => m.description },
+  { name: 'og:title', ...attr('meta property="og:title"'), value: (m) => m.socialTitle },
+  { name: 'og:description', ...attr('meta property="og:description"'), value: (m) => m.socialDescription },
   { name: 'og:image', ...attr('meta property="og:image"'), value: () => SOCIAL_IMAGE_URL },
   {
     name: 'twitter:card',
     ...attr('meta name="twitter:card"'),
-    // The portrait is 942x1128; the large-image card is what fits it best of the
-    // four Twitter cards, and it is what the homepage already declares.
+    // og.png is 1200x630, the exact 1.91:1 the large-image card crops to, so this
+    // is the one card type that shows the whole social image.
     value: () => 'summary_large_image',
   },
-  { name: 'twitter:title', ...attr('meta name="twitter:title"'), value: (m) => m.title },
-  { name: 'twitter:description', ...attr('meta name="twitter:description"'), value: (m) => m.description },
+  { name: 'twitter:title', ...attr('meta name="twitter:title"'), value: (m) => m.socialTitle },
+  { name: 'twitter:description', ...attr('meta name="twitter:description"'), value: (m) => m.socialDescription },
   { name: 'twitter:image', ...attr('meta name="twitter:image"'), value: () => SOCIAL_IMAGE_URL },
 ]
 
@@ -77,7 +77,7 @@ const SLOTS: Slot[] = [
  *
  * The documents are otherwise byte-identical to dist/index.html. That is safe
  * because every asset reference Vite emits is root-absolute (/assets/…,
- * /favicon.svg, /hero-portrait.png), so a page served from a nested path still
+ * /favicon.svg, /hero-portrait.webp), so a page served from a nested path still
  * loads the same bundle — and because React Router resolves /projects/:id from the
  * URL, not from the file it was served out of.
  */

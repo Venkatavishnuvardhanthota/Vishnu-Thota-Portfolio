@@ -12,23 +12,34 @@
        Zoom rescales the CSS viewport instead of the drawing: on a fixed
        1440x900 screen 90% reports 1600 CSS px and 150% reports 960. A width in
        vw therefore grows in CSS px exactly as fast as zoom shrinks them, and
-       the same ~566px of desk comes out at every step — that is the whole
+       the same ~647px of desk comes out at every step — that is the whole
        mechanism, no script and no reading of the zoom level. Height is never a
-       second dial: the cut-out is uncropped, so the 942/1128 source ratio turns
-       566px of width into 678px of height.
+       second dial: the cut-out is uncropped, so the 1225/1284 source ratio turns
+       647px of width into 678px of height.
+       Those coefficients are the old 942/1128 set — 39.3vw / 62.89svh / 40rem —
+       multiplied through by the ratio of the two source ratios (0.954 / 0.8351 =
+       1.1424). The composition is budgeted on the figure's HEIGHT: the name band,
+       the gap, the subject and the Hero's own padding have to fit one screen, and
+       the chin and crown land at the same 42% and 1% of the frame in either
+       cut-out. Scaling all three terms by that one factor keeps 678px of height
+       at every viewport and every zoom step, and lets the wider source ratio
+       arrive as ~81px of extra width instead of stealing it back from the copy.
        Every term is viewport-relative, because anything pinned in CSS px keeps
        its own size while the page shrinks around it — which is exactly what
        made the figure collapse between 110% and 125%. The three terms are the
        same number on a 16:10 window and each is the veto on a different shape:
-         . 39.3vw   the share of the window the composition gives the subject —
-                    binds on every window narrower than 1622 CSS px;
-         . 62.89svh the fold's share: name band + gap + figure + the Hero's own
+         . 44.9vw   the share of the window the composition gives the subject —
+                    binds on every window narrower than 1629 CSS px;
+         . 71.85svh the fold's share: name band + gap + figure + the Hero's own
                     padding fill one screen, so the head is never far below it;
-         . 40rem    a rail for genuinely wide desks, where an uncapped figure
-                    would leave the two copy blocks a strip of measure. It
-                    engages above 1622 CSS px, outside the 90–150% band being
-                    stabilised. */
-    --fig-w: min(39.3vw, 62.89svh, 40rem);
+         . 45.7rem  a rail for genuinely wide desks, where an uncapped figure
+                    would leave the two copy blocks a strip of measure. It has to
+                    stay above the largest CSS-px width the vw term produces inside
+                    the stabilised band — 44.9vw of the 1600 CSS px a 1440 desk
+                    reports at 90% is 718, and 45.7rem is 731 — or it would bind
+                    mid-band and break the zoom invariance. It engages above
+                    1629 CSS px, outside that band. */
+    --fig-w: min(44.9vw, 71.85svh, 45.7rem);
     /* ---- the name ---------------------------------------------------------
        One line, four words, Impact first. The face is the point: a condensed
        grotesque whose measured advance for this exact string — four words plus
@@ -58,10 +69,12 @@
     --name-air: clamp(0.9rem, 3.1vh, 2.25rem);
     --col-air: clamp(0.75rem, 1.6vw, 1.75rem);
     /* The copy columns start beside the figure's shoulders, which reach the
-       edge of the box from ~0.6 of its height down: at 0.3 the blocks sit
-       level with the chin and finish above the fold while the subject keeps
-       running below them. */
-    --copy-drop: 0.3;
+       edge of the box from ~0.6 of its height down: this drop puts the blocks
+       level with the chin and finishes them above the fold while the subject
+       keeps running below them. It is a fraction of the figure's WIDTH, so the
+       ratio swap re-derived it — 0.3 against the old 566px box and 0.263
+       against the new 647px one are the same ~170px of drop. */
+    --copy-drop: 0.263;
     /* Mirrored by `html.js #hero-root:empty` in index.html, which reserves the
        same box before the island mounts. */
     --hero-height: min(100svh, 60rem);
@@ -81,7 +94,7 @@
 @supports not (height: 100svh) {
     .hero {
         --hero-height: min(100vh, 60rem);
-        --fig-w: min(39.3vw, 62.89vh, 40rem);
+        --fig-w: min(44.9vw, 71.85vh, 45.7rem);
     }
 }
 
@@ -229,7 +242,11 @@
 }
 
 /* =========================
-   STATUS — one line of availability, bordered like the nav's résumé pill
+   STATUS — one line of availability, bordered like the nav's résumé pill.
+   `nowrap` is the design: a pill that folds onto two lines reads as a paragraph,
+   not as a status. The string is short enough to hold one line down to a 360px
+   viewport, and the escape below is what keeps it honest on a narrower one — a
+   pill that cannot fit gives up the nowrap rather than pushing the page sideways.
 ========================== */
 .hero__status {
     display: inline-flex;
@@ -237,7 +254,10 @@
     gap: 0.65em;
     justify-self: start;
     max-width: 100%;
-    margin-top: 0.5rem;
+    /* The block's own 0.5rem gap plus this 1rem is 24px of clear space between
+       the value paragraph's line box and the pill's border — the pill is the end
+       of the argument, not a third line of it. */
+    margin-top: 1rem;
     padding: 0.4em 0.95em;
     border: var(--hair);
     border-radius: 999px;
@@ -245,6 +265,7 @@
     font-weight: 500;
     letter-spacing: 0.02em;
     line-height: 1.35;
+    white-space: nowrap;
     color: var(--ink-2);
 }
 .hero__dot {
@@ -253,6 +274,32 @@
     height: 7px;
     border-radius: 50%;
     background: var(--status);
+}
+
+/* The escape. The pill measures 319.3px, and below a 360px viewport the column it
+   sits in is narrower than that, so nowrap would spill and `.hero{overflow:hidden}`
+   would silently cut "full-time" off the end. Two lines of a bordered pill are a
+   worse read than the cut, but not as bad as invisible copy — so under 360 the
+   pill gives up the nowrap. 360 itself still fits, with 5.5px to spare, and 360 is
+   the common Android width, so the one-line badge survives every phone that can
+   carry it. */
+@media (max-width: 359px) {
+    .hero__status { white-space: normal; }
+}
+
+/* The other escape, and the reason it is drawn where it is. The pill is 319.3px
+   wide while the side columns are sized by the figure, so between 930 and 1359 CSS
+   px the column is only 200-303px: `nowrap` there makes the block overflow its
+   track, and `badge-ink.mjs` measures that overflow landing ON the portrait — 28px
+   into the subject's ink at 1024x768 and 61px at 930x600. Above 1360 the figure
+   leaves enough transparent margin that the same overflow never reaches ink
+   (clears the frame box by 12.6px at 1440x900), so the one-line badge is kept for
+   every real desktop including 1366x768, where the column is 323.8px and the pill
+   fits without spilling at all. Below 930 the layout is one column and it fits
+   again. 1360 is also what the 1440 desk reports at 110% zoom, which is the case
+   that decided the upper bound. */
+@media (min-width: 930px) and (max-width: 1359px) {
+    .hero__status { white-space: normal; }
 }
 
 /* =========================
@@ -278,7 +325,7 @@
 .hero__meta {
     font-size: 0.9375rem;
     line-height: 1.5;
-    color: var(--ink-2);
+    color: var(--hero-meta);
 }
 .hero__links {
     display: grid;
@@ -313,7 +360,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 0.25rem;
+    /* The value paragraph ends on an x-height baseline, so its box reaches ~6px
+       below the ink. 1.5rem of margin plus the block's 0.5rem gap puts the pills
+       about 26px under the last line — clear, but still inside the fold on a
+       768px laptop. */
+    margin-top: 1.5rem;
 }
 .hero__btn {
     display: inline-flex;
@@ -433,8 +484,10 @@
         /* The figure's own term goes to a share of the phone's width: at these
            sizes the fold is the binding constraint, not the desk, and a single
            column spends its height on four stacked blocks instead of on one
-           subject standing between two blocks of copy. */
-        --fig-w: min(58vw, 17rem);
+           subject standing between two blocks of copy. Both terms carry the same
+           1.1424 ratio correction as the desktop set, so the subject keeps its
+           height here too and the two terms still cross over at 469 CSS px. */
+        --fig-w: min(66.3vw, 19.42rem);
         --mast-size: calc(var(--name-track) / 6.8);
     }
     .hero__words { flex-wrap: wrap; }
@@ -449,6 +502,10 @@
     }
     .hero__status { justify-self: start; }
     .hero__value { max-width: none; }
+    /* A phone has four stacked rows to fit before the actions, so the desktop's
+       26px of air between the value line and the pills comes down to ~16px —
+       still a gap, not a crash. */
+    .hero__cta { margin-top: 0.875rem; }
 }
 
 @media (max-width: 400px) {

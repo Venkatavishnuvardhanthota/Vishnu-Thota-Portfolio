@@ -1,146 +1,199 @@
 /* =========================
-   EDUCATION — academic progression timeline
+   EDUCATION — the horizontal progression axis
    Rendered by src/components/education — shares the global design tokens
    and the .reveal motion primitive defined in index.html.
 ========================= */
 #education .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
 
-.edu-tl { border-top: var(--hair); padding-top: clamp(1.6rem, 3.4vw, 2.6rem); }
-
-/* ---- one stage = year milestone + entry; the rail runs through both ---- */
-.edu-stage { position: relative; }
-.edu-stage::before {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 1.9rem;
-    bottom: 0;
-    width: 1px;
-    background: var(--line-strong);
-}
-
-/* ---- year milestones ---- */
-.edu-node {
-    display: flex;
-    align-items: center;
-    gap: 1.15rem;
-    padding-top: 1.35rem;
-}
-.edu-node--future { padding-bottom: 0.6rem; }
-.edu-node__mark {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--ink);
-    flex: none;
+/* One line of time, read right to left: the years at the ends and at the hinge,
+   the progress bar under them, today marked on the bar, and the two stages in
+   the columns below. Every boundary is a percentage the data already knows
+   (2027 → 0%, the hinge at 50%, 2021 → 100%), so nothing here is measured and
+   no script is involved. The bar is decoration — each card states its own years
+   in text — which is why the whole block above the columns is hidden below the
+   two-column width instead of being squeezed into it. */
+.edu-axis {
+    --edu-thick: 8px;
+    --edu-thin: 2px;
+    --edu-node: 9px;
+    /* The timeline names a role — "mute" — that this design system already
+       fills with --line-strong, the one neutral step that stays quieter than
+       solid ink in both schemes. Aliased on the section instead of added to the
+       shell, so the axis reads exactly as specified and no new grey enters the
+       token set. */
+    --mute: var(--line-strong);
     position: relative;
-    z-index: 1;
+    border-top: var(--hair);
+    padding-top: clamp(1.4rem, 3vw, 2.2rem);
 }
-.edu-node--future .edu-node__mark { background: var(--bg); border: 1px solid var(--ink-3); }
-.edu-node__year {
+
+/* ---- which way time runs ---- */
+.edu-ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--label-faint);
+}
+
+/* ---- the three years ----
+   Two equal tracks with an auto track between them: the flanking halves are
+   always the same width, so the middle track is centred on the bar's hinge by
+   arithmetic rather than by a transform — which the shared .reveal primitive
+   would have taken back the moment the section finished animating in. */
+.edu-years {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(0.25rem, 1.5vw, 1rem);
+    align-items: baseline;
+    list-style: none;
+    margin: clamp(0.5rem, 1.3vw, 0.9rem) 0 0;
+    padding: 0;
+}
+.edu-year {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(1.9rem, 4.4vw, 2.9rem);
-    line-height: 1;
+    font-size: clamp(1.8rem, 3.8vw, 3.2rem);
+    line-height: 1.06;
     letter-spacing: -0.01em;
     font-variant-numeric: tabular-nums;
     color: var(--ink);
 }
-.edu-node--future .edu-node__year { color: var(--ink-3); }
+.edu-year--start { grid-column: 1; justify-self: start; }
+.edu-year--hinge { grid-column: 2; }
+.edu-year--end { grid-column: 3; justify-self: end; }
+.edu-year__note { font-size: 0.42em; letter-spacing: 0.01em; color: var(--label-faint); }
 
-/* ---- study stage ---- */
-.edu-entry {
+/* ---- the bar: three states of one interval ----
+   The states are what has been lived through, not three colours: a thick solid
+   ink band for the years of the running degree already behind it, a dashed hair
+   of the muted step for the years of it still to come, and a solid hair of the
+   same muted step for the stage that closed. So the unfinished stretch is the
+   only thing on the bar that breaks, and it breaks by shape rather than by a
+   third tone. All three share the rail's centre line, which is what keeps a 2px
+   band reading as the same line the 8px one continues. */
+.edu-rail {
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: start;
-    margin-left: 34px;
-    padding: 1rem 0 clamp(1.8rem, 4vw, 2.8rem);
-}
-.edu-entry::before {
-    content: "";
-    position: absolute;
-    left: -29px;
-    top: 1.7rem;
-    width: 24px;
-    height: 1px;
-    background: var(--line-strong);
-}
-
-.edu-entry__head {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem 0.9rem;
+    height: var(--edu-thick);
+    margin-top: clamp(0.5rem, 1.2vw, 0.85rem);
 }
-.edu-num {
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    color: var(--ink-3);
-    font-variant-numeric: tabular-nums;
+.edu-seg { flex: 0 0 var(--w); height: var(--edu-thin); }
+.edu-seg--current { height: var(--edu-thick); background: var(--ink); }
+.edu-seg--future {
+    background: repeating-linear-gradient(90deg, var(--mute) 0 6px, transparent 6px 12px);
 }
-.edu-period {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-}
-.edu-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    font-size: 0.62rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-}
-.edu-status__dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
+.edu-seg--closed { background: var(--mute); }
+.edu-node {
+    position: absolute;
+    left: var(--x);
+    top: 50%;
+    width: var(--edu-node);
+    height: var(--edu-node);
+    transform: translate(-50%, -50%);
     background: var(--ink);
 }
 
+/* ---- today, on the bar ----
+   The anchor is the bar's own centre line at today's position, so the dot is
+   straddled by it rather than floated above it. The label hangs below in the
+   room .edu-cols reserves for it — 3.25rem is fixed rather than fluid because
+   the room a line of 13px text needs does not change with the viewport. It has
+   to clear the label's whole drop (~30px under the bar) and still leave air:
+   at 2.25rem the gap was 9.6px, which put NOW · 2026 close enough to the card's
+   own 12px identity line to read as a third line of that card. */
+.edu-today {
+    position: absolute;
+    left: var(--x);
+    top: 50%;
+}
+.edu-today__dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--app-live-dot);
+    transform: translate(-50%, -50%);
+}
+.edu-today__label {
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    line-height: 1.6;
+    transform: translateX(-50%);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--app-live-dot);
+}
+
+/* ---- the stages ----
+   Two tracks that meet on the hinge, so each stage sits in the half of the axis
+   its own years occupy. No connector is drawn down into them: the range printed
+   in each card's identity line is what says which years belong to which stage. */
+.edu-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 3.25rem;
+}
+.edu-col { position: relative; min-width: 0; }
+.edu-col:first-child { padding-right: clamp(1rem, 3vw, 2.5rem); }
+
+.edu-id {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+}
+.edu-id__exp { color: var(--label-faint); }
+
 .edu-degree {
-    font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+    font-size: clamp(1.4rem, 2.9vw, 2.1rem);
     font-weight: 600;
     letter-spacing: -0.025em;
     line-height: 1.04;
     text-transform: uppercase;
-    margin-top: 0.7rem;
+    margin-top: 0.45rem;
 }
 .edu-field {
     font-family: var(--serif);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-size: clamp(1rem, 1.9vw, 1.3rem);
     color: var(--ink-2);
     margin-top: 0.3rem;
-    max-width: 42ch;
+    max-width: 30ch;
 }
-.edu-inst { color: var(--ink-2); font-size: 0.95rem; margin-top: 0.65rem; }
+.edu-inst { color: var(--ink-2); font-size: 0.95rem; margin-top: 0.55rem; }
 
-/* ---- CGPA: prominent but restrained ---- */
+/* The score belongs to the text beside it, so it sits on the last line of its
+   own column rather than in a track of its own at the section edge. */
 .edu-score {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.35rem;
-    text-align: right;
-    padding-top: 1rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.95rem;
 }
 .edu-score__v {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
     line-height: 1;
     letter-spacing: -0.01em;
     font-variant-numeric: tabular-nums;
     color: var(--ink);
 }
+.edu-score__t { font-size: 0.8125rem; color: var(--ink-2); }
 .edu-score__l {
     font-size: 0.66rem;
     font-weight: 500;
@@ -148,32 +201,29 @@
     text-transform: uppercase;
     color: var(--ink-3);
 }
+.edu-status {
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
 
 @media (prefers-reduced-motion: reduce) {
-    .edu-stage, .edu-node, .edu-entry, .edu-score { transition: none; }
+    .edu-year, .edu-col { transition: none; }
 }
 
-/* ---- Tablet: tighten the rail and gaps ---- */
-@media (max-width: 1099px) {
-    .edu-entry { margin-left: 28px; }
-    .edu-entry::before { left: -23px; width: 18px; }
-}
-
-/* ---- Mobile: clean vertical flow, CGPA stays prominent ---- */
-@media (max-width: 560px) {
-    .edu-node { gap: 0.9rem; }
-    .edu-entry {
+/* ---- Below the two-column width ----
+   The axis goes, entirely: it says nothing the cards do not already say in
+   text, and a compressed version of it on a 390px screen would be a decoration
+   competing with the information. What is left is the vertical list of stages,
+   each one carrying its own years. */
+@media (max-width: 860px) {
+    .edu-timeline { display: none; }
+    .edu-cols {
         grid-template-columns: minmax(0, 1fr);
-        margin-left: 24px;
-        gap: 0;
+        margin-top: clamp(0.6rem, 2vw, 1rem);
+        gap: clamp(1.8rem, 5.5vw, 2.6rem);
     }
-    .edu-entry::before { left: -19px; width: 14px; }
-    .edu-score {
-        flex-direction: row;
-        align-items: baseline;
-        gap: 0.6rem;
-        text-align: left;
-        padding-top: 0;
-        margin-top: 1rem;
-    }
+    .edu-col:first-child { padding-right: 0; }
 }

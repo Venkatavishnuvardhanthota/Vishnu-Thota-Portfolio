@@ -12,9 +12,9 @@ import { EDUCATION } from '../../data/education';
    fails if the last two drift apart). Nothing else reads the picture: the image
    box, the grid's centre track and the fallback plate are all derived from the
    figures below, so a replacement lands without touching the composition. */
-const PORTRAIT_SRC = '/hero-portrait.png';
-const PORTRAIT_W = 942;
-const PORTRAIT_H = 1128;
+const PORTRAIT_SRC = '/hero-portrait.webp';
+const PORTRAIT_W = 1225;
+const PORTRAIT_H = 1284;
 const PORTRAIT_ALT = 'Black-and-white studio portrait of Venkata Vishnu Vardhan Thota';
 /* React 18 has no fetchPriority prop, so the attribute goes to the DOM in its
    lowercase form — it has to survive to the element for the head preload to be
@@ -34,7 +34,7 @@ const TOOLS = 'SQL · Python · Power BI · Tableau';
 const VALUE_LINE =
   'I turn messy data into clear decisions — A/B testing, sales forecasting, ' +
   'churn prediction and sentiment analysis, with 2 projects live as public apps.';
-const STATUS = 'Open to work · Available immediately · Remote / Hybrid / On-site';
+const STATUS = 'Available immediately · Internship or full-time';
 /* Owner-supplied. The repository states no location anywhere else, so this is
    the one Hero line that is not read off a data file. */
 const LOCATION = 'Kadapa, Andhra Pradesh, India';
@@ -58,7 +58,7 @@ const liveApps = APPLICATIONS.filter((app) => app.status === 'Live').length;
 const PROOF = [
   `${PROJECTS.length} projects`,
   `${liveApps} live apps`,
-  recordsAnalyzed >= 1_000_000 ? '1M+ records analyzed' : null,
+  recordsAnalyzed >= 1_000_000 ? '1M+ records' : null,
 ]
   .filter(Boolean)
   .join(' · ');
@@ -107,6 +107,10 @@ const LINKEDIN_PATHS = [
   'M12 16v-5',
   'M16 16v-3a2 2 0 1 0 -4 0',
   'M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10',
+];
+const EMAIL_PATHS = [
+  'M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -10',
+  'M3 7l9 6l9 -6',
 ];
 
 /**
@@ -218,7 +222,7 @@ export default function HeroSection() {
             <span>{STATUS}</span>
           </p>
           <div className="hero__cta">
-            <a className="hero__btn hero__btn--primary" href="#work">
+            <a className="hero__btn hero__btn--primary" href="#projects">
               View Projects <span className="arw" aria-hidden="true">↓</span>
             </a>
             <a className="hero__btn hero__btn--secondary" href={RESUME_URL} download>
@@ -252,7 +256,10 @@ export default function HeroSection() {
               <li>
                 {/* The address itself, not the word "Email": a recruiter reading
                     this should be able to select and copy it. */}
-                <a href={email.href}>{email.value}</a>
+                <a href={email.href}>
+                  <BrandIcon paths={EMAIL_PATHS} />
+                  <span>{email.value}</span>
+                </a>
               </li>
             )}
           </ul>

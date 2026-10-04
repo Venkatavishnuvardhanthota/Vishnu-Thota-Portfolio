@@ -4,8 +4,8 @@ import ContactLink from './ContactLink';
 import '../../styles/contact.css';
 
 /**
- * The closing call to action: three hairline contact rows and one secondary
- * résumé CTA. No form, no phone number, no extra social profiles.
+ * The closing call to action: three hairline contact rows and one outlined
+ * résumé download. No form, no phone number, no extra social profiles.
  */
 export default function ContactSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -45,14 +45,8 @@ export default function ContactSection() {
       </div>
 
       <div className="contact__actions">
-        <a
-          className="contact-cta"
-          href={RESUME_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Download résumé, PDF opens in a new tab"
-        >
-          Download résumé <span className="arw" aria-hidden="true">↗</span>
+        <a className="contact-cta" href={RESUME_URL} download aria-label="Download résumé, PDF">
+          DOWNLOAD RÉSUMÉ <span className="arw" aria-hidden="true">↓</span>
         </a>
       </div>
     </div>

@@ -7,28 +7,63 @@
 
 .contact__links { border-top: var(--hair); }
 
-.clink {
+/* One grid for all three rows: a fixed 140px label track so every label and
+   every value starts on the same edge, a value track that is allowed to shrink
+   to zero (minmax(0,1fr)) so a long address wraps instead of widening the page,
+   and an auto track that pins the affordance to the right edge. */
+.contact-row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: 140px minmax(0, 1fr) auto;
     gap: clamp(1rem, 3vw, 2rem);
     align-items: center;
     padding-block: clamp(1.3rem, 3vw, 2rem);
     border-bottom: var(--hair);
     transition: padding-left 0.5s var(--ease), color 0.4s var(--ease-soft);
 }
-.clink:hover { padding-left: clamp(0px, 1.2vw, 1rem); }
-.clink .k { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
-.clink .v {
+.contact-row:hover { padding-left: clamp(0px, 1.2vw, 1rem); }
+
+.contact-row .k {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--label-faint);
+}
+.contact-row .clink { min-width: 0; }
+.contact-row .v {
     font-size: clamp(1.1rem, 3vw, 1.9rem);
     font-weight: 500;
     letter-spacing: -0.02em;
     word-break: break-word;
-    min-width: 0;
 }
-.clink .arw { font-size: 1.2rem; transition: transform 0.4s var(--ease); color: var(--ink-2); }
-.clink:hover .arw { transform: translate(4px, -4px); color: var(--ink); }
 
-/* ---- Résumé CTA: secondary weight, the rows stay the headline ---- */
+.contact-row__end { display: inline-flex; align-items: center; gap: clamp(0.6rem, 1.4vw, 1rem); }
+.contact-row .arw {
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--ink-2);
+    transition: transform 0.4s var(--ease), color 0.4s var(--ease-soft);
+}
+.contact-row:hover .arw { transform: translate(4px, -4px); color: var(--ink); }
+/* the email row's arrow points along the reading direction, so it nudges
+   sideways; the two rows that leave the site keep the diagonal ↗ lift */
+.contact-row--mailto:hover .arw { transform: translateX(4px); }
+
+/* ---- Copy: 14px of the faint step at weight 400, so the address stays the
+   voice even though the box carries a 44px touch-target floor. ---- */
+.contact-copy {
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--label-faint);
+    border: 1px solid var(--line-strong);
+    min-height: 44px;
+    padding: 0.32em 0.7em;
+    white-space: nowrap;
+    transition: color 0.35s var(--ease-soft), border-color 0.35s var(--ease-soft);
+}
+.contact-copy:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ---- Résumé CTA: the section's one outlined button ---- */
 .contact__actions {
     display: flex;
     flex-wrap: wrap;
@@ -38,26 +73,37 @@
 .contact-cta {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.55em;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    min-height: 48px;
+    padding-inline: 1.5em;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 0.9em 1.5em;
     border: 1px solid var(--line-strong);
     transition: border-color 0.35s var(--ease-soft), background-color 0.35s var(--ease-soft),
         color 0.35s var(--ease-soft);
 }
 .contact-cta .arw { display: inline-block; transition: transform 0.4s var(--ease); }
 .contact-cta:hover { border-color: var(--ink); }
-.contact-cta:hover .arw { transform: translate(3px, -3px); }
+.contact-cta:hover .arw { transform: translateY(3px); }
 
-@media (max-width: 1099px) {
-    .clink { grid-template-columns: minmax(0, 1fr) auto; }
-    .clink .k { grid-column: 1 / -1; }
+/* Phones: the label and the affordance pair share the first line and the value
+   takes the whole width below them. Beside the value the 140px track plus the
+   Copy button left the address too little room and it broke mid-word
+   ("gmail.co|m"); on its own line it sets whole at 390px and up. */
+@media (max-width: 640px) {
+    .contact-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.4rem clamp(0.6rem, 3vw, 1rem);
+        padding-block: 1.35rem;
+    }
+    .contact-row .k { grid-column: 1; grid-row: 1; }
+    .contact-row__end { grid-column: 2; grid-row: 1; }
+    .contact-row .clink { grid-column: 1 / -1; grid-row: 2; }
 }
 
 @media (max-width: 560px) {
-    .clink { padding-block: 1.35rem; }
-    .contact-cta { flex: 1 1 100%; justify-content: center; }
+    .contact-cta { flex: 1 1 100%; }
 }
