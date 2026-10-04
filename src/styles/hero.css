@@ -73,8 +73,15 @@
        level with the chin and finishes them above the fold while the subject
        keeps running below them. It is a fraction of the figure's WIDTH, so the
        ratio swap re-derived it — 0.3 against the old 566px box and 0.263
-       against the new 647px one are the same ~170px of drop. */
-    --copy-drop: 0.263;
+       against the new 647px one are the same ~170px of drop.
+       0.263 is what the composition had before the featured result joined the
+       left column: that block is ~68px of type, and at 1366x768 it put the
+       second action 28px below the fold. This is the one gap in the Hero that is
+       pure air — it separates the masthead's line box from the copy, not one
+       line of copy from the next — so the drop comes down by 0.063 and buys
+       ~35px at 1366 and ~41 at 1440 without touching a word of content or the
+       24px/32px rhythm between the value line, the pill and the buttons. */
+    --copy-drop: 0.2;
     /* Mirrored by `html.js #hero-root:empty` in index.html, which reserves the
        same box before the island mounts. */
     --hero-height: min(100svh, 60rem);
