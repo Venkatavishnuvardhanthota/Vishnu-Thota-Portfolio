@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/hero.css';
 import { CONTACT_LINKS, RESUME_URL, type ContactLink } from '../../data/contact';
 import { APPLICATIONS } from '../../data/applications';
@@ -35,6 +36,16 @@ const VALUE_LINE =
   'I turn raw data into decisions with SQL, Excel and dashboards — ' +
   'A/B tests, sales forecasting and churn analysis.';
 const STATUS = 'Available immediately · Internship or full-time';
+/* The one proof point the Hero links to. Its three figures are the A/B case
+   study's own numbers restated as a sentence — 588,101 records, +0.77 pp
+   absolute lift, p = 1.71e-13 — all three held in src/data/projects.ts rather
+   than derived here, because the sentence is copy and not a table. Change the
+   data and this string has to be checked against it by hand. */
+const FEATURE = {
+  label: 'Featured result',
+  text: 'A/B test on 588,101 users · +0.77 pp conversion lift · p < 0.001',
+  to: '/projects/ab-testing',
+};
 /* Owner-supplied, and the only Hero line that is not read off a data file. The
    About card and the Contact section still print the previous town — both live
    outside this section, so they are reported rather than edited here. */
@@ -127,10 +138,10 @@ const EMAIL_PATHS = [
  * own edges of the window, leaving the figure a centred band of its own.
  *
  * Source order is the mobile reading order — name, portrait, identity with the
- * status pill and the actions under the value line, then proof — so small
- * screens change only the tracks, never the tree. The heading is the complete
- * name on one line: VENKATA VISHNU VARDHAN THOTA, the surname in the
- * secondary ink.
+ * featured result, the status pill and the actions under the value line, then
+ * proof — so small screens change only the tracks, never the tree. The heading
+ * is the complete name on one line: VENKATA VISHNU VARDHAN THOTA, the surname in
+ * the secondary ink.
  *
  * The portrait stays uncropped: width is the chosen term, height follows the
  * source ratio the component states, and the element reserves that box before
@@ -216,6 +227,19 @@ export default function HeroSection() {
           <p className="hero__role">{ROLE}</p>
           <p className="hero__tools">{TOOLS}</p>
           <p className="hero__value">{VALUE_LINE}</p>
+          {/* One linked proof point, in flow between the value line and the pill:
+              it answers the paragraph above it and is not a second call to action,
+              so it carries the body's ink and the site's own underlined-link rule
+              rather than a button's surface. */}
+          <div className="hero__feature">
+            <p className="hero__feature-label">{FEATURE.label}</p>
+            <Link className="hero__feature-link" to={FEATURE.to}>
+              <span>{FEATURE.text}</span>
+              <span className="arw" aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
           {/* The availability reads as the end of the argument, not as a banner
               over the page, and the actions follow it down the same column —
               in flow, so they stay with the content at every width. */}

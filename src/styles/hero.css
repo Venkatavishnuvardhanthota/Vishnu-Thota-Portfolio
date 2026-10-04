@@ -205,12 +205,13 @@
 }
 
 /* =========================
-   LEFT STACK — the role, the tools, the value line, the availability pill and
-   the actions, in that order and all in flow, anchored to the viewport's left
-   edge. The name is not repeated here: the masthead above the portrait is the
-   only place it is written. The status badge reads as the end of the argument
-   rather than as a banner over the page, and the buttons follow it down the same
-   column instead of being pinned to the section's bottom edge.
+   LEFT STACK — the role, the tools, the value line, the featured result, the
+   availability pill and the actions, in that order and all in flow, anchored to
+   the viewport's left edge. The name is not repeated here: the masthead above
+   the portrait is the only place it is written. The status badge reads as the
+   end of the argument rather than as a banner over the page, and the buttons
+   follow it down the same column instead of being pinned to the section's bottom
+   edge.
 ========================== */
 .hero__identity {
     display: grid;
@@ -242,6 +243,53 @@
 }
 
 /* =========================
+   FEATURED RESULT — the one linked proof point, between the value line and the
+   pill. The label takes --label-faint, the faint step every other small-caps
+   label on the site already uses, so both themes come free. The link is body
+   ink on the site's own always-underlined rule (1px, 3px offset, hardening on
+   hover) rather than a button: it answers the paragraph above it, and the third
+   filled surface in the Hero would compete with the two actions below. The focus
+   ring is the global :focus-visible rule in index.html — nothing to restate.
+========================== */
+.hero__feature {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    min-width: 0;
+}
+.hero__feature-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--label-faint);
+}
+.hero__feature-link {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ink);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--line-strong);
+    transition: text-decoration-color 0.3s var(--ease-soft);
+}
+.hero__feature-link:hover { text-decoration-color: var(--ink); }
+/* The inline-block is what makes the arrow movable at all inside a link whose
+   display has to stay inline for the underline to follow a wrapped line. The
+   margin is the word space in front of it, and a margin rather than a space
+   character because a space is a break opportunity — the arrow would be allowed
+   to drop onto a line of its own. */
+.hero__feature-link .arw {
+    display: inline-block;
+    margin-left: 0.32em;
+    transition: transform 0.35s var(--ease);
+}
+.hero__feature-link:hover .arw { transform: translateX(3px); }
+
+/* =========================
    STATUS — one line of availability, bordered like the nav's résumé pill.
    `nowrap` is the design: a pill that folds onto two lines reads as a paragraph,
    not as a status. The string is short enough to hold one line down to a 360px
@@ -255,8 +303,11 @@
     justify-self: start;
     max-width: 100%;
     /* The block's own 0.5rem gap plus this 1rem is 24px of clear space between
-       the value paragraph's line box and the pill's border — the pill is the end
-       of the argument, not a third line of it. */
+       the featured link's box and the pill's border — the pill is the end of the
+       argument, not a third line of it. It was measured against the value
+       paragraph before the featured result was set between them; the distance
+       from the link is the same 24px, so the pill still terminates the stack
+       rather than continuing it. */
     margin-top: 1rem;
     padding: 0.4em 0.95em;
     border: var(--hair);
@@ -527,7 +578,8 @@
         transition: none !important;
     }
     .hero__links .arw,
-    .hero__btn .arw {
+    .hero__btn .arw,
+    .hero__feature-link .arw {
         transition: none !important;
     }
 }
