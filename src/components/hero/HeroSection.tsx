@@ -40,10 +40,15 @@ const STATUS = 'Available immediately · Internship or full-time';
    study's own numbers restated as a sentence — 588,101 records, +0.77 pp
    absolute lift, p = 1.71e-13 — all three held in src/data/projects.ts rather
    than derived here, because the sentence is copy and not a table. Change the
-   data and this string has to be checked against it by hand. */
+   data and this string has to be checked against it by hand.
+   It is set as two fixed lines rather than one running string: as a single
+   string the column broke it wherever it happened to fall, which put the middle
+   dot at the head of a line. `line1`/`line2` are the two break points, and
+   nothing else may break. */
 const FEATURE = {
   label: 'Featured result',
-  text: 'A/B test on 588,101 users · +0.77 pp conversion lift · p < 0.001',
+  line1: 'A/B test on 588,101 users',
+  line2: '+0.77 pp conversion lift · p < 0.001',
   to: '/projects/ab-testing',
 };
 /* Owner-supplied, and the only Hero line that is not read off a data file. The
@@ -233,10 +238,23 @@ export default function HeroSection() {
               rather than a button's surface. */}
           <div className="hero__feature">
             <p className="hero__feature-label">{FEATURE.label}</p>
-            <Link className="hero__feature-link" to={FEATURE.to}>
-              <span>{FEATURE.text}</span>
-              <span className="arw" aria-hidden="true">
-                →
+            {/* Two fixed lines, and the accessible name is those two lines joined
+                with a comma so it still reads as one sentence. The separator in
+                the second is glued to the word before it with a no-break space:
+                where the column is too narrow to hold the line at all (see the
+                escape in hero.css) that makes it wrap AFTER the dot, so a stray
+                "·" can never head a line even there. */}
+            <Link
+              className="hero__feature-link"
+              to={FEATURE.to}
+              aria-label={`${FEATURE.line1}, ${FEATURE.line2}`}
+            >
+              <span className="hero__feature-line">{FEATURE.line1}</span>
+              <span className="hero__feature-line">
+                {FEATURE.line2.replace(' · ', '\u00A0· ')}
+                <span className="arw" aria-hidden="true">
+                  →
+                </span>
               </span>
             </Link>
           </div>

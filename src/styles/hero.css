@@ -272,23 +272,36 @@
     text-transform: uppercase;
     color: var(--label-faint);
 }
+/* The anchor is a block so that its two line children stack as written and the
+   global focus outline wraps the whole two-line box. It carries no decoration of
+   its own: an underline declared on a parent of block children is where the
+   rendering starts to depend on the browser, so each line draws its own. */
 .hero__feature-link {
+    display: block;
     font-size: 1.0625rem;
     font-weight: 500;
     line-height: 1.45;
     color: var(--ink);
+    text-decoration-line: none;
+}
+/* Two fixed lines, and `nowrap` is the point: the string used to break wherever
+   the column happened to cut it, which put the middle dot at the head of a line.
+   The underline lives here rather than on the anchor so that both lines get one
+   at the same thickness and offset, and the hover hardens both together. */
+.hero__feature-line {
+    display: block;
+    white-space: nowrap;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
     text-decoration-color: var(--line-strong);
     transition: text-decoration-color 0.3s var(--ease-soft);
 }
-.hero__feature-link:hover { text-decoration-color: var(--ink); }
-/* The inline-block is what makes the arrow movable at all inside a link whose
-   display has to stay inline for the underline to follow a wrapped line. The
-   margin is the word space in front of it, and a margin rather than a space
-   character because a space is a break opportunity — the arrow would be allowed
-   to drop onto a line of its own. */
+.hero__feature-link:hover .hero__feature-line { text-decoration-color: var(--ink); }
+/* The arrow is inline-block so the hover nudge can move it at all. The margin is
+   the word space in front of it, and a margin rather than a space character
+   because a space is a break opportunity — the arrow would be allowed to drop
+   onto a line of its own. */
 .hero__feature-link .arw {
     display: inline-block;
     margin-left: 0.32em;
@@ -355,9 +368,40 @@
    every real desktop including 1366x768, where the column is 323.8px and the pill
    fits without spilling at all. Below 930 the layout is one column and it fits
    again. 1360 is also what the 1440 desk reports at 110% zoom, which is the case
-   that decided the upper bound. */
+   that decided the upper bound.
+   The featured result's two fixed lines join it here rather than getting their
+   own band, because they need strictly less width than the pill does: line 2 and
+   its arrow measure 284px against the pill's 319.3px, so every column in this
+   band that cannot hold the badge cannot hold them either, and unwrapping one
+   unwraps both. The no-break space in front of the separator then decides where
+   the wrapped line falls — after the dot, never before it. */
 @media (min-width: 930px) and (max-width: 1359px) {
     .hero__status { white-space: normal; }
+    /* `inline`, not just unwrapped: two block lines would each take their own
+       rows and the block would grow by a line at exactly the widths where it is
+       already tight. As inline siblings the two spans flow back into one running
+       string, which is the arrangement this column rendered before, and the
+       forced break disappears with the room that forced it. */
+    .hero__feature-line {
+        display: inline;
+        white-space: normal;
+    }
+}
+
+/* The third escape, and the only one the two fixed lines own. In the stacked
+   layout the column is the viewport minus 35.2px of padding, and line 2 with its
+   arrow wants 284px — so 320 is the narrowest viewport that can hold it, by
+   0.8px. Below that `nowrap` stops being free: the block is cut by
+   `.hero{overflow:hidden}` and a reader never sees "p < 0.001" at all. A line
+   that breaks is a worse read than a line that is missing, so under 320 the two
+   spans go back to flowing text and the no-break space keeps the dot off the
+   head of the wrapped line. 320 is the iPhone SE width, so every phone that can
+   carry the two fixed lines does. */
+@media (max-width: 319px) {
+    .hero__feature-line {
+        display: inline;
+        white-space: normal;
+    }
 }
 
 /* =========================
