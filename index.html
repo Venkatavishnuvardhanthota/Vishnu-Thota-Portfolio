@@ -47,9 +47,9 @@
     <!-- =========================
          SEO / METADATA
     ========================== -->
-    <title>Thota Venkata Vishnu Vardhan — Data Analyst</title>
-    <meta name="description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live." />
-    <meta name="author" content="Thota Venkata Vishnu Vardhan" />
+    <title>Venkata Vishnu Vardhan Thota — Data Analyst | SQL, Python, Power BI</title>
+    <meta name="description" content="Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, forecasting, churn and sentiment projects with 2 live apps. Available immediately for internships and full-time roles." />
+    <meta name="author" content="Venkata Vishnu Vardhan Thota" />
     <meta name="theme-color" content="#F7F7F5" />
 
     <!-- Icons. The SVG is the master mark and is the only asset that carries the
@@ -71,18 +71,20 @@
          the build if this block drifts from HOME_META or if any slot is duplicated. -->
     <link rel="canonical" href="https://vishnu-thota.vercel.app/" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph. The card carries its own shorter headline and standfirst rather
+         than repeating the tab title verbatim, and both come from HOME_META's
+         socialTitle / socialDescription. -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vishnu-thota.vercel.app/" />
-    <meta property="og:title" content="Thota Venkata Vishnu Vardhan — Data Analyst" />
-    <meta property="og:description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live." />
-    <meta property="og:image" content="https://vishnu-thota.vercel.app/hero-portrait.png" />
+    <meta property="og:title" content="Venkata Vishnu Vardhan Thota — Data Analyst" />
+    <meta property="og:description" content="7 projects · 2 live apps · SQL, Python, Power BI, Tableau. Open to internships and full-time roles. Available immediately." />
+    <meta property="og:image" content="https://vishnu-thota.vercel.app/og.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Thota Venkata Vishnu Vardhan — Data Analyst" />
-    <meta name="twitter:description" content="Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live." />
-    <meta name="twitter:image" content="https://vishnu-thota.vercel.app/hero-portrait.png" />
+    <meta name="twitter:title" content="Venkata Vishnu Vardhan Thota — Data Analyst" />
+    <meta name="twitter:description" content="7 projects · 2 live apps · SQL, Python, Power BI, Tableau. Open to internships and full-time roles. Available immediately." />
+    <meta name="twitter:image" content="https://vishnu-thota.vercel.app/og.png" />
 
     <!-- =========================
          FONTS (CDN)
@@ -93,7 +95,7 @@
 
     <!-- The Hero is a React island, so its portrait would otherwise start
          loading only after the bundle runs; preconnect it during parse. -->
-    <link rel="preload" href="/hero-portrait.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/hero-portrait.webp" as="image" type="image/webp" fetchpriority="high" />
 
     <style>
         /* =========================
@@ -101,7 +103,7 @@
         ========================== */
         :root {
             /* Native UI (scrollbar, form widgets, text-select caret) follows the
-               active scheme; the page's own palette is the eight tokens below. */
+               active scheme; the page's own palette is the colour tokens below. */
             color-scheme: light;
 
             --bg:            #F7F7F5;
@@ -112,6 +114,45 @@
             --line:          #D9D9D5;
             --line-soft:     #E7E7E3;
             --line-strong:   #C7C7C1;
+
+            /* Four steps the Header + Hero needed and the eight-colour core did
+               not carry: the nav's own link ink, the Hero's value line, the Hero's
+               two secondary meta lines, and the one non-monochrome colour on the
+               site — the green that says "available". Both themes declare all four,
+               so nothing downstream of these ever hard-codes a colour. */
+            --nav-ink:       #2B2B2B;
+            --hero-body:     #333333;
+            --hero-meta:     #555555;
+            --status:        #1B7A3D;
+
+            /* The brighter step of the site's availability green. The Hero badge's
+               --status (#1B7A3D, 5.02:1 on the page background) is the "available"
+               colour; this is the smaller, livelier twin of it — 3.21:1 light,
+               10.55:1 dark, clear of the 3:1 floor a non-text indicator needs. Two
+               consumers read it: the dot that marks a running deployment in Live
+               Apps, and the NOW marker on the Education axis, which is a point on a
+               bar rather than a badge, so it takes the brighter step. Declared here
+               rather than in either stylesheet so the six section stylesheets keep
+               their no-colour-literals rule. */
+            --app-live-dot:  #1A9F4B;
+
+            /* The two steps the About body copy needs and the core scale does not
+               offer: an editorial near-black for the serif intro and a mid grey for
+               the paragraph under it, both comfortably above 4.5:1 on the page
+               background. Dark keeps the same relationship — intro brighter than
+               body — by reading the scale upward instead of downward. */
+            --about-intro:   #222222;
+            --about-body:    #444444;
+
+            /* The faint step the small-caps labels want: quieter than --ink-2 but
+               not as quiet as --ink-3, which measures 2.64:1 on this background and
+               fails the 4.5:1 text target. It is a token of its own rather than a
+               change to --ink-3 because that variable has twenty-eight consumers
+               across the six section stylesheets — project numbers, metric labels,
+               certificate dates, inline chart text — and recoloring it here would
+               be an unrequested global shift. */
+            --label-faint:   #6B6B66;
+
 
             --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -128,11 +169,13 @@
             --hair: 1px solid var(--line);
         }
 
-        /* Dark is the same design with a different palette: it re-declares only the
-           eight colour tokens, under their existing names and in their existing
-           roles, and nothing else. Every rule in this document — and in the six
+        /* Dark is the same design with a different palette: every colour token in
+           this document — the eight core ones and the eight Header/Hero/About/
+           Live-Apps/Skills steps — is re-declared here under its
+           existing name and in its existing role, and nothing else.
+           Every rule in this document — and in the six
            section stylesheets — already reads colours through these tokens, so
-           --hair, ::selection, the focus outline, the Skills plus/minus mark, the
+           --hair, ::selection, the focus outline, the
            nav's translucent scrolled state and the token-coloured case-study SVGs
            all follow without a single per-component override. Spacing, type,
            geometry and motion are untouched by definition.
@@ -149,6 +192,15 @@
             --line:          #292929;
             --line-soft:     #1A1A1A;
             --line-strong:   #3A3A3A;
+
+            --nav-ink:       #ECECEC;
+            --hero-body:     #C9C9C4;
+            --hero-meta:     #B5B5B0;
+            --status:        #3ECF72;
+            --app-live-dot:  #34D17A;
+            --about-intro:   #E8E8E3;
+            --about-body:    #C9C9C4;
+            --label-faint:   #9A9A94;
         }
 
         /* =========================
@@ -253,10 +305,15 @@
             align-items: start;
             margin-bottom: clamp(2.5rem, 6vw, 5rem);
         }
+        /* The section index is the same small-caps label as the About card keys, so
+           it takes the same size and the same faint token — 13px against --ink-3's
+           11.52px, which measured 2.64:1 on the light background and failed 4.5:1.
+           One rule, so all seven section indices move together; scoping it to
+           `#about .sec-index` would leave the other six under-accessible. */
         .sec-index {
-            font-size: 0.72rem;
+            font-size: 0.8125rem;
             letter-spacing: 0.2em;
-            color: var(--ink-3);
+            color: var(--label-faint);
             padding-top: 0.6rem;
             font-variant-numeric: tabular-nums;
         }
@@ -315,57 +372,112 @@
         .nav__links {
             display: flex;
             align-items: center;
-            gap: clamp(1rem, 2.2vw, 2.1rem);
+            /* The visible gap is two thirds padding: each link carries 12px of
+               inline padding as part of its hit area, so the adjacent boxes
+               already read as 24px of air. The flex gap therefore has to be
+               small for the row to read as one tight instrument rather than
+               seven separate controls — and it is the only dial, because
+               shrinking the links themselves would shrink the targets. */
+            gap: clamp(0px, 0.15vw, 0.25rem);
         }
         .nav__link {
             position: relative;
-            font-size: 0.86rem;
+            font-size: 0.9375rem;
             font-weight: 500;
             letter-spacing: 0.01em;
-            color: var(--ink-2);
-            padding-block: 0.35rem;
+            line-height: 1.6;
+            color: var(--nav-ink);
+            /* 24px of line box + 10px above and below = a 44px target. */
+            padding: 10px 12px;
             transition: color 0.3s var(--ease-soft);
         }
         .nav__link::after {
             content: "";
             position: absolute;
-            left: 0; right: 0; bottom: 0;
+            left: 0; right: 0; bottom: 6px;
             height: 1px;
             background: var(--ink);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.45s var(--ease);
         }
-        .nav__link:hover, .nav__link.is-active { color: var(--ink); }
+        .nav__link:hover { color: var(--ink); }
+        .nav__link.is-active { color: var(--ink); font-weight: 600; }
         .nav__link:hover::after, .nav__link.is-active::after { transform: scaleX(1); }
 
+        /* The résumé control is the header's one filled surface, and it is the
+           inverse of the page it sits on: black on the light header, white on
+           the dark one. That falls out of --ink/--bg rather than being written
+           twice, because the two tokens are exactly the pair the theme swaps —
+           so there is no second rule to keep in step, and no grey in either
+           mode. The box is the 36px the header asked for; the 44px touch target
+           is bought with a ::before band, which belongs to the link, so the
+           drawn size and the hit size answer to different constraints.
+           The header opens the PDF in a new tab and says so with ↗, the same
+           pairing the Contact CTA already uses; the Hero button keeps
+           `download`, so the two résumé actions on the page stay distinct. */
         .nav__resume {
+            position: relative;
             display: inline-flex;
             align-items: center;
             gap: 0.4em;
-            margin-left: clamp(0.5rem, 1.5vw, 1.25rem);
-            padding-left: clamp(0.75rem, 1.5vw, 1.25rem);
-            border-left: var(--hair);
-            font-size: 0.82rem;
+            margin-left: clamp(0.5rem, 1.2vw, 1.1rem);
+            height: 36px;
+            padding-inline: 0.95rem;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            background: var(--ink);
+            color: var(--bg);
+            font-size: 0.875rem;
             font-weight: 500;
+            letter-spacing: 0.01em;
+            transition: background-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft);
+        }
+        .nav__resume::before {
+            content: "";
+            position: absolute;
+            inset-inline: 0;
+            inset-block: -4px;
+        }
+        /* Hover empties the fill instead of dimming it — a translucent black
+           would read as the grey capsule this one deliberately is not. */
+        .nav__resume:hover {
+            background: transparent;
             color: var(--ink);
-            letter-spacing: 0.02em;
         }
         .nav__resume .arw { transition: transform 0.35s var(--ease); display: inline-block; }
-        .nav__resume:hover .arw { transform: translate(2px, -2px); }
+        .nav__resume:hover .arw { transform: translateY(2px); }
 
         /* The theme control: icon-only, no surface, no radius, and the same
            --ink-2 → --ink hover as .nav__link, so it reads as header type set to
            an icon rather than a widget bolted on. Both glyphs ship in the markup
-           and the active theme picks one in CSS, so toggling needs no icon swap. */
+           and the active theme picks one in CSS, so toggling needs no icon swap.
+           The box is 44×44 with the glyph centred in it: the 13.6px of empty box
+           on each side is what makes the target reachable without a background,
+           and it is also the reason the header gap below only needs a few px. */
         .theme-toggle {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 1.75rem;
-            height: 1.5rem;
+            width: 2.75rem;
+            height: 2.75rem;
             color: var(--ink-2);
             transition: color 0.3s var(--ease-soft);
+        }
+        /* Résumé and theme are two controls, not one capsule with a tail: the
+           nav's own gap is tuned for link-to-link air, so it cannot also be the
+           thing that separates a filled capsule from an icon. This margin is the
+           deliberate distance between them — a plain flex gap on one item, with
+           no border, divider or shared surface anywhere in it.
+           The negative right margin is the other half of the ask: the theme
+           control belongs to the edge of the window, not to the end of the link
+           row, so it bleeds back out through the gutter until 0.875rem of box
+           separates it from the viewport — about 28px from the glyph itself,
+           which is breathing space without contact. Above 1440px the header
+           stops following the window and keeps the composition's own edge. */
+        .nav__links .theme-toggle {
+            margin-left: clamp(0.375rem, 0.75vw, 0.75rem);
+            margin-right: calc(0.875rem - var(--gutter));
         }
         .theme-toggle:hover { color: var(--ink); }
         .theme-toggle svg { width: 1.05rem; height: 1.05rem; }
@@ -520,73 +632,154 @@
         }
 
         /* =========================
-           CAPABILITIES
+           SKILLS
         ========================== */
-        .caps { border-top: var(--hair); }
-        .cap-row { border-bottom: var(--hair); }
-        .cap-row:first-of-type { border-top: var(--hair); }
-        .cap-head {
-            width: 100%;
+        /* Five groups, every one of them open, all the time. This section was an
+           accordion that took its cue first from the pointer and then from the scroll
+           position, and then a matrix of dots set over seven project columns. All
+           three controllers are gone, and with them the line the headers had to reach,
+           the compensation that kept a header still while the panel below it grew, the
+           record of which group was open when a case study was opened from it, and the
+           column that lit under the pointer. What is left is static: the group on the
+           left, and one 320px column on the right that counts how many of the seven
+           projects used it, draws that proportion and names them as links. The section
+           carries no script of its own. */
+
+        /* The answer to "with what tools", now set as four ruled cells rather than a
+           sentence: label above, tool below, the stronger hair on top and the
+           section's own hair underneath. Power BI and Tableau share the one cell the
+           work occupies — a dashboard — so they read together instead of as two
+           separate answers to the same question. The tracks are not equal: that merged
+           value names two tools in the space the others use one, so its cell takes
+           1.5fr and the three single-tool cells keep 1fr each. No cards, no fills, no
+           shadows — the dividers are the same 1px lines every other rule uses. */
+        .core-stack {
             display: grid;
-            grid-template-columns: auto minmax(0, 1fr) auto auto;
-            align-items: center;
-            gap: clamp(1rem, 3vw, 2.5rem);
-            text-align: left;
-            padding-block: clamp(1.4rem, 3.4vw, 2.4rem);
-            transition: padding-left 0.5s var(--ease);
+            grid-template-columns: 1fr 1fr 1.5fr 1fr;
+            margin-top: 2rem;
+            border-top: 1px solid var(--line-strong);
+            border-bottom: var(--hair);
         }
-        .cap-row:hover .cap-head, .cap-row.open .cap-head { padding-left: clamp(0px, 1.2vw, 1rem); }
-        .cap-idx { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-        .cap-title {
-            font-size: clamp(1.5rem, 4.6vw, 3.2rem);
+        .core-cell { padding: 0.95rem 1.1rem 1.05rem; min-width: 0; }
+        .core-cell + .core-cell { border-left: var(--hair); }
+        .core-cell__label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--label-faint);
+        }
+        .core-cell__tool {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: clamp(20px, 2.3vw, 32px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+        /* The separator belongs to the tool it precedes. Here it is glued to Tableau so
+           that the one break a phone is allowed to make falls before the separator —
+           "Power BI" over "· Tableau" — and never after it. */
+        .core-cell__pair { white-space: nowrap; }
+
+        /* Two columns: the group takes whatever width is left, the used-across panel is
+           a fixed 320px. There is no column gap — the panel's own padding is the space,
+           so the 320px stays the 320px the layout was drawn against and its left rule is
+           the only divider the row needs. Baseline rather than start alignment: the first
+           line of the panel is a serif number, and putting it on the same baseline as the
+           group index and the title is what makes two columns of very different type read
+           as one row. */
+        .skills-list { border-top: var(--hair); }
+        .skill-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            align-items: baseline;
+            border-bottom: var(--hair);
+            padding-block: 28px;
+        }
+
+        .grp { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.1rem; align-items: baseline; }
+        /* The row number. --label-faint is the faint step every other small-caps label on
+           the page already uses — #6B6B66 on the light background, #9A9A94 on the dark one,
+           both over 4.5:1. --ink-3 measured 2.64:1 in light here, and a number that indexes
+           the row is not decoration. */
+        .grp__idx { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--label-faint); font-variant-numeric: tabular-nums; }
+        .grp__body { min-width: 0; display: grid; gap: 0.85rem; align-content: start; }
+        .grp__title {
+            font-size: clamp(26px, 3.4vw, 44px);
             font-weight: 600;
             letter-spacing: -0.03em;
             line-height: 1;
             text-transform: uppercase;
         }
-        .cap-teaser { color: var(--ink-2); font-size: 0.92rem; max-width: 34ch; display: none; }
-        .cap-toggle {
-            width: 34px; height: 34px;
-            border: var(--hair);
-            border-radius: 50%;
-            position: relative;
-            flex: none;
-            transition: background-color 0.4s var(--ease-soft), border-color 0.4s var(--ease-soft);
-        }
-        .cap-toggle::before, .cap-toggle::after {
-            content: ""; position: absolute; inset: 50% 9px auto 9px; height: 1px; background: var(--ink);
-            transform: translateY(-50%); transition: transform 0.4s var(--ease), opacity 0.3s;
-        }
-        .cap-toggle::after { transform: translateY(-50%) rotate(90deg); }
-        .cap-row.open .cap-toggle { background: var(--ink); border-color: var(--ink); }
-        .cap-row.open .cap-toggle::before, .cap-row.open .cap-toggle::after { background: var(--bg); }
-        .cap-row.open .cap-toggle::after { transform: translateY(-50%) rotate(0deg); opacity: 0; }
+        .grp__desc { font-size: 0.9375rem; line-height: 1.55; color: var(--about-body); max-width: 52ch; }
+        /* One continuous pill list per group: the key tools first, then the rest, all of
+           it one flex flow so nothing is forced onto a row of its own. Scoped to these two
+           sections so the shared .tag primitive — the pills Projects and Live Apps already
+           render — stays exactly as those two set it. Skills and Certifications take the same
+           pill: both list tools and covered areas, so both want a size a name can be read at
+           and the padding that size needs. The two kinds are separated by weight of line, not
+           by row: a key tool takes the page's own ink for both its rule and its type, an
+           ordinary one takes the stronger step of the rule scale and the body ink — quieter,
+           but a line you can see at a glance is still a line. Certifications has no key tier,
+           so every one of its pills is the ordinary one. */
+        #skills .tags,
+        #certifications .tags { gap: 8px; }
+        #skills .tag,
+        #certifications .tag { font-size: 0.8125rem; letter-spacing: 0.02em; padding: 3px 12px; color: var(--about-body); border-color: var(--line-strong); }
+        #skills .tag.key { color: var(--ink); border-color: var(--ink); font-weight: 500; }
 
-        .cap-panel {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.55s var(--ease);
+        /* The panel. The count takes the serif numeral treatment the Live Apps cards
+           give their headline metric — Newsreader at weight 300, ink, line-height 1 —
+           stepped down for a sidebar, and pairs it with the same small-caps step that
+           sits beside that number. */
+        .used-across { border-left: var(--hair); padding-left: clamp(1.25rem, 2.2vw, 1.75rem); min-width: 0; }
+        .used-across__meta { display: grid; gap: 0.7rem; align-content: start; }
+        .used-across__count { display: flex; align-items: baseline; gap: 0.6rem; }
+        .used-across__num {
+            font-family: var(--serif);
+            font-size: clamp(22px, 1.5vw, 28px);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            line-height: 1;
+            color: var(--ink);
         }
-        .cap-row.open .cap-panel { grid-template-rows: 1fr; }
-        .cap-panel__inner {
-            overflow: hidden;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.4s var(--ease-soft), visibility 0s linear 0.55s;
+        .used-across__label {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--label-faint);
         }
-        .cap-row.open .cap-panel__inner { opacity: 1; visibility: visible; transition: opacity 0.5s var(--ease-soft) 0.05s, visibility 0s; }
-        .cap-panel__content {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: clamp(1.5rem, 4vw, 4rem);
-            padding-bottom: clamp(1.6rem, 3.4vw, 2.6rem);
-            padding-left: clamp(0px, 3.4vw, 3.2rem);
+
+        /* Seven equal segments, filled from the left in the page's own two steps: ink for
+           used, the rule line for not. The role and the label mean the proportion arrives
+           as text, so no colour carries it alone and the bar needs no focus of its own. */
+        .used-across__bar { display: flex; gap: 4px; }
+        .used-across__bar span { flex: 1 1 0; height: 6px; background: var(--line); }
+        .used-across__bar span.on { background: var(--ink); }
+
+        /* One project per line. The names sit in the page's own ink and carry a rule of
+           their own; the prose lines beside them stay at the body ink, and that contrast
+           of colour — ink against body — plus the underline is what says "this one is a
+           link" before the pointer ever arrives. The underline is set to the stronger step
+           of the rule scale rather than to the text's own ink: 1.76:1 against this
+           background in light, 1.85:1 against black in dark, so it reads as a rule that
+           belongs to the link and never competes with the word it underlines. Hover
+           strengthens the line only; the text is already at full ink, so there is nothing
+           left for it to become. */
+        .used-across__list { display: grid; gap: 6px; margin-top: 0.9rem; }
+        .used-across__list > * { font-size: 0.875rem; line-height: 1.35; color: var(--about-body); }
+        .used-across__list a {
+            color: var(--ink);
+            text-decoration-line: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            text-decoration-color: var(--line-strong);
+            transition: text-decoration-color 0.3s var(--ease-soft);
         }
-        .cap-panel__content p { color: var(--ink-2); max-width: 50ch; font-size: 0.98rem; }
-        .cap-col { display: flex; flex-direction: column; gap: 1rem; align-content: flex-start; }
-        .cap-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; align-content: flex-start; }
-        .cap-panel__content .cap-used { font-size: 0.8rem; line-height: 1.5; color: var(--ink-2); max-width: 46ch; }
-        .cap-used__label { display: block; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.3rem; }
+        .used-across__list a:hover { text-decoration-color: var(--ink); }
 
         /* =========================
            ABOUT
@@ -598,40 +791,91 @@
             align-items: start;
         }
         .about__sticky { position: sticky; top: calc(var(--nav-h) + 2rem); }
-        .about__intro {
-            font-family: var(--serif);
-            font-size: clamp(1.35rem, 2.6vw, 2rem);
-            line-height: 1.35;
-            font-weight: 300;
-            letter-spacing: -0.01em;
-            margin-bottom: 1.75rem;
-        }
-        .about__body p { color: var(--ink-2); margin-bottom: 1.25rem; max-width: 62ch; font-size: 1.02rem; }
-        .about__body p strong { color: var(--ink); font-weight: 600; }
 
-        .about__list-title {
-            margin-top: clamp(2rem, 4vw, 2.75rem);
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ink-2);
-        }
-        .focus {
-            margin-top: 1rem;
-            border-top: var(--hair);
-        }
-        .focus li {
+        /* The information card is the site's hairline language rather than a panel:
+           one rule above the rows and one under each, no box, no shadow, no fill.
+           Label and value share a baseline so each row reads as one line of type
+           even when the value wraps. The label column is a FIXED width, not
+           `auto`: every row is its own grid, so an `auto` column sizes to that row's
+           key alone and the four values start four different places — EDUCATION is
+           89.61px at 13px, STATUS 72, a 17.6px stagger. 5.625rem is the widest of
+           those plus a hair, so all four values share one left edge (174.8px inside
+           the 1440 composition) and a key that outgrows the column spills into the
+           1.25rem gap rather than clipping. */
+        .about__card { border-top: var(--hair); }
+        .about__row {
             display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.25rem;
+            grid-template-columns: 5.625rem minmax(0, 1fr);
+            gap: 0.25rem 1.25rem;
             align-items: baseline;
-            padding-block: 0.85rem;
+            padding-block: 0.7rem;
             border-bottom: var(--hair);
         }
-        .focus li .n { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--ink-3); }
-        .focus li .t { font-size: 1.05rem; font-weight: 500; }
-        .focus li .d { color: var(--ink-2); font-size: 0.9rem; grid-column: 2; }
+        .about__key {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--label-faint);
+        }
+        .about__val {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.45;
+            color: var(--ink);
+        }
+
+        /* Three sizes of statement, each with its own rule rather than one blanket
+           `.about__body p` — a descendant selector out-specifies the class and used
+           to flatten the serif intro to body size. */
+        .about__intro {
+            font-family: var(--serif);
+            font-size: clamp(1.55rem, 2.9vw, 2.1rem);
+            line-height: 1.28;
+            font-weight: 400;
+            letter-spacing: -0.015em;
+            color: var(--about-intro);
+            text-wrap: balance;
+            margin-bottom: clamp(1.3rem, 2.6vh, 1.9rem);
+        }
+        .about__lede {
+            font-size: 1.1875rem;
+            line-height: 1.65;
+            color: var(--about-body);
+            max-width: 62ch;
+            margin-bottom: clamp(1.1rem, 2.2vh, 1.5rem);
+        }
+        /* The ask closes the argument, so it stays body type with only the label
+           emphasised — a fourth heading here would outshout the section heading.
+           Same 62ch as the lede above it: both are 19px, so the measure resolves
+           identically and the two paragraphs end on one right edge. */
+        .about__ask {
+            font-size: 1.1875rem;
+            line-height: 1.6;
+            color: var(--about-body);
+            max-width: 62ch;
+            margin-bottom: clamp(1.9rem, 4.2vh, 2.8rem);
+        }
+        .about__ask strong { color: var(--ink); font-weight: 700; }
+        /* One CTA, and outlined: the filled capsule is the header's and the Hero's,
+           so a third filled surface would compete with them for the same role.
+           The 44px is the target, the border and the arrow are the design. */
+        .about__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            min-height: 44px;
+            padding: 0.6rem 1.15rem;
+            border: 1px solid var(--line-strong);
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--ink);
+            transition: border-color 0.3s var(--ease-soft);
+        }
+        .about__cta:hover { border-color: var(--ink); }
+        .about__cta .arw { transition: transform 0.35s var(--ease); }
+        .about__cta:hover .arw { transform: translateY(2px); }
 
         /* =========================
            CONTACT
@@ -645,7 +889,12 @@
         }
         .contact__title { font-size: clamp(2.6rem, 12vw, 9rem); line-height: 0.9; letter-spacing: -0.04em; font-weight: 700; text-transform: uppercase; }
         .contact__title .accent { font-family: var(--serif); font-style: italic; font-weight: 300; text-transform: none; letter-spacing: -0.02em; }
+        /* The intro is two lines of one block: the offer, then where it applies.
+           Grouping them keeps .contact__head's grid gap between the heading and
+           the copy rather than opening a second gap inside the copy. */
+        .contact__intro { display: grid; gap: 0.5rem; }
         .contact__avail { max-width: 54ch; color: var(--ink-2); font-size: clamp(1rem, 1.4vw, 1.2rem); }
+        .contact__where { color: var(--label-faint); font-size: 0.875rem; letter-spacing: 0.02em; }
 
         /* =========================
            FOOTER
@@ -658,13 +907,13 @@
             align-items: center;
             justify-content: space-between;
         }
-        .footer__id .name { font-weight: 700; letter-spacing: -0.02em; font-size: 1.05rem; }
-        .footer__id .role { color: var(--ink-2); font-size: 0.86rem; margin-top: 0.2rem; }
+        .footer__id .name { font-weight: 700; letter-spacing: -0.02em; font-size: 0.8125rem; }
+        .footer__id .role { color: var(--label-faint); font-size: 0.8125rem; margin-top: 0.2rem; }
         .footer__links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-        .footer__links a { font-size: 0.86rem; color: var(--ink-2); transition: color 0.3s var(--ease-soft); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+        .footer__links a { font-size: 0.8125rem; color: var(--label-faint); transition: color 0.3s var(--ease-soft); border-bottom: 1px solid transparent; padding-bottom: 2px; }
         .footer__links a:hover { color: var(--ink); border-bottom-color: var(--line-strong); }
-        .footer__meta { color: var(--ink-3); font-size: 0.78rem; letter-spacing: 0.06em; }
-        .to-top { display: inline-flex; align-items: center; gap: 0.5em; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+        .footer__meta { color: var(--label-faint); font-size: 0.8125rem; letter-spacing: 0.06em; }
+        .to-top { display: inline-flex; align-items: center; gap: 0.5em; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--label-faint); }
         .to-top .arw { transition: transform 0.35s var(--ease); display: inline-block; }
         .to-top:hover .arw { transform: translateY(-3px); }
 
@@ -684,7 +933,7 @@
         /* Colour-only cross-fade for the theme switch, applied through a class the
            controller drops after ~200ms. A permanent universal transition on * would
            win on specificity over the per-element transitions above — the nav's
-           scroll state, the accordion, .reveal — and clobber them, so the sweep is
+           scroll state, the Skills column tint, .reveal — and clobber them, so the sweep is
            deliberately short-lived and lists only the animatable colour properties.
            Layout, type scale and geometry are never transitioned. */
         html.theme-anim,
@@ -843,10 +1092,6 @@
         /* =========================
            RESPONSIVE
         ========================== */
-        @media (min-width: 1100px) {
-            .cap-teaser { display: block; }
-        }
-
         @media (max-width: 1099px) {
             .nav__links { display: none; }
             .menu-btn {
@@ -864,9 +1109,36 @@
 
             .about__grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
             .about__sticky { position: static; }
+            /* Stacked, the card would otherwise run the full width of a tablet and
+               turn five rows into a ruled table. It keeps its own measure instead. */
+            .about__card { max-width: 34rem; }
+        }
 
-            .cap-panel__content { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding-left: 0; }
-            .cap-head { grid-template-columns: auto minmax(0, 1fr) auto; }
+        /* The width a Skills group stops being two columns. A 320px panel beside a group
+           title at 29px needs more than a small tablet's content box can give, and a
+           390px phone needs a great deal more than it has. Below this line the group
+           stacks in the order the reader needs it: title, description, one continuous tag
+           list, then the count and its bar on a single row with the names underneath. The
+           panel loses only its column, its rule and its indent — nothing it says. */
+        @media (max-width: 859.98px) {
+            /* A 32px tool name cannot hold a phone's content box even in four cells, so
+               the strip doubles up — evenly, in two equal tracks, because the 1.5fr the
+               merged cell needs is a desktop decision. Four cells then fill two rows of
+               two, so nothing sits alone on a row of its own: the odd cells start a row
+               and so lose the divider that would otherwise sit on the container's own
+               left edge, and every cell below the first row picks up a top hair. The
+               values are released from their one-line hold here, and only the glued
+               "· Tableau" pair stays atomic, so a wrapping Dashboards cell breaks before
+               the separator and never after it. */
+            .core-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .core-cell:nth-child(2n + 1) { border-left: 0; }
+            .core-cell:nth-child(n + 3) { border-top: var(--hair); }
+            .core-cell__tool { white-space: normal; }
+
+            .skill-row { grid-template-columns: minmax(0, 1fr); row-gap: 1.4rem; }
+            .used-across { border-left: 0; padding-left: 0; }
+            .used-across__meta { display: flex; align-items: center; gap: 0.9rem; }
+            .used-across__bar { flex: 1 1 0; }
         }
 
         @media (max-width: 560px) {
@@ -875,6 +1147,11 @@
             .display-xl { font-size: clamp(2.5rem, 15vw, 4rem); }
             .contact__title { font-size: clamp(2.4rem, 15vw, 4rem); }
             .figure { aspect-ratio: 4 / 3.1; }
+            /* A phone has no room for a label column beside a long value, so the
+               pair stacks and the label keeps its tracking. Body drops to the floor
+               of the requested 18–19px band, not below it. */
+            .about__row { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; padding-block: 0.6rem; }
+            .about__lede, .about__ask { font-size: 1.125rem; }
         }
 
         @media (max-width: 400px) {
@@ -918,13 +1195,13 @@
 
             <nav class="nav__links" aria-label="Primary">
                 <a class="nav__link" href="#about">About</a>
-                <a class="nav__link" href="#work">Projects</a>
-                <a class="nav__link" href="#applications">Applications</a>
+                <a class="nav__link" href="#projects">Projects</a>
+                <a class="nav__link" href="#live-apps">Live&nbsp;Apps</a>
                 <a class="nav__link" href="#skills">Skills</a>
                 <a class="nav__link" href="#certifications">Certifications</a>
                 <a class="nav__link" href="#education">Education</a>
                 <a class="nav__link" href="#contact">Contact</a>
-                <a class="nav__resume" href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download résumé, PDF opens in a new tab">Résumé <span class="arw" aria-hidden="true">↗</span></a>
+                <a class="nav__resume" href="/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="arw" aria-hidden="true">↗</span></a>
 
                 <button type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
                     <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
@@ -948,15 +1225,15 @@
         </div>
         <nav class="overlay__nav" aria-label="Mobile">
             <a href="#about"><span class="num">01</span>About</a>
-            <a href="#work"><span class="num">02</span>Projects</a>
-            <a href="#applications"><span class="num">03</span>Applications</a>
+            <a href="#projects"><span class="num">02</span>Projects</a>
+            <a href="#live-apps"><span class="num">03</span>Live Apps</a>
             <a href="#skills"><span class="num">04</span>Skills</a>
             <a href="#certifications"><span class="num">05</span>Certifications</a>
             <a href="#education"><span class="num">06</span>Education</a>
             <a href="#contact"><span class="num">07</span>Contact</a>
         </nav>
         <div class="overlay__foot">
-            <a class="project__link" href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="arw" aria-hidden="true">↗</span></a>
+            <a class="project__link" href="/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="arw" aria-hidden="true">↗</span></a>
             <span class="overlay__foot-meta">
                 <button type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
                     <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
@@ -989,21 +1266,30 @@
 
                 <div class="about__grid">
                     <div class="about__sticky reveal">
-                        <p class="label label--ink">Data Science &amp; Analytics</p>
-                        <p class="label" style="color:var(--ink-3); margin-top:0.6rem">Student · Data Analyst</p>
+                        <dl class="about__card">
+                            <div class="about__row">
+                                <dt class="about__key">Education</dt>
+                                <dd class="about__val">B.Tech AI &amp; Data Science · Study World College of Engineering · Class of 2027</dd>
+                            </div>
+                            <div class="about__row">
+                                <dt class="about__key">Location</dt>
+                                <dd class="about__val">Kadapa, Andhra Pradesh, India</dd>
+                            </div>
+                            <div class="about__row">
+                                <dt class="about__key">Status</dt>
+                                <dd class="about__val">Available immediately · Internship or full-time</dd>
+                            </div>
+                            <div class="about__row">
+                                <dt class="about__key">Certified</dt>
+                                <dd class="about__val">IBM Data Science · Google Cloud Data Analytics</dd>
+                            </div>
+                        </dl>
                     </div>
                     <div class="about__body reveal" style="--d:0.1s">
-                        <p class="about__intro">I work at the intersection of data, analysis, and applied machine learning.</p>
-                        <p>I'm a <strong>Data Science &amp; Analytics</strong> student focused on turning raw data into structured insights, predictive models, dashboards, and useful applications. My work spans exploratory data analysis, cleaning and wrangling, statistical analysis, machine learning, natural-language processing, business intelligence, and visualization — and increasingly the application development that turns analysis into something people can actually use.</p>
-                        <p>I'm drawn to practical problems: forecasting demand, testing a marketing change, predicting churn, reading sentiment at scale. Across these projects I own the work end to end, from raw data through models and dashboards to deployment — and two of them now run as live, public applications. I care about honest analysis and clear communication: making results understandable and useful for technical and non-technical audiences alike, without overstating what the data supports.</p>
-
-                        <h3 class="about__list-title">How I Work</h3>
-                        <ul class="focus">
-                            <li><span class="n">01</span><span class="t">Analytical Thinking</span><span class="d">Breaking complex problems into measurable questions and examining the data behind them.</span></li>
-                            <li><span class="n">02</span><span class="t">End-to-End Ownership</span><span class="d">Working across data preparation, analysis, modeling, visualization, and deployment.</span></li>
-                            <li><span class="n">03</span><span class="t">Clear Communication</span><span class="d">Communicating data-driven findings to both technical and non-technical audiences.</span></li>
-                            <li><span class="n">04</span><span class="t">Continuous Learning</span><span class="d">Strengthening technical depth through practical projects, experimentation, and applied work.</span></li>
-                        </ul>
+                        <p class="about__intro">I answer business questions with SQL, Python and dashboards, and I show my working.</p>
+                        <p class="about__lede">I'm a final-year B.Tech student in AI &amp; Data Science. Two projects show how I work: an A/B test on 588,101 marketing records that found a 0.77-point conversion lift (p &lt; 0.001, about ₹21.7 lakh if scaled), and a churn model (AUC-ROC 0.8343) running as a live Streamlit app. I explain results to non-technical readers and say plainly what the data can't support.</p>
+                        <p class="about__ask"><strong>Looking for:</strong> a Data Analyst internship or full-time entry-level role, remote, hybrid or on-site. <strong>Available immediately;</strong> I can manage my B.Tech alongside the role.</p>
+                        <a class="about__cta" href="#projects">See the projects behind these numbers <span class="arw" aria-hidden="true">↓</span></a>
                     </div>
                 </div>
             </div>
@@ -1012,13 +1298,13 @@
         <!-- =========================
              SELECTED WORK
         ========================== -->
-        <section class="section section--rule" id="work" aria-labelledby="work-title">
+        <section class="section section--rule" id="projects" aria-labelledby="projects-title">
             <div class="wrap">
                 <div class="sec-head reveal">
                     <span class="sec-index">02 / Projects</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
-                            <h2 class="display-l" id="work-title">Selected<br />Projects</h2>
+                            <h2 class="display-l" id="projects-title">Selected<br />Projects</h2>
                             <p class="sec-note">Seven selected data, analytics, and machine-learning projects — forecasting, experimentation, churn, sentiment, and pricing. Hover or focus a row to preview it; open a row for the full case study.</p>
                         </div>
                     </div>
@@ -1036,14 +1322,14 @@
         <!-- =========================
              DEPLOYED APPLICATIONS
         ========================== -->
-        <section class="section section--rule" id="applications" aria-labelledby="apps-title">
+        <section class="section section--rule" id="live-apps" aria-labelledby="apps-title">
             <div class="wrap">
                 <div class="sec-head reveal">
-                    <span class="sec-index">03 / Applications</span>
+                    <span class="sec-index">03 / Live Apps</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
-                            <h2 class="display-l" id="apps-title">Deployed<br />Applications</h2>
-                            <p class="sec-note">Two projects shipped as live, public Streamlit applications — explore the analysis and interact with the results directly.</p>
+                            <h2 class="display-l" id="apps-title">Live Apps</h2>
+                            <p class="sec-note">Two apps you can use right now. Paste a review or score a customer profile and watch the model respond. If an app is asleep, click "Yes, get this app back up!" and give it a short wait.</p>
                         </div>
                     </div>
                 </div>
@@ -1056,144 +1342,178 @@
         <!-- =========================
              SKILLS
         ========================== -->
-        <section class="section section--rule" id="skills" aria-labelledby="cap-title">
+        <section class="section section--rule" id="skills" aria-labelledby="skills-title">
             <div class="wrap">
                 <div class="sec-head reveal">
                     <span class="sec-index">04 / Skills</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
-                            <h2 class="display-l" id="cap-title">Skills</h2>
-                            <p class="sec-note">What I do across the data-to-product pipeline. Select a discipline to expand.</p>
+                            <h2 class="display-l" id="skills-title">Skills</h2>
+                            <p class="sec-note">Every skill group is tied to the projects that used it. Click a project to open the case study.</p>
+                        </div>
+                        <!-- The stack in the order the work happens in, not alphabetically:
+                             ask the data, analyse it, show it on a dashboard, then the
+                             sheet everyone ends up in anyway. -->
+                        <div class="core-stack">
+                            <div class="core-cell"><span class="core-cell__label">Query</span><span class="core-cell__tool">SQL (MySQL)</span></div>
+                            <div class="core-cell"><span class="core-cell__label">Analyse</span><span class="core-cell__tool">Python</span></div>
+                            <div class="core-cell"><span class="core-cell__label">Dashboards</span><span class="core-cell__tool">Power BI <span class="core-cell__pair">· Tableau</span></span></div>
+                            <div class="core-cell"><span class="core-cell__label">Spreadsheet</span><span class="core-cell__tool">Excel</span></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="caps reveal" id="caps">
-                    <!-- CAP 01 -->
-                    <div class="cap-row open">
-                        <button class="cap-head" id="cap-btn-1" aria-expanded="true" aria-controls="cap-panel-1">
-                            <span class="cap-idx">01</span>
-                            <span class="cap-title">Data Analytics</span>
-                            <span class="cap-teaser">Exploratory analysis, SQL, statistics, and experimentation that turn messy data into a clear answer.</span>
-                            <span class="cap-toggle" aria-hidden="true"></span>
-                        </button>
-                        <div class="cap-panel" id="cap-panel-1" role="region" aria-labelledby="cap-btn-1">
-                            <div class="cap-panel__inner">
-                                <div class="cap-panel__content">
-                                    <p>Cleaning and exploring data, writing SQL to answer business questions, applying statistics and A/B testing, and shaping the results into a narrative that supports a decision.</p>
-                                    <div class="cap-col">
-                                        <div class="cap-tools">
-                                            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Pandas</span>
-                                            <span class="tag">NumPy</span><span class="tag">Excel</span><span class="tag">Statistics</span>
-                                            <span class="tag">EDA</span><span class="tag">Data Cleaning</span><span class="tag">Data Wrangling</span><span class="tag">A/B Testing</span>
-                                        </div>
-                                        <p class="cap-used"><span class="cap-used__label">Used across</span>Rossmann · Marketing A/B Testing · Retail Sales · Banking Churn · Customer Churn</p>
-                                    </div>
+                <!-- Each group is one row: the group on the left, and a fixed 320px
+                     column on the right that answers "how much of the work used this"
+                     in three parts — a count set in the same serif the Live Apps metrics
+                     use, seven segments drawn to that proportion, and the projects named
+                     one to a line. All five rows are on the page at once, and nothing
+                     here opens, closes or moves. -->
+                <div class="skills-list reveal">
+                    <div class="skill-row">
+                        <div class="grp">
+                            <span class="grp__idx">01</span>
+                            <div class="grp__body">
+                                <h3 class="grp__title">Data Analytics</h3>
+                                <p class="grp__desc">Cleaning and exploring data, writing SQL to answer business questions, and turning results into a decision.</p>
+                                <div class="tags">
+                                    <span class="tag key">SQL</span><span class="tag key">Python</span>
+                                    <span class="tag key">Excel</span><span class="tag">MySQL</span>
+                                    <span class="tag">SQL Window Functions</span><span class="tag">Pandas</span>
+                                    <span class="tag">NumPy</span><span class="tag">Pivot Tables</span>
+                                    <span class="tag">Power Query</span><span class="tag">Statistics</span>
+                                    <span class="tag">Hypothesis Testing</span><span class="tag">A/B Testing</span>
+                                    <span class="tag">EDA</span><span class="tag">Data Cleaning &amp; Wrangling</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="used-across">
+                            <div class="used-across__meta">
+                                <p class="used-across__count"><span class="used-across__num">5 / 7</span><span class="used-across__label">Projects</span></p>
+                                <div class="used-across__bar" role="img" aria-label="Used in 5 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+                            </div>
+                            <div class="used-across__list">
+                                <a href="/projects/rossmann">Rossmann Store Sales Forecasting</a>
+                                <a href="/projects/ab-testing">Marketing A/B Testing Analysis</a>
+                                <a href="/projects/customer-churn">Customer Churn Prediction</a>
+                                <a href="/projects/retail-sales">Retail Sales Analysis</a>
+                                <a href="/projects/banking-churn">Banking Churn Analysis</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CAP 02 -->
-                    <div class="cap-row">
-                        <button class="cap-head" id="cap-btn-2" aria-expanded="false" aria-controls="cap-panel-2">
-                            <span class="cap-idx">02</span>
-                            <span class="cap-title">Machine Learning</span>
-                            <span class="cap-teaser">Classification, regression, and forecasting with careful feature work and honest evaluation.</span>
-                            <span class="cap-toggle" aria-hidden="true"></span>
-                        </button>
-                        <div class="cap-panel" id="cap-panel-2" role="region" aria-labelledby="cap-btn-2">
-                            <div class="cap-panel__inner">
-                                <div class="cap-panel__content">
-                                    <p>Building supervised models — classification, regression, and time-series forecasting — including feature engineering, imbalance handling, hyperparameter tuning, and evaluation metrics that reflect real discrimination quality.</p>
-                                    <div class="cap-col">
-                                        <div class="cap-tools">
-                                            <span class="tag">Scikit-learn</span><span class="tag">Logistic Regression</span><span class="tag">Random Forest</span>
-                                            <span class="tag">XGBoost</span><span class="tag">Prophet</span><span class="tag">Feature Engineering</span>
-                                            <span class="tag">SMOTE</span><span class="tag">Cross-validation</span><span class="tag">AUC-ROC</span><span class="tag">Model Evaluation</span>
-                                        </div>
-                                        <p class="cap-used"><span class="cap-used__label">Used across</span>Customer Churn · Rossmann · House Price</p>
-                                    </div>
+                    <div class="skill-row">
+                        <div class="grp">
+                            <span class="grp__idx">02</span>
+                            <div class="grp__body">
+                                <h3 class="grp__title">Data Visualization &amp; BI</h3>
+                                <p class="grp__desc">Dashboards and visual narratives that make the insight obvious at a glance.</p>
+                                <div class="tags">
+                                    <span class="tag key">Power BI</span><span class="tag key">Tableau</span>
+                                    <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+                                    <span class="tag">Plotly</span><span class="tag">Dashboard Development</span>
+                                    <span class="tag">KPI Reporting</span><span class="tag">DAX</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="used-across">
+                            <div class="used-across__meta">
+                                <p class="used-across__count"><span class="used-across__num">5 / 7</span><span class="used-across__label">Projects</span></p>
+                                <div class="used-across__bar" role="img" aria-label="Used in 5 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+                            </div>
+                            <div class="used-across__list">
+                                <a href="/projects/rossmann">Rossmann Store Sales Forecasting</a>
+                                <a href="/projects/ab-testing">Marketing A/B Testing Analysis</a>
+                                <a href="/projects/product-sentiment">Product Review Sentiment Analysis</a>
+                                <a href="/projects/retail-sales">Retail Sales Analysis</a>
+                                <a href="/projects/banking-churn">Banking Churn Analysis</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CAP 03 -->
-                    <div class="cap-row">
-                        <button class="cap-head" id="cap-btn-3" aria-expanded="false" aria-controls="cap-panel-3">
-                            <span class="cap-idx">03</span>
-                            <span class="cap-title">Data Visualization &amp; BI</span>
-                            <span class="cap-teaser">Dashboards and reports that make complex information legible and easy to act on.</span>
-                            <span class="cap-toggle" aria-hidden="true"></span>
-                        </button>
-                        <div class="cap-panel" id="cap-panel-3" role="region" aria-labelledby="cap-btn-3">
-                            <div class="cap-panel__inner">
-                                <div class="cap-panel__content">
-                                    <p>Designing dashboards and visual narratives that surface trends and trade-offs — choosing the right chart, defining the KPIs, and making the insight obvious at a glance.</p>
-                                    <div class="cap-col">
-                                        <div class="cap-tools">
-                                            <span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Matplotlib</span>
-                                            <span class="tag">Seaborn</span><span class="tag">Plotly</span><span class="tag">DAX</span>
-                                            <span class="tag">Dashboard Development</span><span class="tag">KPI Reporting</span>
-                                        </div>
-                                        <p class="cap-used"><span class="cap-used__label">Used across</span>Retail Sales · Banking Churn · Marketing A/B Testing · Rossmann · Product Sentiment</p>
-                                    </div>
+                    <!-- The one group that is in everything, so it names the evidence
+                         rather than reciting all seven titles: two lines of plain text
+                         and one link into the live apps. -->
+                    <div class="skill-row">
+                        <div class="grp">
+                            <span class="grp__idx">03</span>
+                            <div class="grp__body">
+                                <h3 class="grp__title">Programming &amp; Tools</h3>
+                                <p class="grp__desc">Version control, notebooks, and Streamlit for turning models into live apps.</p>
+                                <div class="tags">
+                                    <span class="tag key">Python</span><span class="tag key">SQL</span>
+                                    <span class="tag">Java</span><span class="tag">Git</span>
+                                    <span class="tag">GitHub</span><span class="tag">Streamlit</span>
+                                    <span class="tag">Jupyter Notebook</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="used-across">
+                            <div class="used-across__meta">
+                                <p class="used-across__count"><span class="used-across__num">7 / 7</span><span class="used-across__label">Projects</span></p>
+                                <div class="used-across__bar" role="img" aria-label="Used in 7 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+                            </div>
+                            <div class="used-across__list">
+                                <span>Git &amp; GitHub in every project</span>
+                                <a href="#live-apps">Streamlit in the 2 live apps</a>
+                                <span>Jupyter in the analysis notebooks</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CAP 04 -->
-                    <div class="cap-row">
-                        <button class="cap-head" id="cap-btn-4" aria-expanded="false" aria-controls="cap-panel-4">
-                            <span class="cap-idx">04</span>
-                            <span class="cap-title">Natural Language Processing</span>
-                            <span class="cap-teaser">Sentiment analysis and text mining over large unstructured review corpora.</span>
-                            <span class="cap-toggle" aria-hidden="true"></span>
-                        </button>
-                        <div class="cap-panel" id="cap-panel-4" role="region" aria-labelledby="cap-btn-4">
-                            <div class="cap-panel__inner">
-                                <div class="cap-panel__content">
-                                    <p>Applying natural-language processing to real text at scale — preprocessing unstructured reviews, scoring sentiment with lexicon methods, and surfacing discriminative vocabulary with TF-IDF and word clouds.</p>
-                                    <div class="cap-col">
-                                        <div class="cap-tools">
-                                            <span class="tag">NLTK</span><span class="tag">VADER</span><span class="tag">TextBlob</span>
-                                            <span class="tag">TF-IDF</span><span class="tag">WordCloud</span>
-                                            <span class="tag">Sentiment Analysis</span><span class="tag">Text Preprocessing</span>
-                                        </div>
-                                        <p class="cap-used"><span class="cap-used__label">Used across</span>Product Sentiment</p>
-                                    </div>
+                    <div class="skill-row">
+                        <div class="grp">
+                            <span class="grp__idx">04</span>
+                            <div class="grp__body">
+                                <h3 class="grp__title">Machine Learning</h3>
+                                <p class="grp__desc">Classification, regression and time-series forecasting, with careful evaluation.</p>
+                                <div class="tags">
+                                    <span class="tag key">Scikit-learn</span><span class="tag key">Random Forest</span>
+                                    <span class="tag">Logistic Regression</span><span class="tag">XGBoost</span>
+                                    <span class="tag">Prophet</span><span class="tag">Feature Engineering</span>
+                                    <span class="tag">SMOTE</span><span class="tag">Cross-validation</span>
+                                    <span class="tag">AUC-ROC</span><span class="tag">Model Evaluation</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="used-across">
+                            <div class="used-across__meta">
+                                <p class="used-across__count"><span class="used-across__num">3 / 7</span><span class="used-across__label">Projects</span></p>
+                                <div class="used-across__bar" role="img" aria-label="Used in 3 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+                            </div>
+                            <div class="used-across__list">
+                                <a href="/projects/rossmann">Rossmann Store Sales Forecasting</a>
+                                <a href="/projects/customer-churn">Customer Churn Prediction</a>
+                                <a href="/projects/house-price">House Price Prediction</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CAP 05 -->
-                    <div class="cap-row">
-                        <button class="cap-head" id="cap-btn-5" aria-expanded="false" aria-controls="cap-panel-5">
-                            <span class="cap-idx">05</span>
-                            <span class="cap-title">Programming &amp; Tools</span>
-                            <span class="cap-teaser">The working toolkit behind every analysis, model, and deployed application.</span>
-                            <span class="cap-toggle" aria-hidden="true"></span>
-                        </button>
-                        <div class="cap-panel" id="cap-panel-5" role="region" aria-labelledby="cap-btn-5">
-                            <div class="cap-panel__inner">
-                                <div class="cap-panel__content">
-                                    <p>The day-to-day development environment: version control and hosting for every project, notebooks for exploration and reporting, and Streamlit for turning models and analyses into live applications.</p>
-                                    <div class="cap-col">
-                                        <div class="cap-tools">
-                                            <span class="tag">Java</span><span class="tag">Git</span><span class="tag">GitHub</span>
-                                            <span class="tag">Streamlit</span><span class="tag">Jupyter Notebook</span>
-                                        </div>
-                                        <p class="cap-used"><span class="cap-used__label">Used across</span>Git &amp; GitHub — all projects · Streamlit — live applications · Jupyter — analysis notebooks</p>
-                                    </div>
+                    <div class="skill-row">
+                        <div class="grp">
+                            <span class="grp__idx">05</span>
+                            <div class="grp__body">
+                                <h3 class="grp__title">Natural Language Processing</h3>
+                                <p class="grp__desc">Sentiment analysis and text mining over 568,454 Amazon food reviews.</p>
+                                <div class="tags">
+                                    <span class="tag key">VADER</span><span class="tag key">TF-IDF</span>
+                                    <span class="tag">NLTK</span><span class="tag">TextBlob</span>
+                                    <span class="tag">WordCloud</span><span class="tag">Sentiment Analysis</span>
+                                    <span class="tag">Text Preprocessing</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="used-across">
+                            <div class="used-across__meta">
+                                <p class="used-across__count"><span class="used-across__num">1 / 7</span><span class="used-across__label">Projects</span></p>
+                                <div class="used-across__bar" role="img" aria-label="Used in 1 of 7 projects"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                            </div>
+                            <div class="used-across__list">
+                                <a href="/projects/product-sentiment">Product Review Sentiment Analysis</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>            </div>
         </section>
 
         <!-- =========================
@@ -1225,7 +1545,7 @@
                     <div class="sec-head__body">
                         <div class="sec-title-row">
                             <h2 class="display-l" id="edu-title">Education</h2>
-                            <p class="sec-note">The academic path behind the work — from diploma to B.Tech, in progress.</p>
+                            <p class="sec-note">The academic path behind the work — B.Tech in progress, diploma completed.</p>
                         </div>
                     </div>
                 </div>
@@ -1244,7 +1564,10 @@
                     <h2 class="contact__title reveal" id="contact-title" style="--d:0.05s">
                         Let's build<br />something<br /><span class="accent">useful.</span>
                     </h2>
-                    <p class="contact__avail reveal" style="--d:0.12s">Open to entry-level opportunities in data analytics, data science, machine learning, and business intelligence.</p>
+                    <div class="contact__intro">
+                        <p class="contact__avail reveal" style="--d:0.12s">Available immediately for Data Analyst internships and full-time entry-level roles. Email is the fastest way to reach me.</p>
+                        <p class="contact__where reveal" style="--d:0.18s">Based in Kadapa, Andhra Pradesh &middot; open to remote, hybrid or on-site</p>
+                    </div>
                 </div>
 
                 <div id="contact-root"></div>
@@ -1258,17 +1581,17 @@
     <footer class="footer">
         <div class="wrap footer__inner">
             <div class="footer__id">
-                <div class="name">Vishnu Vardhan</div>
+                <div class="name">Venkata Vishnu Vardhan Thota</div>
                 <div class="role">Data Analyst</div>
             </div>
             <nav class="footer__links" aria-label="Footer">
                 <a href="https://github.com/Venkatavishnuvardhanthota" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/venkata-vishnu-vardhan-thota" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="mailto:venkatavishnuvardhanthota@gmail.com">Email</a>
-                <a href="/resume/VishnuThota_CV.pdf" target="_blank" rel="noopener noreferrer">Résumé</a>
+                <a href="/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf" target="_blank" rel="noopener noreferrer">Résumé</a>
             </nav>
             <div class="footer__meta">
-                <span id="year">2026</span> · Thota Venkata Vishnu Vardhan
+                &copy; <span id="year">2026</span>
             </div>
             <a class="to-top" href="#top" aria-label="Back to top">Top <span class="arw" aria-hidden="true">↑</span></a>
         </div>
@@ -1426,35 +1749,9 @@
             }
 
             /* =========================
-               CAPABILITIES ACCORDION
-            ========================== */
-            var caps = document.getElementById('caps');
-            if (caps) {
-                var rows = caps.querySelectorAll('.cap-row');
-                Array.prototype.forEach.call(rows, function (row) {
-                    var btn = row.querySelector('.cap-head');
-                    if (!btn) return;
-                    btn.addEventListener('click', function () {
-                        var isOpen = row.classList.contains('open');
-                        // Close all
-                        Array.prototype.forEach.call(rows, function (r) {
-                            r.classList.remove('open');
-                            var b = r.querySelector('.cap-head');
-                            if (b) b.setAttribute('aria-expanded', 'false');
-                        });
-                        // Toggle current
-                        if (!isOpen) {
-                            row.classList.add('open');
-                            btn.setAttribute('aria-expanded', 'true');
-                        }
-                    });
-                });
-            }
-
-            /* =========================
                ACTIVE NAV LINK
             ========================== */
-            var sections = ['about', 'work', 'applications', 'skills', 'certifications', 'education', 'contact'];
+            var sections = ['about', 'projects', 'live-apps', 'skills', 'certifications', 'education', 'contact'];
             var navLinks = {};
             Array.prototype.forEach.call(document.querySelectorAll('.nav__link'), function (a) {
                 var id = a.getAttribute('href').replace('#', '');

@@ -8,6 +8,9 @@
 /* Connect the large heading to the first row without losing breathing room */
 #certifications .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
 
+/* No hover padding nudge: a row that slid 12px right under the pointer gave the
+   four cards four different left edges, and the section's whole job is to line
+   them up like a register. */
 .cert-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
@@ -15,9 +18,7 @@
     align-items: start;
     padding-block: clamp(1.8rem, 4vw, 2.8rem);
     border-bottom: var(--hair);
-    transition: padding-left 0.5s var(--ease);
 }
-.cert-row:hover { padding-left: clamp(0px, 1vw, 0.75rem); }
 
 .cert-row__main { min-width: 0; }
 .cert-idx {
@@ -44,7 +45,6 @@
     color: var(--ink-2);
 }
 .cert-meta__issuer { font-weight: 500; letter-spacing: 0.02em; }
-.cert-meta__date { color: var(--ink-3); }
 
 .cert-row__badges {
     display: flex;
@@ -91,40 +91,26 @@
 .cert-cta .arw { display: inline-block; transition: transform 0.4s var(--ease); }
 .cert-cta:hover .arw { transform: translate(3px, -3px); }
 
-/* Primary — opening the real certificate document */
+/* Primary — the row's one action: the issuer's credential page, or the real
+   document when the credential is ours. */
 .cert-cta--primary { background: var(--ink); color: var(--bg); }
 .cert-cta--primary:hover { background: transparent; color: var(--ink); }
 
-/* Secondary — public verification, kept deliberately light */
-.cert-cta--verify {
-    background: transparent;
-    color: var(--ink);
-    border-color: var(--line-strong);
-    font-size: 0.72rem;
-    padding: 0.6em 1em;
-}
-.cert-cta--verify:hover { border-color: var(--ink); }
-
-/* ---- Preview: restrained hover/focus reveal, never required to act ---- */
+/* ---- Preview: always shown, and a second route to the row's own destination ---- */
 .cert-preview {
     margin: 0;
     border: 1px solid var(--line-strong);
     background: var(--bg);
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-    transition: opacity 0.45s var(--ease-soft), transform 0.45s var(--ease-soft);
 }
-.cert-row:hover .cert-preview,
-.cert-row:focus-within .cert-preview { opacity: 1; transform: none; }
+.cert-preview__link { display: block; }
+/* No filter, in any state. Elsewhere the site greys its imagery until hover,
+   but a certificate is a colour document — seal, signature and issuer branding
+   are the content, so the preview is shown exactly as issued. */
 .cert-preview__img {
     display: block;
     width: 100%;
     height: auto;
-    filter: grayscale(1) contrast(1.03);
-    transition: filter 0.7s var(--ease-soft);
 }
-.cert-row:hover .cert-preview__img { filter: grayscale(0); }
 .cert-preview__cap {
     padding: 0.6rem 0.8rem;
     border-top: var(--hair);
@@ -136,15 +122,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cert-preview, .cert-preview__img, .cert-cta, .cert-cta .arw, .cert-row { transition: none; }
-    .cert-preview { transform: none; }
+    .cert-cta, .cert-cta .arw { transition: none; }
 }
 
 /* ---- Responsive ---- */
 @media (max-width: 1099px) {
     .cert-row { grid-template-columns: minmax(0, 1fr); }
-    /* No hover on touch: the preview hides instead of stacking inline */
-    .cert-preview { display: none; }
+    /* One column: the preview stacks under the content it belongs to, kept at
+       the desktop column's width so a 640px source is never scaled up. */
+    .cert-preview { justify-self: start; max-width: 340px; }
 }
 @media (max-width: 560px) {
     .cert-links { gap: 0.75rem; }

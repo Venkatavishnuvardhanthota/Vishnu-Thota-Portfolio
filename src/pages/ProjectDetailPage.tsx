@@ -21,6 +21,9 @@ export default function ProjectDetailPage() {
   useLayoutEffect(() => {
     if (!project) return;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* Read before the class goes on: `body.route-detail` hides the static shell, and
+       the document is a different height the moment it does. Everything below Skills
+       is still mounted, so this is the place in the page the reader was holding. */
     const homeScroll = window.scrollY;
 
     document.body.classList.add('route-detail');

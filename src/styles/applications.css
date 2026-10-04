@@ -5,25 +5,44 @@
 ========================= */
 .apps { border-top: var(--hair); }
 
-/* Connect the large heading to the first row without losing breathing room */
-#applications .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
+/* Reaching the section from the nav or an anchor has to land below the fixed
+   header, not under it. Both this and the sticky offset on .app-info read the
+   nav's own height, so neither can drift away from it. Resolves to 96px. */
+#live-apps {
+    scroll-margin-top: calc(var(--nav-h) + 22px);
+}
 
-.app-row {
+/* Connect the large heading to the first row without losing breathing room */
+#live-apps .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
+
+/* One editorial spread per application: everything that describes the app on
+   the left, the screenshot alone on the right, at roughly 5:7. minmax(0, …) on
+   both tracks so a long word in either column shrinks the column instead of
+   the page. */
+.app-card {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: clamp(1.5rem, 4vw, 4rem);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
     padding-block: clamp(1.8rem, 4vw, 2.8rem);
     border-bottom: var(--hair);
-    transition: padding-left 0.5s var(--ease);
 }
-.app-row:hover { padding-left: clamp(0px, 1vw, 0.75rem); }
 
-.app-row__head { min-width: 0; }
-.app-row__meta { display: flex; align-items: center; gap: 0.9rem; }
+/* The info column follows the screenshot while the spread scrolls, which is what
+   keeps a long left column readable next to a short image. It works as a grid
+   item only because the row is align-items: start — stretched, the item would be
+   as tall as its area and have nowhere to travel. */
+.app-info {
+    min-width: 0;
+    position: sticky;
+    top: calc(var(--nav-h) + 22px);
+}
+
+.app-meta { display: flex; align-items: center; gap: 0.9rem; }
 .app-idx {
     font-size: 0.72rem;
     letter-spacing: 0.16em;
-    color: var(--ink-3);
+    color: var(--label-faint);
     font-variant-numeric: tabular-nums;
 }
 .app-live {
@@ -40,7 +59,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--ink);
+    background: var(--app-live-dot);
     animation: livePulse 2.6s var(--ease) infinite;
 }
 @keyframes livePulse {
@@ -58,26 +77,32 @@
     text-transform: uppercase;
     margin-top: 0.7rem;
 }
-.app-flow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    margin-top: 1.1rem;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-3);
+/* The card's question replaces the old arrow workflow, so it is set as a
+   sentence rather than a tracked label — small caps would turn a question into
+   another piece of chrome and cost it the readability it is here for. The
+   measure is the constraint; balancing is what keeps a two-line question from
+   ending on a one-word widow. Where text-wrap is unsupported the measure alone
+   still holds the line count. */
+.app-question {
+    margin: 1.1rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 40ch;
+    text-wrap: balance;
 }
-.app-flow .arw { color: var(--ink-2); }
 
-.app-row__body { min-width: 0; }
-
+/* ---- Right column: the screenshot and its caption, and nothing else ---- */
 .app-preview {
-    margin: 0 0 1.6rem;
+    min-width: 0;
+    margin: 0;
     border: 1px solid var(--line-strong);
     background: var(--ink);
 }
+/* The screenshot is the link to the live app, so the anchor has to be a block:
+   inline would leave a baseline gap under the image and a focus ring that
+   floats off the picture. */
+.app-preview__link { display: block; }
 .app-preview__img {
     display: block;
     width: 100%;
@@ -85,7 +110,7 @@
     filter: grayscale(1) contrast(1.03);
     transition: filter 0.7s var(--ease-soft);
 }
-.app-row:hover .app-preview__img { filter: grayscale(0); }
+.app-card:hover .app-preview__img { filter: grayscale(0); }
 .app-preview__cap {
     padding: 0.6rem 0.8rem;
     background: var(--bg);
@@ -94,10 +119,42 @@
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--label-faint);
 }
 
-.app-desc { color: var(--ink-2); font-size: 1rem; max-width: 56ch; }
+/* The CTAs sit under the question, still inside the information column: the
+   screenshot is a visual, not the place a reader goes looking for actions. */
+.app-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.5rem;
+    margin-top: 1.5rem;
+}
+.app-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.72em 1.2em;
+    border: 1px solid var(--ink);
+    transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft),
+        border-color 0.35s var(--ease-soft);
+}
+.app-cta .arw { display: inline-block; transition: transform 0.4s var(--ease); }
+.app-cta:hover .arw { transform: translate(3px, -3px); }
+
+/* Primary — the live deployment is the headline action */
+.app-cta--primary { background: var(--ink); color: var(--bg); }
+.app-cta--primary:hover { background: transparent; color: var(--ink); }
+
+/* Secondary — routes to the existing case study */
+.app-cta--secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.app-cta--secondary:hover { border-color: var(--ink); }
+
+.app-desc { color: var(--ink-2); font-size: 1rem; max-width: 56ch; margin-top: 1.5rem; }
 
 .app-metric {
     display: flex;
@@ -120,44 +177,34 @@
     font-size: 0.72rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--label-faint);
+}
+/* The supporting note takes a full row under the serif number and stays at
+   reading size — a second headline metric would compete with the one number
+   the card is built around. */
+.app-metric__note {
+    flex: 1 1 100%;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--label-faint);
 }
 
-.app-row .tags { margin-top: 1.3rem; }
-
-.app-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem 1.5rem;
-    margin-top: 1.75rem;
+.app-info .tags { margin-top: 1.3rem; }
+/* 13px on --hero-meta, the site's mid-grey secondary-meta step: the pills
+   annotate the description, so they sit at its weight rather than the
+   caption's. The token already carries a dark value, so no new colour enters
+   the system and no literal reaches this file. */
+.app-card .tag {
+    font-size: 0.8125rem;
+    color: var(--hero-meta);
 }
-.app-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55em;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0.72em 1.2em;
-    border: 1px solid var(--ink);
-    transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft),
-        border-color 0.35s var(--ease-soft);
-}
-.app-cta .arw { display: inline-block; transition: transform 0.4s var(--ease); }
-.app-cta:hover .arw { transform: translate(3px, -3px); }
 
-/* Primary — the live deployment is the headline action */
-.app-cta--primary { background: var(--ink); color: var(--bg); }
-.app-cta--primary:hover { background: transparent; color: var(--ink); }
-
-/* Secondary — routes to the existing case study */
-.app-cta--secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-.app-cta--secondary:hover { border-color: var(--ink); }
-
-/* ---- Responsive: stack head/body and go full-width on touch ---- */
+/* ---- Responsive: one column, information first, screenshot below ---- */
 @media (max-width: 1099px) {
-    .app-row { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .app-card { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    /* Sticky is a two-column behaviour only. With the spread stacked, an
+       offset info column would pull itself out of the reading order. */
+    .app-info { position: static; }
 }
 @media (max-width: 560px) {
     .app-links { gap: 0.75rem; }

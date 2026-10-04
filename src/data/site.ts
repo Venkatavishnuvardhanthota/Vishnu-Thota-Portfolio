@@ -7,16 +7,20 @@ import type { Project } from '../types/project';
  */
 export const SITE_ORIGIN = 'https://vishnu-thota.vercel.app';
 
-/** The one social image, shared by every route until a dedicated card exists. */
-export const SOCIAL_IMAGE_URL = `${SITE_ORIGIN}/hero-portrait.png`;
+/** The one social image, shared by the homepage and every case-study route. */
+export const SOCIAL_IMAGE_URL = `${SITE_ORIGIN}/og.png`;
 
 export interface PageMeta {
   /** Canonical URL, and og:url — deliberately the same string. */
   url: string;
-  /** <title>, og:title and twitter:title. */
+  /** <title> and document.title. */
   title: string;
-  /** meta description, og:description and twitter:description. */
+  /** meta description. */
   description: string;
+  /** og:title and twitter:title — the card headline, shorter than the tab title. */
+  socialTitle: string;
+  /** og:description and twitter:description — the card standfirst. */
+  socialDescription: string;
   ogType: 'website' | 'article';
 }
 
@@ -29,9 +33,15 @@ export interface PageMeta {
  */
 export const HOME_META: PageMeta = {
   url: `${SITE_ORIGIN}/`,
-  title: 'Thota Venkata Vishnu Vardhan — Data Analyst',
+  title: 'Venkata Vishnu Vardhan Thota — Data Analyst | SQL, Python, Power BI',
   description:
-    'Portfolio of Thota Venkata Vishnu Vardhan, data analyst: seven data projects in machine learning, BI and NLP, two of them live.',
+    'Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, ' +
+    'forecasting, churn and sentiment projects with 2 live apps. Available immediately ' +
+    'for internships and full-time roles.',
+  socialTitle: 'Venkata Vishnu Vardhan Thota — Data Analyst',
+  socialDescription:
+    '7 projects · 2 live apps · SQL, Python, Power BI, Tableau. ' +
+    'Open to internships and full-time roles. Available immediately.',
   ogType: 'website',
 };
 
@@ -42,10 +52,13 @@ export const HOME_META: PageMeta = {
  * document.title, so the static <title> and the client-rendered one match.
  */
 export function projectMeta(project: Project): PageMeta {
-  return {
+  const meta = {
     url: `${SITE_ORIGIN}/projects/${project.id}`,
     title: `${project.title} — Vishnu Vardhan`,
     description: project.shortDescription,
     ogType: 'article',
-  };
+  } as const;
+  /* A case study's card says the same thing as its tab: the headline is the
+     project title and the standfirst is its own short description. */
+  return { ...meta, socialTitle: meta.title, socialDescription: meta.description };
 }
