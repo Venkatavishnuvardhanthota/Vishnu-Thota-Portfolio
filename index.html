@@ -797,9 +797,9 @@
            Label and value share a baseline so each row reads as one line of type
            even when the value wraps. The label column is a FIXED width, not
            `auto`: every row is its own grid, so an `auto` column sizes to that row's
-           key alone and the four values start four different places — EDUCATION is
+           key alone and each value would start at its own place — EDUCATION is
            89.61px at 13px, STATUS 72, a 17.6px stagger. 5.625rem is the widest of
-           those plus a hair, so all four values share one left edge (174.8px inside
+           those plus a hair, so all five values share one left edge (174.8px inside
            the 1440 composition) and a key that outgrows the column spills into the
            1.25rem gap rather than clipping. */
         .about__card { border-top: var(--hair); }
@@ -838,6 +838,9 @@
             text-wrap: balance;
             margin-bottom: clamp(1.3rem, 2.6vh, 1.9rem);
         }
+        /* One class for the four body paragraphs — three proof lines and the line
+           that says what the data can't support. They are one argument, so they
+           carry one measure and one rhythm rather than a class each. */
         .about__lede {
             font-size: 1.1875rem;
             line-height: 1.65;
@@ -847,8 +850,8 @@
         }
         /* The ask closes the argument, so it stays body type with only the label
            emphasised — a fourth heading here would outshout the section heading.
-           Same 62ch as the lede above it: both are 19px, so the measure resolves
-           identically and the two paragraphs end on one right edge. */
+           Same 62ch as the paragraphs above it: all are 19px, so the measure
+           resolves identically and they end on one right edge. */
         .about__ask {
             font-size: 1.1875rem;
             line-height: 1.6;
@@ -856,7 +859,7 @@
             max-width: 62ch;
             margin-bottom: clamp(1.9rem, 4.2vh, 2.8rem);
         }
-        .about__ask strong { color: var(--ink); font-weight: 700; }
+        .about__lede strong, .about__ask strong { color: var(--ink); font-weight: 700; }
         /* One CTA, and outlined: the filled capsule is the header's and the Hero's,
            so a third filled surface would compete with them for the same role.
            The 44px is the target, the border and the arrow are the design. */
@@ -1269,11 +1272,15 @@
                         <dl class="about__card">
                             <div class="about__row">
                                 <dt class="about__key">Education</dt>
-                                <dd class="about__val">B.Tech AI &amp; Data Science · Study World College of Engineering · Class of 2027</dd>
+                                <dd class="about__val">B.Tech AI &amp; Data Science · Study World College of Engineering · Final year (2027)</dd>
+                            </div>
+                            <div class="about__row">
+                                <dt class="about__key">Tools</dt>
+                                <dd class="about__val">SQL · Excel · Power BI · Tableau · Python</dd>
                             </div>
                             <div class="about__row">
                                 <dt class="about__key">Location</dt>
-                                <dd class="about__val">Kadapa, Andhra Pradesh, India</dd>
+                                <dd class="about__val">Proddatur, Andhra Pradesh, India</dd>
                             </div>
                             <div class="about__row">
                                 <dt class="about__key">Status</dt>
@@ -1286,8 +1293,11 @@
                         </dl>
                     </div>
                     <div class="about__body reveal" style="--d:0.1s">
-                        <p class="about__intro">I answer business questions with SQL, Python and dashboards, and I show my working.</p>
-                        <p class="about__lede">I'm a final-year B.Tech student in AI &amp; Data Science. Two projects show how I work: an A/B test on 588,101 marketing records that found a 0.77-point conversion lift (p &lt; 0.001, about ₹21.7 lakh if scaled), and a churn model (AUC-ROC 0.8343) running as a live Streamlit app. I explain results to non-technical readers and say plainly what the data can't support.</p>
+                        <p class="about__intro">I answer business questions with SQL, Excel and dashboards, and I show my working.</p>
+                        <p class="about__lede"><strong>Experiment.</strong> An A/B test on 588,101 users found a 0.77-point conversion lift (p &lt; 0.001), about ₹21.7 lakh at an assumed ₹500 per order.</p>
+                        <p class="about__lede"><strong>Insight.</strong> In a telecom churn analysis, month-to-month customers churned at 42.7% versus 2.9% on two-year contracts. The model runs as a live Streamlit app.</p>
+                        <p class="about__lede"><strong>Data quality.</strong> I found and fixed a silent NULL-handling bug in a MySQL pipeline that was producing wrong numbers before they reached the dashboard.</p>
+                        <p class="about__lede">I explain results to non-technical readers and say plainly what the data can't support.</p>
                         <p class="about__ask"><strong>Looking for:</strong> a Data Analyst internship or full-time entry-level role, remote, hybrid or on-site. <strong>Available immediately;</strong> I can manage my B.Tech alongside the role.</p>
                         <a class="about__cta" href="#projects">See the projects behind these numbers <span class="arw" aria-hidden="true">↓</span></a>
                     </div>
