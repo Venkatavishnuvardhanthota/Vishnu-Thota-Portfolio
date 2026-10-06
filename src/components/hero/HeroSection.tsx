@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/hero.css';
 import { CONTACT_LINKS, RESUME_URL, type ContactLink } from '../../data/contact';
 import { APPLICATIONS } from '../../data/applications';
@@ -30,14 +31,30 @@ const NAME_WORDS = ['Venkata', 'Vishnu', 'Vardhan', 'Thota'];
    above it, so nothing here repeats it in the normal state. */
 const NAME_PLATE = 'Venkata Vishnu Vardhan Thota';
 const ROLE = 'Data Analyst';
-const TOOLS = 'SQL · Python · Power BI · Tableau';
+const TOOLS = 'SQL · Excel · Power BI · Tableau · Python';
 const VALUE_LINE =
-  'I turn messy data into clear decisions — A/B testing, sales forecasting, ' +
-  'churn prediction and sentiment analysis, with 2 projects live as public apps.';
+  'I turn raw data into decisions with SQL, Excel and dashboards — ' +
+  'A/B tests, sales forecasting and churn analysis.';
 const STATUS = 'Available immediately · Internship or full-time';
-/* Owner-supplied. The repository states no location anywhere else, so this is
-   the one Hero line that is not read off a data file. */
-const LOCATION = 'Kadapa, Andhra Pradesh, India';
+/* The one proof point the Hero links to. Its three figures are the A/B case
+   study's own numbers restated as a sentence — 588,101 records, +0.77 pp
+   absolute lift, p = 1.71e-13 — all three held in src/data/projects.ts rather
+   than derived here, because the sentence is copy and not a table. Change the
+   data and this string has to be checked against it by hand.
+   It is set as two fixed lines rather than one running string: as a single
+   string the column broke it wherever it happened to fall, which put the middle
+   dot at the head of a line. `line1`/`line2` are the two break points, and
+   nothing else may break. */
+const FEATURE = {
+  label: 'Featured result',
+  line1: 'A/B test on 588,101 users',
+  line2: '+0.77 pp conversion lift · p < 0.001',
+  to: '/projects/ab-testing',
+};
+/* Owner-supplied, and the only Hero line that is not read off a data file. The
+   About card and the Contact section still print the previous town — both live
+   outside this section, so they are reported rather than edited here. */
+const LOCATION = 'Proddatur, Andhra Pradesh, India';
 
 /** The proof line is assembled from the records the sections below render:
  *  PROJECTS is the list the case studies come from, APPLICATIONS the entries
@@ -64,10 +81,11 @@ const PROOF = [
   .join(' · ');
 
 /* The degree and its end year are read from the Education record; "AI &" is the
-   Hero's own short form of the field that section spells out in full. */
+   Hero's own short form of the field that section spells out in full. The stage
+   is worded as where the reader is now rather than as a graduating class. */
 const BTECH = EDUCATION.find((entry) => entry.id === 'btech');
 const EDUCATION_LINE = BTECH
-  ? `${BTECH.degree} ${BTECH.field.replace('Artificial Intelligence', 'AI')} · Class of ${BTECH.endYear}`
+  ? `${BTECH.degree} ${BTECH.field.replace('Artificial Intelligence', 'AI')} · Final year (${BTECH.endYear})`
   : '';
 
 const PROFILE_IDS = ['github', 'linkedin'];
@@ -125,10 +143,10 @@ const EMAIL_PATHS = [
  * own edges of the window, leaving the figure a centred band of its own.
  *
  * Source order is the mobile reading order — name, portrait, identity with the
- * status pill and the actions under the value line, then proof — so small
- * screens change only the tracks, never the tree. The heading is the complete
- * name on one line: VENKATA VISHNU VARDHAN THOTA, the surname in the
- * secondary ink.
+ * featured result, the status pill and the actions under the value line, then
+ * proof — so small screens change only the tracks, never the tree. The heading
+ * is the complete name on one line: VENKATA VISHNU VARDHAN THOTA, the surname in
+ * the secondary ink.
  *
  * The portrait stays uncropped: width is the chosen term, height follows the
  * source ratio the component states, and the element reserves that box before
@@ -214,6 +232,32 @@ export default function HeroSection() {
           <p className="hero__role">{ROLE}</p>
           <p className="hero__tools">{TOOLS}</p>
           <p className="hero__value">{VALUE_LINE}</p>
+          {/* One linked proof point, in flow between the value line and the pill:
+              it answers the paragraph above it and is not a second call to action,
+              so it carries the body's ink and the site's own underlined-link rule
+              rather than a button's surface. */}
+          <div className="hero__feature">
+            <p className="hero__feature-label">{FEATURE.label}</p>
+            {/* Two fixed lines, and the accessible name is those two lines joined
+                with a comma so it still reads as one sentence. The separator in
+                the second is glued to the word before it with a no-break space:
+                where the column is too narrow to hold the line at all (see the
+                escape in hero.css) that makes it wrap AFTER the dot, so a stray
+                "·" can never head a line even there. */}
+            <Link
+              className="hero__feature-link"
+              to={FEATURE.to}
+              aria-label={`${FEATURE.line1}, ${FEATURE.line2}`}
+            >
+              <span className="hero__feature-line">{FEATURE.line1}</span>
+              <span className="hero__feature-line">
+                {FEATURE.line2.replace(' · ', '\u00A0· ')}
+                <span className="arw" aria-hidden="true">
+                  →
+                </span>
+              </span>
+            </Link>
+          </div>
           {/* The availability reads as the end of the argument, not as a banner
               over the page, and the actions follow it down the same column —
               in flow, so they stay with the content at every width. */}
