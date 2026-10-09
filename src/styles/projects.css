@@ -134,6 +134,57 @@ body.route-detail .footer { display: none; }
 .pd__body .kv { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
 .pd__body .kv dt { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding-top: 0.2rem; }
 .pd__body .kv dd { color: var(--ink-2); }
+
+/* ---- Optional case-study blocks. Every rule below is keyed on a class no
+   other project's data emits, so the six case studies that were not rebuilt
+   cannot reach it. ---- */
+
+/* Small-caps tool line under the header's serif standfirst. */
+.pd__stack {
+    margin-top: 1.1rem;
+    font-size: 0.74rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--label-faint);
+}
+
+/* A sentence a section wants set apart, in the site's serif italic accent. */
+.pd__body p.pd__lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 48ch;
+    margin-bottom: 1.4rem;
+}
+
+/* A list ruled with hairlines instead of led by dashes. */
+.pd__body ul.pd__rules { gap: 0; }
+.pd__body ul.pd__rules > li {
+    padding-left: 0;
+    padding-block: clamp(0.9rem, 2vh, 1.3rem);
+    border-top: var(--hair);
+    max-width: 64ch;
+}
+.pd__body ul.pd__rules > li::before { content: none; }
+.pd__body ul.pd__rules > li:first-child { border-top: 0; padding-top: 0; }
+.pd__body ul.pd__rules > li:last-child { padding-bottom: 0; }
+
+/* A paragraph that closes a list. */
+.pd__body p.pd__after { margin-top: clamp(1.2rem, 2.6vh, 1.8rem); }
+
+/* Labelled groups of pills. Inside .pd__body the older `ul` rule turns every
+   list into a stretched column — which is how the existing Technology sections
+   render — so a group that wants real pills has to ask for the row back. */
+.pd__tag-groups { display: flex; flex-direction: column; gap: 1.6rem; }
+.pd__tag-group > .label { display: block; margin-bottom: 0.8rem; color: var(--label-faint); }
+.pd__body .pd__tag-group .tags { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
+.pd__body .pd__tag-group .tags > li { padding-left: 0; }
+.pd__body .pd__tag-group .tags > li::before { content: none; }
+
 .pd__figure { margin-top: 1.75rem; }
 .pd__figure .figure { aspect-ratio: 16 / 7; }
 .pd__next { border-top: var(--hair); padding-block: clamp(1.5rem, 3vw, 2.25rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }

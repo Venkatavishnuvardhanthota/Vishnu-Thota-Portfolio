@@ -10,14 +10,22 @@ const FIG_TAG = '<span class="fig-tag">Illustrative — verified metrics</span>'
 function renderBody(sec: CaseStudySection, project: Project): ReactNode {
   switch (sec.type) {
     case 'para':
-      return <p>{sec.text}</p>;
+      return (
+        <>
+          {sec.lead ? <p className="pd__lead">{sec.lead}</p> : null}
+          <p>{sec.text}</p>
+        </>
+      );
     case 'list':
       return (
-        <ul>
-          {sec.items.map((it, i) => (
-            <li key={i}>{it}</li>
-          ))}
-        </ul>
+        <>
+          <ul className={sec.divider === 'rule' ? 'pd__rules' : undefined}>
+            {sec.items.map((it, i) => (
+              <li key={i}>{it}</li>
+            ))}
+          </ul>
+          {sec.after ? <p className="pd__after">{sec.after}</p> : null}
+        </>
       );
     case 'kv':
       return (
@@ -42,6 +50,24 @@ function renderBody(sec: CaseStudySection, project: Project): ReactNode {
         </div>
       );
     case 'tags':
+      if (sec.groups) {
+        return (
+          <div className="pd__tag-groups">
+            {sec.groups.map((g) => (
+              <div className="pd__tag-group" key={g.label}>
+                <span className="label">{g.label}</span>
+                <ul className="tags" aria-label={`${g.label} used on this project`}>
+                  {g.items.map((t) => (
+                    <li className="tag" key={t}>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        );
+      }
       return (
         <ul className="tags">
           {project.technologies.map((t) => (
@@ -167,7 +193,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           <h1 className="pd__title" id="pdTitle" tabIndex={-1}>
             {project.title}
           </h1>
-          <p className="pd__summary">{project.shortDescription}</p>
+          <p className="pd__summary">{project.standfirst ?? project.shortDescription}</p>
+          {project.stack?.length ? (
+            <p className="pd__stack">{project.stack.join(' · ')}</p>
+          ) : null}
           <div className="pd__links">
             <a
               className="project__link"

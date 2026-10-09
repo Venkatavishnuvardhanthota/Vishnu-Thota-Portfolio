@@ -26,10 +26,16 @@ interface SectionBase {
 export interface ParaSection extends SectionBase {
   type: 'para';
   text: string;
+  /** Optional sentence set in the serif italic accent, above the body copy. */
+  lead?: string;
 }
 export interface ListSection extends SectionBase {
   type: 'list';
   items: string[];
+  /** `rule` separates items with hairlines instead of leading dashes. */
+  divider?: 'dash' | 'rule';
+  /** Optional paragraph that closes the list. */
+  after?: string;
 }
 export interface KvSection extends SectionBase {
   type: 'kv';
@@ -41,6 +47,9 @@ export interface MetricsSection extends SectionBase {
 }
 export interface TagsSection extends SectionBase {
   type: 'tags';
+  /** Optional labelled groups; without them the project's own technology
+      list is rendered, which is what every case study did before. */
+  groups?: ReadonlyArray<{ label: string; items: string[] }>;
 }
 export interface LinksSection extends SectionBase {
   type: 'links';
@@ -60,11 +69,17 @@ export interface Project {
   title: string;
   category: string;
   shortDescription: string;
+  /** The case study's own serif standfirst. Separate from `shortDescription`
+      because that field is also the homepage row copy and the route's meta
+      description, and a case-study rewrite must not reach either. */
+  standfirst?: string;
+  /** Small-caps tool line under the standfirst, in display order. */
+  stack?: string[];
   technologies: string[];
   githubUrl: string;
   liveUrl: string | null;
   previewMetric: Metric;
   metrics: Metric[];
-  visual: VisualKey;
+  visual?: VisualKey;
   sections: CaseStudySection[];
 }
