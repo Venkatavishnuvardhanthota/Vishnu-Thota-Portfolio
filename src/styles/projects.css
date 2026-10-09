@@ -185,6 +185,25 @@ body.route-detail .footer { display: none; }
 .pd__body .pd__tag-group .tags > li { padding-left: 0; }
 .pd__body .pd__tag-group .tags > li::before { content: none; }
 
+/* A real export, set into the same hairline frame the generated figures use.
+   The image carries its own palette in both themes — no invert, no filter. */
+.pd__figures { display: flex; flex-direction: column; gap: clamp(1.5rem, 3vw, 2.5rem); }
+.fig-card {
+    border: var(--hair);
+    background: var(--bg-panel);
+    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+.fig-card img { width: 100%; height: auto; }
+.fig-card figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.55;
+    color: var(--label-faint);
+}
+
 .pd__figure { margin-top: 1.75rem; }
 .pd__figure .figure { aspect-ratio: 16 / 7; }
 .pd__next { border-top: var(--hair); padding-block: clamp(1.5rem, 3vw, 2.25rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }

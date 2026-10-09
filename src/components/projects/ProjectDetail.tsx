@@ -3,6 +3,7 @@ import type { MouseEvent, ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PROJECTS } from '../../data/projects';
 import type { CaseStudySection, Project } from '../../types/project';
+import Figure from './Figure';
 import { buildVisual } from './visuals';
 
 const FIG_TAG = '<span class="fig-tag">Illustrative — verified metrics</span>';
@@ -76,6 +77,14 @@ function renderBody(sec: CaseStudySection, project: Project): ReactNode {
             </li>
           ))}
         </ul>
+      );
+    case 'figures':
+      return (
+        <div className="pd__figures">
+          {sec.items.map((f) => (
+            <Figure key={f.src} figure={f} />
+          ))}
+        </div>
       );
     case 'links':
       return (

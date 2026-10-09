@@ -16,6 +16,17 @@ export type VisualKey =
   | 'banking'
   | 'house';
 
+/** A real exported image that sits in `public/projects/<id>/`. */
+export interface Figure {
+  src: string;
+  alt: string;
+  caption: string;
+  /** Intrinsic size, so the image reserves its own box. Optional because a
+      figure can be authored before its export exists. */
+  w?: number;
+  h?: number;
+}
+
 interface SectionBase {
   num: string;
   title: string;
@@ -54,6 +65,10 @@ export interface TagsSection extends SectionBase {
 export interface LinksSection extends SectionBase {
   type: 'links';
 }
+export interface FiguresSection extends SectionBase {
+  type: 'figures';
+  items: Figure[];
+}
 
 export type CaseStudySection =
   | ParaSection
@@ -61,7 +76,8 @@ export type CaseStudySection =
   | KvSection
   | MetricsSection
   | TagsSection
-  | LinksSection;
+  | LinksSection
+  | FiguresSection;
 
 export interface Project {
   id: string;
