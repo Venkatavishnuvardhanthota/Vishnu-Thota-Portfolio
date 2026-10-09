@@ -47,22 +47,139 @@ export const PROJECTS: Project[] = [
     githubUrl: GH + 'ab-testing-analysis',
     liveUrl: null,
     previewMetric: { v: '+43.1% relative lift', l: 'p = 1.71e-13 · statistically significant' },
+    standfirst:
+      'Users shown the ad converted at 2.55% vs 1.79% for a PSA control: +0.77 percentage points (95% CI +0.60 to +0.94, p < 0.001) across 588,101 users.',
+    stack: ['SQL', 'Tableau', 'Python'],
     metrics: [
-      { v: '588,101', l: 'Records' },
-      { v: '2.55%', l: 'Ad conversion' },
-      { v: '1.79%', l: 'Control conversion' },
-      { v: '+43.1%', l: 'Relative lift' },
+      { v: '588,101', l: 'Users analyzed (one row per user)' },
+      { v: '2.55% vs 1.79%', l: 'Ad vs PSA control conversion' },
+      { v: '+0.77 pp', l: 'Absolute lift, 95% CI +0.60 to +0.94 pp' },
+      { v: 'p = 1.7×10⁻¹³', l: 'Two-proportion z-test, z = 7.37' },
     ],
-    visual: 'ab',
     sections: [
-      { num: '01', title: 'Overview', type: 'para', text: 'An experiment analysis that compares a marketing ad variant against a control to determine whether the observed difference in conversion is statistically meaningful rather than chance.' },
-      { num: '02', title: 'Hypothesis & Experiment', type: 'para', text: 'Null hypothesis: the ad and control convert at the same rate. Alternative: the ad converts at a higher rate. Traffic is split between variants and conversions recorded per group.' },
-      { num: '03', title: 'Data', type: 'kv', items: [['Records', '588,101'], ['Design', 'Two-group conversion experiment'], ['Outcome', 'Binary conversion per record']] },
-      { num: '04', title: 'Statistical Test', type: 'kv', items: [['Test', 'Two-proportion z-test'], ['Statistic', 'z = 7.37'], ['Significance', 'p = 1.71e-13'], ['Interval', '95% CI: +0.60 to +0.94 percentage points']] },
-      { num: '05', title: 'Results', type: 'metrics', items: [{ v: '2.55%', l: 'Ad conversion' }, { v: '1.79%', l: 'Control conversion' }, { v: '+0.77 pp', l: 'Absolute lift' }, { v: '+43.1%', l: 'Relative lift' }] },
-      { num: '06', title: 'Business Impact', type: 'para', text: 'The lift is both statistically significant and practically material: the 95% confidence interval (+0.60 to +0.94 percentage points) excludes zero, supporting rollout of the ad variant over the control.' },
-      { num: '07', title: 'Technology', type: 'tags' },
-      { num: '08', title: 'Links', type: 'links' },
+      {
+        num: '01',
+        title: 'Business Problem and Decision',
+        type: 'para',
+        text: 'A marketing team has to decide whether to continue or expand an ad campaign. Two raw percentages are not enough, so I asked three questions. Do users shown the ad convert at a higher rate than a Public Service Announcement (PSA) control group? By how much? How certain is that estimate? I also kept statistical evidence separate from financial value.',
+      },
+      {
+        num: '02',
+        title: 'Data',
+        type: 'kv',
+        items: [
+          ['Source', 'Public Marketing A/B Testing dataset (Kaggle)'],
+          ['Grain', 'One row per user'],
+          ['Size', '588,101 users; six analytical fields: user ID, test group, converted, total ads, peak-exposure weekday, peak-exposure hour'],
+          ['Ad group', '564,577 users; 14,423 conversions'],
+          ['PSA control', '23,524 users; 420 conversions'],
+          ['Split', 'Roughly 96% ad / 4% PSA'],
+          ['Period', 'None. The data has no date column, so the analysis uses weekday and peak-exposure hour, not a calendar timeline.'],
+        ],
+      },
+      {
+        num: '03',
+        title: 'Pipeline: SQL → Python → Tableau',
+        type: 'kv',
+        items: [
+          ['SQL (MySQL)', 'A repeatable staged load: raw CSV to staging table to normalized analysis table, with the converted field mapped to 1/0 and row-count checkpoints. Three analysis queries: conversion rate by group; cumulative conversions by hour using window functions partitioned by group; conversion rate by weekday with explicit Monday-to-Sunday ordering.'],
+          ['Python', 'pandas validation and cleaning, group conversion rates, a statsmodels two-proportion z-test with a Wald confidence interval, Matplotlib charts, and a labeled business scenario. The SQL group counts were cross-checked against pandas.'],
+          ['Tableau', 'A packaged dashboard in two pages: KPI tiles with a group comparison, and exposure-segment views by weekday and hour.'],
+        ],
+      },
+      {
+        num: '04',
+        title: 'Data Quality: Found and Fixed',
+        type: 'list',
+        divider: 'rule',
+        items: [
+          'Partial import: the MySQL Workbench import wizard loaded 96,520 of 588,101 rows. A row-count comparison caught it before analysis. I rebuilt the load as a scripted staging pipeline with row-count checkpoints. The wizard\'s exact failure cause was not established.',
+          'Validation: the saved output reports zero nulls, empty strings, duplicate rows and duplicate user IDs. Both groups, all 7 weekdays and all 24 hours are present.',
+          'Exported index column dropped, going from 7 columns to 6.',
+          'No dates: I did not invent a daily trend. Chart titles say day and hour mean peak ad exposure, not conversion time.',
+          'Reporting units: very small p-values print as 0.000000, so I report them in scientific notation, and I keep percentage points separate from relative lift.',
+        ],
+      },
+      {
+        num: '05',
+        title: 'Findings',
+        type: 'list',
+        divider: 'rule',
+        items: [
+          'Ad group converted at 2.5547% (14,423 of 564,577). PSA control converted at 1.7854% (420 of 23,524).',
+          'Absolute lift is +0.77 percentage points. Relative to the PSA baseline that is +43.1%. These are different quantities and are labeled separately.',
+          'Two-sided two-proportion z-test: z = 7.37, p = 1.7×10⁻¹³. The 95% Wald confidence interval for the difference is +0.595 to +0.943 pp.',
+          'Exploratory segments by peak-exposure weekday: Saturday has the lowest ad conversion rate (about 2.13%); Tuesday has the largest ad-vs-PSA gap (about +1.60 pp); Thursday has the smallest (about +0.14 pp); the Thursday and Sunday intervals include zero. No multiple-comparison correction was applied, and hours 3 to 6 each have fewer than 100 PSA users. These are hypotheses to test, not targeting rules.',
+        ],
+      },
+      {
+        num: '06',
+        title: 'Visual Evidence',
+        type: 'figures',
+        items: [
+          {
+            src: '/projects/ab-testing/ab-comparison.png',
+            alt: 'Bar chart of conversion rate: PSA control 1.79% and ad group 2.55%.',
+            caption: 'Conversion rate by group. Python (Matplotlib).',
+          },
+          {
+            src: '/projects/ab-testing/ab-tableau-trends.png',
+            alt: 'Tableau dashboard page with three panels: conversion rate by weekday of peak ad exposure for ad and PSA groups; cumulative conversions by hour of peak ad exposure as a stacked area; and conversion rate by hour of peak ad exposure.',
+            caption: 'Tableau dashboard, page 2. Segments are by peak ad exposure, not conversion time. The cumulative panel is stacked, so the top edge is the combined ad + PSA total.',
+          },
+          /* TODO: a third figure — the Tableau summary page (dashboard page 1) —
+             is to be added here once it is exported to
+             public/projects/ab-testing/. It is deliberately not authored yet. */
+        ],
+      },
+      {
+        num: '07',
+        title: 'Method and Validation',
+        type: 'para',
+        text: 'Null hypothesis: both groups have the same conversion proportion. The test is two-sided, using successes of 14,423 and 420 and sample sizes of 564,577 and 23,524. It assumes independent users, which the unique-user-ID check supports; it cannot confirm how users were assigned to groups. The confidence interval gives a range of plausible effect sizes. The p-value does not say whether the effect is large or profitable.',
+      },
+      {
+        num: '08',
+        title: 'Recommendation and Impact',
+        type: 'para',
+        lead: 'Continue or expand the campaign with monitoring, conditional on confirming how users were assigned and measuring real cost and margin.',
+        text: 'Scenario, not a result: if the observed gap applied to the 564,577 ad-group users, that is about 4,343 additional conversions. At an assumed ₹500 order value, that is about ₹21.7 lakh (₹2,171,491) in gross value. The data has no ad spend, margin or verified order values, so this is neither profit nor ROI.',
+      },
+      {
+        num: '09',
+        title: 'Limitations and Next Steps',
+        type: 'list',
+        items: [
+          'The assignment mechanism is undocumented, so the lift is not proven causal.',
+          'The roughly 96/4 split has no known intended ratio, so sample-ratio mismatch cannot be checked.',
+          'There is no cost, margin or verified order value.',
+          'There are no timestamps.',
+          'Segment comparisons are exploratory.',
+        ],
+        after: 'Next steps: a pre-specified segment plan, an alternative interval method as a robustness check, and a financial model built on real cost data.',
+      },
+      {
+        num: '10',
+        title: 'What I Did',
+        type: 'para',
+        text: 'Solo project. I built the SQL load and queries, the Python validation and statistical test, and the Tableau dashboard, and I caught and fixed the partial import.',
+      },
+      {
+        num: '11',
+        title: 'Tools and Skills',
+        type: 'tags',
+        groups: [
+          {
+            label: 'Tools',
+            items: ['SQL (MySQL)', 'Tableau', 'Python', 'pandas', 'statsmodels', 'Matplotlib', 'Jupyter', 'Git/GitHub'],
+          },
+          {
+            label: 'Skills shown',
+            items: ['A/B Testing', 'Hypothesis Testing', 'Confidence Intervals', 'SQL Window Functions', 'Data Validation', 'Data Cleaning', 'KPI Dashboards', 'Business Scenario Analysis'],
+          },
+        ],
+      },
+      { num: '12', title: 'Links', type: 'links' },
     ],
   },
   {

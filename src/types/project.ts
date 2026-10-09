@@ -9,7 +9,6 @@ export interface Metric {
 
 export type VisualKey =
   | 'forecast'
-  | 'ab'
   | 'churn'
   | 'sentiment'
   | 'retail'

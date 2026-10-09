@@ -54,13 +54,6 @@ export function buildVisual(key: VisualKey): string {
     s += '<path d="M690 214 L780 186 L870 156 L950 146 L950 192 L870 198 L780 216 L690 214 Z" fill="var(--ink)" opacity="0.06"/>';
     s += '<circle cx="690" cy="214" r="4.5" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>';
     s += labelText(950, 130, 'FORECAST', 'end') + labelText(90, 70, '1,115 STORES · 84-DAY HOLDOUT · 17.13% STORE-DAY MAPE');
-  } else if (key === 'ab') {
-    s += axisFrame();
-    s += '<rect x="300" y="211" width="120" height="119" fill="var(--ink)" opacity="0.35"/>';
-    s += '<rect x="560" y="160" width="120" height="170" fill="var(--ink)"/>';
-    s += '<line x1="620" y1="120" x2="620" y2="200" stroke="var(--ink)" stroke-width="1.6"/><line x1="596" y1="120" x2="644" y2="120" stroke="var(--ink)" stroke-width="1.6"/><line x1="596" y1="200" x2="644" y2="200" stroke="var(--ink)" stroke-width="1.6"/>';
-    s += labelText(360, 356, 'CONTROL 1.79%', 'middle') + labelText(620, 356, 'AD 2.55%', 'middle');
-    s += labelText(980, 70, '95% CI +0.60 TO +0.94 PP', 'end') + labelText(60, 70, 'Z = 7.37 · P = 1.71E-13');
   } else if (key === 'churn') {
     s += axisFrame();
     s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';
