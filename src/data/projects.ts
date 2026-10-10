@@ -53,7 +53,9 @@ export const PROJECTS: Project[] = [
     metrics: [
       { v: '588,101', l: 'Users analyzed (one row per user)' },
       { v: '2.55% vs 1.79%', l: 'Ad vs PSA control conversion' },
-      { v: '+0.77 pp', l: 'Absolute lift, 95% CI +0.60 to +0.94 pp' },
+      /* The U+00A0 before "pp" is the only unbreakable space in the strip: with a
+         plain space the label ended "+0.94" and dropped "pp" onto its own line. */
+      { v: '+0.77 pp', l: 'Absolute lift, 95% CI +0.60 to +0.94\u00A0pp' },
       { v: 'p = 1.7×10⁻¹³', l: 'Two-proportion z-test, z = 7.37' },
     ],
     sections: [
