@@ -121,13 +121,24 @@ export const PROJECTS: Project[] = [
             src: '/projects/ab-testing/ab-comparison.png',
             alt: 'Bar chart of conversion rate: PSA control 1.79% and ad group 2.55%.',
             caption: 'Conversion rate by group. Python (Matplotlib).',
+            w: 1034,
+            h: 734,
           },
           {
             src: '/projects/ab-testing/ab-tableau-trends.png',
             alt: 'Tableau dashboard page with three panels: conversion rate by weekday of peak ad exposure for ad and PSA groups; cumulative conversions by hour of peak ad exposure as a stacked area; and conversion rate by hour of peak ad exposure.',
             caption: 'Tableau dashboard, page 2. Segments are by peak ad exposure, not conversion time. The cumulative panel is stacked, so the top edge is the combined ad + PSA total.',
+            w: 1200,
+            h: 800,
           },
-          /* TODO: a third figure — the Tableau summary page (dashboard page 1) —
+          {
+            src: '/projects/ab-testing/ab-weekday.png',
+            alt: 'Grouped bar chart of conversion rate by weekday of peak ad exposure, Monday to Sunday, for ad and PSA groups. The ad group is higher on every weekday; the gap is smallest on Thursday and largest on Tuesday.',
+            caption: 'Conversion rate by weekday of peak ad exposure (not conversion day). Python (Matplotlib). Exploratory: no multiple-comparison correction, no uncertainty shown.',
+            w: 1784,
+            h: 884,
+          },
+          /* TODO: a fourth figure — the Tableau summary page (dashboard page 1) —
              is to be added here once it is exported to
              public/projects/ab-testing/. It is deliberately not authored yet. */
         ],
