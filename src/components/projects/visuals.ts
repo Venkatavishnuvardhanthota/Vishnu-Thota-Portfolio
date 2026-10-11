@@ -47,14 +47,7 @@ function labelText(
 
 export function buildVisual(key: VisualKey): string {
   let s = '<svg viewBox="0 0 1040 380" role="img" preserveAspectRatio="xMidYMid meet">';
-  if (key === 'forecast') {
-    s += '<g stroke="var(--line-soft)" stroke-width="1"><line x1="60" y1="90" x2="980" y2="90"/><line x1="60" y1="170" x2="980" y2="170"/><line x1="60" y1="250" x2="980" y2="250"/></g>' + axisFrame();
-    s += '<path d="M90 290 L210 268 L330 276 L450 240 L570 250 L690 214" fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round"/>';
-    s += '<path d="M690 214 L780 200 L870 176 L950 168" fill="none" stroke="var(--ink-2)" stroke-width="2.4" stroke-dasharray="8 7"/>';
-    s += '<path d="M690 214 L780 186 L870 156 L950 146 L950 192 L870 198 L780 216 L690 214 Z" fill="var(--ink)" opacity="0.06"/>';
-    s += '<circle cx="690" cy="214" r="4.5" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>';
-    s += labelText(950, 130, 'FORECAST', 'end') + labelText(90, 70, '1,115 STORES · 84-DAY HOLDOUT · 17.13% STORE-DAY MAPE');
-  } else if (key === 'churn') {
+  if (key === 'churn') {
     s += axisFrame();
     s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';
     s += '<rect x="60" y="150" width="' + Math.round(920 * 0.8343) + '" height="40" fill="var(--ink)"/>';
