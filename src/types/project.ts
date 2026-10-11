@@ -35,12 +35,12 @@ interface SectionBase {
 
 export interface ParaSection extends SectionBase {
   type: 'para';
-  text: string;
+  /** One block of body copy. A section that runs to several sets `paras`
+      instead, and then this and `lead` are not used. */
+  text?: string;
   /** Optional sentence set in the serif italic accent, above the body copy. */
   lead?: string;
-  /** Body paragraphs in reading order. When present, `lead` and `text` are
-      ignored: a section that runs to several paragraphs is prose, not a
-      pull-quote followed by one block. */
+  /** Body paragraphs in reading order, in ordinary body voice. */
   paras?: string[];
 }
 export interface ListSection extends SectionBase {

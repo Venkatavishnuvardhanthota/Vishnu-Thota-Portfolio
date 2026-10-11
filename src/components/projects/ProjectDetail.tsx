@@ -10,22 +10,17 @@ const FIG_TAG = '<span class="fig-tag">Illustrative — verified metrics</span>'
 
 function renderBody(sec: CaseStudySection, project: Project): ReactNode {
   switch (sec.type) {
-    case 'para':
-      if (sec.paras) {
-        return (
-          <>
-            {sec.paras.map((t, i) => (
-              <p key={i}>{t}</p>
-            ))}
-          </>
-        );
-      }
+    case 'para': {
+      const blocks = sec.paras?.length ? sec.paras : sec.text ? [sec.text] : [];
       return (
         <>
           {sec.lead ? <p className="pd__lead">{sec.lead}</p> : null}
-          <p>{sec.text}</p>
+          {blocks.map((t, i) => (
+            <p key={i}>{t}</p>
+          ))}
         </>
       );
+    }
     case 'list':
       return (
         <>
