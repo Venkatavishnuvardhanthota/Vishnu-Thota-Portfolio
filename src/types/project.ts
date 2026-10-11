@@ -38,6 +38,10 @@ export interface ParaSection extends SectionBase {
   text: string;
   /** Optional sentence set in the serif italic accent, above the body copy. */
   lead?: string;
+  /** Body paragraphs in reading order. When present, `lead` and `text` are
+      ignored: a section that runs to several paragraphs is prose, not a
+      pull-quote followed by one block. */
+  paras?: string[];
 }
 export interface ListSection extends SectionBase {
   type: 'list';
@@ -50,6 +54,8 @@ export interface ListSection extends SectionBase {
 export interface KvSection extends SectionBase {
   type: 'kv';
   items: ReadonlyArray<readonly [string, string]>;
+  /** Optional paragraph that closes the rows, in ordinary body voice. */
+  after?: string;
 }
 export interface MetricsSection extends SectionBase {
   type: 'metrics';

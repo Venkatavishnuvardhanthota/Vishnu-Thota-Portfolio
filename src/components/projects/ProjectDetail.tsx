@@ -11,6 +11,15 @@ const FIG_TAG = '<span class="fig-tag">Illustrative — verified metrics</span>'
 function renderBody(sec: CaseStudySection, project: Project): ReactNode {
   switch (sec.type) {
     case 'para':
+      if (sec.paras) {
+        return (
+          <>
+            {sec.paras.map((t, i) => (
+              <p key={i}>{t}</p>
+            ))}
+          </>
+        );
+      }
       return (
         <>
           {sec.lead ? <p className="pd__lead">{sec.lead}</p> : null}
@@ -30,14 +39,17 @@ function renderBody(sec: CaseStudySection, project: Project): ReactNode {
       );
     case 'kv':
       return (
-        <dl className="kv">
-          {sec.items.map(([k, v]) => (
-            <Fragment key={k}>
-              <dt>{k}</dt>
-              <dd>{v}</dd>
-            </Fragment>
-          ))}
-        </dl>
+        <>
+          <dl className="kv">
+            {sec.items.map(([k, v]) => (
+              <Fragment key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </Fragment>
+            ))}
+          </dl>
+          {sec.after ? <p className="pd__after">{sec.after}</p> : null}
+        </>
       );
     case 'metrics':
       return (
