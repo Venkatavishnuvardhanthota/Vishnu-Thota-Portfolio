@@ -135,17 +135,19 @@ export const PROJECTS: Project[] = [
             w: 1440,
             h: 652,
           },
-          /* No w/h: these two exports are not on disk yet, so there is no header
-             to read them from. Figure paints nothing until the file resolves. */
           {
             src: '/projects/rossmann/ros-pbi-overview.png',
             alt: 'Power BI page titled Rossmann Sales Performance — Executive Overview: tiles for total revenue 6bn, total customers 644M, average sales per open store-day 6.96K and total stores 1,115, a monthly revenue trend for 2013 to 2015, average sales per open store-day by store format, and slicers for store type, promo and year.',
             caption: 'Power BI, Executive Overview page.',
+            w: 1377,
+            h: 772,
           },
           {
             src: '/projects/rossmann/ros-pbi-stores.png',
             alt: 'Power BI page titled Store Performance & Competitive Positioning: a scatter of competition distance against average sales per open store-day with one point per store, a table of all stores ranked by revenue, tiles for top-10 average revenue and chain average revenue per store, and bar charts of the top 10 and bottom 10 stores by revenue.',
             caption: 'Power BI, Store Performance page. Competitor distance is shown as an association, not a cause.',
+            w: 1435,
+            h: 802,
           },
           {
             src: '/projects/rossmann/ros-forecast-chainwide.png',
