@@ -66,12 +66,6 @@ export function buildVisual(key: VisualKey): string {
     s += labelText(420, 230, 'NOVEMBER · PEAK MONTH');
     s += labelText(420, 270, 'FURNITURE MARGIN 2.49%');
     s += labelText(420, 310, 'TABLES & BOOKCASES · LOSS-MAKING');
-  } else if (key === 'banking') {
-    s += axisFrame();
-    s += '<rect x="240" y="180" width="130" height="150" fill="var(--ink)" opacity="0.4"/>';
-    s += '<rect x="520" y="100" width="130" height="230" fill="var(--ink)"/>';
-    s += labelText(305, 356, 'ATTRITED 44.9', 'middle') + labelText(585, 356, 'EXISTING 68.7', 'middle');
-    s += labelText(60, 70, 'AVG TRANSACTIONS · TOTAL_TRANS_CT CORR -0.37') + labelText(980, 70, 'ATTRITION 16.07% · $13.24M AT RISK', 'end');
   } else if (key === 'house') {
     s += axisFrame();
     s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';

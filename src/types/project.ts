@@ -11,7 +11,6 @@ export type VisualKey =
   | 'churn'
   | 'sentiment'
   | 'retail'
-  | 'banking'
   | 'house';
 
 /** A real exported image that sits in `public/projects/<id>/`. */
