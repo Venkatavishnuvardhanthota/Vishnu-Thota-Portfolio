@@ -662,7 +662,7 @@ export const PROJECTS: Project[] = [
       { v: '0.6583', l: 'Test R², Linear Regression' },
       { v: '0.5977', l: 'Test R², tuned Random Forest' },
       { v: '966,320', l: 'Test MAE, Linear Regression (dataset units)' },
-      { v: '545', l: 'Houses, 16 features after engineering' },
+      { v: '545', l: 'Houses, 16 features after\u00A0engineering' },
     ],
     sections: [
       {
