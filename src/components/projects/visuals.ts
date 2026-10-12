@@ -66,11 +66,6 @@ export function buildVisual(key: VisualKey): string {
     s += labelText(420, 230, 'NOVEMBER · PEAK MONTH');
     s += labelText(420, 270, 'FURNITURE MARGIN 2.49%');
     s += labelText(420, 310, 'TABLES & BOOKCASES · LOSS-MAKING');
-  } else if (key === 'house') {
-    s += axisFrame();
-    s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';
-    s += '<rect x="60" y="150" width="' + Math.round(920 * 0.6583) + '" height="40" fill="var(--ink)"/>';
-    s += labelText(60, 130, 'LINEAR REGRESSION R² 0.6583') + labelText(980, 240, 'MAE ₹966,320 · RMSE ₹1,314,226 · 545 RECORDS', 'end');
   }
   s += '</svg>';
   return s;

@@ -7,11 +7,7 @@ export interface Metric {
   n?: string;
 }
 
-export type VisualKey =
-  | 'churn'
-  | 'sentiment'
-  | 'retail'
-  | 'house';
+export type VisualKey = 'churn' | 'sentiment' | 'retail';
 
 /** A real exported image that sits in `public/projects/<id>/`. */
 export interface Figure {
