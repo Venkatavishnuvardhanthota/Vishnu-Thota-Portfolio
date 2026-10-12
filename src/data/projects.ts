@@ -470,10 +470,10 @@ export const PROJECTS: Project[] = [
       'Across 10,127 credit card customers, 16.07% churned. Churners made far fewer transactions (44.9 against 68.7), and attrition jumps from 12.49% at two service contacts to 20.15% at three.',
     stack: ['SQL', 'Power BI', 'Python'],
     metrics: [
-      { v: '16.07%', l: 'Attrition rate, 1,627 of 10,127 customers' },
-      { v: '$13.24M', l: 'Credit limits on churned accounts' },
+      { v: '16.07%', l: 'Attrition rate, 1,627 of 10,127\u00A0customers' },
+      { v: '$13.24M', l: 'Credit limits on churned\u00A0accounts' },
       { v: '-0.37', l: 'Correlation of transaction count with churn' },
-      { v: '12.49% → 20.15%', l: 'Attrition at 2 vs 3 service contacts' },
+      { v: '12.49% → 20.15%', l: 'Attrition at 2 vs 3 service\u00A0contacts' },
     ],
     sections: [
       {
