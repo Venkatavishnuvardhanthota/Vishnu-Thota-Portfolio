@@ -47,12 +47,7 @@ function labelText(
 
 export function buildVisual(key: VisualKey): string {
   let s = '<svg viewBox="0 0 1040 380" role="img" preserveAspectRatio="xMidYMid meet">';
-  if (key === 'churn') {
-    s += axisFrame();
-    s += '<rect x="60" y="150" width="920" height="40" fill="none" stroke="var(--line-strong)"/>';
-    s += '<rect x="60" y="150" width="' + Math.round(920 * 0.8343) + '" height="40" fill="var(--ink)"/>';
-    s += labelText(60, 130, 'AUC-ROC 0.8343') + labelText(980, 240, '7,043 CUSTOMERS · 21 FEATURES · SMOTE', 'end');
-  } else if (key === 'sentiment') {
+  if (key === 'sentiment') {
     s += axisFrame();
     s += '<rect x="60" y="150" width="920" height="46" fill="none" stroke="var(--line-strong)"/>';
     s += '<rect x="60" y="150" width="' + Math.round(920 * 0.882) + '" height="46" fill="var(--ink)"/>';
