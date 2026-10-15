@@ -7,7 +7,7 @@ export interface Metric {
   n?: string;
 }
 
-export type VisualKey = 'sentiment' | 'retail';
+export type VisualKey = 'sentiment';
 
 /** A real exported image that sits in `public/projects/<id>/`. */
 export interface Figure {

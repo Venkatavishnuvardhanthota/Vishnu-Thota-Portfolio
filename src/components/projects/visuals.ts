@@ -52,15 +52,6 @@ export function buildVisual(key: VisualKey): string {
     s += '<rect x="60" y="150" width="920" height="46" fill="none" stroke="var(--line-strong)"/>';
     s += '<rect x="60" y="150" width="' + Math.round(920 * 0.882) + '" height="46" fill="var(--ink)"/>';
     s += labelText(60, 130, '88.2% OVERALL POSITIVE') + labelText(980, 246, 'VADER VS STAR RATINGS: 79.6% AGREEMENT', 'end');
-  } else if (key === 'retail') {
-    s += axisFrame();
-    s += '<rect x="140" y="120" width="150" height="210" fill="var(--ink)"/>';
-    s += labelText(215, 356, 'TECHNOLOGY $0.84M', 'middle');
-    s += labelText(420, 150, 'HIGHEST-REVENUE CATEGORY');
-    s += labelText(420, 190, 'CALIFORNIA · TOP STATE');
-    s += labelText(420, 230, 'NOVEMBER · PEAK MONTH');
-    s += labelText(420, 270, 'FURNITURE MARGIN 2.49%');
-    s += labelText(420, 310, 'TABLES & BOOKCASES · LOSS-MAKING');
   }
   s += '</svg>';
   return s;
