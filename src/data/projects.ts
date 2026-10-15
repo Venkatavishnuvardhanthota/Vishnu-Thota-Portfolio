@@ -602,9 +602,9 @@ export const PROJECTS: Project[] = [
     stack: ['Power BI', 'Python'],
     metrics: [
       { v: '$2.30M', l: 'Total sales, 9,994 order lines' },
-      { v: '12.47%', l: 'Overall profit margin ($286.4K profit)' },
+      { v: '12.47%', l: 'Overall profit margin ($286.4K\u00A0profit)' },
       { v: '2.49%', l: 'Furniture margin, against 17.40% for Technology' },
-      { v: '3 of 17', l: 'Sub-categories with negative profit' },
+      { v: '3 of 17', l: 'Sub-categories with negative\u00A0profit' },
     ],
     sections: [
       {
