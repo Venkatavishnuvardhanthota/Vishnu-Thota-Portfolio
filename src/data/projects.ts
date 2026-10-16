@@ -721,7 +721,7 @@ export const PROJECTS: Project[] = [
             alt: 'Line chart of total sales by calendar month, 2014 to 2017 combined, lowest in February at about $60K and peaking in November at about $352K, with the November peak labeled.',
             caption: 'Sales pooled by calendar month across all four years. A seasonal pattern, not a year-over-year trend.',
             w: 3567,
-            h: 1751,
+            h: 1752,
           },
         ],
       },
