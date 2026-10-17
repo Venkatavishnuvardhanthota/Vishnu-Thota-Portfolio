@@ -576,7 +576,7 @@ export const PROJECTS: Project[] = [
       { v: '568,454', l: 'Amazon food reviews analyzed' },
       { v: '88.19%', l: 'Reviews VADER labels positive' },
       { v: '80.38%', l: 'Agreement with the star-rating proxy (not accuracy)' },
-      { v: '49.47%', l: 'One-star reviews VADER labels positive' },
+      { v: '49.47%', l: 'One-star reviews VADER labels\u00A0positive' },
     ],
     sections: [
       {
