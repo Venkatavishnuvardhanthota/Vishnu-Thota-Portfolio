@@ -8,7 +8,7 @@ import type { VisualKey } from '../../types/project';
  * constant label passed through `esc()`.
  */
 
-function esc(s: string): string {
+export function esc(s: string): string {
   return String(s).replace(/[&<>"']/g, (c) => {
     switch (c) {
       case '&':
@@ -25,14 +25,14 @@ function esc(s: string): string {
   });
 }
 
-function axisFrame(): string {
+export function axisFrame(): string {
   return (
     '<line x1="60" y1="330" x2="980" y2="330" stroke="var(--line-strong)" stroke-width="1" />' +
     '<line x1="60" y1="40" x2="60" y2="330" stroke="var(--line-strong)" stroke-width="1" />'
   );
 }
 
-function labelText(
+export function labelText(
   x: number,
   y: number,
   t: string,
@@ -45,13 +45,12 @@ function labelText(
   );
 }
 
+/** No case study requests a visual now, so the switch has no branches. The
+    builders stay exported for the next one; `noUnusedLocals` would otherwise
+    drop them. */
 export function buildVisual(key: VisualKey): string {
   let s = '<svg viewBox="0 0 1040 380" role="img" preserveAspectRatio="xMidYMid meet">';
-  if (key === 'sentiment') {
-    s += axisFrame();
-    s += '<rect x="60" y="150" width="920" height="46" fill="none" stroke="var(--line-strong)"/>';
-    s += '<rect x="60" y="150" width="' + Math.round(920 * 0.882) + '" height="46" fill="var(--ink)"/>';
-    s += labelText(60, 130, '88.2% OVERALL POSITIVE') + labelText(980, 246, 'VADER VS STAR RATINGS: 79.6% AGREEMENT', 'end');
+  switch (key) {
   }
   s += '</svg>';
   return s;

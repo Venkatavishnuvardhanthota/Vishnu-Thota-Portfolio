@@ -7,7 +7,10 @@ export interface Metric {
   n?: string;
 }
 
-export type VisualKey = 'sentiment';
+/** No case study carries a generated visual. The alias stays `never` rather than
+    being deleted so `Project.visual`, `SectionBase.visual` and `buildVisual` keep
+    their signatures; an empty union is not valid syntax. */
+export type VisualKey = never;
 
 /** A real exported image that sits in `public/projects/<id>/`. */
 export interface Figure {
