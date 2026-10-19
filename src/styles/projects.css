@@ -246,6 +246,12 @@ body.route-detail .footer { display: none; }
     display: grid;
     place-items: center;
     padding: var(--gutter);
+    /* A wheel over the overlay must not reach the page behind it: `overflow:
+       hidden` on the root clips the document but does not stop the scroll chain,
+       so the overlay is its own scroll container and nothing chains out of it.
+       It also gives a long caption somewhere to go on a short screen. */
+    overflow: auto;
+    overscroll-behavior: contain;
     background: color-mix(in srgb, var(--bg) 94%, transparent);
 }
 .fig-lightbox__frame {
