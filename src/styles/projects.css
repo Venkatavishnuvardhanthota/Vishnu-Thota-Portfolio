@@ -204,6 +204,95 @@ body.route-detail .footer { display: none; }
     color: var(--label-faint);
 }
 
+/* The card image is a button, so a 4,000px export can be opened at full size.
+   The reset keeps the button's line box identical to the bare image it
+   replaces: `font: inherit` is what preserves the baseline gap under the
+   image, so the card is pixel-for-pixel what it was. */
+.fig-card__zoom {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+}
+/* Hover is an offer, never an action: the cursor and a hairline outline say a
+   click will enlarge, and nothing opens until there is one. */
+@media (hover: hover) and (pointer: fine) {
+    .fig-card__zoom { cursor: zoom-in; }
+    .fig-card:has(.fig-card__zoom:hover) {
+        outline: 1px solid var(--line-strong);
+        outline-offset: 2px;
+    }
+}
+.fig-card__zoom:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* The enlarged view: the same hairline frame and the same no-filter rule as the
+   card, on the page's own ground so the backdrop reads in both themes. */
+.fig-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    padding: var(--gutter);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+}
+.fig-lightbox__frame {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-width: 100%;
+    /* 4rem keeps the frame clear of the close button in the top corner. */
+    max-height: calc(100% - 4rem);
+    border: var(--hair);
+    background: var(--bg-panel);
+    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+.fig-lightbox__img {
+    display: block;
+    flex: 0 1 auto;
+    min-height: 0;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - 2 * var(--gutter) - 2.5rem);
+    max-height: calc(100vh - 2 * var(--gutter) - 6rem);
+    object-fit: contain;
+}
+.fig-lightbox__cap {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.55;
+    color: var(--label-faint);
+}
+.fig-lightbox__close {
+    position: absolute;
+    top: var(--gutter);
+    right: var(--gutter);
+    padding: 0.5rem 0.85rem;
+    border: var(--hair);
+    background: var(--bg-panel);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.fig-lightbox__close:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
 .pd__figure { margin-top: 1.75rem; }
 .pd__figure .figure { aspect-ratio: 16 / 7; }
 .pd__next { border-top: var(--hair); padding-block: clamp(1.5rem, 3vw, 2.25rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
