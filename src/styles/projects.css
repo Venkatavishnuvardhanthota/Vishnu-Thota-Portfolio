@@ -220,9 +220,14 @@ body.route-detail .footer { display: none; }
     text-align: inherit;
 }
 /* Hover is an offer, never an action: the cursor and a hairline outline say a
-   click will enlarge, and nothing opens until there is one. */
+   click will enlarge, and nothing opens until there is one. The cursor itself
+   is the site's one `--ptr` token, and a control's subtree is claimed at
+   (0,2,2) in the shell — this claims the figure and its image back at (0,3,n)
+   so the order of the two stylesheets never decides it. */
 @media (hover: hover) and (pointer: fine) {
     .fig-card__zoom { cursor: zoom-in; }
+    html.has-cursor .fig-card .fig-card__zoom,
+    html.has-cursor .fig-card .fig-card__zoom img { --ptr: zoom-in; }
     .fig-card:has(.fig-card__zoom:hover) {
         outline: 1px solid var(--line-strong);
         outline-offset: 2px;
