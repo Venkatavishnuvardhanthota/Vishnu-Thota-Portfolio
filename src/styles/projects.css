@@ -233,10 +233,9 @@ body.route-detail .footer { display: none; }
         outline-offset: 2px;
     }
 }
-.fig-card__zoom:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 3px;
-}
+/* Keyboard focus needs no rule here: the shell's global `:focus-visible` already
+   draws 2px of --ink at 4px offset, and both the figure button and the close
+   button are ordinary buttons. */
 
 /* The enlarged view: the same hairline frame and the same no-filter rule as the
    card, on the page's own ground so the backdrop reads in both themes. */
@@ -292,10 +291,6 @@ body.route-detail .footer { display: none; }
     letter-spacing: 0.16em;
     text-transform: uppercase;
     cursor: pointer;
-}
-.fig-lightbox__close:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 2px;
 }
 
 .pd__figure { margin-top: 1.75rem; }
