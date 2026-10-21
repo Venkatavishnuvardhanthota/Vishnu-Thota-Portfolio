@@ -32,7 +32,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'Retail sales move with weekday, promotions, holidays, season and store characteristics. A forecast of the next 12 weeks can inform broad staffing and inventory-capacity planning: overestimating can mean excess labor or stock, underestimating can mean shortfalls. I built a store-level forecast for the 12 weeks after the data ends, compared two forecasting approaches on a time-ordered holdout, and presented the results in Power BI. No operational outcome or cost saving was measured, so the forecast is a planning proxy.',
+        paras: [
+          'Retail sales move with weekday, promotions, holidays, season and store characteristics. A forecast of the next 12 weeks can inform broad staffing and inventory-capacity planning: overestimating can mean excess labor or stock, underestimating can mean shortfalls. I built a store-level forecast for the 12 weeks after the data ends, compared two forecasting approaches on a time-ordered holdout, and presented the results in Power BI. No operational outcome or cost saving was measured, so the forecast is a planning proxy.',
+          'Answer: the production model forecasts the next 84 days for all 1,115 stores, with an average percentage error of 6.72% on chain-wide daily sales and 12.93% on store-day sales; whether the forecast improves staffing or stock decisions was not tested.',
+        ],
       },
       {
         num: '02',
@@ -238,7 +241,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'A marketing team has to decide whether to continue or expand an ad campaign. Two raw percentages are not enough, so I asked three questions. Do users shown the ad convert at a higher rate than a Public Service Announcement (PSA) control group? By how much? How certain is that estimate? I also kept statistical evidence separate from financial value.',
+        paras: [
+          'A marketing team has to decide whether to continue or expand an ad campaign. Two raw percentages are not enough, so I asked three questions. Do users shown the ad convert at a higher rate than a Public Service Announcement (PSA) control group? By how much? How certain is that estimate? I also kept statistical evidence separate from financial value.',
+          'Answer: the ad group converted 0.77 percentage points more than the PSA control (95% CI +0.60 to +0.94), so I recommend continuing with monitoring, conditional on confirming how users were assigned and measuring real cost and margin.',
+        ],
       },
       {
         num: '02',
@@ -294,6 +300,13 @@ export const PROJECTS: Project[] = [
         title: 'Visual Evidence',
         type: 'figures',
         items: [
+          {
+            src: '/projects/ab-testing/ab-tableau-summary.png',
+            alt: 'Tableau dashboard page 1: KPI tiles showing control rate 1.79%, ad rate 2.55%, lift +0.77 pp and p-value below 0.001, above a bar chart of conversion rate for the ad and PSA groups, with a note on the statistical result and the unknown assignment method.',
+            caption: 'Tableau dashboard, page 1. KPI tiles and group comparison; lift is shown in percentage points.',
+            w: 1200,
+            h: 800,
+          },
           {
             src: '/projects/ab-testing/ab-comparison.png',
             alt: 'Bar chart of conversion rate: PSA control 1.79% and ad group 2.55%.',
@@ -395,7 +408,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'A telecom company wants to spot customers likely to leave and estimate churn risk for a given customer profile. I used a public sample of 7,043 customers to ask how common churn is, how it varies with contract, tenure, charges and services, and whether a classifier can separate churners from stayers on customers it has not seen well enough to score one customer at a time in a web app. The result is a decision-support prototype, not a live retention system, and I treated every pattern as an association.',
+        paras: [
+          'A telecom company wants to spot customers likely to leave and estimate churn risk for a given customer profile. I used a public sample of 7,043 customers to ask how common churn is, how it varies with contract, tenure, charges and services, and whether a classifier can separate churners from stayers on customers it has not seen well enough to score one customer at a time in a web app. The result is a decision-support prototype, not a live retention system, and I treated every pattern as an association.',
+          'Answer: a Logistic Regression model scores a customer\'s churn risk and catches 77.81% of churners on held-out customers, at the cost of about two flagged customers for every real churner; the project does not test whether retention offers work.',
+        ],
       },
       {
         num: '02',
@@ -451,6 +467,17 @@ export const PROJECTS: Project[] = [
       },
       {
         num: '06',
+        title: 'How a Retention Team Could Use This',
+        type: 'list',
+        items: [
+          'Review customers in the high-risk band (above 0.70) first.',
+          'Look first at month-to-month contracts (42.7% churn) and at customers in their first 12 months (47.68% churn), and test annual-contract offers there.',
+          'Read the probabilities as relative risk, not an exact chance of leaving, because they are not calibrated.',
+        ],
+        after: 'These are suggestions to test, not measured outcomes: the project does not test whether retention offers work.',
+      },
+      {
+        num: '07',
         title: 'Mistakes I Caught and Corrected',
         type: 'list',
         divider: 'rule',
@@ -465,13 +492,13 @@ export const PROJECTS: Project[] = [
         ],
       },
       {
-        num: '07',
+        num: '08',
         title: 'The Live App',
         type: 'para',
         text: 'The Streamlit app takes one customer profile (tenure 1 to 72 months, monthly charges $0 to $150, total charges $0 to $10,000) and returns churn and retention probabilities, a risk band, a probability chart and example outreach actions. The suggested actions are static examples, not validated interventions, and the probabilities are not calibrated.',
       },
       {
-        num: '08',
+        num: '09',
         title: 'Visual Evidence',
         type: 'figures',
         items: [
@@ -520,7 +547,7 @@ export const PROJECTS: Project[] = [
         ],
       },
       {
-        num: '09',
+        num: '10',
         title: 'Limitations and Next Steps',
         type: 'list',
         items: [
@@ -535,13 +562,13 @@ export const PROJECTS: Project[] = [
         after: 'Next steps: report fold-to-fold variation and repeated-split results, tie the threshold to a retention budget, check calibration and subgroup performance, and have training and the app import the same feature code.',
       },
       {
-        num: '10',
+        num: '11',
         title: 'What I Did',
         type: 'para',
         text: 'Solo project. I cleaned and explored the data, engineered and validated five features, compared two classifiers with leakage-safe cross-validation, built and deployed the Streamlit app, wrote the tests, and audited my own work, correcting the issues described above.',
       },
       {
-        num: '11',
+        num: '12',
         title: 'Tools and Skills',
         type: 'tags',
         groups: [
@@ -555,7 +582,7 @@ export const PROJECTS: Project[] = [
           },
         ],
       },
-      { num: '12', title: 'Links', type: 'links' },
+      { num: '13', title: 'Links', type: 'links' },
     ],
   },
   {
@@ -583,7 +610,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'A star rating squeezes a whole review into one number, and nobody can read half a million comments. I wanted to know whether practical text-analysis methods can summarize a large review collection: how the language labels relate to star ratings, which products and years show higher negative shares, and which phrases rank highly in each group. The project is descriptive. It does not train a classifier, and I treat star ratings as a rough proxy for sentiment, not as ground truth.',
+        paras: [
+          'A star rating squeezes a whole review into one number, and nobody can read half a million comments. I wanted to know whether practical text-analysis methods can summarize a large review collection: how the language labels relate to star ratings, which products and years show higher negative shares, and which phrases rank highly in each group. The project is descriptive. It does not train a classifier, and I treat star ratings as a rough proxy for sentiment, not as ground truth.',
+          'Answer: as a first-pass summary, yes, with limits: VADER labels 88.19% of reviews positive and agrees with a star-rating proxy on 80.38%, but it labels 49.47% of one-star reviews positive, so its labels need human checks before decisions.',
+        ],
       },
       {
         num: '02',
@@ -770,7 +800,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'Raw transaction rows are hard for a business team to read, and high sales do not guarantee healthy profit. One order can hold several line items, so counting rows overstates orders. I analyzed the Sample Superstore data to separate revenue from profit quality: which categories, sub-categories, regions and months drive sales, and where margin is thin or negative. I then packaged the answers in a Power BI report that a manager can filter by region. The work is descriptive: it points to where to investigate, not to what caused a loss.',
+        paras: [
+          'Raw transaction rows are hard for a business team to read, and high sales do not guarantee healthy profit. One order can hold several line items, so counting rows overstates orders. I analyzed the Sample Superstore data to separate revenue from profit quality: which categories, sub-categories, regions and months drive sales, and where margin is thin or negative. I then packaged the answers in a Power BI report that a manager can filter by region. The work is descriptive: it points to where to investigate, not to what caused a loss.',
+          'Answer: revenue and profit quality diverge. Technology and Office Supplies keep about 17% of sales as profit, Furniture keeps 2.49%, and Tables, Bookcases and Supplies lose money; the Power BI report lets a manager filter these views by region, and the next step is to investigate the causes.',
+        ],
       },
       {
         num: '02',
@@ -946,7 +979,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'A credit card issuer loses interchange and interest income when customers leave, and churn often shows up as disengagement before an account closes. I analyzed 10,127 customers to answer three questions for a retention team: which segments churn, which behaviors separate churned from retained customers, and where retention effort should focus. I kept the work diagnostic and transparent, with no predictive model, so every rule can be audited in SQL, Python and Power BI.',
+        paras: [
+          'A credit card issuer loses interchange and interest income when customers leave, and churn often shows up as disengagement before an account closes. I analyzed 10,127 customers to answer three questions for a retention team: which segments churn, which behaviors separate churned from retained customers, and where retention effort should focus. I kept the work diagnostic and transparent, with no predictive model, so every rule can be audited in SQL, Python and Power BI.',
+          'Answer: churn concentrates among customers whose transactions are low, who use little of their credit limit, and who reach three or more service contacts (attrition rises from 12.49% at two contacts to 20.15% at three), so retention effort should start there; these are associations to test, not proven causes.',
+        ],
       },
       {
         num: '02',
@@ -1066,7 +1102,7 @@ export const PROJECTS: Project[] = [
           },
           {
             src: '/projects/banking-churn/ban-scatter.png',
-            alt: 'Scatter plot of transaction amount against transaction count with attrited customers in red and existing customers in blue; churned customers concentrate at low spend and low transaction counts.',
+            alt: 'Scatter plot of transaction amount against transaction count with attrited customers in red and existing customers in blue; churned customers appear mostly at low spend and low counts, plus a smaller group at about $7,500 to $10,500 in spend with 50 to 80 transactions, and none in the highest-spend, highest-count group.',
             caption: 'Transaction amount against transaction count, by customer status. Python (matplotlib).',
             w: 1333,
             h: 883,
@@ -1135,7 +1171,10 @@ export const PROJECTS: Project[] = [
         num: '01',
         title: 'Business Problem and Decision',
         type: 'para',
-        text: 'Property prices are often judged by subjective comparisons or a single number such as price per unit of area, which ignores layout, stories, parking, road access and furnishing all at once. I used 545 houses to ask three questions: which attributes move with price, whether a tuned Random Forest beats a standardized linear baseline on a dataset this small, and whether the whole pipeline can be built cleanly enough to audit and reproduce. This is an analytical exercise, not a valuation tool.',
+        paras: [
+          'Property prices are often judged by subjective comparisons or a single number such as price per unit of area, which ignores layout, stories, parking, road access and furnishing all at once. I used 545 houses to ask three questions: which attributes move with price, whether a tuned Random Forest beats a standardized linear baseline on a dataset this small, and whether the whole pipeline can be built cleanly enough to audit and reproduce. This is an analytical exercise, not a valuation tool.',
+          'Answer: area, bathrooms and the engineered luxury score move most with price, a plain Linear Regression beat the tuned Random Forest on this split (test R² 0.6583 against 0.5977), and the pipeline is documented and audited; it is not a valuation tool.',
+        ],
       },
       {
         num: '02',
