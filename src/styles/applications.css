@@ -5,12 +5,12 @@
 ========================= */
 .apps { border-top: var(--hair); }
 
-/* Reaching the section from the nav or an anchor has to land below the fixed
-   header, not under it. Both this and the sticky offset on .app-info read the
-   nav's own height, so neither can drift away from it. Resolves to 96px. */
-#live-apps {
-    scroll-margin-top: calc(var(--nav-h) + 22px);
-}
+/* No scroll-margin here. Reaching this section from the header or an anchor has
+   to land below the fixed header, and the document already says by how much:
+   `html { scroll-padding-top: calc(var(--nav-h) + 24px) }` in index.html. Both
+   the padding and a margin are added to the same gap, so keeping this rule put
+   #live-apps 96px lower than every other section on the page — from the inline
+   nav and from the menu alike. */
 
 /* Connect the large heading to the first row without losing breathing room */
 #live-apps .sec-head { margin-bottom: clamp(1.75rem, 3.5vw, 3rem); }
@@ -107,10 +107,7 @@
     display: block;
     width: 100%;
     height: auto;
-    filter: grayscale(1) contrast(1.03);
-    transition: filter 0.7s var(--ease-soft);
 }
-.app-card:hover .app-preview__img { filter: grayscale(0); }
 .app-preview__cap {
     padding: 0.6rem 0.8rem;
     background: var(--bg);
@@ -153,6 +150,37 @@
 /* Secondary — routes to the existing case study */
 .app-cta--secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .app-cta--secondary:hover { border-color: var(--ink); }
+
+/* What a reader does when the app they have just opened has gone to sleep. It
+   sits under the two actions because that is the moment the sentence is worth,
+   and it is set as a quiet editorial callout rather than a banner: a hairline
+   on three sides, the site's own availability green as a 3px spine on the left
+   so the accent says "live infrastructure" and nothing else, --bg-panel as the
+   inset step so the note reads as a panel laid on the page, and the same 56ch
+   measure the description below it already answers to. --ink-2 at 0.9rem
+   rasterises at 5.74:1 on the light inset and 8.20:1 on the dark one, both clear
+   of the 4.5:1 text target; the green spine itself reads 5.39:1 and 9.78:1
+   against the same inset. Only the label the reader has to find on screen is set
+   heavier, because that is the one part they have to recognise. */
+.app-note {
+    margin: 0.9rem 0 0;
+    padding: 0.7rem 0.9rem;
+    border: var(--hair);
+    border-left: 3px solid var(--status);
+    background: var(--bg-panel);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 56ch;
+}
+/* The label is also the thing the reader has to find on the sleeping app's own
+   screen, so it is never split: "'Yes, get / this app back up!'" on desktop and
+   "…app back / up!'" at 340 both break the phrase the button carries. Set as one
+   nowrap run, its single-line ink measures 167.9px in this 0.9rem type against a
+   content box of 257.2px at 340 and 307.2px at 390 — 89.3px of slack at the
+   narrowest — so no emergency break is needed inside it, and the one legal
+   escape (between "Yes," and "get") stays unexercised. */
+.app-note strong { font-weight: 600; white-space: nowrap; }
 
 .app-desc { color: var(--ink-2); font-size: 1rem; max-width: 56ch; margin-top: 1.5rem; }
 

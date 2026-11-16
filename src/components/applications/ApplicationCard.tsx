@@ -50,6 +50,17 @@ export default function ApplicationCard({ app, index }: ApplicationCardProps) {
           </Link>
         </div>
 
+        {/* The hosting reality is a property of the app the reader is about to
+            open, so it travels with each card rather than sitting once under
+            the section heading. Each text run is one expression: two adjacent
+            string children would be concatenated by the server render and split
+            into two text nodes by the client, which is a hydration bail-out. */}
+        <p className="app-note">
+          {"Hosted on Streamlit's free tier. If an app is asleep, press "}
+          <strong>{"'Yes, get this app back up!'"}</strong>
+          {' and wait up to a minute.'}
+        </p>
+
         <p className="app-desc">{app.description}</p>
 
         <div className="app-metric">

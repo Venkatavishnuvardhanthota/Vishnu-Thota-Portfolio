@@ -23,7 +23,13 @@
 .prow:hover .prow__main,
 .prow:focus-within .prow__main,
 .prow.is-open .prow__main { padding-left: clamp(0px, 1.2vw, 1rem); }
-.prow__num { grid-area: num; font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+/* The row number is an index, so it keeps the small size and the wide tracking —
+   but not `--ink-3`, which measures 2.64:1 on the light page and 4.16:1 on the
+   dark one and therefore fails AA as text. axe flagged all seven of them here.
+   `--ink-2` is the row's own secondary ink (5.35:1 / 8.69:1); the token itself
+   stays as it is, because the shell documents it as the deliberately quiet tier
+   with consumers in five other sections. */
+.prow__num { grid-area: num; font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
 .prow__title {
     grid-area: title;
     color: inherit;
@@ -34,7 +40,17 @@
     line-height: 1.02;
     text-transform: uppercase;
 }
-.prow__cat { grid-area: cat; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); text-align: right; max-width: 24ch; }
+/* The label is a list of disciplines joined by " / ", and each part is glued
+   (ProjectRow.tsx) so the only break the browser may take is at a separator.
+   46ch is that list's own arithmetic at this size (0.72rem with 0.14em
+   tracking, so 1ch ≈ 6.45px): the widest two-part line "Data Analytics / Data
+   Visualization & BI" measures 295.4px, which is what 46ch gives, so a
+   two-discipline row sets one line and a three-discipline row sets two —
+   "Data Analytics / Machine Learning /" at 273.7 then "Data Visualization & BI"
+   at 169.5. The 24ch this replaces measured 154.8px, narrower than the longest
+   single part, which is how "BI" ended up alone on a third line. */
+.prow__cat { grid-area: cat; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); text-align: right; max-width: 46ch; }
+.prow__cat-part { white-space: nowrap; }
 .prow__arrow { grid-area: arrow; font-size: 1.35rem; line-height: 1; color: var(--ink-2); transition: transform 0.4s var(--ease), color 0.3s var(--ease-soft); }
 .prow:hover .prow__arrow,
 .prow:focus-within .prow__arrow,
@@ -73,8 +89,43 @@
 .prow__desc { color: var(--ink-2); max-width: 52ch; font-size: 0.98rem; line-height: 1.6; margin-bottom: 1.2rem; }
 .prow__metric { border-left: 2px solid var(--ink); padding-left: 0.9rem; }
 .prow__metric .v { font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; }
-.prow__metric .l { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-top: 0.25rem; }
+/* The caption under the headline number carries the confidence interval, the
+   p-value and the row count — real evidence, so it is set as readable text, not
+   as a label. It used to be 11.2px uppercase at 0.14em on `--ink-3`, which
+   measured 2.64:1 on the light page and 4.16:1 on the dark one: under AA in both
+   themes, and the tracking plus the caps made it a wall of letters rather than a
+   sentence. It is now 13px at 0.01em in the row's own secondary ink, `--ink-2`,
+   which measures 5.35:1 light and 8.69:1 dark. The data strings are already
+   sentence-case, so dropping `text-transform` is what reveals that. */
+.prow__metric .l { font-size: 0.8125rem; line-height: 1.45; letter-spacing: 0.01em; color: var(--ink-2); margin-top: 0.35rem; }
 .prow__aside { display: flex; flex-direction: column; gap: 1.1rem; align-items: flex-start; }
+/* Two actions, in the order the reader wants them: the running app first, the
+   write-up second. The filled capsule is the site's primary-action language —
+   the header's Résumé pill and the Hero's View Projects use it — and the
+   case-study link keeps the shared `.project__link` treatment, which is already
+   the secondary form everywhere it appears. 44px is the touch floor the row needs
+   on a phone, where this panel is opened by tap. */
+.prow__links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+.prow__live {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    min-height: 44px;
+    padding-inline: 1.2rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s var(--ease-soft);
+}
+.prow__live:hover { background: var(--ink-2); }
+.prow__live .arw { display: inline-block; transition: transform 0.4s var(--ease); }
+.prow__live:hover .arw { transform: translate(3px, -3px); }
 
 .prow:hover .tag, .prow.is-open .tag { color: var(--ink); border-color: var(--line-strong); }
 
@@ -92,14 +143,41 @@ body.route-detail .footer { display: none; }
     background: var(--bg);
     border-bottom: var(--hair);
 }
-.pd__bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
-.pd__back { display: inline-flex; align-items: center; gap: 0.6em; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); }
+/* The bar's height budget: the 36px Résumé pill is the tallest item, so
+   padding-block 0.62rem keeps the bar at ~57px — no taller than it was when the
+   wordmark was its own tallest child. */
+.pd__bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding-block: 0.62rem; }
+/* The Back control is measured at 153.91 x 21px, and 21px is under the 24px floor
+   WCAG 2.5.8 asks of a target. min-height grows the box from the inside: the
+   bar centres this link on its cross axis, so the extra 1.5px is distributed
+   above and below and the text keeps the same centre -- the hit area changes,
+   the picture does not. */
+.pd__back { display: inline-flex; align-items: center; gap: 0.6em; min-height: 24px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
 .pd__back .arw { display: inline-block; transition: transform 0.35s var(--ease); }
 .pd__back:hover .arw { transform: translateX(-4px); }
+.pd__bar-right { display: inline-flex; align-items: center; gap: 0.75rem; }
+/* The pill's own margin-left spaces it from the nav links on the homepage; here
+   the group's gap does that job, so it is neutralised. */
+.pd__bar-right .nav__resume { margin-left: 0; }
+/* The three header items cannot share one row on a narrow phone, so the Back
+   control shortens to its destination word. The from-history Back keeps its
+   plain label at every width — "Projects" would name the wrong destination. */
+.pd__back-short { display: none; }
+@media (max-width: 449.98px) {
+    .pd__back-full { display: none; }
+    .pd__back-short { display: inline; }
+    .pd__bar-inner, .pd__bar-right { gap: 0.3rem; }
+}
+@media (max-width: 400px) {
+    .pd__bar-inner, .pd__bar-right { gap: 0.15rem; }
+}
 
 .pd { padding-block: clamp(2.5rem, 6vh, 4.5rem) var(--section-y); }
-.pd__kicker { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
-.pd__title { font-size: clamp(2.3rem, 8vw, 6.2rem); line-height: 0.95; letter-spacing: -0.035em; text-transform: uppercase; font-weight: 700; }
+.pd__kicker { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem 1rem; margin-bottom: 1.4rem; }
+/* The project name sits in the kicker beside the number and category, so the
+   question below it can be the one heading and the one piece of large text. */
+.pd__project { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+.pd__title { font-size: clamp(2.3rem, 8vw, 6.2rem); line-height: 1; letter-spacing: -0.025em; font-weight: 700; color: var(--ink); text-wrap: pretty; }
 .pd__summary { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(1.15rem, 2.2vw, 1.6rem); line-height: 1.4; color: var(--ink-2); max-width: 56ch; margin-top: 1.6rem; }
 .pd__links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.2rem; }
 
@@ -116,6 +194,22 @@ body.route-detail .footer { display: none; }
 .pd__metric .l { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); margin-top: 0.35rem; }
 .pd__metric .n { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.3rem; }
 
+/* A comparison has to read as one line: "2.55% vs 1.79%" broke after "vs" at
+   1229 and 1024, which reads as two separate numbers instead of a contrast.
+   The cap is a share of the tile's own content width, so it binds only where
+   the value would otherwise wrap and leaves the base size untouched wherever
+   it already fits. Measured requirement is 15.27cqw at every width; 15 leaves
+   ~2% headroom. Scoped to the one value that asks for it -- a global cap is
+   not admissible, because the coefficient that keeps a digit-only value on
+   one line (<=1.85) is below the one that leaves a nearly-full value like
+   "p = 1.7x10^-13" its current size (>=2.22). */
+.pd__metric--fit { container-type: inline-size; }
+/* --fit-cqw lets a tile ask for its own cap. The ceiling is set by how wide
+   the string is in its own em, which the shared 15 cannot serve: a value built
+   from an arrow needs 13, a value of plain digits tolerates 16 and would
+   shrink for no reason below that. */
+.pd__metric--fit .v { white-space: nowrap; font-size: min(clamp(1.5rem, 3vw, 2.2rem), var(--fit-cqw, 15cqw)); }
+
 .pd__section {
     border-top: var(--hair);
     padding-block: clamp(2rem, 5vh, 3.4rem);
@@ -126,10 +220,15 @@ body.route-detail .footer { display: none; }
 .pd__sec-head { display: flex; flex-direction: column; gap: 0.4rem; }
 .pd__sec-num { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-3); }
 .pd__sec-title { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
-.pd__body p { color: var(--ink-2); margin-bottom: 1rem; max-width: 64ch; line-height: 1.65; }
+/* One measure for every section body: paragraphs run the full content column,
+   bullet lists split into two columns so no line runs long. */
+.pd__body p { color: var(--ink-2); margin-bottom: 1rem; line-height: 1.65; }
 .pd__body p:last-child { margin-bottom: 0; }
-.pd__body ul { display: flex; flex-direction: column; gap: 0.6rem; }
-.pd__body ul li { position: relative; padding-left: 1.2rem; color: var(--ink-2); line-height: 1.55; }
+/* The bold lead-in that names the problem in section 01 before the method. */
+.pd__body p > strong:first-child { color: var(--ink); font-weight: 600; }
+.pd__body ul { columns: 2; column-gap: clamp(1.5rem, 3vw, 3rem); }
+.pd__body ul li { position: relative; padding-left: 1.2rem; color: var(--ink-2); line-height: 1.55; break-inside: avoid; margin-bottom: 0.6rem; }
+.pd__body ul li:last-child { margin-bottom: 0; }
 .pd__body ul li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 1px; background: var(--ink); }
 .pd__body .kv { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.5rem; }
 .pd__body .kv dt { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding-top: 0.2rem; }
@@ -157,17 +256,15 @@ body.route-detail .footer { display: none; }
     font-size: clamp(1.15rem, 1.6vw, 1.45rem);
     line-height: 1.45;
     color: var(--ink);
-    max-width: 48ch;
     margin-bottom: 1.4rem;
 }
 
 /* A list ruled with hairlines instead of led by dashes. */
-.pd__body ul.pd__rules { gap: 0; }
 .pd__body ul.pd__rules > li {
     padding-left: 0;
     padding-block: clamp(0.9rem, 2vh, 1.3rem);
     border-top: var(--hair);
-    max-width: 64ch;
+    margin-bottom: 0;
 }
 .pd__body ul.pd__rules > li::before { content: none; }
 .pd__body ul.pd__rules > li:first-child { border-top: 0; padding-top: 0; }
@@ -176,13 +273,22 @@ body.route-detail .footer { display: none; }
 /* A paragraph that closes a list. */
 .pd__body p.pd__after { margin-top: clamp(1.2rem, 2.6vh, 1.8rem); }
 
-/* Labelled groups of pills. Inside .pd__body the older `ul` rule turns every
-   list into a stretched column — which is how the existing Technology sections
-   render — so a group that wants real pills has to ask for the row back. */
+/* Paragraphs that close a set of label/value rows. They sit under the whole
+   content column, not in the value column, so a long row of values keeps the
+   same measure as the other sections' body copy. */
+.pd__body p.pd__notes { margin-top: clamp(1.2rem, 2.6vh, 1.8rem); }
+
+/* Labelled groups of pills. Inside .pd__body every `ul` is a two-column
+   bullet list — which is how the Technology sections would render — so a group
+   that wants real pills has to ask for the row back. The bullet rule above sets
+   `padding-left: 1.2rem` for the dash; zeroing it here would leave the pill's
+   own `.tag` padding (0.32em 0.7em) winning only on the right, so the text sat
+   against the left edge. Restating the full pill padding keeps both sides equal
+   and the label centred. */
 .pd__tag-groups { display: flex; flex-direction: column; gap: 1.6rem; }
 .pd__tag-group > .label { display: block; margin-bottom: 0.8rem; color: var(--label-faint); }
-.pd__body .pd__tag-group .tags { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
-.pd__body .pd__tag-group .tags > li { padding-left: 0; }
+.pd__body .pd__tag-group .tags { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
+.pd__body .pd__tag-group .tags > li { padding: 0.32em 0.7em; margin-bottom: 0; }
 .pd__body .pd__tag-group .tags > li::before { content: none; }
 
 /* A real export, set into the same hairline frame the generated figures use.
@@ -244,12 +350,22 @@ body.route-detail .footer { display: none; }
     inset: 0;
     z-index: 90;
     display: grid;
-    place-items: center;
-    padding: var(--gutter);
+    /* `safe` matters once the frame may outgrow the viewport: a plain centre
+       would overflow it from both ends and make the top unreachable by scroll,
+       so alignment falls back to start when the frame is the taller box. */
+    place-items: safe center;
+    /* The overlay used to pad itself with `--gutter`, the same token the page's
+       own `.wrap` uses, so the frame's available width came out equal to the
+       article column and "enlarge" could not enlarge anything: measured, the
+       dialog image was exactly 1.00x the inline one for every figure at both
+       1024x768 and 390x844. It now asks for its own, smaller inset, which is
+       the whole of the gain. */
+    padding: clamp(0.5rem, 2vw, 1rem);
     /* A wheel over the overlay must not reach the page behind it: `overflow:
        hidden` on the root clips the document but does not stop the scroll chain,
        so the overlay is its own scroll container and nothing chains out of it.
-       It also gives a long caption somewhere to go on a short screen. */
+       It is also what lets an image taller than the viewport scroll vertically
+       inside the dialog instead of being shrunk to fit. */
     overflow: auto;
     overscroll-behavior: contain;
     background: color-mix(in srgb, var(--bg) 94%, transparent);
@@ -259,23 +375,35 @@ body.route-detail .footer { display: none; }
     flex-direction: column;
     gap: 0.9rem;
     max-width: 100%;
-    /* 4rem keeps the frame clear of the close button in the top corner. */
-    max-height: calc(100% - 4rem);
+    /* No max-height here: the frame is allowed to be taller than the viewport,
+       and the overlay scrolls it. Capping the frame is what used to cap the
+       image and show it smaller than its inline size. */
     border: var(--hair);
     background: var(--bg-panel);
-    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+    /* Padding dropped to nothing: the frame's own 1.25rem each side was the
+       second thing eating the width the overlay had just recovered. The border
+       and the gap to the caption stay, so it still reads as a plate. The inline
+       .fig-card keeps its padding -- only the dialog changes. */
+    padding: 0;
 }
 .fig-lightbox__img {
     display: block;
-    flex: 0 1 auto;
-    min-height: 0;
+    /* The frame is a fit-content grid item, so its width follows the image's
+       natural width; the two constraints below land the image at min(natural,
+       viewport width − gutters), which is never narrower than the inline card
+       shows it, because card and frame share the same gutter padding and the
+       frame's chrome is no heavier than the card's. */
+    flex: none;
     width: auto;
     height: auto;
-    max-width: calc(100vw - 2 * var(--gutter) - 2.5rem);
-    max-height: calc(100vh - 2 * var(--gutter) - 6rem);
+    max-width: 100%;
     object-fit: contain;
 }
 .fig-lightbox__cap {
+    /* A caption must never widen the frame — the image is the sizing child, so
+       the caption collapses to zero and stretches back across the frame. */
+    width: 0;
+    min-width: 100%;
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.16em;
@@ -284,7 +412,10 @@ body.route-detail .footer { display: none; }
     color: var(--label-faint);
 }
 .fig-lightbox__close {
-    position: absolute;
+    /* The overlay is the scroll container, so an absolutely positioned close
+       button would travel with the content; fixed keeps it in the corner while
+       a tall image scrolls underneath. */
+    position: fixed;
     top: var(--gutter);
     right: var(--gutter);
     padding: 0.5rem 0.85rem;
@@ -301,7 +432,78 @@ body.route-detail .footer { display: none; }
 
 .pd__figure { margin-top: 1.75rem; }
 .pd__figure .figure { aspect-ratio: 16 / 7; }
-.pd__next { border-top: var(--hair); padding-block: clamp(1.5rem, 3vw, 2.25rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+/* The closing block: the same left-gutter grid as the numbered sections but
+   unnumbered — one availability line facing the two actions that answer it. */
+.pd__closing {
+    border-top: var(--hair);
+    padding-block: clamp(2rem, 5vh, 3.4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: center;
+}
+.pd__closing-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    line-height: 1.4;
+    color: var(--ink-2);
+}
+.pd__closing-nowrap { white-space: nowrap; }
+.pd__closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+/* Below 640px the two actions stack and fill the row, so each stays a 48px-tall
+   full-width target rather than a pill floating beside its neighbour. */
+@media (max-width: 639.98px) {
+    .pd__closing { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+    .pd__closing-actions { flex-direction: column; align-items: stretch; }
+    .pd__closing-actions .hero__btn { width: 100%; }
+}
+
+/* Reading order at the foot of a case study: previous on the left, next on the
+   right, never wrapping round. The two slots share one hairline each; the empty
+   slot at either end keeps the remaining one on its own side. */
+.pd__pager {
+    margin-top: clamp(2.5rem, 7vh, 4.5rem);
+    border-top: var(--hair);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.pd__pager-link, .pd__pager-slot {
+    min-height: 44px;
+    padding-block: clamp(1.1rem, 2.5vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.45rem;
+}
+.pd__pager-link--prev { padding-right: clamp(1rem, 3vw, 2rem); }
+.pd__pager-link--next {
+    border-left: var(--hair);
+    padding-left: clamp(1rem, 3vw, 2rem);
+    text-align: right;
+    align-items: flex-end;
+}
+.pd__pager-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+.pd__pager-title {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.3;
+    color: var(--ink);
+}
+.pd__pager-num { color: var(--ink-3); margin-right: 0.35em; font-variant-numeric: tabular-nums; }
+.pd__pager-link:hover .arw { transform: translateX(0) scale(1.12); }
+.pd__pager .arw { display: inline-block; transition: transform 0.35s var(--ease); }
 
 /* =========================
    RESPONSIVE (project rules only)
@@ -311,7 +513,24 @@ body.route-detail .footer { display: none; }
     .prow__cat { text-align: left; }
     .prow__panel-content { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; padding-left: 0; }
     .pd__section { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+    .pd__closing { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
     .pd__figure .figure { aspect-ratio: 4 / 3; }
+}
+
+/* Below this width a bullet column is too narrow to read, so the lists stack. */
+@media (max-width: 759.98px) {
+    .pd__body ul { columns: 1; }
+    /* The pager stacks previous above next, so neither title is squeezed. */
+    .pd__pager { grid-template-columns: minmax(0, 1fr); }
+    .pd__pager-slot { display: none; }
+    .pd__pager-link--next {
+        border-left: 0;
+        border-top: var(--hair);
+        padding-left: 0;
+        text-align: left;
+        align-items: flex-start;
+    }
+    .pd__pager-link--prev { padding-right: 0; }
 }
 
 @media (max-width: 560px) {

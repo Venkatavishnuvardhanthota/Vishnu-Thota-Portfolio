@@ -5,6 +5,13 @@ export interface Metric {
   l: string;
   /** Optional supporting note */
   n?: string;
+  /** Keep the value on one line, shrinking it against the tile's own width
+      rather than wrapping. Only for a value that must read as one comparison.
+      `true` uses the shared 15cqw cap; a number overrides it, because the
+      widest a string can be relative to its own em decides the largest cap
+      that still fits — "12.49% → 20.15%" tops out at 13.30cqw and would
+      overflow the tile outright at 15. */
+  fit?: boolean | number;
 }
 
 /** No case study carries a generated visual. The alias stays `never` rather than
@@ -53,6 +60,9 @@ export interface KvSection extends SectionBase {
   items: ReadonlyArray<readonly [string, string]>;
   /** Optional paragraph that closes the rows, in ordinary body voice. */
   after?: string;
+  /** Optional paragraphs that close the rows, set at the same measure as the
+      other sections' body copy rather than in the value column. */
+  notes?: string[];
 }
 export interface MetricsSection extends SectionBase {
   type: 'metrics';
@@ -86,6 +96,8 @@ export interface Project {
   number: string;
   title: string;
   category: string;
+  /** One-line question headline shown above the case-study title. */
+  question: string;
   shortDescription: string;
   /** The case study's own serif standfirst. Separate from `shortDescription`
       because that field is also the homepage row copy and the route's meta
@@ -101,3 +113,8 @@ export interface Project {
   visual?: VisualKey;
   sections: CaseStudySection[];
 }
+
+/** Everything the homepage cards, the route head and the case-study header need.
+    The body itself is a separate chunk: a list of seven cards has no use for
+    seven articles, so /projects/:id fetches `sections` on demand. */
+export type ProjectMeta = Omit<Project, 'sections'>;

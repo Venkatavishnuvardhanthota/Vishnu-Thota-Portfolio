@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import type { Project } from '../../types/project';
+import type { ProjectMeta } from '../../types/project';
 import ProjectPreview from './ProjectPreview';
 
 interface ProjectRowProps {
-  project: Project;
+  project: ProjectMeta;
 }
 
 /**
@@ -60,7 +60,32 @@ export default function ProjectRow({ project }: ProjectRowProps) {
         >
           {project.title}
         </Link>
-        <span className="prow__cat">{project.category}</span>
+        {/* The category is a list of disciplines separated by " / ", and the
+            only place it may break is one of those separators. Each part is
+            glued to the slash that follows it — a non-breaking space before the
+            slash, `white-space: nowrap` across the pair — and the break
+            opportunity is the plain space rendered BETWEEN the spans, outside
+            any nowrap box, which is the only unglued whitespace in the label.
+            A line can therefore end "Data Analytics /" and never "Data
+            Analytics" with the slash below it, and never strand "BI" alone. */}
+        <span className="prow__cat">
+          {project.category
+            .split(' / ')
+            .flatMap((part, i, all) =>
+              i < all.length - 1
+                ? [
+                    <span className="prow__cat-part" key={part}>
+                      {`${part}\u00A0/`}
+                    </span>,
+                    ' ',
+                  ]
+                : [
+                    <span className="prow__cat-part" key={part}>
+                      {part}
+                    </span>,
+                  ],
+            )}
+        </span>
         <button
           className="prow__toggle"
           type="button"

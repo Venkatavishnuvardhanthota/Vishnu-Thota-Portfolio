@@ -1,15 +1,22 @@
 import { Link } from 'react-router-dom';
-import type { Project } from '../../types/project';
+import { APPLICATIONS } from '../../data/applications';
+import type { ProjectMeta } from '../../types/project';
 
 interface ProjectPreviewProps {
-  project: Project;
+  project: ProjectMeta;
 }
 
 /**
  * Expanded panel content for a project row: short description, the verified
- * preview metric, the first five technologies, and a case-study link.
+ * preview metric, the first five technologies, and the ways out — the running
+ * app when there is one, then the case study.
  */
 export default function ProjectPreview({ project }: ProjectPreviewProps) {
+  /* applications.ts owns the deployed URL, so reading it here keeps the row and
+     the Live Apps section pointing at the same address. Only a live entry
+     qualifies, which is why exactly two of the seven rows carry the link. */
+  const liveApp = APPLICATIONS.find((app) => app.id === project.id && app.status === 'Live');
+
   return (
     <div className="prow__panel-content">
       <div>
@@ -27,9 +34,22 @@ export default function ProjectPreview({ project }: ProjectPreviewProps) {
             </li>
           ))}
         </ul>
-        <Link className="project__link" to={`/projects/${project.id}`}>
-          View case study <span className="arw" aria-hidden="true">↗</span>
-        </Link>
+        <div className="prow__links">
+          {liveApp && (
+            <a
+              className="prow__live"
+              href={liveApp.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${liveApp.title} live app (opens in new tab)`}
+            >
+              Live app <span className="arw" aria-hidden="true">↗</span>
+            </a>
+          )}
+          <Link className="project__link" to={`/projects/${project.id}`}>
+            View case study <span className="arw" aria-hidden="true">→</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

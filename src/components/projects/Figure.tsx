@@ -21,7 +21,14 @@ import type { Figure as FigureData } from '../../types/project';
 
 const FOCUSABLE = 'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-export default function Figure({ figure }: { figure: FigureData }) {
+export default function Figure({
+  figure,
+  priority = false,
+}: {
+  figure: FigureData;
+  /** The first figure on the page. Every other one stays lazy. */
+  priority?: boolean;
+}) {
   const [present, setPresent] = useState(false);
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement | null>(null);
@@ -102,7 +109,8 @@ export default function Figure({ figure }: { figure: FigureData }) {
         <img
           src={figure.src}
           alt={figure.alt}
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
           width={figure.w}
           height={figure.h}
         />

@@ -20,7 +20,7 @@ export interface Application {
   question: string;
   description: string;
   technologies: string[];
-  /** Headline verified metric value, e.g. "0.8343" */
+  /** Headline verified metric value, e.g. "0.8310" */
   metric: string;
   /** Metric label, e.g. "AUC-ROC" */
   metricLabel: string;
@@ -53,19 +53,20 @@ export const APPLICATIONS: Application[] = [
     title: 'Customer Churn Prediction',
     question: 'Which telecom customers are likely to leave?',
     description:
-      'A Random Forest model with SMOTE rebalancing scores a customer profile in your browser. Try it: change Contract Type and compare the predicted risk.',
-    technologies: ['Python', 'Scikit-learn', 'Random Forest', 'SMOTE', 'Streamlit'],
-    metric: '0.8343',
-    metricLabel: 'AUC-ROC',
-    metricNote: '7,043 customers · 8,260 training rows after SMOTE',
+      'A Logistic Regression model, chosen by cross-validated ROC-AUC, scores a customer profile in your browser. On the same held-out set, its 73.35% accuracy is no better than labelling every customer "stay" (73.42%), so recall is the metric that matters: the model catches 77.81% of churners. Try it: change Contract Type and compare the predicted risk. Read the probability as relative risk, not an exact chance of leaving.',
+    technologies: ['Python', 'scikit-learn', 'SMOTE', 'Streamlit'],
+    metric: '0.8310',
+    metricLabel: 'Test ROC-AUC',
+    metricNote: 'Logistic Regression test recall 77.81% · 7,043 customers · 8,260 training rows after SMOTE',
     liveUrl: 'https://customer-churn-prediction-0001.streamlit.app/',
     projectRoute: '/projects/customer-churn',
     githubUrl: 'https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction',
     status: 'Live',
     previewImage: '/app-previews/customer-churn.webp',
-    previewWidth: 1152,
-    previewHeight: 720,
-    previewAlt: 'Customer Churn Predictor app with account and service inputs',
+    previewWidth: 1600,
+    previewHeight: 693,
+    previewAlt:
+      'Customer Churn Predictor app: model information (Logistic Regression, AUC 0.8310, recall 0.7781, 8,260 training samples) beside the account and service input form',
     previewType: 'screenshot',
     previewCaption: 'Captured from the live application',
   },
@@ -75,18 +76,20 @@ export const APPLICATIONS: Application[] = [
     title: 'Product Review Sentiment Analysis',
     question: 'Do food reviews agree with their star ratings?',
     description:
-      'Paste any product review and the app scores its sentiment with VADER and TextBlob, alongside TF-IDF keywords and a Plotly dashboard of the full corpus. Across 568,454 Amazon food reviews, 88.2% are positive and VADER agrees with the star rating 79.6% of the time. Try it: paste a review and click Analyze Review.',
+      'Paste any product review and the app scores its sentiment with VADER and TextBlob, alongside TF-IDF keywords and a Plotly dashboard of the full corpus. Across 568,454 Amazon food reviews, VADER labels 88.21% positive and agrees with a star-rating proxy 80.38% of the time, which is agreement, not accuracy. Try it: paste a review and click Analyze Review.',
     technologies: ['VADER', 'TextBlob', 'TF-IDF', 'Plotly', 'Streamlit'],
-    metric: '568,454',
-    metricLabel: 'reviews · 79.6% agreement with star ratings',
+    metric: '80.38%',
+    metricLabel: 'Agreement with star-rating proxy',
+    metricNote: '568,454 reviews · 49.47% of one-star reviews labelled positive',
     liveUrl: 'https://prduct-sentiment-dashboard.streamlit.app/',
     projectRoute: '/projects/product-sentiment',
     githubUrl: 'https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard',
     status: 'Live',
     previewImage: '/app-previews/product-sentiment.webp',
-    previewWidth: 1152,
-    previewHeight: 720,
-    previewAlt: 'Product Review Sentiment Analyzer app with review input and sentiment dashboard',
+    previewWidth: 1600,
+    previewHeight: 648,
+    previewAlt:
+      'Product Review Sentiment Analyzer app: review input, benchmark for 568,454 reviews (88.2% positive, 9.8% negative, 2.0% neutral) and 80.4% agreement with star-rating labels',
     previewType: 'screenshot',
     previewCaption: 'Captured from the live application',
   },
