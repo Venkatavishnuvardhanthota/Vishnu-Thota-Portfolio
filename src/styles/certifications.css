@@ -129,8 +129,18 @@
 @media (max-width: 1099px) {
     .cert-row { grid-template-columns: minmax(0, 1fr); }
     /* One column: the preview stacks under the content it belongs to, kept at
-       the desktop column's width so a 640px source is never scaled up. */
-    .cert-preview { justify-self: start; max-width: 340px; }
+       the desktop column's width so a 640px source is never scaled up.
+
+       The width has to be definite, not a cap on a shrink-to-fit box. With only
+       `justify-self: start; max-width: 340px` the figure sizes itself to its
+       content's max-content contribution, and an <img> that has not decoded
+       contributes almost none — so the box collapsed to the caption's ~188.6px
+       and jumped to 339.8px the moment the image arrived, pushing everything
+       below it down 462px. The width/height attributes already reserve the
+       *height* (aspect-ratio: auto 640 / 484), but only relative to a resolved
+       width, which is exactly what was missing. 340px capped by the track is
+       the width the loaded figure already had, so nothing moves once decoded. */
+    .cert-preview { width: 340px; max-width: 100%; }
 }
 @media (max-width: 560px) {
     .cert-links { gap: 0.75rem; }

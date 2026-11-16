@@ -131,7 +131,8 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     white-space: nowrap;
-    color: var(--app-live-dot);
+    /* Text, not decoration: the dot keeps --app-live-dot, the label needs AA. */
+    color: var(--status);
 }
 
 /* ---- the stages ----

@@ -9,6 +9,7 @@ import CertificationsSection from './components/certifications/CertificationsSec
 import EducationSection from './components/education/EducationSection';
 import ContactSection from './components/contact/ContactSection';
 import { getProjectById } from './data/projects';
+import { prefetchCaseStudy } from './data/case-studies';
 import { HOME_META, projectMeta } from './data/site';
 
 /**
@@ -90,6 +91,32 @@ function useShellCaseStudyLinks() {
 }
 
 /**
+ * The case-study body is a chunk, so the first visit to a page would otherwise
+ * paint its header and then grow into the article. Hovering or focusing a link to
+ * it is a strong signal the reader is about to go there, so the chunk is fetched
+ * then — one listener on the document, because the links that point at a case
+ * study are spread across a React island, the static Skills shell and the pager,
+ * and none of them needs to know about this.
+ */
+function useCaseStudyPrefetch() {
+  useEffect(() => {
+    const onIntent = (e: Event) => {
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest<HTMLAnchorElement>('a[href^="/projects/"]');
+      if (!anchor) return;
+      const id = (anchor.getAttribute('href') ?? '').slice('/projects/'.length).split(/[/?#]/)[0];
+      if (id) prefetchCaseStudy(id);
+    };
+    document.addEventListener('pointerover', onIntent, { passive: true });
+    document.addEventListener('focusin', onIntent, { passive: true });
+    return () => {
+      document.removeEventListener('pointerover', onIntent);
+      document.removeEventListener('focusin', onIntent);
+    };
+  }, []);
+}
+
+/**
  * Home is rendered unconditionally so the project list stays mounted (and keeps
  * its scroll-reveal state) while a case study is displayed. React Router drives
  * only the full-page detail overlay at /projects/:id.
@@ -104,8 +131,15 @@ function useShellCaseStudyLinks() {
 export default function App() {
   useRouteMetaSync();
   useShellCaseStudyLinks();
+  useCaseStudyPrefetch();
 
+  const onDetail = useMatch('/projects/:id') !== null;
   const heroRoot = document.getElementById('hero-root');
+  /* main.tsx hydrates the prerendered hero and marks it; a route document has no
+     prerendered hero, so App owns the root once the shell is shown again. While a
+     case study is open the shell is hidden, and leaving the hero out of it is what
+     keeps the route document's only h1 the case study's. */
+  const heroHydrated = heroRoot?.dataset.hydrated === '1';
   const applicationsRoot = document.getElementById('applications-root');
   const certificationsRoot = document.getElementById('certifications-root');
   const educationRoot = document.getElementById('education-root');
@@ -114,7 +148,7 @@ export default function App() {
   return (
     <>
       <Home />
-      {heroRoot ? createPortal(<HeroSection />, heroRoot) : null}
+      {heroRoot && !heroHydrated && !onDetail ? createPortal(<HeroSection />, heroRoot) : null}
       {applicationsRoot ? createPortal(<DeployedApplications />, applicationsRoot) : null}
       {certificationsRoot ? createPortal(<CertificationsSection />, certificationsRoot) : null}
       {educationRoot ? createPortal(<EducationSection />, educationRoot) : null}

@@ -11,6 +11,7 @@ export type Certification = {
   title: string;
   provider: string;
   platform?: string;
+  date?: string;
   credential?: string;
   highlight?: string;
   description?: string;
@@ -31,13 +32,13 @@ export type Certification = {
  * in public/certificates/. The Google Cloud entry is a provider-hosted Credly
  * credential: its title, provider, platform and badge come from the supplied
  * badge, its description and skills from the official credential information,
- * and it deliberately carries no date — none was supplied. Its one level word,
+ * and its issue date from the credential. Its one level word,
  * FOUNDATIONAL, is a tag rather than a chip: the word comes from the
  * credential's own description, and the row title already reads Certificate,
- * so a chip saying the same only repeated it. No card carries a date at all:
- * the issue dates are on the credentials themselves, so the rows state the
- * provider and platform and leave the dates there. Nothing here is inferred
- * or embellished.
+ * so a chip saying the same only repeated it. An optional `date` prints as the
+ * last segment of the issuer line beside the provider and platform; Oracle has
+ * none, so its line stays the provider alone. Nothing here is inferred or
+ * embellished.
  */
 export const CERTIFICATIONS: Certification[] = [
   {
@@ -46,6 +47,7 @@ export const CERTIFICATIONS: Certification[] = [
     title: 'Google Cloud Data Analytics Certificate',
     provider: 'Google Cloud',
     platform: 'Credly',
+    date: 'Mar 26, 2026',
     credentialType: 'external',
     description:
       'A foundational Google Cloud data analytics certificate covering SQL, data cleaning, analysis, visualization, business intelligence, and cloud data workflows.',
@@ -72,10 +74,11 @@ export const CERTIFICATIONS: Certification[] = [
     title: 'IBM Data Science Professional Certificate',
     provider: 'IBM',
     platform: 'Coursera',
+    date: 'Apr 7, 2026',
     credential: 'Professional Certificate',
     highlight: '12 courses',
     description:
-      'A twelve-course professional certificate covering data science methodology, Python, SQL, data analysis, data visualization, and machine learning, closing with an applied data science capstone.',
+      'A twelve-course professional certificate covering data science methodology, Python, SQL, data analysis, data visualization, and machine learning, with an applied data science capstone.',
     skills: [
       'Data Science Methodology',
       'Python',
@@ -99,6 +102,7 @@ export const CERTIFICATIONS: Certification[] = [
     title: 'Data Analytics Job Simulation',
     provider: 'Deloitte',
     platform: 'Forage',
+    date: 'Jan 10, 2026',
     credential: 'Certificate of Completion',
     description:
       'A Deloitte data analytics job simulation completed on Forage, with practical tasks in data analysis and forensic technology.',
@@ -114,16 +118,16 @@ export const CERTIFICATIONS: Certification[] = [
     id: 'oracle-databases-foundations',
     number: '04',
     title: 'Databases for Developers: Foundations',
-    provider: 'Oracle',
+    provider: 'Oracle Dev Gym',
     credential: 'Certificate of Excellence',
     highlight: '100% grade',
     description:
-      'Oracle database foundations course completed with a 100% grade.',
+      'Oracle Dev Gym course, completed with a grade of 100% and taught by Chris Saxon.',
     certificateUrl: '/certificates/oracle-databases-for-developers-foundations.pdf',
     previewImage: '/cert-previews/oracle-databases-for-developers-foundations.webp',
     previewWidth: 640,
     previewHeight: 510,
     previewAlt:
-      'Oracle Certificate of Excellence in Databases for Developers: Foundations issued to Venkata Vishnu Vardhan Thota',
+      'Oracle Dev Gym Certificate of Excellence in Databases for Developers: Foundations issued to Venkata Vishnu Vardhan Thota',
   },
 ];

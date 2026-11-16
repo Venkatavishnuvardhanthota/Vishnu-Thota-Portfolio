@@ -1,4 +1,4 @@
-import type { Project } from '../types/project';
+import type { ProjectMeta } from '../types/project';
 
 /**
  * The single production origin every canonical and social URL is written against.
@@ -37,11 +37,11 @@ export const HOME_META: PageMeta = {
   description:
     'Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, ' +
     'forecasting, churn and sentiment projects with 2 live apps. Available immediately ' +
-    'for internships and full-time roles.',
+    'for internships and entry-level roles.',
   socialTitle: 'Venkata Vishnu Vardhan Thota — Data Analyst',
   socialDescription:
     '7 projects · 2 live apps · SQL, Python, Power BI, Tableau. ' +
-    'Open to internships and full-time roles. Available immediately.',
+    'Open to internships and entry-level roles. Available immediately.',
   ogType: 'website',
 };
 
@@ -51,7 +51,7 @@ export const HOME_META: PageMeta = {
  * "— Vishnu Vardhan" suffix is the one the case study has always used for
  * document.title, so the static <title> and the client-rendered one match.
  */
-export function projectMeta(project: Project): PageMeta {
+export function projectMeta(project: ProjectMeta): PageMeta {
   const meta = {
     url: `${SITE_ORIGIN}/projects/${project.id}`,
     title: `${project.title} — Vishnu Vardhan`,

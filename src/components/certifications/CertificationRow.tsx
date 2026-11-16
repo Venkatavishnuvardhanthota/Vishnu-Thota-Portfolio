@@ -19,7 +19,7 @@ interface CertificationRowProps {
  */
 export default function CertificationRow({ cert, index }: CertificationRowProps) {
   const style = { '--d': `${index * 0.08}s` } as CSSProperties;
-  const issuer = cert.platform ? `${cert.provider} · ${cert.platform}` : cert.provider;
+  const issuer = [cert.provider, cert.platform, cert.date].filter(Boolean).join(' · ');
   const on = cert.platform ? ` on ${cert.platform}` : '';
   const hosted = cert.credentialType === 'external' || Boolean(cert.verificationUrl);
   const target = cert.verificationUrl ?? cert.certificateUrl;

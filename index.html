@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Must run before the browser restores the scroll position: `scroll-behavior:
+    <!-- Must run before the browser restores the scroll position: `scroll-behaviour:
          smooth` below makes Chrome animate its own restore, which reads as the page
          sliding after a reload. Anchor clicks are user gestures, so smooth returns on
          the first one and link scrolling is unchanged. -->
@@ -48,7 +48,7 @@
          SEO / METADATA
     ========================== -->
     <title>Venkata Vishnu Vardhan Thota — Data Analyst | SQL, Python, Power BI</title>
-    <meta name="description" content="Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, forecasting, churn and sentiment projects with 2 live apps. Available immediately for internships and full-time roles." />
+    <meta name="description" content="Fresher Data Analyst skilled in SQL, Python, Power BI and Tableau. A/B testing, forecasting, churn and sentiment projects with 2 live apps. Available immediately for internships and entry-level roles." />
     <meta name="author" content="Venkata Vishnu Vardhan Thota" />
     <meta name="theme-color" content="#F7F7F5" />
 
@@ -77,21 +77,76 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vishnu-thota.vercel.app/" />
     <meta property="og:title" content="Venkata Vishnu Vardhan Thota — Data Analyst" />
-    <meta property="og:description" content="7 projects · 2 live apps · SQL, Python, Power BI, Tableau. Open to internships and full-time roles. Available immediately." />
+    <meta property="og:description" content="7 projects · 2 live apps · SQL, Python, Power BI, Tableau. Open to internships and entry-level roles. Available immediately." />
     <meta property="og:image" content="https://vishnu-thota.vercel.app/og.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Venkata Vishnu Vardhan Thota — Data Analyst" />
-    <meta name="twitter:description" content="7 projects · 2 live apps · SQL, Python, Power BI, Tableau. Open to internships and full-time roles. Available immediately." />
+    <meta name="twitter:description" content="7 projects · 2 live apps · SQL, Python, Power BI, Tableau. Open to internships and entry-level roles. Available immediately." />
     <meta name="twitter:image" content="https://vishnu-thota.vercel.app/og.png" />
 
     <!-- =========================
-         FONTS (CDN)
+         FONTS (self-hosted)
     ========================== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet" />
+    <!-- Same files, subsets and unicode-ranges Google's CSS served, so the
+         glyphs do not change; serving them from this origin drops the
+         render-blocking stylesheet request and the third-party handshake.
+         Only the latin and latin-ext subsets are kept — the page has no
+         Cyrillic, Greek or Vietnamese copy. Hanken's latin file carries the
+         Hero's role line, which is the homepage LCP element, so it is the one
+         font preloaded; `swap` means text paints immediately either way. -->
+    <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            font-style: normal;
+            font-weight: 300 800;
+            font-display: swap;
+            src: url('/fonts/hanken-grotesk-latin-ext.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            font-style: normal;
+            font-weight: 300 800;
+            font-display: swap;
+            src: url('/fonts/hanken-grotesk-latin.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Newsreader';
+            font-style: italic;
+            font-weight: 300 500;
+            font-display: swap;
+            src: url('/fonts/newsreader-italic-latin-ext.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Newsreader';
+            font-style: italic;
+            font-weight: 300 500;
+            font-display: swap;
+            src: url('/fonts/newsreader-italic-latin.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Newsreader';
+            font-style: normal;
+            font-weight: 300 500;
+            font-display: swap;
+            src: url('/fonts/newsreader-roman-latin-ext.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Newsreader';
+            font-style: normal;
+            font-weight: 300 500;
+            font-display: swap;
+            src: url('/fonts/newsreader-roman-latin.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
 
     <!-- The Hero is a React island, so its portrait would otherwise start
          loading only after the bundle runs; preconnect it during parse. -->
@@ -110,7 +165,7 @@
             --bg-panel:      #FFFFFF;
             --ink:           #111111;
             --ink-2:         #666666;
-            --ink-3:         #9A9A94;
+            --ink-3:         #6E6E68;
             --line:          #D9D9D5;
             --line-soft:     #E7E7E3;
             --line-strong:   #C7C7C1;
@@ -188,7 +243,7 @@
             --bg-panel:      #0A0A0A;
             --ink:           #F5F5F2;
             --ink-2:         #A7A7A2;
-            --ink-3:         #6F6F6A;
+            --ink-3:         #787872;
             --line:          #292929;
             --line-soft:     #1A1A1A;
             --line-strong:   #3A3A3A;
@@ -210,7 +265,7 @@
         * { margin: 0; }
         html {
             -webkit-text-size-adjust: 100%;
-            scroll-behavior: smooth;
+            scroll-behaviour: smooth;
             scroll-padding-top: calc(var(--nav-h) + 24px);
         }
         /* The Hero island renders into an empty div, so before React mounts the
@@ -331,6 +386,9 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
+        /* The note about how the apps are hosted belongs to the app, not to the
+           section — see .app-note in src/styles/applications.css — so the only
+           note under a section heading is the intro itself. */
 
         /* =========================
            NAVIGATION
@@ -493,6 +551,18 @@
         .overlay {
             position: fixed;
             inset: 0;
+            /* The list is seven rows of display type plus a header and a footer,
+               and it is the CONTENT that decides how tall, not the window: at
+               150% and 175% browser zoom on a 1080p desk the viewport is 496px
+               and 425px while the list needs 676px. The overlay therefore
+               scrolls itself. Without this the surplus is clipped by the fixed
+               box and the last entries are unreachable, because the page behind
+               them is locked and a wheel has nowhere to go. */
+            height: 100vh;
+            height: 100dvh;
+            overflow-y: auto;
+            /* and it must not hand the scroll on to the locked document. */
+            overscroll-behavior: contain;
             z-index: 80;
             background: var(--bg);
             display: flex;
@@ -527,7 +597,16 @@
         .overlay__nav { margin-top: auto; margin-bottom: auto; }
         .overlay__nav a {
             display: block;
-            font-size: clamp(2.1rem, 11vw, 3.4rem);
+            /* The list has to answer to the height it is given, not the width:
+               seven rows at the old 11vw measured 676px, which is what overflowed
+               a zoomed desktop window. A share of the viewport sizes the rows to
+               the fold they stand in, so all seven fit one screen at 390x844, at
+               1024x496 (the reader's window at 150%) and at 878x425 (175%) —
+               the overlay still scrolls if a window breaks that. The first line
+               is the fallback for a browser without svh; the clamp floors at
+               1.35rem so the row stays a touch target, not a caption. */
+            font-size: clamp(1.35rem, 5.2vh, 3.4rem);
+            font-size: clamp(1.35rem, 5.2svh, 3.4rem);
             font-weight: 700;
             letter-spacing: -0.03em;
             text-transform: uppercase;
@@ -684,17 +763,32 @@
            "Power BI" over "· Tableau" — and never after it. */
         .core-cell__pair { white-space: nowrap; }
 
-        /* Two columns: the group takes whatever width is left, the used-across panel is
-           a fixed 320px. There is no column gap — the panel's own padding is the space,
-           so the 320px stays the 320px the layout was drawn against and its left rule is
-           the only divider the row needs. Baseline rather than start alignment: the first
-           line of the panel is a serif number, and putting it on the same baseline as the
-           group index and the title is what makes two columns of very different type read
-           as one row. */
+        /* Two columns: the group heading on the left, the per-skill proof list on the
+           right. There is no column gap — the list's own padding is the space, so its
+           left rule is the only divider the row needs. Baseline rather than start
+           alignment: the first pill sits on the same baseline as the group index and
+           the title, which is what makes two columns of very different type read as
+           one row.
+
+           The list carries no .reveal, and that is the fix rather than an omission.
+           One reveal over all five rows asked the observer for 16% of 2548px —
+           407.7px of a 547.4px root — so it waited 469px of scroll past the point its
+           own top edge entered the window, and at 1024x500 the most the root can ever
+           show is 460 of 2880px, a ratio of 0.1597 against a 0.16 threshold: the
+           groups never appeared there at all. A threshold is a share of the
+           element's own height, so one tall element is the wrong unit to observe.
+           The rows are on the page from the first paint; the heading and the tile
+           strip above them still reveal on the page's own terms, and the air between
+           the strip and the first group is 74.7px at 125%, 81px at 100% and on wider
+           windows, 62.4px at 1024x500 and 41px on the phone — designed space, never a
+           wait. Of that 81px the last pixel is this list's own opening rule, so the
+           longest stretch with nothing painted in it is 80px. The air is the same
+           with the old class restored in its settled state, which is the point:
+           removing a reveal takes away a wait, not a distance. */
         .skills-list { border-top: var(--hair); }
         .skill-row {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 320px;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             align-items: baseline;
             border-bottom: var(--hair);
             padding-block: 28px;
@@ -731,47 +825,36 @@
         #certifications .tag { font-size: 0.8125rem; letter-spacing: 0.02em; padding: 3px 12px; color: var(--about-body); border-color: var(--line-strong); }
         #skills .tag.key { color: var(--ink); border-color: var(--ink); font-weight: 500; }
 
-        /* The panel. The count takes the serif numeral treatment the Live Apps cards
-           give their headline metric — Newsreader at weight 300, ink, line-height 1 —
-           stepped down for a sidebar, and pairs it with the same small-caps step that
-           sits beside that number. */
-        .used-across { border-left: var(--hair); padding-left: clamp(1.25rem, 2.2vw, 1.75rem); min-width: 0; }
-        .used-across__meta { display: grid; gap: 0.7rem; align-content: start; }
-        .used-across__count { display: flex; align-items: baseline; gap: 0.6rem; }
-        .used-across__num {
-            font-family: var(--serif);
-            font-size: clamp(22px, 1.5vw, 28px);
-            font-weight: 300;
-            letter-spacing: -0.01em;
-            line-height: 1;
-            color: var(--ink);
+        /* Per-skill proof. Each skill is one flowing line — pill first, then the projects
+           that used it — so the evidence sits beside the name instead of in a group-level
+           panel. The links take the treatment the old used-across list used: ink text on
+           a rule of the stronger line step, hover hardening the rule only; the "Used in:"
+           label sits at the faint label step so the names carry the line. When a proof
+           wraps, it wraps inside its own item and never across two skills. */
+        .skill-items {
+            border-left: var(--hair);
+            padding-left: clamp(1.25rem, 2.2vw, 1.75rem);
+            min-width: 0;
+            display: grid;
+            gap: 0.85rem;
+            align-content: start;
+            list-style: none;
+            margin: 0;
         }
-        .used-across__label {
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--label-faint);
+        .skill-item {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: var(--about-body);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            column-gap: 0.75rem;
+            row-gap: 0.3rem;
         }
-
-        /* Seven equal segments, filled from the left in the page's own two steps: ink for
-           used, the rule line for not. The role and the label mean the proportion arrives
-           as text, so no colour carries it alone and the bar needs no focus of its own. */
-        .used-across__bar { display: flex; gap: 4px; }
-        .used-across__bar span { flex: 1 1 0; height: 6px; background: var(--line); }
-        .used-across__bar span.on { background: var(--ink); }
-
-        /* One project per line. The names sit in the page's own ink and carry a rule of
-           their own; the prose lines beside them stay at the body ink, and that contrast
-           of colour — ink against body — plus the underline is what says "this one is a
-           link" before the pointer ever arrives. The underline is set to the stronger step
-           of the rule scale rather than to the text's own ink: 1.76:1 against this
-           background in light, 1.85:1 against black in dark, so it reads as a rule that
-           belongs to the link and never competes with the word it underlines. Hover
-           strengthens the line only; the text is already at full ink, so there is nothing
-           left for it to become. */
-        .used-across__list { display: grid; gap: 6px; margin-top: 0.9rem; }
-        .used-across__list > * { font-size: 0.875rem; line-height: 1.35; color: var(--about-body); }
-        .used-across__list a {
+        .skill-item__used { min-width: 0; }
+        .skill-item__label { color: var(--label-faint); }
+        .skill-item a,
+        .skill-items__note a {
             color: var(--ink);
             text-decoration-line: underline;
             text-decoration-thickness: 1px;
@@ -779,7 +862,68 @@
             text-decoration-color: var(--line-strong);
             transition: text-decoration-color 0.3s var(--ease-soft);
         }
-        .used-across__list a:hover { text-decoration-color: var(--ink); }
+        .skill-item a:hover,
+        .skill-items__note a:hover { text-decoration-color: var(--ink); }
+
+        /* The one group whose skills all belong to a single project carries one proof
+           line under its tag cloud rather than seven identical lines. */
+        .skill-items__note { font-size: 0.875rem; line-height: 1.5; color: var(--about-body); margin-top: 0.9rem; }
+
+        /* =========================
+           FINDINGS STRIP
+        ========================== */
+        /* A quiet band directly under the hero: one measured result per project, each
+           cell a link into its case study. The numerals take the serif treatment the
+           Live Apps cards give their headline metric — Newsreader at weight 300, ink,
+           line-height 1 — and every figure below is traceable to the project's own
+           repository. Four tracks on a wide screen, two on a small tablet, one on a
+           phone; the cell rules follow the core-stack pattern, so a cell that starts a
+           row loses its left rule and every later row picks up a top hair. */
+        .find-strip { border-top: var(--hair); }
+        .find-strip .wrap { padding-block: 30px 34px; }
+        .find-strip__title {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--label-faint);
+            margin-bottom: 1.3rem;
+        }
+        .find-strip__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .find-strip__cell {
+            display: grid;
+            gap: 0.55rem;
+            align-content: start;
+            min-width: 0;
+            text-decoration: none;
+        }
+        .find-strip__list > li { min-width: 0; padding-left: clamp(1.1rem, 1.8vw, 1.5rem); }
+        .find-strip__list > li + li { border-left: var(--hair); }
+        .find-strip__list > li:first-child { padding-left: 0; }
+        .find-strip__num {
+            font-family: var(--serif);
+            font-size: clamp(24px, 1.8vw, 30px);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            line-height: 1;
+            color: var(--ink);
+            font-variant-numeric: tabular-nums;
+        }
+        .find-strip__label { font-size: 0.8125rem; line-height: 1.45; color: var(--about-body); }
+        .find-strip__project {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--label-faint);
+        }
+        .find-strip__cell a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
         /* =========================
            ABOUT
@@ -1095,7 +1239,17 @@
         /* =========================
            RESPONSIVE
         ========================== */
-        @media (max-width: 1099px) {
+        /* The header's own switch, and it is now separate from the 1099px line
+           below because the two are answering different questions. The inline
+           nav is wordmark + seven links + the résumé pill + the theme control on
+           one flex line inside a box that loses 4.5vw of gutter at each side;
+           measured at 1px steps it stops fitting at a layout viewport of 998px
+           (1013px of media width, the difference being a classic scrollbar), and
+           fits at every width above that. Under the old shared 1099px line the
+           menu appeared while the inline row still had 100px to spare.
+           The About stacking that shares this breakpoint is a different decision
+           about a different section, so it keeps 1099px and stays where it is. */
+        @media (max-width: 1013px) {
             .nav__links { display: none; }
             .menu-btn {
                 display: inline-flex;
@@ -1109,20 +1263,38 @@
             }
             .menu-btn .bars { display: inline-flex; flex-direction: column; gap: 4px; }
             .menu-btn .bars i { width: 20px; height: 1px; background: var(--ink); display: block; }
-
-            .about__grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
-            .about__sticky { position: static; }
-            /* Stacked, the card would otherwise run the full width of a tablet and
-               turn five rows into a ruled table. It keeps its own measure instead. */
-            .about__card { max-width: 34rem; }
         }
 
-        /* The width a Skills group stops being two columns. A 320px panel beside a group
+        @media (max-width: 1099px) {
+            /* Stacked, the reader meets the argument before the register: heading,
+               pull line, the four paragraphs, the ask, and only then the five facts
+               and the button. The card has to land between the ask and the button,
+               which no `order` on the two wrappers can express — they are the grid's
+               only items — so `display: contents` promotes their children into the
+               grid and `order` moves the card and the button past the copy. Nothing
+               in the markup moves, and the desktop two-column layout is untouched.
+               `gap` goes to zero because the pieces now carry their own rhythm: the
+               grid gap would sit on top of every paragraph margin and double the
+               space between lines of one argument. The wrappers generate no box
+               below 1100px, so their `.reveal` fade stops applying here and the copy
+               simply paints — the trade `display: contents` asks for. */
+            .about__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+            .about__sticky, .about__body { display: contents; }
+            /* Stacked, the card would otherwise run the full width of a tablet and
+               turn five rows into a ruled table. It keeps its own measure instead.
+               `position: static` used to sit here; a `contents` box has no position
+               to hold, so the card's own flow is now the only thing that places it. */
+            .about__card { max-width: 34rem; order: 1; margin-bottom: 2rem; }
+            .about__ask { margin-bottom: 2rem; }
+            .about__cta { order: 2; }
+        }
+
+        /* The width a Skills group stops being two columns. A proof list beside a group
            title at 29px needs more than a small tablet's content box can give, and a
            390px phone needs a great deal more than it has. Below this line the group
-           stacks in the order the reader needs it: title, description, one continuous tag
-           list, then the count and its bar on a single row with the names underneath. The
-           panel loses only its column, its rule and its indent — nothing it says. */
+           stacks in the order the reader needs it: title, description, then the skills
+           with their projects underneath. The proof list loses only its column, its rule
+           and its indent — nothing it says. */
         @media (max-width: 859.98px) {
             /* A 32px tool name cannot hold a phone's content box even in four cells, so
                the strip doubles up — evenly, in two equal tracks, because the 1.5fr the
@@ -1139,9 +1311,22 @@
             .core-cell__tool { white-space: normal; }
 
             .skill-row { grid-template-columns: minmax(0, 1fr); row-gap: 1.4rem; }
-            .used-across { border-left: 0; padding-left: 0; }
-            .used-across__meta { display: flex; align-items: center; gap: 0.9rem; }
-            .used-across__bar { flex: 1 1 0; }
+            .skill-items { border-left: 0; padding-left: 0; }
+        }
+
+        /* The findings strip folds in two steps: four tracks to two below 1024, then to
+           one below 560. The rules follow the cells, not the screen — a cell that starts
+           a row loses its left rule, and every later row picks up a top hair — so the
+           band keeps its hairline language at every width. */
+        @media (max-width: 1023.98px) {
+            .find-strip__list { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.6rem; }
+            .find-strip__list > li:nth-child(2n + 1) { border-left: 0; padding-left: 0; }
+            .find-strip__list > li:nth-child(n + 3) { border-top: var(--hair); padding-top: 1.4rem; }
+        }
+        @media (max-width: 559.98px) {
+            .find-strip__list { grid-template-columns: minmax(0, 1fr); }
+            .find-strip__list > li { border-left: 0; padding-left: 0; }
+            .find-strip__list > li:nth-child(n + 2) { border-top: var(--hair); padding-top: 1.4rem; }
         }
 
         @media (max-width: 560px) {
@@ -1166,12 +1351,12 @@
            REDUCED MOTION
         ========================== */
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
+            html { scroll-behaviour: auto; }
             *, *::before, *::after {
                 animation-duration: 0.001ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.001ms !important;
-                scroll-behavior: auto !important;
+                scroll-behaviour: auto !important;
             }
             .reveal { opacity: 1 !important; transform: none !important; }
             .figure.reveal { clip-path: none !important; }
@@ -1192,8 +1377,8 @@
     ========================== -->
     <header class="nav" id="nav">
         <div class="wrap nav__inner">
-            <a href="#top" class="wordmark" aria-label="Vishnu Vardhan — home">
-                Vishnu&nbsp;Vardhan<span class="dot">.</span>
+            <a href="/" class="wordmark" aria-label="Venkata Vishnu Vardhan Thota, home">
+                Vishnu&nbsp;Vardhan&nbsp;Thota<span class="dot">.</span>
             </a>
 
             <nav class="nav__links" aria-label="Primary">
@@ -1223,7 +1408,7 @@
     ========================== -->
     <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
         <div class="overlay__top">
-            <span class="wordmark">Vishnu&nbsp;Vardhan<span class="dot">.</span></span>
+            <span class="wordmark">Vishnu&nbsp;Vardhan&nbsp;Thota<span class="dot">.</span></span>
             <button class="overlay__close" id="overlayClose" aria-label="Close menu">Close <span aria-hidden="true">✕</span></button>
         </div>
         <nav class="overlay__nav" aria-label="Mobile">
@@ -1255,6 +1440,172 @@
         ========================== -->
         <div id="hero-root"></div>
 
+        <!-- The fold cap. The two low-height bands ask for the drop that restores the
+             columns' offset, but how much of it a window can afford depends on how many
+             lines its copy wraps to, and no media query can know that: at the same 614px
+             height a 1164px window affords 0.069 of the figure's width and a 1229px
+             window 0.298, because the wider track takes the sentence from five rows to
+             four and the role from three to two. So the bands state the drop they want
+             and this keeps the most of it that still leaves the actions 16px above the
+             fold. It runs here, after the hero is parsed and before first paint, so the
+             correction is not a layout shift. -->
+        <script>
+            (() => {
+                const BAND = matchMedia('(min-width: 930px) and (max-height: 648px)');
+                const CLEAR = 16;
+                const EPS = 1;
+                let sheet = null, written = '', sig = null, painted = false;
+                /* The entrance animations fill backwards, so at parse time the copy sits
+                   14px below where it settles. Read past every ancestor translate, or the
+                   cap pays for air that is about to disappear. */
+                const lift = (el) => {
+                    let ty = 0;
+                    for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+                        const t = getComputedStyle(n).transform;
+                        if (t && t !== 'none') ty += new DOMMatrixReadOnly(t).m42;
+                    }
+                    return ty;
+                };
+                /* Everything the solve reads, in pixels, none of it a function of the
+                   drop itself: the copy's internal height is measured from its own
+                   column top to its actions, which cancels both the drop and the
+                   shared entrance translate. The cap feeds back into the declaration
+                   it reads -- once written, getComputedStyle returns the cap rather
+                   than the band's target -- so the sheet is disabled for that one
+                   read instead of having its text cleared and rewritten. */
+                const measure = () => {
+                    const hero = document.querySelector('.hero');
+                    if (!hero) return null;
+                    if (sheet) sheet.disabled = true;
+                    const target = parseFloat(getComputedStyle(hero).getPropertyValue('--copy-drop'));
+                    if (sheet) sheet.disabled = false;
+                    const fig = hero.querySelector('.portrait__img');
+                    const btns = [...hero.querySelectorAll('.hero__btn')];
+                    const id = hero.querySelector('.hero__identity');
+                    const cta = hero.querySelector('.hero__cta');
+                    const proof = hero.querySelector('.hero__proof');
+                    const figW = fig && fig.getBoundingClientRect().width;
+                    if (!btns.length || !(figW > 0) || !isFinite(target) || !id || !cta) return null;
+                    const ir = id.getBoundingClientRect(), cr = cta.getBoundingClientRect();
+                    return { btns, figW, target, copyH: cr.bottom - ir.top,
+                        proofH: proof ? proof.getBoundingClientRect().height : 0 };
+                };
+                const write = (text) => {
+                    if (text === written) return;
+                    if (!sheet) { sheet = document.createElement('style'); sheet.id = 'hero-fold-cap'; document.head.appendChild(sheet); }
+                    sheet.textContent = text;
+                    written = text;
+                };
+                const apply = () => {
+                    const m = measure();
+                    if (!m) return false;
+                    const now = [BAND.matches ? 1 : 0, innerWidth, innerHeight, m.figW, m.target, m.copyH, m.proofH];
+                    /* After first paint the cap is a settled correction, not a live
+                       solve. Re-running it on every fonts.ready and resize rewrote the
+                       variable and moved hero__body under the reader, so only a
+                       measured change of a pixel or more earns another solve. The band
+                       flag and the declared target are not measurements: they compare
+                       exactly. */
+                    if (painted && sig && now.every((v, i) => (i === 0 || i === 4 ? v === sig[i] : Math.abs(v - sig[i]) < EPS))) return true;
+                    const { btns, figW, target } = m;
+                    if (!BAND.matches) { write(''); sig = now; return true; }
+                    const lifts = btns.map(lift);
+                    const gap = () => Math.min(...btns.map((b, i) => innerHeight - b.getBoundingClientRect().bottom + lifts[i]));
+                    let drop = target;
+                    const set = (d) => { drop = d; write(`.hero{--copy-drop:${d}}`); return gap(); };
+                    /* The gap falls as the drop grows, but not at one rate: it closes by
+                       figW per unit while the portrait is the taller track and by figW/2
+                       once the copy overtakes it, because the hero centres its content
+                       against its own min-height and takes half the column's gain back off
+                       the top. A solve that assumes either rate lands on the wrong side of
+                       that crossover, so bisect [0, target] instead and keep the last drop
+                       that measured at or above the floor: monotone in, largest affordable
+                       out, and no model of the slope to get wrong. */
+                    let g = set(target);
+                    let lo = 0, hi = target;
+                    if (g < CLEAR) {
+                        if (set(0) >= CLEAR) {
+                            for (let i = 0; i < 14; i++) {
+                                const mid = Math.floor(((lo + hi) / 2) * 10000) / 10000;
+                                if (mid <= lo || mid >= hi) break;
+                                if (set(mid) >= CLEAR) lo = mid; else hi = mid;
+                            }
+                            set(lo);
+                        }
+                    }
+                    /* An unconstrained window keeps the band's own declaration, so the
+                       cap leaves no trace at all where it had nothing to take away. */
+                    if (drop >= target) write('');
+                    sig = now;
+                    return true;
+                };
+                if (!apply()) {
+                    const root = document.getElementById('hero-root');
+                    if (root) {
+                        const mo = new MutationObserver(() => { if (apply()) mo.disconnect(); });
+                        mo.observe(root, { childList: true, subtree: true });
+                        /* The case-study documents carry the shell without the hero. */
+                        addEventListener('load', () => mo.disconnect(), { once: true });
+                    }
+                }
+                let queued = false;
+                addEventListener('resize', () => {
+                    if (queued) return;
+                    queued = true;
+                    requestAnimationFrame(() => { queued = false; apply(); });
+                }, { passive: true });
+                /* swap means the first measurement can be against a fallback face. */
+                document.fonts.ready.then(apply);
+                /* Two frames: the first callback runs before its own paint, so the
+                   second is the first moment a paint is known to have happened. */
+                requestAnimationFrame(() => requestAnimationFrame(() => { painted = true; }));
+            })();
+        </script>
+
+        <!-- =========================
+             WHAT THE PROJECTS FOUND
+        ========================== -->
+        <!-- One measured result per project, each cell a link into its case study.
+             Every figure is traceable to the project's own repository: the A/B lift
+             and its sample size (ab_test_analysis.ipynb), the category margins
+             (retail README), the contact-frequency attrition ladder (banking
+             README), and the XGBoost holdout error (Rossmann README). -->
+        <section class="find-strip" aria-labelledby="findings-title">
+            <div class="wrap reveal">
+                <h2 class="find-strip__title" id="findings-title">What the projects found</h2>
+                <ul class="find-strip__list">
+                    <li>
+                        <a class="find-strip__cell" href="/projects/ab-testing">
+                            <span class="find-strip__num">+0.77&nbsp;pp</span>
+                            <span class="find-strip__label">Conversion lift over the PSA control across 588,101 users</span>
+                            <span class="find-strip__project">Marketing A/B Testing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="find-strip__cell" href="/projects/retail-sales">
+                            <span class="find-strip__num">2.49%</span>
+                            <span class="find-strip__label">Furniture margin, against 12.47% across all categories</span>
+                            <span class="find-strip__project">Retail Sales Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="find-strip__cell" href="/projects/banking-churn">
+                            <span class="find-strip__num">49.1%</span>
+                            <span class="find-strip__label">of the 230 customers with 5+ contacts in the last 12 months left &mdash; 16.07% leave overall</span>
+                            <span class="find-strip__project">Banking Churn Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="find-strip__cell" href="/projects/rossmann">
+                            <span class="find-strip__num">6.72%</span>
+                            <span class="find-strip__label">daily forecast error, chain-wide, over 84 unseen days</span>
+                            <span class="find-strip__project">Rossmann Sales Forecasting</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <!-- =========================
              ABOUT
         ========================== -->
@@ -1276,19 +1627,15 @@
                             </div>
                             <div class="about__row">
                                 <dt class="about__key">Tools</dt>
-                                <dd class="about__val">SQL · Excel · Power BI · Tableau · Python</dd>
-                            </div>
-                            <div class="about__row">
-                                <dt class="about__key">Focus</dt>
-                                <dd class="about__val">A/B testing · Forecasting · Customer churn · Dashboards · Text analytics</dd>
+                                <dd class="about__val">SQL · Excel · Power BI · Tableau · Python · Machine learning</dd>
                             </div>
                             <div class="about__row">
                                 <dt class="about__key">Location</dt>
-                                <dd class="about__val">Proddatur, Andhra Pradesh, India</dd>
+                                <dd class="about__val">Proddatur, Kadapa, Andhra Pradesh, India</dd>
                             </div>
                             <div class="about__row">
                                 <dt class="about__key">Status</dt>
-                                <dd class="about__val">Available immediately · Internship or full-time</dd>
+                                <dd class="about__val">Available immediately · Internship or entry-level role · Remote, hybrid or on-site</dd>
                             </div>
                             <div class="about__row">
                                 <dt class="about__key">Certified</dt>
@@ -1298,10 +1645,11 @@
                     </div>
                     <div class="about__body reveal" style="--d:0.1s">
                         <p class="about__intro">I answer business questions with SQL, Excel and dashboards, and I show my working.</p>
-                        <p class="about__lede">I'm a final-year B.Tech student in AI &amp; Data Science who wants to work as a Data Analyst. I handle the whole job: pulling and cleaning data with SQL and Excel, analysing it in Python, and presenting the findings in Power BI, Tableau and Streamlit.</p>
-                        <p class="about__lede">Across 7 projects I've tested whether an ad lifts conversions, forecast daily sales for 1,115 stores, analysed why telecom customers churn, and scored sentiment on 568,454 product reviews. Two of them run as live apps.</p>
-                        <p class="about__lede">What I do best is check the data before trusting it: I've caught a silent import error and a NULL-handling bug that were producing wrong numbers. Then I explain the result, including what the data can't support, in plain language.</p>
-                        <p class="about__ask"><strong>Looking for:</strong> a Data Analyst internship or full-time entry-level role, remote, hybrid or on-site. <strong>Available immediately;</strong> I can manage my B.Tech alongside the role.</p>
+                        <p class="about__lede">I'm a final-year B.Tech student in AI &amp; Data Science who wants to work as a Data Analyst. I cover the full workflow: pulling data with SQL, cleaning and analysing it in Python, profiling it in Excel, and presenting the findings in Power BI, Tableau and Streamlit.</p>
+                        <p class="about__lede">Across 7 projects I've compared conversion between an ad group and a control, forecast daily sales for 1,115 stores, analysed which telecom and credit card customers churn, built Power BI reports on retail sales and banking attrition, and scored sentiment on 568,454 product reviews. Two of them run as live apps.</p>
+                        <p class="about__lede">What I do best is check the data before trusting it. I checked row counts after loading the A/B data into MySQL (all 588,101 users), turned blank competitor distances into NULL so they were not read as zero-distance rivals, and dropped two columns from the credit card churn file that were another model's churn predictions. Then I explain the result, including what the data can't support, in plain language.</p>
+                        <p class="about__lede">The work I'm most sure of is SQL, cleaning data and turning the answer into a Power BI or Tableau dashboard. Forecasting, classification and text analysis sit alongside that, and I can explain how each one works. All seven projects use public datasets, so the next thing I want is real business data to work on.</p>
+                        <p class="about__ask"><strong>Looking for:</strong> a Data Analyst internship or entry-level role, remote, hybrid or on-site. <strong>Available immediately.</strong></p>
                         <a class="about__cta" href="#projects">See the projects behind this work <span class="arw" aria-hidden="true">↓</span></a>
                     </div>
                 </div>
@@ -1309,7 +1657,7 @@
         </section>
 
         <!-- =========================
-             SELECTED WORK
+             PROJECTS
         ========================== -->
         <section class="section section--rule" id="projects" aria-labelledby="projects-title">
             <div class="wrap">
@@ -1317,8 +1665,8 @@
                     <span class="sec-index">02 / Projects</span>
                     <div class="sec-head__body">
                         <div class="sec-title-row">
-                            <h2 class="display-l" id="projects-title">Selected<br />Projects</h2>
-                            <p class="sec-note">Seven selected data, analytics, and machine-learning projects — forecasting, experimentation, churn, sentiment, and pricing. Hover or focus a row to preview it; open a row for the full case study.</p>
+                            <h2 class="display-l" id="projects-title">Projects</h2>
+                            <p class="sec-note">Seven projects, each with a case study covering the business question, the data, the method, the result and its limits. Hover or focus a row to preview it; open a row for the full case study.</p>
                         </div>
                     </div>
                 </div>
@@ -1326,7 +1674,7 @@
                 <div class="projects" id="root"></div>
 
                 <div class="work-foot reveal">
-                    <span class="label" style="color:var(--ink-3)">Selected projects · 2 of many</span>
+                    <span class="label" style="color:var(--ink-2)">7 projects · all on GitHub</span>
                     <a class="project__link" href="https://github.com/Venkatavishnuvardhanthota" target="_blank" rel="noopener noreferrer" aria-label="All repositories on GitHub (opens in new tab)">All repositories <span class="arw" aria-hidden="true">↗</span></a>
                 </div>
             </div>
@@ -1342,7 +1690,7 @@
                     <div class="sec-head__body">
                         <div class="sec-title-row">
                             <h2 class="display-l" id="apps-title">Live Apps</h2>
-                            <p class="sec-note">Two apps you can use right now. Paste a review or score a customer profile and watch the model respond. If an app is asleep, click "Yes, get this app back up!" and give it a short wait.</p>
+                            <p class="sec-note">Two apps you can use right now. Paste a review or score a customer profile and watch the model respond.</p>
                         </div>
                     </div>
                 </div>
@@ -1362,7 +1710,7 @@
                     <div class="sec-head__body">
                         <div class="sec-title-row">
                             <h2 class="display-l" id="skills-title">Skills</h2>
-                            <p class="sec-note">Every skill group is tied to the projects that used it. Click a project to open the case study.</p>
+                            <p class="sec-note">Every skill names the projects that used it. Click a project to open the case study.</p>
                         </div>
                         <!-- The stack in the order the work happens in, not alphabetically:
                              ask the data, analyse it, show it on a dashboard, then the
@@ -1371,48 +1719,40 @@
                             <div class="core-cell"><span class="core-cell__label">Query</span><span class="core-cell__tool">SQL (MySQL)</span></div>
                             <div class="core-cell"><span class="core-cell__label">Analyse</span><span class="core-cell__tool">Python</span></div>
                             <div class="core-cell"><span class="core-cell__label">Dashboards</span><span class="core-cell__tool">Power BI <span class="core-cell__pair">· Tableau</span></span></div>
-                            <div class="core-cell"><span class="core-cell__label">Spreadsheet</span><span class="core-cell__tool">Excel</span></div>
+                            <div class="core-cell"><span class="core-cell__label">Spreadsheet</span><span class="core-cell__tool">Excel pivots</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Each group is one row: the group on the left, and a fixed 320px
-                     column on the right that answers "how much of the work used this"
-                     in three parts — a count set in the same serif the Live Apps metrics
-                     use, seven segments drawn to that proportion, and the projects named
-                     one to a line. All five rows are on the page at once, and nothing
-                     here opens, closes or moves. -->
-                <div class="skills-list reveal">
+                <!-- Each group is one row: the group on the left, and on the right one line
+                     per skill that names the projects which actually used it. Every proof
+                     comes from the project's own repository — the files, notebooks and
+                     dashboards the case studies are built on. All five rows are on the
+                     page at once, and nothing here opens, closes or moves. -->
+                <div class="skills-list">
                     <div class="skill-row">
                         <div class="grp">
                             <span class="grp__idx">01</span>
                             <div class="grp__body">
                                 <h3 class="grp__title">Data Analytics</h3>
-                                <p class="grp__desc">Cleaning and exploring data, writing SQL to answer business questions, and turning results into a decision.</p>
-                                <div class="tags">
-                                    <span class="tag key">SQL</span><span class="tag key">Python</span>
-                                    <span class="tag key">Excel</span><span class="tag">MySQL</span>
-                                    <span class="tag">SQL Window Functions</span><span class="tag">Pandas</span>
-                                    <span class="tag">NumPy</span><span class="tag">Pivot Tables</span>
-                                    <span class="tag">Power Query</span><span class="tag">Statistics</span>
-                                    <span class="tag">Hypothesis Testing</span><span class="tag">A/B Testing</span>
-                                    <span class="tag">EDA</span><span class="tag">Data Cleaning &amp; Wrangling</span>
-                                </div>
+                                <p class="grp__desc">Cleaning and exploring data, writing SQL to answer business questions, and turning results into a recommendation.</p>
                             </div>
                         </div>
-                        <div class="used-across">
-                            <div class="used-across__meta">
-                                <p class="used-across__count"><span class="used-across__num">5 / 7</span><span class="used-across__label">Projects</span></p>
-                                <div class="used-across__bar" role="img" aria-label="Used in 5 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
-                            </div>
-                            <div class="used-across__list">
-                                <a href="/projects/rossmann">Rossmann Store Sales Forecasting</a>
-                                <a href="/projects/ab-testing">Marketing A/B Testing Analysis</a>
-                                <a href="/projects/customer-churn">Customer Churn Prediction</a>
-                                <a href="/projects/retail-sales">Retail Sales Analysis</a>
-                                <a href="/projects/banking-churn">Banking Churn Analysis</a>
-                            </div>
-                        </div>
+                        <ul class="skill-items">
+                            <li class="skill-item"><span class="tag key">SQL</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a>, <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag key">Excel</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a></span></li>
+                            <li class="skill-item"><span class="tag">MySQL</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a>, <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">SQL Window Functions</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">NumPy</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/product-sentiment">Product Sentiment Analysis</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">Pandas</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag">Data Cleaning &amp; Wrangling</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag">Pivot Tables</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a></span></li>
+                            <li class="skill-item"><span class="tag">Statistics</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a></span></li>
+                            <li class="skill-item"><span class="tag">Hypothesis Testing</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a></span></li>
+                            <li class="skill-item"><span class="tag">A/B Testing</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a></span></li>
+                            <li class="skill-item"><span class="tag">Segment Analysis</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">EDA</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a>, <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                        </ul>
                     </div>
 
                     <div class="skill-row">
@@ -1421,57 +1761,42 @@
                             <div class="grp__body">
                                 <h3 class="grp__title">Data Visualization &amp; BI</h3>
                                 <p class="grp__desc">Dashboards and visual narratives that make the insight obvious at a glance.</p>
-                                <div class="tags">
-                                    <span class="tag key">Power BI</span><span class="tag key">Tableau</span>
-                                    <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
-                                    <span class="tag">Plotly</span><span class="tag">Dashboard Development</span>
-                                    <span class="tag">KPI Reporting</span><span class="tag">DAX</span>
-                                </div>
                             </div>
                         </div>
-                        <div class="used-across">
-                            <div class="used-across__meta">
-                                <p class="used-across__count"><span class="used-across__num">5 / 7</span><span class="used-across__label">Projects</span></p>
-                                <div class="used-across__bar" role="img" aria-label="Used in 5 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
-                            </div>
-                            <div class="used-across__list">
-                                <a href="/projects/rossmann">Rossmann Store Sales Forecasting</a>
-                                <a href="/projects/ab-testing">Marketing A/B Testing Analysis</a>
-                                <a href="/projects/product-sentiment">Product Review Sentiment Analysis</a>
-                                <a href="/projects/retail-sales">Retail Sales Analysis</a>
-                                <a href="/projects/banking-churn">Banking Churn Analysis</a>
-                            </div>
-                        </div>
+                        <ul class="skill-items">
+                            <li class="skill-item"><span class="tag key">Power BI</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag key">Tableau</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a></span></li>
+                            <li class="skill-item"><span class="tag">Matplotlib</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag">Seaborn</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a>, <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/product-sentiment">Product Sentiment Analysis</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">Plotly</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/product-sentiment">Product Sentiment Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">Dashboard Development</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a>, <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a>, <a href="/projects/product-sentiment">Product Sentiment Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">KPI Reporting</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">DAX</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">Power Query</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/banking-churn">Banking Churn Analysis</a>, <a href="/projects/retail-sales">Retail Sales Analysis</a></span></li>
+                        </ul>
                     </div>
 
-                    <!-- The one group that is in everything, so it names the evidence
-                         rather than reciting all seven titles: two lines of plain text
-                         and one link into the live apps. -->
+                    <!-- The language, the version control and the notebook every case
+                         study runs in, then the two live apps and the tests that guard
+                         them. SQL sits here too: it is the same skill the Data
+                         Analytics row opens with, not a second record of it. -->
                     <div class="skill-row">
                         <div class="grp">
                             <span class="grp__idx">03</span>
                             <div class="grp__body">
                                 <h3 class="grp__title">Programming &amp; Tools</h3>
-                                <p class="grp__desc">Version control, notebooks, and Streamlit for turning models into live apps.</p>
-                                <div class="tags">
-                                    <span class="tag key">Python</span><span class="tag key">SQL</span>
-                                    <span class="tag">Java</span><span class="tag">Git</span>
-                                    <span class="tag">GitHub</span><span class="tag">Streamlit</span>
-                                    <span class="tag">Jupyter Notebook</span>
-                                </div>
+                                <p class="grp__desc">Python, SQL and Jupyter carry the analysis, Git and GitHub keep the history, and Streamlit and pytest ship the result.</p>
                             </div>
                         </div>
-                        <div class="used-across">
-                            <div class="used-across__meta">
-                                <p class="used-across__count"><span class="used-across__num">7 / 7</span><span class="used-across__label">Projects</span></p>
-                                <div class="used-across__bar" role="img" aria-label="Used in 7 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
-                            </div>
-                            <div class="used-across__list">
-                                <span>Git &amp; GitHub in every project</span>
-                                <a href="#live-apps">Streamlit in the 2 live apps</a>
-                                <span>Jupyter in the analysis notebooks</span>
-                            </div>
-                        </div>
+                        <ul class="skill-items">
+                            <li class="skill-item"><span class="tag key">Python</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag key">SQL</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/ab-testing">Marketing A/B Testing</a>, <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/banking-churn">Banking Churn Analysis</a></span></li>
+                            <li class="skill-item"><span class="tag">Git</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag">GitHub</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag">Jupyter Notebook</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="#projects">all seven projects</a></span></li>
+                            <li class="skill-item"><span class="tag key">Streamlit</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/product-sentiment">Product Sentiment Analysis</a> (the 2 live apps)</span></li>
+                            <li class="skill-item"><span class="tag">pytest</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a></span></li>
+                        </ul>
                     </div>
 
                     <div class="skill-row">
@@ -1480,26 +1805,21 @@
                             <div class="grp__body">
                                 <h3 class="grp__title">Machine Learning</h3>
                                 <p class="grp__desc">Classification, regression and time-series forecasting, with careful evaluation.</p>
-                                <div class="tags">
-                                    <span class="tag key">Scikit-learn</span><span class="tag key">Random Forest</span>
-                                    <span class="tag">Logistic Regression</span><span class="tag">XGBoost</span>
-                                    <span class="tag">Prophet</span><span class="tag">Feature Engineering</span>
-                                    <span class="tag">SMOTE</span><span class="tag">Cross-validation</span>
-                                    <span class="tag">AUC-ROC</span><span class="tag">Model Evaluation</span>
-                                </div>
                             </div>
                         </div>
-                        <div class="used-across">
-                            <div class="used-across__meta">
-                                <p class="used-across__count"><span class="used-across__num">3 / 7</span><span class="used-across__label">Projects</span></p>
-                                <div class="used-across__bar" role="img" aria-label="Used in 3 of 7 projects"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
-                            </div>
-                            <div class="used-across__list">
-                                <a href="/projects/rossmann">Rossmann Store Sales Forecasting</a>
-                                <a href="/projects/customer-churn">Customer Churn Prediction</a>
-                                <a href="/projects/house-price">House Price Prediction</a>
-                            </div>
-                        </div>
+                        <ul class="skill-items">
+                            <li class="skill-item"><span class="tag key">Scikit-learn</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/product-sentiment">Product Sentiment Analysis</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag key">Random Forest</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">Logistic Regression</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">Linear Regression</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">XGBoost</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a></span></li>
+                            <li class="skill-item"><span class="tag">Prophet</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a></span></li>
+                            <li class="skill-item"><span class="tag">Feature Engineering</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">SMOTE</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">Cross-validation</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">AUC-ROC</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/customer-churn">Customer Churn Prediction</a></span></li>
+                            <li class="skill-item"><span class="tag">Model Evaluation</span><span class="skill-item__used"><span class="skill-item__label">Used in:</span> <a href="/projects/rossmann">Rossmann Sales Forecasting</a>, <a href="/projects/customer-churn">Customer Churn Prediction</a>, <a href="/projects/house-price">House Price Prediction</a></span></li>
+                        </ul>
                     </div>
 
                     <div class="skill-row">
@@ -1508,25 +1828,20 @@
                             <div class="grp__body">
                                 <h3 class="grp__title">Natural Language Processing</h3>
                                 <p class="grp__desc">Sentiment analysis and text mining over 568,454 Amazon food reviews.</p>
-                                <div class="tags">
-                                    <span class="tag key">VADER</span><span class="tag key">TF-IDF</span>
-                                    <span class="tag">NLTK</span><span class="tag">TextBlob</span>
-                                    <span class="tag">WordCloud</span><span class="tag">Sentiment Analysis</span>
-                                    <span class="tag">Text Preprocessing</span>
-                                </div>
                             </div>
                         </div>
-                        <div class="used-across">
-                            <div class="used-across__meta">
-                                <p class="used-across__count"><span class="used-across__num">1 / 7</span><span class="used-across__label">Projects</span></p>
-                                <div class="used-across__bar" role="img" aria-label="Used in 1 of 7 projects"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="skill-items">
+                            <div class="tags">
+                                <span class="tag key">VADER</span><span class="tag key">TF-IDF</span>
+                                <span class="tag">NLTK</span><span class="tag">TextBlob</span>
+                                <span class="tag">WordCloud</span><span class="tag">Sentiment Analysis</span>
+                                <span class="tag">Text Preprocessing</span>
                             </div>
-                            <div class="used-across__list">
-                                <a href="/projects/product-sentiment">Product Review Sentiment Analysis</a>
-                            </div>
+                            <p class="skill-items__note">All seven skills in this group are used in <a href="/projects/product-sentiment">Product Sentiment Analysis</a>.</p>
                         </div>
                     </div>
-                </div>            </div>
+
+                    </div>            </div>
         </section>
 
         <!-- =========================
@@ -1574,12 +1889,12 @@
             <div class="wrap">
                 <div class="contact__head">
                     <span class="sec-index reveal">07 / Contact</span>
-                    <h2 class="contact__title reveal" id="contact-title" style="--d:0.05s">
+                    <h2 class="contact__title reveal reveal--edge" id="contact-title" style="--d:0.05s">
                         Let's build<br />something<br /><span class="accent">useful.</span>
                     </h2>
                     <div class="contact__intro">
-                        <p class="contact__avail reveal" style="--d:0.12s">Available immediately for Data Analyst internships and full-time entry-level roles. Email is the fastest way to reach me.</p>
-                        <p class="contact__where reveal" style="--d:0.18s">Based in Kadapa, Andhra Pradesh &middot; open to remote, hybrid or on-site</p>
+                        <p class="contact__avail reveal" style="--d:0.12s">Available immediately for Data Analyst internships and entry-level roles. Email is the fastest way to reach me.</p>
+                        <p class="contact__where reveal" style="--d:0.18s">Based in Proddatur, Kadapa, Andhra Pradesh, India &middot; open to remote, hybrid or on-site</p>
                     </div>
                 </div>
 
@@ -1715,6 +2030,10 @@
                 overlay.setAttribute('aria-hidden', 'false');
                 menuBtn.setAttribute('aria-expanded', 'true');
                 document.body.style.overflow = 'hidden';
+                /* The list scrolls itself now, so opening has to start it at the
+                   top — a menu that reopens wherever the last one was left reads
+                   as a page, not as a menu. */
+                overlay.scrollTop = 0;
                 if (overlayClose) overlayClose.focus();
             }
             function closeMenu(returnFocus) {
@@ -1723,6 +2042,53 @@
                 menuBtn.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
                 if (returnFocus !== false && lastFocus) lastFocus.focus();
+            }
+            /* The document's own scroll-padding is the offset an anchor jump has
+               to respect, so it is read back rather than repeated: the header is
+               74px and the shell gives 24px of air under it, and the two figures
+               cannot drift apart because only one of them is written down. A
+               section may add its own scroll-margin on top of that — #live-apps
+               does — and the browser counts it when it lands a fragment itself,
+               so this has to count it too or the menu and the inline nav would
+               park the same section in two different places. */
+            function anchorOffset(target) {
+                var pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
+                var margin = parseFloat(getComputedStyle(target).scrollMarginTop);
+                return (isFinite(pad) ? pad : 0) + (isFinite(margin) ? margin : 0);
+            }
+            /* A fragment jump moves the page and leaves the caret on <body>, so a
+               keyboard or screen-reader user who opened the menu is suddenly back
+               at the top of the tab order. The section's own heading is what the
+               jump was for, and each section is labelled by it, so that is where
+               focus goes — with preventScroll, because the scroll above has
+               already chosen the position. */
+            function focusSection(id) {
+                var section = document.getElementById(id);
+                if (!section) return;
+                var node = section.querySelector('h1, h2') || section;
+                if (!node.hasAttribute('tabindex')) node.setAttribute('tabindex', '-1');
+                node.focus({ preventScroll: true });
+            }
+            function onEntryClick(e) {
+                if (e.defaultPrevented || e.button !== 0) return;
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                var href = this.getAttribute('href') || '';
+                /* Only the section links are intercepted. The résumé in the
+                   footer is a file in a new tab and keeps the browser's own
+                   behaviour, exactly as it did under the old blanket handler. */
+                if (href.charAt(0) !== '#') return;
+                var target = document.getElementById(href.slice(1));
+                if (!target) return;
+                e.preventDefault();
+                /* Unlock the document first: while the body is overflow-hidden the
+                   window cannot be scrolled, and a scroll asked for in the same
+                   breath as the lock is dropped depends on that order. */
+                closeMenu(false);
+                var top = target.getBoundingClientRect().top + window.pageYOffset - anchorOffset(target);
+                window.scrollTo(0, top > 0 ? top : 0);
+                if (history.replaceState) history.replaceState(null, '', href);
+                else location.hash = href;
+                focusSection(href.slice(1));
             }
             if (menuBtn) menuBtn.addEventListener('click', openMenu);
             if (overlayClose) overlayClose.addEventListener('click', function () { closeMenu(true); });
@@ -1739,7 +2105,7 @@
                 }
             });
             for (var i = 0; i < overlayLinks.length; i++) {
-                overlayLinks[i].addEventListener('click', function () { closeMenu(false); });
+                overlayLinks[i].addEventListener('click', onEntryClick);
             }
 
             /* =========================
@@ -1752,12 +2118,17 @@
             } else {
                 var io = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            io.unobserve(entry.target);
-                        }
+                        if (!entry.isIntersecting) return;
+                        /* A tall unit must not be held back by a fraction of its own
+                           height. The Contact title is three stacked lines -- 405px at
+                           1536 -- so 0.16 asked for 65px of it to be on screen before
+                           any of it painted, and the whole section waited behind it.
+                           An edge unit fires when its top crosses the same margin. */
+                        if (!entry.target.classList.contains('reveal--edge') && entry.intersectionRatio < 0.16) return;
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
                     });
-                }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+                }, { threshold: [0, 0.16], rootMargin: '0px 0px -8% 0px' });
                 Array.prototype.forEach.call(revealEls, function (el) { io.observe(el); });
             }
 

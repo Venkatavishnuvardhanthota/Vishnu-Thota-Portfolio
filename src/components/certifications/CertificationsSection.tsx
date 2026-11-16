@@ -31,7 +31,10 @@ export default function CertificationsSection() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
+      // A credential row carries its certificate image, so it runs 398-895px
+      // tall. A fraction of that height is a wait the reader pays before the
+      // row's own heading paints; the top edge crossing is the whole trigger.
+      { threshold: 0, rootMargin: '0px 0px -6% 0px' },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
