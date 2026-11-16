@@ -5,27 +5,32 @@ node_modules/
 dist/
 build/
 .vite/
+.vercel/
 
 # Environment / secrets
-.env
-.env.local
-.env.*.local
+.env*
 # ...but keep example env config committable
 !.env.example
 
 # Logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Test / coverage
+# Test / coverage / browser audit output
 coverage/
+test-results/
+playwright-report/
+lighthouse-report/
+*.lighthouse.json
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # IDE / editor
 .idea/
@@ -41,3 +46,10 @@ temp/
 # Miscellaneous
 .cache/
 .parcel-cache/
+
+# Archives and large recordings
+*.bundle
+*.zip
+*.mp4
+*.mov
+*.gif
