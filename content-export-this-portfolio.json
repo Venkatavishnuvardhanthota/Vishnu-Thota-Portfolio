@@ -1,0 +1,2740 @@
+{
+  "site": "this-portfolio",
+  "pages": {
+    "/": {
+      "header": {
+        "heading": "header",
+        "text": "Venkata Vishnu Vardhan Thota, home Vishnu Vardhan Thota . Primary About Projects Live Apps Skills Certifications Education Contact Résumé Switch to dark theme Switch to dark theme",
+        "numbers": [],
+        "links": [
+          {
+            "text": "Vishnu Vardhan Thota .",
+            "href": "/"
+          },
+          {
+            "text": "About",
+            "href": "/#about"
+          },
+          {
+            "text": "Projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "Live Apps",
+            "href": "/#live-apps"
+          },
+          {
+            "text": "Skills",
+            "href": "/#skills"
+          },
+          {
+            "text": "Certifications",
+            "href": "/#certifications"
+          },
+          {
+            "text": "Education",
+            "href": "/#education"
+          },
+          {
+            "text": "Contact",
+            "href": "/#contact"
+          },
+          {
+            "text": "Résumé",
+            "href": "/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf"
+          }
+        ],
+        "images": []
+      },
+      "hero": {
+        "heading": "Venkata Vishnu Vardhan Thota",
+        "text": "Venkata Vishnu Vardhan Thota Black-and-white studio portrait of Venkata Vishnu Vardhan Thota Seeking: Data Analyst internship or entry-level role SQL · Excel Power BI Tableau Python Machine learning I check the data before I trust it, then say what the answer can and can't support. Seven projects, from a 588,101-user ad test to a 1,115-store sales forecast. Available immediately View Projects Download Résumé 7 projects 2 live apps IBM & Google certified B.Tech AI & Data Science Final year (2027) Proddatur, Kadapa, Andhra Pradesh, India GitHub LinkedIn venkatavishnuvardhanthota@ gmail.com",
+        "numbers": [
+          "588,101",
+          "1,115",
+          "7",
+          "2",
+          "2027"
+        ],
+        "links": [
+          {
+            "text": "View Projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "Download Résumé",
+            "href": "/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf"
+          },
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota"
+          },
+          {
+            "text": "LinkedIn",
+            "href": "https://www.linkedin.com/in/venkata-vishnu-vardhan-thota"
+          },
+          {
+            "text": "venkatavishnuvardhanthota@ gmail.com",
+            "href": "mailto:venkatavishnuvardhanthota@gmail.com"
+          }
+        ],
+        "images": [
+          {
+            "src": "/hero-portrait.webp",
+            "alt": "Black-and-white studio portrait of Venkata Vishnu Vardhan Thota"
+          }
+        ]
+      },
+      "projects": {
+        "heading": "Projects",
+        "text": "02 / Projects Projects Seven projects, each with a case study covering the business question, the data, the method, the result and its limits. Hover or focus a row to preview it; open a row for the full case study. 01 Marketing A/B Testing Analysis Data Analytics / Experimentation / BI A conversion test on 588,101 users in SQL, Python and Tableau: the ad group converted 0.77 percentage points more than the PSA control, with the assumptions behind the business case stated. +0.77 pp conversion lift 95% CI +0.60 to +0.94 pp, p < 0.001, 588,101 users Key technologies SQL (MySQL) Tableau Python statsmodels View case study 02 Rossmann Store Sales Forecasting Data Analytics / Machine Learning / BI A 12-week, store-level sales forecast for 1,115 Rossmann stores, comparing Prophet and XGBoost on a time-ordered holdout, with SQL, Excel, Python and a four-page Power BI report. 6.72% chain-wide MAPE XGBoost against 32.89% for Prophet at the same daily grain Key technologies SQL (MySQL) Excel Power BI DAX Python View case study 03 Banking Churn Analysis Data Analytics / SQL / BI A SQL, Python and Power BI analysis of 10,127 credit card customers showing where attrition concentrates, with leakage columns removed and a three-page report of DAX measures over the cleaned table and two SQL exports. 12.49% → 20.15% Attrition at 2 versus 3 contacts in the last 12 months, 10,127 customers Key technologies SQL (MySQL) Power BI DAX Python View case study 04 Retail Sales Analysis Data Analytics / BI A Python and Power BI analysis of Sample Superstore sales showing that Furniture earns $742K in sales at a 2.49% margin while Tables, Bookcases and Supplies lose money. 2.49% Furniture margin Against 17.40% for Technology; 3 of 17 sub-categories lose money Key technologies Power BI DAX Python pandas View case study 05 Customer Churn Prediction Machine Learning / Classification A Logistic Regression churn model for 7,043 telecom customers, chosen by leakage-safe cross-validation and deployed as a Streamlit app, with its precision and recall trade-off stated. 77.81% churn recall Logistic Regression, test ROC-AUC 0.8310, 1,407 held-out customers Key technologies Python scikit-learn SMOTE Streamlit Customer Churn Prediction live app (opens in new tab) Live app View case study 06 Product Review Sentiment Analysis NLP / Sentiment Analysis A VADER and TextBlob analysis of 568,454 Amazon food reviews that compares text labels with star ratings, with a Plotly dashboard and a Streamlit app. 80.38% agreement VADER against a star-rating proxy; an always-positive labelling scores 78.07% Key technologies Python VADER TextBlob Plotly Streamlit Product Review Sentiment Analysis live app (opens in new tab) Live app View case study 07 House Price Prediction Machine Learning / Regression A regression study on 545 houses in which a plain Linear Regression edged out a tuned Random Forest on one 109-house split, with overfitting diagnostics and an audited pipeline. R² 0.6583 Linear Regression against 0.5977 for a tuned Random Forest, 109 test houses Key technologies Python pandas scikit-learn matplotlib View case study 7 projects · all on GitHub All repositories on GitHub (opens in new tab) All repositories",
+        "numbers": [
+          "02",
+          "01",
+          "588,101",
+          "0.77",
+          "+0.77 pp",
+          "95%",
+          "+0.60",
+          "+0.94 pp",
+          "0.001",
+          "12",
+          "1,115",
+          "6.72%",
+          "32.89%",
+          "03",
+          "10,127",
+          "12.49%",
+          "20.15%",
+          "2",
+          "3",
+          "04",
+          "$742K",
+          "2.49%",
+          "17.40%",
+          "17",
+          "05",
+          "7,043",
+          "77.81%",
+          "0.8310",
+          "1,407",
+          "06",
+          "568,454",
+          "80.38%",
+          "78.07%",
+          "07",
+          "545",
+          "109",
+          "0.6583",
+          "0.5977",
+          "7"
+        ],
+        "links": [
+          {
+            "text": "Marketing A/B Testing Analysis",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Rossmann Store Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Live app",
+            "href": "https://customer-churn-prediction-0001.streamlit.app/"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Product Review Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "Live app",
+            "href": "https://prduct-sentiment-dashboard.streamlit.app/"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "View case study",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "All repositories",
+            "href": "https://github.com/Venkatavishnuvardhanthota"
+          }
+        ],
+        "images": []
+      },
+      "live-apps": {
+        "heading": "Live Apps",
+        "text": "03 / Live Apps Live Apps Two apps you can use right now. Paste a review or score a customer profile and watch the model respond. 01 Live Customer Churn Prediction Which telecom customers are likely to leave? Open the live Customer Churn Prediction application in a new tab Open Live App View the Customer Churn Prediction case study Read Case Study Hosted on Streamlit's free tier. If an app is asleep, press 'Yes, get this app back up!' and wait up to a minute. A Logistic Regression model, chosen by cross-validated ROC-AUC, scores a customer profile in your browser. On the same held-out set, its 73.35% accuracy is no better than labelling every customer \"stay\" (73.42%), so recall is the metric that matters: the model catches 77.81% of churners. Try it: change Contract Type and compare the predicted risk. Read the probability as relative risk, not an exact chance of leaving. 0.8310 Test ROC-AUC Logistic Regression test recall 77.81% · 7,043 customers · 8,260 training rows after SMOTE Customer Churn Prediction technologies Python scikit-learn SMOTE Streamlit Open the live Customer Churn Prediction application in a new tab Customer Churn Predictor app: model information (Logistic Regression, AUC 0.8310, recall 0.7781, 8,260 training samples) beside the account and service input form Captured from the live application 02 Live Product Review Sentiment Analysis Do food reviews agree with their star ratings? Open the live Product Review Sentiment Analysis application in a new tab Open Live App View the Product Review Sentiment Analysis case study Read Case Study Hosted on Streamlit's free tier. If an app is asleep, press 'Yes, get this app back up!' and wait up to a minute. Paste any product review and the app scores its sentiment with VADER and TextBlob, alongside TF-IDF keywords and a Plotly dashboard of the full corpus. Across 568,454 Amazon food reviews, VADER labels 88.21% positive and agrees with a star-rating proxy 80.38% of the time, which is agreement, not accuracy. Try it: paste a review and click Analyze Review. 80.38% Agreement with star-rating proxy 568,454 reviews · 49.47% of one-star reviews labelled positive Product Review Sentiment Analysis technologies VADER TextBlob TF-IDF Plotly Streamlit Open the live Product Review Sentiment Analysis application in a new tab Product Review Sentiment Analyzer app: review input, benchmark for 568,454 reviews (88.2% positive, 9.8% negative, 2.0% neutral) and 80.4% agreement with star-rating labels Captured from the live application",
+        "numbers": [
+          "03",
+          "01",
+          "73.35%",
+          "73.42%",
+          "77.81%",
+          "0.8310",
+          "7,043",
+          "8,260",
+          "0.7781",
+          "02",
+          "568,454",
+          "88.21%",
+          "80.38%",
+          "49.47%",
+          "88.2%",
+          "9.8%",
+          "2.0%",
+          "80.4%"
+        ],
+        "links": [
+          {
+            "text": "Open Live App",
+            "href": "https://customer-churn-prediction-0001.streamlit.app/"
+          },
+          {
+            "text": "Read Case Study",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Open the live Customer Churn Prediction application in a new tab",
+            "href": "https://customer-churn-prediction-0001.streamlit.app/"
+          },
+          {
+            "text": "Open Live App",
+            "href": "https://prduct-sentiment-dashboard.streamlit.app/"
+          },
+          {
+            "text": "Read Case Study",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "Open the live Product Review Sentiment Analysis application in a new tab",
+            "href": "https://prduct-sentiment-dashboard.streamlit.app/"
+          }
+        ],
+        "images": [
+          {
+            "src": "/app-previews/customer-churn.webp",
+            "alt": "Customer Churn Predictor app: model information (Logistic Regression, AUC 0.8310, recall 0.7781, 8,260 training samples) beside the account and service input form"
+          },
+          {
+            "src": "/app-previews/product-sentiment.webp",
+            "alt": "Product Review Sentiment Analyzer app: review input, benchmark for 568,454 reviews (88.2% positive, 9.8% negative, 2.0% neutral) and 80.4% agreement with star-rating labels"
+          }
+        ]
+      },
+      "skills": {
+        "heading": "Skills",
+        "text": "04 / Skills Skills Every skill names the projects that used it. Click a project to open the case study. Query SQL (MySQL) Analyse Python Dashboards Power BI · Tableau Spreadsheet Excel pivots 01 Data Analytics Cleaning and exploring data, writing SQL to answer business questions, and turning results into a recommendation. SQL Used in: Marketing A/B Testing , Rossmann Sales Forecasting , Banking Churn Analysis Excel Used in: Rossmann Sales Forecasting MySQL Used in: Marketing A/B Testing , Rossmann Sales Forecasting , Banking Churn Analysis SQL Window Functions Used in: Marketing A/B Testing , Banking Churn Analysis NumPy Used in: Rossmann Sales Forecasting , Banking Churn Analysis , Customer Churn Prediction , Product Sentiment Analysis , House Price Prediction Pandas Used in: all seven projects Data Cleaning & Wrangling Used in: all seven projects Pivot Tables Used in: Rossmann Sales Forecasting Statistics Used in: Marketing A/B Testing Hypothesis Testing Used in: Marketing A/B Testing A/B Testing Used in: Marketing A/B Testing Segment Analysis Used in: Marketing A/B Testing , Banking Churn Analysis EDA Used in: Rossmann Sales Forecasting , Banking Churn Analysis , Retail Sales Analysis , Customer Churn Prediction , House Price Prediction 02 Data Visualization & BI Dashboards and visual narratives that make the insight obvious at a glance. Power BI Used in: Rossmann Sales Forecasting , Banking Churn Analysis , Retail Sales Analysis Tableau Used in: Marketing A/B Testing Matplotlib Used in: all seven projects Seaborn Used in: Rossmann Sales Forecasting , Banking Churn Analysis , Retail Sales Analysis , Customer Churn Prediction , Product Sentiment Analysis , House Price Prediction Plotly Used in: Customer Churn Prediction , Product Sentiment Analysis Dashboard Development Used in: Marketing A/B Testing , Rossmann Sales Forecasting , Banking Churn Analysis , Retail Sales Analysis , Product Sentiment Analysis KPI Reporting Used in: Rossmann Sales Forecasting , Banking Churn Analysis , Retail Sales Analysis DAX Used in: Rossmann Sales Forecasting , Banking Churn Analysis , Retail Sales Analysis Power Query Used in: Banking Churn Analysis , Retail Sales Analysis 03 Programming & Tools Python, SQL and Jupyter carry the analysis, Git and GitHub keep the history, and Streamlit and pytest ship the result. Python Used in: all seven projects SQL Used in: Marketing A/B Testing , Rossmann Sales Forecasting , Banking Churn Analysis Git Used in: all seven projects GitHub Used in: all seven projects Jupyter Notebook Used in: all seven projects Streamlit Used in: Customer Churn Prediction , Product Sentiment Analysis (the 2 live apps) pytest Used in: Customer Churn Prediction 04 Machine Learning Classification, regression and time-series forecasting, with careful evaluation. Scikit-learn Used in: Rossmann Sales Forecasting , Customer Churn Prediction , Product Sentiment Analysis , House Price Prediction Random Forest Used in: Customer Churn Prediction , House Price Prediction Logistic Regression Used in: Customer Churn Prediction Linear Regression Used in: House Price Prediction XGBoost Used in: Rossmann Sales Forecasting Prophet Used in: Rossmann Sales Forecasting Feature Engineering Used in: Customer Churn Prediction , House Price Prediction SMOTE Used in: Customer Churn Prediction Cross-validation Used in: Customer Churn Prediction , House Price Prediction AUC-ROC Used in: Customer Churn Prediction Model Evaluation Used in: Rossmann Sales Forecasting , Customer Churn Prediction , House Price Prediction 05 Natural Language Processing Sentiment analysis and text mining over 568,454 Amazon food reviews. VADER TF-IDF NLTK TextBlob WordCloud Sentiment Analysis Text Preprocessing All seven skills in this group are used in Product Sentiment Analysis .",
+        "numbers": [
+          "04",
+          "01",
+          "02",
+          "03",
+          "2",
+          "05",
+          "568,454"
+        ],
+        "links": [
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "Retail Sales Analysis",
+            "href": "/projects/retail-sales"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "Marketing A/B Testing",
+            "href": "/projects/ab-testing"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Banking Churn Analysis",
+            "href": "/projects/banking-churn"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "all seven projects",
+            "href": "/#projects"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "Rossmann Sales Forecasting",
+            "href": "/projects/rossmann"
+          },
+          {
+            "text": "Customer Churn Prediction",
+            "href": "/projects/customer-churn"
+          },
+          {
+            "text": "House Price Prediction",
+            "href": "/projects/house-price"
+          },
+          {
+            "text": "Product Sentiment Analysis",
+            "href": "/projects/product-sentiment"
+          }
+        ],
+        "images": []
+      },
+      "about": {
+        "heading": "About",
+        "text": "01 / About About Education B.Tech AI & Data Science · Study World College of Engineering · Final year (2027) Tools SQL · Excel · Power BI · Tableau · Python · Machine learning Location Proddatur, Kadapa, Andhra Pradesh, India Status Available immediately · Internship or entry-level role · Remote, hybrid or on-site Certified IBM Data Science · Google Cloud Data Analytics I answer business questions with SQL, Excel and dashboards, and I show my working. I'm a final-year B.Tech student in AI & Data Science who wants to work as a Data Analyst. I cover the full workflow: pulling data with SQL, cleaning and analysing it in Python, profiling it in Excel, and presenting the findings in Power BI, Tableau and Streamlit. Across 7 projects I've compared conversion between an ad group and a control, forecast daily sales for 1,115 stores, analysed which telecom and credit card customers churn, built Power BI reports on retail sales and banking attrition, and scored sentiment on 568,454 product reviews. Two of them run as live apps. What I do best is check the data before trusting it. I checked row counts after loading the A/B data into MySQL (all 588,101 users), turned blank competitor distances into NULL so they were not read as zero-distance rivals, and dropped two columns from the credit card churn file that were another model's churn predictions. Then I explain the result, including what the data can't support, in plain language. The work I'm most sure of is SQL, cleaning data and turning the answer into a Power BI or Tableau dashboard. Forecasting, classification and text analysis sit alongside that, and I can explain how each one works. All seven projects use public datasets, so the next thing I want is real business data to work on. Looking for: a Data Analyst internship or entry-level role, remote, hybrid or on-site. Available immediately. See the projects behind this work",
+        "numbers": [
+          "01",
+          "2027",
+          "7",
+          "1,115",
+          "568,454",
+          "588,101"
+        ],
+        "links": [
+          {
+            "text": "See the projects behind this work",
+            "href": "/#projects"
+          }
+        ],
+        "images": []
+      },
+      "education": {
+        "heading": "Education",
+        "text": "06 / Education Education The academic path behind the work — B.Tech in progress, diploma completed. 01 · 2024 — 2027 · Expected B.Tech Artificial Intelligence & Data Science Study World College of Engineering, Coimbatore 7.72 CGPA / 10 · In Progress 02 · 2021 — 2024 Diploma Computer Science Government Polytechnic College, Proddatur 8.10 CGPA / 10",
+        "numbers": [
+          "06",
+          "01",
+          "2024 — 2027",
+          "7.72",
+          "10",
+          "02",
+          "2021 — 2024",
+          "8.10"
+        ],
+        "links": [],
+        "images": []
+      },
+      "certifications": {
+        "heading": "Certifications",
+        "text": "05 / Certifications Certifications Independent coursework and job simulations completed alongside projects. 01 Google Cloud Data Analytics Certificate Google Cloud · Credly · Mar 26, 2026 A foundational Google Cloud data analytics certificate covering SQL, data cleaning, analysis, visualization, business intelligence, and cloud data workflows. Google Cloud Data Analytics Certificate covered areas BigQuery SQL Data Cleaning Data Modeling Data Visualization Business Intelligence FOUNDATIONAL Verify the Google Cloud Data Analytics Certificate on Credly in a new tab Verify Google Cloud Data Analytics Certificate issued to Venkata Vishnu Vardhan Thota Actual credential badge 02 IBM Data Science Professional Certificate IBM · Coursera · Apr 7, 2026 Professional Certificate 12 courses A twelve-course professional certificate covering data science methodology, Python, SQL, data analysis, data visualization, and machine learning, with an applied data science capstone. IBM Data Science Professional Certificate covered areas Data Science Methodology Python SQL Data Analysis Data Visualization Machine Learning Applied Capstone Verify the IBM Data Science Professional Certificate on Coursera in a new tab Verify IBM Data Science Professional Certificate issued to Venkata Vishnu Vardhan Thota Actual certificate page 03 Data Analytics Job Simulation Deloitte · Forage · Jan 10, 2026 Certificate of Completion A Deloitte data analytics job simulation completed on Forage, with practical tasks in data analysis and forensic technology. Data Analytics Job Simulation covered areas Data Analysis Forensic Technology View the Data Analytics Job Simulation certificate PDF in a new tab View Certificate Deloitte Data Analytics Job Simulation Certificate of Completion issued to Venkata Vishnu Vardhan Thota Actual certificate page 04 Databases for Developers: Foundations Oracle Dev Gym Certificate of Excellence 100% grade Oracle Dev Gym course, completed with a grade of 100% and taught by Chris Saxon. View the Databases for Developers: Foundations certificate PDF in a new tab View Certificate Oracle Dev Gym Certificate of Excellence in Databases for Developers: Foundations issued to Venkata Vishnu Vardhan Thota Actual certificate page",
+        "numbers": [
+          "05",
+          "01",
+          "26",
+          "2026",
+          "02",
+          "7",
+          "12",
+          "03",
+          "10",
+          "04",
+          "100%"
+        ],
+        "links": [
+          {
+            "text": "Verify",
+            "href": "https://www.credly.com/badges/33becd13-1be1-44a8-9ead-363bd886265e"
+          },
+          {
+            "text": "",
+            "href": "https://www.credly.com/badges/33becd13-1be1-44a8-9ead-363bd886265e"
+          },
+          {
+            "text": "Verify",
+            "href": "https://coursera.org/verify/professional-cert/4LEROUKB27HZ"
+          },
+          {
+            "text": "",
+            "href": "https://coursera.org/verify/professional-cert/4LEROUKB27HZ"
+          },
+          {
+            "text": "View Certificate",
+            "href": "/certificates/deloitte-data-analytics-job-simulation.pdf"
+          },
+          {
+            "text": "",
+            "href": "/certificates/deloitte-data-analytics-job-simulation.pdf"
+          },
+          {
+            "text": "View Certificate",
+            "href": "/certificates/oracle-databases-for-developers-foundations.pdf"
+          },
+          {
+            "text": "",
+            "href": "/certificates/oracle-databases-for-developers-foundations.pdf"
+          }
+        ],
+        "images": [
+          {
+            "src": "/cert-previews/google-cloud-data-analytics.webp",
+            "alt": "Google Cloud Data Analytics Certificate issued to Venkata Vishnu Vardhan Thota"
+          },
+          {
+            "src": "/cert-previews/ibm-data-science.webp",
+            "alt": "IBM Data Science Professional Certificate issued to Venkata Vishnu Vardhan Thota"
+          },
+          {
+            "src": "/cert-previews/deloitte-data-analytics-job-simulation.webp",
+            "alt": "Deloitte Data Analytics Job Simulation Certificate of Completion issued to Venkata Vishnu Vardhan Thota"
+          },
+          {
+            "src": "/cert-previews/oracle-databases-for-developers-foundations.webp",
+            "alt": "Oracle Dev Gym Certificate of Excellence in Databases for Developers: Foundations issued to Venkata Vishnu Vardhan Thota"
+          }
+        ]
+      },
+      "contact": {
+        "heading": "Let's build something useful.",
+        "text": "07 / Contact Let's build something useful. Available immediately for Data Analyst internships and entry-level roles. Email is the fastest way to reach me. Based in Proddatur, Kadapa, Andhra Pradesh, India · open to remote, hybrid or on-site Email Email: venkatavishnuvardhanthota@gmail.com venkatavishnuvardhanthota@gmail.com Copy Email Copy LinkedIn LinkedIn: linkedin.com/in/venkata-vishnu-vardhan-thota linkedin.com/in/venkata-vishnu-vardhan-thota GitHub GitHub: github.com/Venkatavishnuvardhanthota github.com/Venkatavishnuvardhanthota Download résumé, PDF DOWNLOAD RÉSUMÉ",
+        "numbers": [
+          "07"
+        ],
+        "links": [
+          {
+            "text": "venkatavishnuvardhanthota@gmail.com",
+            "href": "mailto:venkatavishnuvardhanthota@gmail.com"
+          },
+          {
+            "text": "linkedin.com/in/venkata-vishnu-vardhan-thota",
+            "href": "https://www.linkedin.com/in/venkata-vishnu-vardhan-thota"
+          },
+          {
+            "text": "github.com/Venkatavishnuvardhanthota",
+            "href": "https://github.com/Venkatavishnuvardhanthota"
+          },
+          {
+            "text": "DOWNLOAD RÉSUMÉ",
+            "href": "/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf"
+          }
+        ],
+        "images": []
+      },
+      "footer": {
+        "heading": "footer",
+        "text": "Venkata Vishnu Vardhan Thota Data Analyst Footer GitHub LinkedIn Email Résumé © 2026 Back to top Top",
+        "numbers": [
+          "2026"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota"
+          },
+          {
+            "text": "LinkedIn",
+            "href": "https://www.linkedin.com/in/venkata-vishnu-vardhan-thota"
+          },
+          {
+            "text": "Email",
+            "href": "mailto:venkatavishnuvardhanthota@gmail.com"
+          },
+          {
+            "text": "Résumé",
+            "href": "/resume/Venkata_Vishnu_Vardhan_Thota_Data_Analyst_Resume.pdf"
+          },
+          {
+            "text": "Top",
+            "href": "/#top"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/ab-testing/": {
+      "00-header": {
+        "heading": "Did the ad beat the PSA?",
+        "text": "01 Marketing A/B Testing Analysis Data Analytics / Experimentation / BI Did the ad beat the PSA? Users shown the ad converted at 2.55% vs 1.79% for a PSA control: +0.77 percentage points (95% CI +0.60 to +0.94, p < 0.001) across 588,101 users. SQL · Tableau · Python GitHub",
+        "numbers": [
+          "01",
+          "2.55%",
+          "1.79%",
+          "+0.77",
+          "95%",
+          "+0.60",
+          "+0.94",
+          "0.001",
+          "588,101"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/ab-testing-analysis"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "588,101 Users analysed (one row per user) 2.55% vs 1.79% Ad vs PSA control conversion +0.77 pp Absolute lift, 95% CI +0.60 to +0.94 pp p = 1.7×10⁻¹³ Two-proportion z-test, z = 7.37",
+        "numbers": [
+          "588,101",
+          "2.55%",
+          "1.79%",
+          "+0.77 pp",
+          "95%",
+          "+0.60",
+          "+0.94 pp",
+          "1.7×10",
+          "7.37"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: A marketing team has to decide whether to continue or expand an ad campaign. Two raw percentages are not enough, so I asked three questions. Do users shown the ad convert at a higher rate than a Public Service Announcement (PSA) control group? By how much? How certain is that estimate? I also kept statistical evidence separate from financial value. Answer: the ad group converted 0.77 percentage points more than the PSA control (95% CI +0.60 to +0.94), so I recommend continuing with monitoring, conditional on confirming how users were assigned and measuring real cost and margin.",
+        "numbers": [
+          "01",
+          "0.77",
+          "95%",
+          "+0.60",
+          "+0.94"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source Public Marketing A/B Testing dataset (Kaggle) Grain One row per user Size 588,101 users; six analytical fields: user ID, test group, converted, total ads, peak-exposure weekday, peak-exposure hour Ad group 564,577 users; 14,423 conversions PSA control 23,524 users; 420 conversions Split Roughly 96% ad / 4% PSA Period None. The data has no date column, so the analysis uses weekday and peak-exposure hour, not a calendar timeline.",
+        "numbers": [
+          "02",
+          "588,101",
+          "564,577",
+          "14,423",
+          "23,524",
+          "420",
+          "96%",
+          "4%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline-sql-python-tableau": {
+        "heading": "Pipeline: SQL → Python → Tableau",
+        "text": "03 Pipeline: SQL → Python → Tableau SQL (MySQL) A repeatable staged load: raw CSV to staging table to normalised analysis table, with the converted field mapped to 1/0 and row-count checkpoints. Three analysis queries: conversion rate by group; cumulative conversions by hour using window functions partitioned by group; conversion rate by weekday with explicit Monday-to-Sunday ordering. Python pandas validation and cleaning, group conversion rates, a statsmodels two-proportion z-test with a Wald confidence interval, Matplotlib charts, and a labelled business scenario. The SQL group counts were cross-checked against pandas. Tableau A packaged dashboard in two pages: KPI tiles with a group comparison, and exposure-segment views by weekday and hour.",
+        "numbers": [
+          "03",
+          "1",
+          "0"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-data-quality-found-and-fixed": {
+        "heading": "Data Quality: Found and Fixed",
+        "text": "04 Data Quality: Found and Fixed Row-count checkpoints: the scripted MySQL load counts rows at staging and again after normalisation, and both checks report the full 588,101 users before any analysis ran. Validation: the saved output reports zero nulls, empty strings, duplicate rows and duplicate user IDs. Both groups, all 7 weekdays and all 24 hours are present. Exported index column dropped, going from 7 columns to 6. No dates: I did not invent a daily trend. Chart titles say day and hour mean peak ad exposure, not conversion time. Reporting units: very small p-values print as 0.000000, so I report them in scientific notation, and I keep percentage points separate from relative lift.",
+        "numbers": [
+          "04",
+          "588,101",
+          "7",
+          "24",
+          "6",
+          "0.000000"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-findings": {
+        "heading": "Findings",
+        "text": "05 Findings Ad group converted at 2.5547% (14,423 of 564,577). PSA control converted at 1.7854% (420 of 23,524). Absolute lift is +0.77 percentage points. Relative to the PSA baseline that is +43.1%. These are different quantities and are labelled separately. Two-sided two-proportion z-test: z = 7.37, p = 1.7×10⁻¹³. The 95% Wald confidence interval for the difference is +0.595 to +0.943 pp. Exposure is close between the groups: 24.82 ads per user in the ad group against 24.76 in the PSA group, with medians of 13 and 12. A rank-based test still flags a statistically detectable difference, so the groups are not perfectly balanced. Exploratory segments by peak-exposure weekday: Saturday has the lowest ad conversion rate (about 2.13%); Tuesday has the largest ad-vs-PSA gap (about +1.60 pp); Thursday has the smallest (about +0.14 pp); the Thursday and Sunday intervals include zero. No multiple-comparison correction was applied across the 31 day-and-hour comparisons (7 weekdays and 24 hours), and hours 3 to 6 each have fewer than 100 PSA users. These are hypotheses to test, not targeting rules. By peak-exposure hour, the ad rate is ahead in 23 of the 24 hours; the exception, hour 3, rests on one PSA conversion among 89 users.",
+        "numbers": [
+          "05",
+          "2.5547%",
+          "14,423",
+          "564,577",
+          "1.7854%",
+          "420",
+          "23,524",
+          "+0.77",
+          "+43.1%",
+          "7.37",
+          "1.7×10",
+          "95%",
+          "+0.595",
+          "+0.943 pp",
+          "24.82",
+          "24.76",
+          "13",
+          "12",
+          "2.13%",
+          "+1.60 pp",
+          "+0.14 pp",
+          "31",
+          "7",
+          "24",
+          "3",
+          "6",
+          "100",
+          "23",
+          "89"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "06 Visual Evidence Enlarge figure: Tableau dashboard page 1: KPI tiles showing control rate 1.79%, ad rate 2.55%, lift +0.77 pp and p-value below 0.001, above a bar chart of conversion rate for the ad and PSA groups, with a note on the statistical result and the unknown assignment method. Tableau dashboard page 1: KPI tiles showing control rate 1.79%, ad rate 2.55%, lift +0.77 pp and p-value below 0.001, above a bar chart of conversion rate for the ad and PSA groups, with a note on the statistical result and the unknown assignment method. Tableau dashboard, page 1. KPI tiles and group comparison; lift is shown in percentage points. Enlarge figure: Bar chart of conversion rate: PSA control 1.79% and ad group 2.55%. Bar chart of conversion rate: PSA control 1.79% and ad group 2.55%. Conversion rate by group. Python (Matplotlib). Enlarge figure: Tableau dashboard page with three panels: conversion rate by weekday of peak ad exposure for ad and PSA groups; cumulative conversions by hour of peak ad exposure as a stacked area; and conversion rate by hour of peak ad exposure. Tableau dashboard page with three panels: conversion rate by weekday of peak ad exposure for ad and PSA groups; cumulative conversions by hour of peak ad exposure as a stacked area; and conversion rate by hour of peak ad exposure. Tableau dashboard, page 2. Segments are by peak ad exposure, not conversion time. The cumulative panel is stacked, so the top edge is the combined ad + PSA total. Enlarge figure: Grouped bar chart of conversion rate by weekday of peak ad exposure, Monday to Sunday, for ad and PSA groups. The ad group is higher on every weekday; the gap is smallest on Thursday and largest on Tuesday. Grouped bar chart of conversion rate by weekday of peak ad exposure, Monday to Sunday, for ad and PSA groups. The ad group is higher on every weekday; the gap is smallest on Thursday and largest on Tuesday. Conversion rate by weekday of peak ad exposure (not conversion day). Python (Matplotlib). Exploratory: no multiple-comparison correction, no uncertainty shown.",
+        "numbers": [
+          "06",
+          "1",
+          "1.79%",
+          "2.55%",
+          "+0.77 pp",
+          "0.001",
+          "2"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/ab-testing/ab-tableau-summary.webp",
+            "alt": "Tableau dashboard page 1: KPI tiles showing control rate 1.79%, ad rate 2.55%, lift +0.77 pp and p-value below 0.001, above a bar chart of conversion rate for the ad and PSA groups, with a note on the statistical result and the unknown assignment method."
+          },
+          {
+            "src": "/projects/ab-testing/ab-comparison.webp",
+            "alt": "Bar chart of conversion rate: PSA control 1.79% and ad group 2.55%."
+          },
+          {
+            "src": "/projects/ab-testing/ab-tableau-trends.webp",
+            "alt": "Tableau dashboard page with three panels: conversion rate by weekday of peak ad exposure for ad and PSA groups; cumulative conversions by hour of peak ad exposure as a stacked area; and conversion rate by hour of peak ad exposure."
+          },
+          {
+            "src": "/projects/ab-testing/ab-weekday.webp",
+            "alt": "Grouped bar chart of conversion rate by weekday of peak ad exposure, Monday to Sunday, for ad and PSA groups. The ad group is higher on every weekday; the gap is smallest on Thursday and largest on Tuesday."
+          }
+        ]
+      },
+      "07-method-and-validation": {
+        "heading": "Method and Validation",
+        "text": "07 Method and Validation Null hypothesis: both groups have the same conversion proportion. The test is two-sided, using successes of 14,423 and 420 and sample sizes of 564,577 and 23,524. It assumes independent users, which the unique-user-ID check supports; it cannot confirm how users were assigned to groups. The confidence interval gives a range of plausible effect sizes. The p-value does not say whether the effect is large or profitable.",
+        "numbers": [
+          "07",
+          "14,423",
+          "420",
+          "564,577",
+          "23,524"
+        ],
+        "links": [],
+        "images": []
+      },
+      "08-recommendation-and-impact": {
+        "heading": "Recommendation and Impact",
+        "text": "08 Recommendation and Impact Continue or expand the campaign with monitoring, conditional on confirming how users were assigned and measuring real cost and margin. Scenario, not a result: if the observed gap applied to the 564,577 ad-group users, that is about 4,343 additional conversions. At an assumed ₹500 order value, that is about ₹21.7 lakh (₹2,171,491) in gross value. Across the 95% confidence interval, the same scenario spans about ₹16.8 to ₹26.6 lakh. The data has no ad spend, margin or verified order values, so this is neither profit nor ROI.",
+        "numbers": [
+          "08",
+          "564,577",
+          "4,343",
+          "₹500",
+          "₹21.7",
+          "₹2,171,491",
+          "95%",
+          "₹16.8",
+          "₹26.6"
+        ],
+        "links": [],
+        "images": []
+      },
+      "09-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "09 Limitations and Next Steps The assignment mechanism is undocumented, so the lift is not proven causal. The roughly 96/4 split has no known intended ratio, so sample-ratio mismatch cannot be checked. There is no cost, margin or verified order value. There are no timestamps. Segment comparisons are exploratory. Next steps: a pre-specified segment plan, an alternative interval method as a robustness check, and a financial model built on real cost data.",
+        "numbers": [
+          "09",
+          "96",
+          "4"
+        ],
+        "links": [],
+        "images": []
+      },
+      "10-what-i-did": {
+        "heading": "What I Did",
+        "text": "10 What I Did Solo project. I built the SQL load and queries, the Python validation and statistical test, and the Tableau dashboard, and I caught and fixed the partial import.",
+        "numbers": [
+          "10"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "11 Tools and Skills Tools Tools used on this project SQL (MySQL) Tableau Python pandas statsmodels Matplotlib Jupyter Git/GitHub Skills shown Skills shown used on this project A/B Testing Hypothesis Testing Confidence Intervals SQL Window Functions Data Validation Data Cleaning KPI Dashboards Business Scenario Analysis",
+        "numbers": [
+          "11"
+        ],
+        "links": [],
+        "images": []
+      },
+      "12-links": {
+        "heading": "Links",
+        "text": "12 Links GitHub repository",
+        "numbers": [
+          "12"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/ab-testing-analysis"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/rossmann/": {
+      "00-header": {
+        "heading": "Can store-level sales be forecast well enough to plan with?",
+        "text": "02 Rossmann Store Sales Forecasting Data Analytics / Machine Learning / BI Can store-level sales be forecast well enough to plan with? XGBoost forecast chain-wide daily sales at 6.72% MAPE on an 84-day holdout, against 32.89% for Prophet at the same grain; the next 12 weeks total about 571.2 million in expected sales across 1,115 stores. SQL · Excel · Power BI · Python GitHub",
+        "numbers": [
+          "02",
+          "6.72%",
+          "84",
+          "32.89%",
+          "12",
+          "571.2",
+          "1,115"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/rossmann-sales-forecasting"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "6.72% Chain-wide daily MAPE, XGBoost 32.89% Chain-wide daily MAPE, Prophet 12.93% Store-day MAPE, production XGBoost 571.2M Expected sales, next 84 days",
+        "numbers": [
+          "6.72%",
+          "32.89%",
+          "12.93%",
+          "571.2M",
+          "84"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: Retail sales move with weekday, promotions, holidays, season and store characteristics. A forecast of the next 12 weeks can inform broad staffing and inventory-capacity planning: overestimating can mean excess labour or stock, underestimating can mean shortfalls. I built a store-level forecast for the 12 weeks after the data ends, compared two forecasting approaches on a time-ordered holdout, and presented the results in Power BI. No operational outcome or cost saving was measured, so the forecast is a planning proxy. Answer: the production model forecasts the next 84 days for all 1,115 stores, with an average percentage error of 6.72% on chain-wide daily sales and 12.93% on store-day sales; whether the forecast improves staffing or stock decisions was not tested.",
+        "numbers": [
+          "01",
+          "12",
+          "84",
+          "1,115",
+          "6.72%",
+          "12.93%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source Rossmann Store Sales competition data (Kaggle) Grain One row per store per day Size 1,017,209 store-days for 1,115 stores, 2013-01-01 to 2015-07-31 Tables A daily sales table (sales, customers, open, promo and holiday flags) and a store table (store type, assortment, competition and recurring-promotion fields) Modelling set 844,338 open, positive-sales store-days Holdout 2015-05-09 to 2015-07-31 (84 days): 766,584 training rows and 77,754 validation rows Forecast 2015-08-01 to 2015-10-23 (84 days) for 1,115 stores: 93,660 store-days Currency The data gives no currency; Rossmann operates in Germany, so figures are probably euros. Not in the data Product-level sales, prices, inventory, profit, future promotion schedules and future closure calendars",
+        "numbers": [
+          "02",
+          "1,017,209",
+          "1,115",
+          "2013",
+          "-01",
+          "2015",
+          "-07",
+          "-31",
+          "844,338",
+          "-05",
+          "-09",
+          "84",
+          "766,584",
+          "77,754",
+          "-08",
+          "-10",
+          "-23",
+          "93,660"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline-sql-excel-python-power-bi": {
+        "heading": "Pipeline: SQL → Excel → Python → Power BI",
+        "text": "03 Pipeline: SQL → Excel → Python → Power BI SQL (MySQL) A relational schema (a store table and a train table keyed by store and date, with a foreign key), a load script that turns blank numeric fields into NULL, and seven query scripts: a filtered join, five analytical summaries (monthly sales by store type, per-store promo lift, top and bottom stores by revenue, month-over-month growth using LAG, seasonality by calendar month) and a full-data export. Excel Preliminary pivot analysis (monthly totals, store-type averages) for a first profile. Later measures use average sales per open store-day, because monthly totals mix the number of open days with sales intensity. Python Notebook 1 cleans and explores the data (imputation, row filtering, calendar features, six charts). Notebook 2 runs the Prophet and XGBoost experiments, the date-based validation, the production forecast and the saved models. Power BI A four-page report on a star schema: a date dimension and three fact tables (history, validation predictions, future forecast), with eleven DAX measures.",
+        "numbers": [
+          "03",
+          "1",
+          "2"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-data-quality-found-and-fixed": {
+        "heading": "Data Quality: Found and Fixed",
+        "text": "04 Data Quality: Found and Fixed Blank competition distances imported as zeros, which would have looked like a competitor at distance zero. The final load script converts blanks to NULL. Three missing competition distances were filled with the median across unique stores (2,325.0), not the row-weighted median (2,330.0), because the store table has one row per store. Removed 172,817 closed store-days and 54 open days with zero sales, leaving 844,338. Competition-open and Promo2 timing fields that are blank because they do not apply were left missing, not imputed. Added Month, Year and WeekOfYear, and one-hot encoded store type, assortment and promo interval, using the same encoding at forecast time.",
+        "numbers": [
+          "04",
+          "2,325.0",
+          "2,330.0",
+          "172,817",
+          "54",
+          "844,338",
+          "2"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-exploratory-findings": {
+        "heading": "Exploratory Findings",
+        "text": "05 Exploratory Findings Store type B has the highest average sales per open store-day (about 10.2K, against 6.8K to 6.9K for the other types), but it has only 17 stores and differs in assortment and opening pattern. This is descriptive, not a type effect. Promo days average higher sales in 1,114 of 1,115 stores. Promotion assignment is not random, so this is an association, not a causal lift. Saturday is the weakest weekday per open store-day (about 5.9K); Monday and Sunday are the highest (about 8.2K each). Sunday looks strong per open store but weak chain-wide, because few stores open. December has the highest average sales per open store-day (about 8.6K, against about 6.5K to 7.2K in other months), but the data contains only two Decembers, so seasonal certainty is limited. Competition distance has no simple relationship with average store sales. The highest-selling stores sit at short distances, which may reflect dense, high-traffic locations and not a competitor effect.",
+        "numbers": [
+          "05",
+          "10.2K",
+          "6.8K",
+          "6.9K",
+          "17",
+          "1,114",
+          "1,115",
+          "5.9K",
+          "8.2K",
+          "8.6K",
+          "6.5K",
+          "7.2K"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-model-comparison": {
+        "heading": "Model Comparison",
+        "text": "06 Model Comparison Prophet, baseline 63.76% chain-wide daily MAPE (MAE 857,491; RMSE 1,418,151) Prophet, German public holidays 32.89% (MAE 607,088; RMSE 920,710). Kept as the Prophet comparator. Prophet, tuned 22.48% MAPE, but MAE 662,991 and RMSE 968,381 are both worse than the holiday-aware model, so it was not selected. Three settings changed together, so the cause is not isolated. XGBoost, chain-wide daily 6.72% (MAE 409,790; RMSE 617,347) for the production model. XGBoost, store-day 21.00% default; 17.92% after manual tuning; 12.64% with Promo and a store-level baseline (not usable, no future Promo schedule); 12.93% production without Promo (MAE 839; RMSE 1,138). Prophet + XGBoost blends 50/50: 17.99%. 80/20 toward XGBoost: 10.20%. XGBoost alone: 6.72%. Prophet did not improve the chain-wide forecast. Like for like: XGBoost store-day predictions were summed by date and compared with Prophet on chain-wide daily totals (6.72% against 32.89%). The 12.93% store-day figure answers a harder, different question and is not compared with Prophet. Production XGBoost leaves out Promo because future promotions are unknown. The same 84-day holdout was used to choose between variants, so the scores are mildly optimistic. The randomised search (15 combinations, date-grouped expanding-window folds) selected n_estimators=200 and max_depth=6.",
+        "numbers": [
+          "06",
+          "63.76%",
+          "857,491",
+          "1,418,151",
+          "32.89%",
+          "607,088",
+          "920,710",
+          "22.48%",
+          "662,991",
+          "968,381",
+          "6.72%",
+          "409,790",
+          "617,347",
+          "21.00%",
+          "17.92%",
+          "12.64%",
+          "12.93%",
+          "839",
+          "1,138",
+          "50",
+          "17.99%",
+          "80",
+          "20",
+          "10.20%",
+          "84",
+          "15",
+          "200",
+          "6"
+        ],
+        "links": [],
+        "images": []
+      },
+      "07-mistakes-i-caught-and-corrected": {
+        "heading": "Mistakes I Caught and Corrected",
+        "text": "07 Mistakes I Caught and Corrected Mismatched grain: my first comparison put Prophet's chain-wide daily score next to XGBoost's store-day score. Summing XGBoost predictions by date made it like for like: 32.89% against 6.72%. Wrong validation split: an early split took the last 84 rows, not the last 84 dates across all stores. A date mask replaced it, giving 766,584 training and 77,754 validation rows. Prophet error diagnosis: a 63.76% MAPE looked like general failure, but sorting the errors showed the worst days (May 14 and May 25, 2015) were near-total closures (97.1% and 97.0% of stores closed). Adding a German public-holiday calendar brought MAPE to 32.89%. Weekday encoding: training weekdays ran 1 to 7 while pandas uses 0 to 6, which would have shifted future-date features by a day. I aligned them and added assertions in Notebook 2. Dashboard scatter: it collapsed to four store-type points because it had no store identifier. A per-store category restored one point per store. Overclaims withdrawn: March and July month-over-month changes (March 2014 +7.88%, July 2014 -8.50%) are not a recurring seasonal lift; Sunday is not the weakest day (it is low chain-wide because stores are closed); and promotions do not help every store, since one store shows a negative lift.",
+        "numbers": [
+          "07",
+          "32.89%",
+          "6.72%",
+          "84",
+          "766,584",
+          "77,754",
+          "63.76%",
+          "14",
+          "25",
+          "2015",
+          "97.1%",
+          "97.0%",
+          "1",
+          "7",
+          "0",
+          "6",
+          "2",
+          "2014",
+          "+7.88%",
+          "-8.50%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "08-forecast-and-dashboard": {
+        "heading": "Forecast and Dashboard",
+        "text": "08 Forecast and Dashboard Production XGBoost was refit without Promo on all history and predicted sales for every store on each of the 84 future days: 1,115 stores × 84 dates = 93,660 store-days. PredictedSales is the estimate if the store is open. ExpectedSales multiplies it by OpenRate, the store's historical share of open days for that weekday. Expected sales over the 84 days: 571,208,572. If every store were open: 677,183,104 (an upper scenario). Sales are in the source data units; the currency is probably euros. Sanity check, not validation: for the 931 stores that traded normally over the same 84 days of 2014, expected 2015 sales are 480.2M against 451.0M actual in 2014 (+6.5%). The Power BI report has four pages: Executive Overview; Store Performance (competitor distance against sales, one point per store, and stores ranked by revenue); Promotions & Seasonality; and 12-Week Forecast (validation metrics, actual versus predicted, the 84-day forecast and a model-selection note).",
+        "numbers": [
+          "08",
+          "84",
+          "1,115",
+          "93,660",
+          "571,208,572",
+          "677,183,104",
+          "931",
+          "2014",
+          "2015",
+          "480.2M",
+          "451.0M",
+          "+6.5%",
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "09-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "09 Visual Evidence Enlarge figure: Power BI page titled 12-Week Sales Forecast — XGBoost: tiles for validation MAE 839, RMSE 1,138, store-day MAPE 12.93% and open-rate-weighted expected revenue 571.21M, above an 84-day forecast chart and an actual-versus-predicted chart for the validation period. Power BI page titled 12-Week Sales Forecast — XGBoost: tiles for validation MAE 839, RMSE 1,138, store-day MAPE 12.93% and open-rate-weighted expected revenue 571.21M, above an 84-day forecast chart and an actual-versus-predicted chart for the validation period. Power BI, 12-Week Forecast page. Validation metrics are for the production model (no Promo). Enlarge figure: Power BI page titled Rossmann Sales Performance — Executive Overview: tiles for total revenue 6bn, total customers 644M, average sales per open store-day 6.96K and total stores 1,115, a monthly revenue trend for 2013 to 2015, average sales per open store-day by store format, and slicers for store type, promo and year. Power BI page titled Rossmann Sales Performance — Executive Overview: tiles for total revenue 6bn, total customers 644M, average sales per open store-day 6.96K and total stores 1,115, a monthly revenue trend for 2013 to 2015, average sales per open store-day by store format, and slicers for store type, promo and year. Power BI, Executive Overview page. Enlarge figure: Power BI page titled Store Performance & Competitive Positioning: a scatter of competition distance against average sales per open store-day with one point per store, a table of all stores ranked by revenue, tiles for top-10 average revenue and chain average revenue per store, and bar charts of the top 10 and bottom 10 stores by revenue. Power BI page titled Store Performance & Competitive Positioning: a scatter of competition distance against average sales per open store-day with one point per store, a table of all stores ranked by revenue, tiles for top-10 average revenue and chain average revenue per store, and bar charts of the top 10 and bottom 10 stores by revenue. Power BI, Store Performance page. Competitor distance is shown as an association, not a cause. Enlarge figure: Line chart of predicted chain-wide daily sales from 2015-08-01 to 2015-10-23 for the production model, with one line for every store open and one for open-rate-weighted expected sales; the expected line drops sharply each week. Line chart of predicted chain-wide daily sales from 2015-08-01 to 2015-10-23 for the production model, with one line for every store open and one for open-rate-weighted expected sales; the expected line drops sharply each week. 12-week forecast, production model. Orange is expected sales weighted by each store's historical weekday open rate; the weekly dips are Sundays, when few stores open. Point estimates only. Enlarge figure: Grouped bar chart of average sales per open store-day by store type (a, b, c, d), with and without promotion; promo days are higher in every store type. Grouped bar chart of average sales per open store-day by store type (a, b, c, d), with and without promotion; promo days are higher in every store type. Average sales per open store-day, promo versus non-promo, by store type. An association, not a causal estimate: promotion assignment is not random. Enlarge figure: Horizontal bar chart of XGBoost feature importance for the production model without Promo; the store-level baseline (StoreMeanSales) is the largest, followed by week of year, day of week and month. Horizontal bar chart of XGBoost feature importance for the production model without Promo; the store-level baseline (StoreMeanSales) is the largest, followed by week of year, day of week and month. Feature importance, production XGBoost (no Promo). Model-internal importance, not a causal effect.",
+        "numbers": [
+          "09",
+          "12",
+          "839",
+          "1,138",
+          "12.93%",
+          "571.21M",
+          "84",
+          "6",
+          "644M",
+          "6.96K",
+          "1,115",
+          "2013",
+          "2015",
+          "-10",
+          "10",
+          "-08",
+          "-01",
+          "-23"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/rossmann/ros-pbi-forecast.webp",
+            "alt": "Power BI page titled 12-Week Sales Forecast — XGBoost: tiles for validation MAE 839, RMSE 1,138, store-day MAPE 12.93% and open-rate-weighted expected revenue 571.21M, above an 84-day forecast chart and an actual-versus-predicted chart for the validation period."
+          },
+          {
+            "src": "/projects/rossmann/ros-pbi-overview.webp",
+            "alt": "Power BI page titled Rossmann Sales Performance — Executive Overview: tiles for total revenue 6bn, total customers 644M, average sales per open store-day 6.96K and total stores 1,115, a monthly revenue trend for 2013 to 2015, average sales per open store-day by store format, and slicers for store type, promo and year."
+          },
+          {
+            "src": "/projects/rossmann/ros-pbi-stores.webp",
+            "alt": "Power BI page titled Store Performance & Competitive Positioning: a scatter of competition distance against average sales per open store-day with one point per store, a table of all stores ranked by revenue, tiles for top-10 average revenue and chain average revenue per store, and bar charts of the top 10 and bottom 10 stores by revenue."
+          },
+          {
+            "src": "/projects/rossmann/ros-forecast-chainwide.webp",
+            "alt": "Line chart of predicted chain-wide daily sales from 2015-08-01 to 2015-10-23 for the production model, with one line for every store open and one for open-rate-weighted expected sales; the expected line drops sharply each week."
+          },
+          {
+            "src": "/projects/rossmann/ros-promo-storetype.webp",
+            "alt": "Grouped bar chart of average sales per open store-day by store type (a, b, c, d), with and without promotion; promo days are higher in every store type."
+          },
+          {
+            "src": "/projects/rossmann/ros-feature-importance.webp",
+            "alt": "Horizontal bar chart of XGBoost feature importance for the production model without Promo; the store-level baseline (StoreMeanSales) is the largest, followed by week of year, day of week and month."
+          }
+        ]
+      },
+      "10-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "10 Limitations and Next Steps The production model gives point estimates only, with no prediction intervals. The data spans about 2.6 years, so annual seasonality is weakly supported. The 84-day holdout was reused to choose between variants and there is no untouched test period, so the scores are mildly optimistic. There is no future promotion schedule, so Promo is excluded from the production model. OpenRate is a weekday-level historical average. It does not model closure schedules or public-holiday closures. No business impact was measured. The repository's Query 7 export is incomplete (48,328 of 1,017,209 rows); Notebook 1 reads the separate full merged file. The raw competition CSVs are not committed. Next steps: an untouched test period or rolling-origin evaluation; known calendar, closure or promotion data only if available at forecast time; prediction intervals; and measuring operational value once a forecast is used.",
+        "numbers": [
+          "10",
+          "2.6",
+          "84",
+          "7",
+          "48,328",
+          "1,017,209",
+          "1"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-what-i-did": {
+        "heading": "What I Did",
+        "text": "11 What I Did Solo project. I wrote the SQL schema, load script and queries; profiled the data in Excel; cleaned and explored it in Python; compared Prophet and XGBoost on a time-ordered holdout; built the 12-week forecast; and built the four-page Power BI report. I also caught and corrected the grain mismatch, the validation split and the weekday-encoding error described above.",
+        "numbers": [
+          "11",
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "12-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "12 Tools and Skills Tools Tools used on this project SQL (MySQL) Excel Power BI DAX Python pandas scikit-learn XGBoost Prophet Jupyter Git/GitHub Skills shown Skills shown used on this project Forecasting Time-Series Validation Model Evaluation (MAPE, MAE, RMSE) Error Analysis SQL Window Functions Data Cleaning Feature Engineering Exploratory Analysis DAX Measures Dashboard Design",
+        "numbers": [
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "13-links": {
+        "heading": "Links",
+        "text": "13 Links GitHub repository",
+        "numbers": [
+          "13"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/rossmann-sales-forecasting"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/banking-churn/": {
+      "00-header": {
+        "heading": "Who is leaving, and where should retention focus?",
+        "text": "03 Banking Churn Analysis Data Analytics / SQL / BI Who is leaving, and where should retention focus? Across 10,127 credit card customers, 16.07% churned. Churners made far fewer transactions (44.9 against 68.7), and attrition jumps from 12.49% at two contacts in the last 12 months to 20.15% at three. SQL · Power BI · Python GitHub",
+        "numbers": [
+          "03",
+          "10,127",
+          "16.07%",
+          "44.9",
+          "68.7",
+          "12.49%",
+          "12",
+          "20.15%"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/banking-churn-analysis"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "16.07% Attrition rate, 1,627 of 10,127 customers $13.24M Credit limits on churned accounts -0.37 Correlation of transaction count with churn 12.49% → 20.15% Attrition at 2 vs 3 contacts in the last 12 months",
+        "numbers": [
+          "16.07%",
+          "1,627",
+          "10,127",
+          "$13.24M",
+          "-0.37",
+          "12.49%",
+          "20.15%",
+          "2",
+          "3",
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: A credit card issuer loses interchange and interest income when customers leave, and churn often shows up as disengagement before an account closes. I analysed 10,127 customers to answer three questions for a retention team: which segments churn, which behaviours separate churned from retained customers, and where retention effort should focus. I kept the work diagnostic and transparent, with no predictive model, so every rule can be audited in SQL, Python and Power BI. Answer: churn concentrates among customers whose transactions are low, who use little of their credit limit, and who reach three or more contacts in the last 12 months (attrition rises from 12.49% at two contacts to 20.15% at three), so retention effort should start there; these are associations to test, not proven causes.",
+        "numbers": [
+          "01",
+          "10,127",
+          "12",
+          "12.49%",
+          "20.15%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source Credit Card Customers dataset (Kaggle) Grain One row per customer Size 10,127 customers; 23 raw columns, 20 after cleaning Target 1,627 attrited customers (16.07%) and 8,500 existing customers Fields Demographics (age, gender, dependents, education, marital status, income band), card tier, relationship length and product count, and 12-month behaviour (transactions, inactive months, contacts in the last 12 months, utilisation, revolving balance, credit limit, quarter-over-quarter change) Limit A single snapshot: 12-month aggregates, with no dates and no account-closure timestamps",
+        "numbers": [
+          "02",
+          "10,127",
+          "23",
+          "20",
+          "1,627",
+          "16.07%",
+          "8,500",
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline-sql-python-power-bi": {
+        "heading": "Pipeline: SQL → Python → Power BI",
+        "text": "03 Pipeline: SQL → Python → Power BI SQL (MySQL) Seven query scripts: overall attrition rate (with a window function), attrition by card tier, behaviour of churned versus retained customers, the top 50 churned accounts by credit limit (a CTE with ROW_NUMBER), attrition by income band, spend-velocity change, and attrition by number of contacts in the last 12 months. Python A 14-cell notebook (12 code cells and 2 markdown cells) using pandas, matplotlib and seaborn for cleaning, data-quality checks, seven charts and a 15×15 correlation matrix. Power BI A three-page report (Executive Overview, Behavioural Signals, At-Risk Profiles) whose visuals are driven by 13 DAX measures over three tables: the cleaned customer table and two SQL result tables. Cross-check Six quantities, each traced below to the file, notebook cell or visual that computes it. Recomputed means the tool derives the figure from the data it holds; checked against the SQL export means it reads the exported result. Customer counts: MySQL counts them in sql/01_attrition_rate.sql, which groups the raw import by attrition flag; pandas prints them in notebook cells 2 and 3, before and after the leakage columns are dropped; Power BI recomputes them in the \"Total Customers\" card on Executive Overview, a DAX measure over the cleaned table. Attrition rate: MySQL computes it in sql/01_attrition_rate.sql, a window function over the raw import; pandas computes it in notebook cell 6, which prints the share of attrited customers; Power BI recomputes it in the attrition-rate card and the attrition-by-card-tier bar chart on Executive Overview, both DAX measures over the cleaned table. Card-tier rates: MySQL computes them in sql/02_attrition_by_card.sql, a CTE over the raw import; pandas computes them in notebook cell 7, which groups the cleaned table by card tier; Power BI recomputes them in the attrition-by-card-tier bar chart on Executive Overview, the \"Attrition Rate\" measure over the cleaned table. Behaviour averages: MySQL computes them in sql/03_behavioral_comparison.sql and sql/06_spend_decline.sql; pandas computes them in notebook cells 8, 9, 10 and 12, the boxplots, the spend-versus-frequency scatter and the utilisation means; Power BI recomputes them in the three Behavioural Signals average charts and the spend-decline chart on At-Risk Profiles, DAX measures over the cleaned table, while the scatter reads the raw columns. Contact-bucket rates: MySQL computes them in sql/07_contacts_vs_attrition.sql, with 5 and 6 contacts merged into a \"5+\" bucket; pandas does not compute them; Power BI does not recompute them either, because the bucket chart on At-Risk Profiles reads the query7 SQL export, so those figures were checked against the SQL export instead. Churned credit exposure: MySQL does not compute it and pandas does not compute it; Power BI recomputes it in the \"Credit Exposure\" card on Executive Overview, a DAX measure over the cleaned table.",
+        "numbers": [
+          "03",
+          "50",
+          "12",
+          "14",
+          "2",
+          "15×15",
+          "13",
+          "01",
+          "3",
+          "6",
+          "02",
+          "7",
+          "06",
+          "8",
+          "9",
+          "10",
+          "07",
+          "5"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-data-quality-found-and-fixed": {
+        "heading": "Data Quality: Found and Fixed",
+        "text": "04 Data Quality: Found and Fixed Target leakage: the raw file includes two columns of probabilities from a Naive Bayes model already fitted on the churn label. I excluded them. Their 130-character names also broke the MySQL import, whose column-name limit is 64 characters. Hidden missing values: there are no nulls, but \"Unknown\" strings stand in for missing education (15.00%), income (10.98%) and marital status (7.40%), and 3,046 customers (30.08%) have at least one. I kept \"Unknown\" as its own category instead of dropping almost a third of the data or imputing labels. Churn in those groups (16.82% to 17.22%) is close to the portfolio rate of 16.07%. Credit-limit ceiling: 508 customers (5.02%) share exactly $34,516.00 and 507 share $1,438.30, and both groups average 36.0 months as customers, which is consistent with capping in the source data. It surfaced when RANK() returned 89 tied rows instead of 50 for the top churned accounts. ROW_NUMBER() with a tie-break on transaction amount fixed the ranking. Small cell: all 54 customers with 6 contacts in the last 12 months churned, which would distort a chart. I merged 5 and 6 contacts into a \"5+\" bucket (113 of 230, 49.13%) and kept the 54-customer finding in the notes.",
+        "numbers": [
+          "04",
+          "130",
+          "64",
+          "15.00%",
+          "10.98%",
+          "7.40%",
+          "3,046",
+          "30.08%",
+          "16.82%",
+          "17.22%",
+          "16.07%",
+          "508",
+          "5.02%",
+          "$34,516.00",
+          "507",
+          "$1,438.30",
+          "36.0",
+          "89",
+          "50",
+          "54",
+          "6",
+          "12",
+          "5",
+          "113",
+          "230",
+          "49.13%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-findings": {
+        "heading": "Findings",
+        "text": "05 Findings 1,627 of 10,127 customers churned (16.07%). Their accounts held $13.24M in credit limits (mean $8,136). That is credit exposure, not lost revenue. Transaction count is the strongest signal: churned customers averaged 44.93 transactions against 68.67 for retained customers (median 43 vs 71; correlation -0.37). The most transactions any churned customer made was 94, against 139 for retained customers. Contacts in the last 12 months show a cliff: attrition is 1.75% at 0 contacts, 7.20% at 1, 12.49% at 2, 20.15% at 3, 22.63% at 4 and 49.13% at 5 or more (230 customers). Low utilisation: churned customers averaged 16.25% credit utilisation against 29.64% for retained customers. Among the 50 churned accounts the top-50 query returns — ranked by credit limit, with the ties broken by transaction amount — 20 had no revolving balance and the group averaged 2.15% utilisation. Ranking by credit limit alone, with those ties unresolved, returns 24 instead, so the ordering is what fixes the count. Spending contracted more for churners: the Q4-to-Q1 transaction-count ratio averaged 0.554 against 0.742, and the spend ratio 0.694 against 0.773. Both groups are below 1.0, so the signal is the size of the drop, not the direction. Blue cards hold 93.36% of churned customers (1,519 of 1,627). Platinum has the highest rate (25.00%) but on only 20 customers, and Gold is 18.10% on 116, so those are small-sample results, not findings to act on. Income shows no clear gradient: among known income bands, attrition runs from 13.48% to 17.33%, with the top band (17.33%) and the under-$40K band (17.19%) highest. Age, dependents and time as a customer each correlate with churn at about 0.02 or less.",
+        "numbers": [
+          "05",
+          "1,627",
+          "10,127",
+          "16.07%",
+          "$13.24M",
+          "$8,136",
+          "44.93",
+          "68.67",
+          "43",
+          "71",
+          "-0.37",
+          "94",
+          "139",
+          "12",
+          "1.75%",
+          "0",
+          "7.20%",
+          "1",
+          "12.49%",
+          "2",
+          "20.15%",
+          "3",
+          "22.63%",
+          "4",
+          "49.13%",
+          "5",
+          "230",
+          "16.25%",
+          "29.64%",
+          "50",
+          "-50",
+          "20",
+          "2.15%",
+          "24",
+          "0.554",
+          "0.742",
+          "0.694",
+          "0.773",
+          "1.0",
+          "93.36%",
+          "1,519",
+          "25.00%",
+          "18.10%",
+          "116",
+          "13.48%",
+          "17.33%",
+          "$40K",
+          "17.19%",
+          "0.02"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-recommendations": {
+        "heading": "Recommendations",
+        "text": "06 Recommendations Route accounts to a retention specialist once they reach 3 or more contacts in the last 12 months. Flag accounts whose yearly transaction count is falling towards 45, the leavers' average. Target customers with zero or very low utilisation and 2 to 3 or more inactive months with incentives such as cashback or balance transfers. Do not launch a Platinum-wide campaign on 20 customers; review those accounts individually. These are starting points to test, not measured savings or validated thresholds. The data is a single snapshot with no costs and no record of any retention action.",
+        "numbers": [
+          "06",
+          "3",
+          "12",
+          "45",
+          "2",
+          "20"
+        ],
+        "links": [],
+        "images": []
+      },
+      "07-mistakes-i-caught-and-corrected": {
+        "heading": "Mistakes I Caught and Corrected",
+        "text": "07 Mistakes I Caught and Corrected A trap in the card breakdown: Blue cards hold 1,519 of the 1,627 churners, which looks like a Blue problem. But Blue is 93% of all customers and its 16.10% churn rate matches the 16.07% overall. Platinum has the highest rate (25.00%), but on 20 customers (5 churners), too few to act on. The behavioural signal is activity: leavers averaged 44.9 transactions a year against 68.7 for stayers, a gap of 23.7. I first labelled the $13.24M \"Revenue at Risk.\" A credit limit is the most a bank allows a customer to borrow, not revenue, so I renamed it \"Credit Exposure.\" A dashboard note said \"about 508 attrited customers\" sit at the credit-limit ceiling. 508 is all customers at the ceiling; 89 of them are attrited. I corrected the note. The Power BI top-50 table sorted by customer ID instead of the transaction-amount order from SQL. I set the sort in the visual. Spend-trend label: my SQL labelled both churned and retained customers \"Declining Spend,\" because both averages are below 1.0. I kept the query as it was and changed the interpretation, not the threshold. Power BI display bugs: KPI cards abbreviated 10,127 to \"10K\" (fixed with a DAX FORMAT measure), and the \"5+\" contact bucket lost its \"+\" because Power Query typed the column as a number (fixed by setting it to text). Self-audit fixes: I committed the seven SQL scripts the README referred to, replaced an absolute notebook path with a relative one, and saved the notebook's executed outputs.",
+        "numbers": [
+          "07",
+          "1,519",
+          "1,627",
+          "93%",
+          "16.10%",
+          "16.07%",
+          "25.00%",
+          "20",
+          "5",
+          "44.9",
+          "68.7",
+          "23.7",
+          "$13.24M",
+          "508",
+          "89",
+          "-50",
+          "1.0",
+          "10,127",
+          "10K"
+        ],
+        "links": [],
+        "images": []
+      },
+      "08-power-bi-report": {
+        "heading": "Power BI Report",
+        "text": "08 Power BI Report Executive Overview shows the attrition rate, credit exposure and customer count, attrition by card tier with a small-sample warning, and an income slicer. Behavioural Signals compares churned and retained customers on transaction count, months inactive, utilisation and a spend-versus-frequency scatter, filtered by card tier. At-Risk Profiles shows attrition by contact bucket, spend decline, the average credit limit of churned customers, and the top 50 churned accounts by credit limit with a note on the $34,516 ceiling.",
+        "numbers": [
+          "08",
+          "50",
+          "$34,516"
+        ],
+        "links": [],
+        "images": []
+      },
+      "09-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "09 Visual Evidence Enlarge figure: Power BI At-Risk Profiles page: a note on the $34,516 credit limit ceiling, a table of the top 50 churned accounts by credit limit, a column chart of attrition rate by contacts, rising from 12.49% at 2 contacts to 20.15% at 3 and 49.13% at 5 or more, a column chart of spend decline for churned versus retained customers, and a card showing the average credit limit of churned customers, $8,136. Power BI At-Risk Profiles page: a note on the $34,516 credit limit ceiling, a table of the top 50 churned accounts by credit limit, a column chart of attrition rate by contacts, rising from 12.49% at 2 contacts to 20.15% at 3 and 49.13% at 5 or more, a column chart of spend decline for churned versus retained customers, and a card showing the average credit limit of churned customers, $8,136. Power BI, At-Risk Profiles page. The ceiling note counts 508 customers at the limit, 89 of them attrited. Enlarge figure: Power BI Executive Overview page: cards for attrition rate 16.07%, credit exposure $13.237M and total customers 10,127, an income-category slicer, a donut chart of existing versus attrited customers, a bar chart of attrition rate by card tier, and a note that Platinum (n=20) and Gold (n=116) are small samples. Power BI Executive Overview page: cards for attrition rate 16.07%, credit exposure $13.237M and total customers 10,127, an income-category slicer, a donut chart of existing versus attrited customers, a bar chart of attrition rate by card tier, and a note that Platinum (n=20) and Gold (n=116) are small samples. Power BI, Executive Overview page. Credit exposure is the total credit limit on churned accounts, not lost revenue. Enlarge figure: Power BI Behavioural Signals page with a card-tier slicer and four charts comparing attrited and existing customers: average transaction count (44.9 vs 68.7), months inactive (2.69 vs 2.27), credit utilization (16.25% vs 29.64%), and a scatter of transaction amount against transaction count. Power BI Behavioural Signals page with a card-tier slicer and four charts comparing attrited and existing customers: average transaction count (44.9 vs 68.7), months inactive (2.69 vs 2.27), credit utilization (16.25% vs 29.64%), and a scatter of transaction amount against transaction count. Power BI, Behavioural Signals page. Enlarge figure: Boxplot of total transaction count for attrited and existing customers; the attrited box, with a median of 43, sits below the existing box, with a median of 71. Boxplot of total transaction count for attrited and existing customers; the attrited box, with a median of 43, sits below the existing box, with a median of 71. Total transaction count by customer status. Python (seaborn). Enlarge figure: Scatter plot of transaction amount against transaction count with attrited customers in red and existing customers in blue; churned customers appear mostly at low spend and low counts, plus a smaller group at about $7,500 to $10,500 in spend with 50 to 80 transactions, and none in the highest-spend, highest-count group. Scatter plot of transaction amount against transaction count with attrited customers in red and existing customers in blue; churned customers appear mostly at low spend and low counts, plus a smaller group at about $7,500 to $10,500 in spend with 50 to 80 transactions, and none in the highest-spend, highest-count group. Transaction amount against transaction count, by customer status. Python (matplotlib).",
+        "numbers": [
+          "09",
+          "$34,516",
+          "50",
+          "12.49%",
+          "2",
+          "20.15%",
+          "3",
+          "49.13%",
+          "5",
+          "$8,136",
+          "508",
+          "89",
+          "16.07%",
+          "$13.237M",
+          "10,127",
+          "20",
+          "116",
+          "44.9",
+          "68.7",
+          "2.69",
+          "2.27",
+          "16.25%",
+          "29.64%",
+          "43",
+          "71",
+          "$7,500",
+          "$10,500",
+          "80"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/banking-churn/ban-pbi-risk.webp",
+            "alt": "Power BI At-Risk Profiles page: a note on the $34,516 credit limit ceiling, a table of the top 50 churned accounts by credit limit, a column chart of attrition rate by contacts, rising from 12.49% at 2 contacts to 20.15% at 3 and 49.13% at 5 or more, a column chart of spend decline for churned versus retained customers, and a card showing the average credit limit of churned customers, $8,136."
+          },
+          {
+            "src": "/projects/banking-churn/ban-pbi-overview.webp",
+            "alt": "Power BI Executive Overview page: cards for attrition rate 16.07%, credit exposure $13.237M and total customers 10,127, an income-category slicer, a donut chart of existing versus attrited customers, a bar chart of attrition rate by card tier, and a note that Platinum (n=20) and Gold (n=116) are small samples."
+          },
+          {
+            "src": "/projects/banking-churn/ban-pbi-behavior.webp",
+            "alt": "Power BI Behavioural Signals page with a card-tier slicer and four charts comparing attrited and existing customers: average transaction count (44.9 vs 68.7), months inactive (2.69 vs 2.27), credit utilization (16.25% vs 29.64%), and a scatter of transaction amount against transaction count."
+          },
+          {
+            "src": "/projects/banking-churn/ban-boxplot-trans.webp",
+            "alt": "Boxplot of total transaction count for attrited and existing customers; the attrited box, with a median of 43, sits below the existing box, with a median of 71."
+          },
+          {
+            "src": "/projects/banking-churn/ban-scatter.webp",
+            "alt": "Scatter plot of transaction amount against transaction count with attrited customers in red and existing customers in blue; churned customers appear mostly at low spend and low counts, plus a smaller group at about $7,500 to $10,500 in spend with 50 to 80 transactions, and none in the highest-spend, highest-count group."
+          }
+        ]
+      },
+      "10-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "10 Limitations and Next Steps The data is a single snapshot with no dates or closure timestamps, so I cannot measure how long before closing a third service contact occurs, and the findings are associations, not causes. The analysis uses group means, boxplots and correlations, with no hypothesis tests or multivariate controls. Credit limits appear capped at both ends in the source data (508 customers at $34,516.00 and 507 at $1,438.30), so credit-limit findings need care. Platinum (20 customers) and Gold (116) rates are unstable, and the 6-contact group (54 customers) is merged into \"5+\". Credit exposure is a total of credit limits, not revenue, cost or profit. Next steps: Welch t-tests, Mann-Whitney U and chi-square tests with confidence intervals (Wilson intervals for the small card tiers), then a leakage-free predictive model (regularised logistic regression and gradient-boosted trees) evaluated with stratified cross-validation and precision-recall AUC, with explainability.",
+        "numbers": [
+          "10",
+          "508",
+          "$34,516.00",
+          "507",
+          "$1,438.30",
+          "20",
+          "116",
+          "6",
+          "54",
+          "5"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-what-i-did": {
+        "heading": "What I Did",
+        "text": "11 What I Did Solo project. I wrote the SQL queries, cleaned and explored the data in Python, and built the three-page Power BI report, whose DAX measures recompute each figure over the cleaned table while the top-50 table and the contact chart read the SQL exports, so the contact figures come from one query rather than three separate calculations. I also audited my own work and corrected the labels, notes and files described above.",
+        "numbers": [
+          "11",
+          "-50"
+        ],
+        "links": [],
+        "images": []
+      },
+      "12-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "12 Tools and Skills Tools Tools used on this project SQL (MySQL) Power BI DAX Python pandas matplotlib seaborn Jupyter Git/GitHub Skills shown Skills shown used on this project Churn Analysis SQL Window Functions SQL CTEs Data Cleaning Target Leakage Detection Exploratory Analysis Correlation Analysis KPI Dashboards DAX Measures Cross-Tool Reconciliation",
+        "numbers": [
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "13-links": {
+        "heading": "Links",
+        "text": "13 Links GitHub repository",
+        "numbers": [
+          "13"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/banking-churn-analysis"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/retail-sales/": {
+      "00-header": {
+        "heading": "Where is revenue high but profit thin?",
+        "text": "04 Retail Sales Analysis Data Analytics / BI Where is revenue high but profit thin? Across 9,994 Sample Superstore order lines (2014–2017), Furniture earned $742K in sales at a 2.49% margin while Tables, Bookcases and Supplies lost money, shown in Python charts and a Power BI report. Power BI · Python GitHub",
+        "numbers": [
+          "04",
+          "9,994",
+          "2014–2017",
+          "$742K",
+          "2.49%"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/retail-sales-dashboard"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "$2.30M Total sales, 9,994 order lines 12.47% Overall profit margin ($286.4K profit) 2.49% Furniture margin, against 17.40% for Technology 3 of 17 Sub-categories with negative profit",
+        "numbers": [
+          "$2.30M",
+          "9,994",
+          "12.47%",
+          "$286.4K",
+          "2.49%",
+          "17.40%",
+          "3",
+          "17"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: Raw transaction rows are hard for a business team to read, and high sales do not guarantee healthy profit. One order can hold several line items, so counting rows overstates orders. I analysed the Sample Superstore data to separate revenue from profit quality: which categories, sub-categories, regions and months drive sales, and where margin is thin or negative. I then packaged the answers in a Power BI report that a manager can filter by region. The work is descriptive: it points to where to investigate, not to what caused a loss. Answer: revenue and profit quality diverge. Technology and Office Supplies keep about 17% of sales as profit, Furniture keeps 2.49%, and Tables, Bookcases and Supplies lose money; the Power BI report lets a manager filter these views by region, and the next step is to investigate the causes.",
+        "numbers": [
+          "01",
+          "17%",
+          "2.49%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source Sample Superstore retail dataset (public Kaggle and Tableau Community distribution) Grain One row per order line item; a single order can have several lines Size 9,994 line items from 5,009 distinct orders and 793 customers, in 21 raw columns Period Orders dated 2014-01-03 to 2017-12-30 Quality 0 missing values and 0 duplicate rows in the 21 raw columns Derived Five added columns (order year, order month, month name, weekday and shipping duration), making 26 columns; shipping took 0 to 7 days, about 3.96 on average",
+        "numbers": [
+          "02",
+          "9,994",
+          "5,009",
+          "793",
+          "21",
+          "2014",
+          "-01",
+          "-03",
+          "2017",
+          "-12",
+          "-30",
+          "0",
+          "26",
+          "7",
+          "3.96"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline-python-power-bi": {
+        "heading": "Pipeline: Python → Power BI",
+        "text": "03 Pipeline: Python → Power BI Python Read the raw file with the correct Windows-1252 encoding, checked shape, types, missing values and duplicates, parsed the dates, added the calendar and shipping columns, wrote a prepared CSV and exported six charts at 300 DPI. Power BI A report built on that prepared CSV, with a region slicer, KPI cards, profit by sub-category, a state map, sales by category and a calendar-month sales chart. DAX Three explicit measures: Total Revenue, Total Profit and Total Orders. Total Orders uses DISTINCTCOUNT of Order ID, so an order with several lines counts once. Handoff The prepared CSV is the data contract between Python and Power BI.",
+        "numbers": [
+          "03",
+          "-1252",
+          "300"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-data-quality-found-and-fixed": {
+        "heading": "Data Quality: Found and Fixed",
+        "text": "04 Data Quality: Found and Fixed Encoding: the raw CSV failed to load as UTF-8 (a UnicodeDecodeError). I specified Windows-1252 instead of dropping characters. Rows are not orders: 9,994 rows are order lines, not orders. I report 9,994 line items and 5,009 distinct orders separately, and the Power BI order count uses DISTINCTCOUNT. Monthly chart title: pooling January to December across four years shows seasonality, not a year-over-year trend. I titled the chart \"Sales by Calendar Month (2014–2017 combined).\" Chart scale: sales and profit on one axis made the profit bars negligible, so the category chart uses two side-by-side panels with independent axes. Clipped labels: the region chart's value labels were cut off at the plot edge, so I added axis margin and checked the exported image. Paths and housekeeping: the notebook failed when run from another folder, so I resolve the project root in code. I also removed unused dependencies and README merge-conflict markers and kept one canonical chart filename.",
+        "numbers": [
+          "04",
+          "-8",
+          "-1252",
+          "9,994",
+          "5,009",
+          "2014–2017"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-findings": {
+        "heading": "Findings",
+        "text": "05 Findings Total sales are $2,297,200.86 and total profit is $286,397.02, an overall margin of 12.47%. Sales alone mislead: Technology leads with $836,154 in sales and $145,455 in profit (17.40% margin), Office Supplies has $719,047 in sales and $122,491 in profit (17.04%), but Furniture has $741,999.80 in sales and only $18,451 in profit (2.49%). Three of 17 sub-categories lose money: Tables (-$17,725.48), Bookcases (-$3,472.56) and Supplies (-$1,189.10). Copiers is the most profitable at about $55.6K. West has the most sales ($725,458, profit $108,418) and Central has the weakest margin (7.92%) despite $501,240 in sales. East has $678,781 in sales and South has $391,722. California is the top state by sales ($457,688). November has the highest pooled calendar-month sales ($352,461). This is a seasonal pattern across 2014–2017 combined, not proof that November led in every year. Consumer accounts for 50.6% of sales, Corporate for 30.7% and Home Office for 18.7%. That is revenue mix, not profitability.",
+        "numbers": [
+          "05",
+          "$2,297,200.86",
+          "$286,397.02",
+          "12.47%",
+          "$836,154",
+          "$145,455",
+          "17.40%",
+          "$719,047",
+          "$122,491",
+          "17.04%",
+          "$741,999.80",
+          "$18,451",
+          "2.49%",
+          "17",
+          "$17,725.48",
+          "$3,472.56",
+          "$1,189.10",
+          "$55.6K",
+          "$725,458",
+          "$108,418",
+          "7.92%",
+          "$501,240",
+          "$678,781",
+          "$391,722",
+          "$457,688",
+          "$352,461",
+          "2014–2017",
+          "50.6%",
+          "30.7%",
+          "18.7%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-where-i-would-look-next": {
+        "heading": "Where I Would Look Next",
+        "text": "06 Where I Would Look Next Investigate Furniture at product and order level, because its 2.49% margin is far below Technology's 17.40% and Office Supplies' 17.04%. Review discounts, pricing, fulfilment cost and product mix for Tables, Bookcases and Supplies first. Judge regions by margin as well as sales: Central's 7.92% margin means volume alone is not a sufficient performance signal. Treat November as a seasonal planning clue, and validate it year by year before any staffing or inventory decision. These are places to investigate, not conclusions. I did not analyse discounts, costs or returns, so this project cannot say what causes the thin or negative margins.",
+        "numbers": [
+          "06",
+          "2.49%",
+          "17.40%",
+          "17.04%",
+          "7.92%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "07-power-bi-report": {
+        "heading": "Power BI Report",
+        "text": "07 Power BI Report The Power BI report opens with three KPI cards (total revenue, total profit and total orders) and lets a viewer filter every visual by region: profit by sub-category, revenue by state on a map, sales by category and sales by calendar month. Three explicit DAX measures define the KPIs, and Total Orders counts each order once with DISTINCTCOUNT.",
+        "numbers": [
+          "07"
+        ],
+        "links": [],
+        "images": []
+      },
+      "08-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "08 Visual Evidence Enlarge figure: Power BI Retail Sales Analysis Dashboard: three KPI cards (total revenue, total profit and total orders), profit by sub-category, a map of revenue by state, a region slicer with Select all, Central, East, South and West, sales by category, and sales by calendar month. Power BI Retail Sales Analysis Dashboard: three KPI cards (total revenue, total profit and total orders), profit by sub-category, a map of revenue by state, a region slicer with Select all, Central, East, South and West, sales by category, and sales by calendar month. Power BI report. The region slicer filters every visual. Enlarge figure: Two bar charts side by side: sales by category (Furniture about $742K, Office Supplies about $719K, Technology about $836K) and profit by category (Furniture about $18K, Office Supplies about $122K, Technology about $145K). Two bar charts side by side: sales by category (Furniture about $742K, Office Supplies about $719K, Technology about $836K) and profit by category (Furniture about $18K, Office Supplies about $122K, Technology about $145K). Sales and profit by category on separate axes. Furniture sells almost as much as the others but keeps far less profit. Enlarge figure: Horizontal bar chart of profit by sub-category, from Copiers (about $55.6K, the highest) down to Tables (about -$17.7K), with Bookcases and Supplies also negative and a dashed zero line separating green profit bars from red loss bars. Horizontal bar chart of profit by sub-category, from Copiers (about $55.6K, the highest) down to Tables (about -$17.7K), with Bookcases and Supplies also negative and a dashed zero line separating green profit bars from red loss bars. Profit by sub-category. Red bars are loss-making: Tables, Bookcases and Supplies. Enlarge figure: Horizontal bar chart of total sales by region: West $725,458, East $678,781, Central $501,240 and South $391,722. Horizontal bar chart of total sales by region: West $725,458, East $678,781, Central $501,240 and South $391,722. Total sales by region. Central has the weakest margin (7.92%) despite its sales volume. Enlarge figure: Line chart of total sales by calendar month, 2014 to 2017 combined, lowest in February at about $60K and peaking in November at about $352K, with the November peak labelled. Line chart of total sales by calendar month, 2014 to 2017 combined, lowest in February at about $60K and peaking in November at about $352K, with the November peak labelled. Sales pooled by calendar month across all four years. A seasonal pattern, not a year-over-year trend.",
+        "numbers": [
+          "08",
+          "$742K",
+          "$719K",
+          "$836K",
+          "$18K",
+          "$122K",
+          "$145K",
+          "$55.6K",
+          "$17.7K",
+          "$725,458",
+          "$678,781",
+          "$501,240",
+          "$391,722",
+          "7.92%",
+          "2014",
+          "2017",
+          "$60K",
+          "$352K"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/retail-sales/rs-pbi-dashboard.webp",
+            "alt": "Power BI Retail Sales Analysis Dashboard: three KPI cards (total revenue, total profit and total orders), profit by sub-category, a map of revenue by state, a region slicer with Select all, Central, East, South and West, sales by category, and sales by calendar month."
+          },
+          {
+            "src": "/projects/retail-sales/rs-category-sales-profit.webp",
+            "alt": "Two bar charts side by side: sales by category (Furniture about $742K, Office Supplies about $719K, Technology about $836K) and profit by category (Furniture about $18K, Office Supplies about $122K, Technology about $145K)."
+          },
+          {
+            "src": "/projects/retail-sales/rs-profit-by-subcategory.webp",
+            "alt": "Horizontal bar chart of profit by sub-category, from Copiers (about $55.6K, the highest) down to Tables (about -$17.7K), with Bookcases and Supplies also negative and a dashed zero line separating green profit bars from red loss bars."
+          },
+          {
+            "src": "/projects/retail-sales/rs-sales-by-region.webp",
+            "alt": "Horizontal bar chart of total sales by region: West $725,458, East $678,781, Central $501,240 and South $391,722."
+          },
+          {
+            "src": "/projects/retail-sales/rs-sales-by-calendar-month.webp",
+            "alt": "Line chart of total sales by calendar month, 2014 to 2017 combined, lowest in February at about $60K and peaking in November at about $352K, with the November peak labelled."
+          }
+        ]
+      },
+      "09-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "09 Limitations and Next Steps This is historical sample data: there is no live feed, no scheduled refresh and no forecasting. Month patterns pool four years, so they show seasonality, not a chronological trend. Category and sub-category totals can hide product and order variation: Furniture's 2.49% margin is an aggregate. The data has no cost or return detail, and I did not analyse discounts, so no cause of low or negative margins is claimed. A new user must download the raw dataset, rerun the notebook to regenerate the prepared CSV, and set the Power BI source path before refreshing. Next steps: order-level and product-level drill-through in the report, a year-by-year check of the November peak, and a discount and cost analysis of the loss-making sub-categories.",
+        "numbers": [
+          "09",
+          "2.49%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "10-what-i-did": {
+        "heading": "What I Did",
+        "text": "10 What I Did Solo project. I inspected and prepared the data in Python, engineered the calendar and shipping features, produced the six charts, built the Power BI report and its DAX measures, and audited my own work, correcting the encoding, path, chart-scale, label and naming issues described above.",
+        "numbers": [
+          "10"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "11 Tools and Skills Tools Tools used on this project Power BI DAX Power Query Python pandas matplotlib seaborn Jupyter Git/GitHub Skills shown Skills shown used on this project Business Intelligence Dashboards DAX Measures KPI Reporting Exploratory Data Analysis Profit Margin Analysis Data Cleaning Data Visualization Seasonality Analysis",
+        "numbers": [
+          "11"
+        ],
+        "links": [],
+        "images": []
+      },
+      "12-links": {
+        "heading": "Links",
+        "text": "12 Links GitHub repository",
+        "numbers": [
+          "12"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/retail-sales-dashboard"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/customer-churn/": {
+      "00-header": {
+        "heading": "Which telecom customers are likely to leave?",
+        "text": "05 Customer Churn Prediction Machine Learning / Classification Which telecom customers are likely to leave? Logistic Regression, chosen by cross-validated ROC-AUC (0.8463 against 0.8455 for Random Forest, effectively a tie), flags 77.81% of churners among 1,407 held-out telecom customers (test ROC-AUC 0.8310) and runs in a live Streamlit app. Python · scikit-learn · Streamlit GitHub Live application",
+        "numbers": [
+          "05",
+          "0.8463",
+          "0.8455",
+          "77.81%",
+          "1,407",
+          "0.8310"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction"
+          },
+          {
+            "text": "Live application",
+            "href": "https://customer-churn-prediction-0001.streamlit.app/"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "0.8310 Test ROC-AUC, Logistic Regression 77.81% Logistic Regression churn recall on 1,407 held-out customers 49.91% Logistic Regression precision at the 0.50 threshold 42.7% vs 2.8% Churn: month-to-month vs two-year contracts",
+        "numbers": [
+          "0.8310",
+          "77.81%",
+          "1,407",
+          "49.91%",
+          "0.50",
+          "42.7%",
+          "2.8%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: A telecom company wants to spot customers likely to leave and estimate churn risk for a given customer profile. I used a public sample of 7,043 customers to ask how common churn is, how it varies with contract, tenure, charges and services, and whether a classifier can separate churners from stayers on customers it has not seen well enough to score one customer at a time in a web app. The result is a decision-support prototype, not a live retention system, and I treated every pattern as an association. Answer: a Logistic Regression model scores a customer's churn risk and catches 77.81% of churners on held-out customers, at the cost of about two flagged customers for every real churner; the project does not test whether retention offers work.",
+        "numbers": [
+          "01",
+          "7,043",
+          "77.81%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source IBM Telco Customer Churn sample (Kaggle) Grain One row per customer Size 7,043 rows × 21 columns; 5,174 stayed and 1,869 churned (26.5%) After cleaning 7,032 rows × 20 columns: 11 blank TotalCharges records removed and customerID dropped Model input 36 ordered predictors after encoding and adding five engineered features Split Stratified 80/20: 5,625 training customers and 1,407 test customers Limit One public dataset with no dates, so performance on other customers or later periods is unknown",
+        "numbers": [
+          "02",
+          "7,043",
+          "21",
+          "5,174",
+          "1,869",
+          "26.5%",
+          "7,032",
+          "20",
+          "11",
+          "36",
+          "80",
+          "5,625",
+          "1,407"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline": {
+        "heading": "Pipeline",
+        "text": "03 Pipeline Cleaning Converted TotalCharges to numeric (11 blank strings became missing and were dropped), removed customerID, mapped Churn to 0 and 1, and one-hot encoded the categorical fields. Features Five engineered features: tenure group (new up to 12 months, mid 13 to 48, loyal 49 to 72), a count of eight services, a new-customer flag, average monthly charge from total charges, and a high-value flag for monthly charges above 70.60, the training-row median. Validation Scaling and then SMOTE were applied inside each of five cross-validation folds, and the test set was never resampled. After SMOTE the training data has 8,260 rows. Models Logistic Regression and Random Forest, compared on mean 5-fold cross-validated ROC-AUC. App A Streamlit form that engineers the same features, aligns the encoded columns to the saved training schema, scales the row, and returns churn and retention probabilities, a risk band and example outreach suggestions. Tests pytest checks for tenure-group boundaries and for parity between batch and single-customer feature encoding.",
+        "numbers": [
+          "03",
+          "11",
+          "0",
+          "1",
+          "12",
+          "13",
+          "48",
+          "49",
+          "72",
+          "70.60",
+          "8,260",
+          "5"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-findings": {
+        "heading": "Findings",
+        "text": "04 Findings Churn is 26.5% (1,869 of 7,043), so a model that always predicts \"stay\" would look about 73.5% accurate while catching no churners. Contract is the strongest pattern: churn is 42.7% on month-to-month contracts, 11.3% on one-year and 2.8% on two-year. This is an association; contract type may be tied to tenure, price or service mix. Churners had a median tenure of 10 months against 38 for customers who stayed. Churn is 47.68% for new customers (12 months or less), 23.64% for mid and 9.51% for loyal. Churners paid more per month on average ($74.44 against $61.31), which may reflect contract and service mix as well as price. Correlations with churn: tenure -0.35, fiber optic internet +0.31, two-year contract -0.30, electronic check payment +0.30. Churn by number of services is uneven: 43.8% with none, 21.2% with one, 36.5% with three, falling to 5.3% with all eight.",
+        "numbers": [
+          "04",
+          "26.5%",
+          "1,869",
+          "7,043",
+          "73.5%",
+          "42.7%",
+          "11.3%",
+          "2.8%",
+          "10",
+          "38",
+          "47.68%",
+          "12",
+          "23.64%",
+          "9.51%",
+          "$74.44",
+          "$61.31",
+          "-0.35",
+          "+0.31",
+          "-0.30",
+          "+0.30",
+          "43.8%",
+          "21.2%",
+          "36.5%",
+          "5.3%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-model-comparison": {
+        "heading": "Model Comparison",
+        "text": "05 Model Comparison Logistic Regression (selected) Mean 5-fold CV ROC-AUC 0.8463. Held-out test: ROC-AUC 0.8310, accuracy 73.35%, precision 49.91%, recall 77.81%, F1 0.6082. Random Forest Mean 5-fold CV ROC-AUC 0.8455. Held-out test: ROC-AUC 0.8344, accuracy 76.69%, precision 54.83%, recall 69.79%, F1 0.6141. Everyone-stays baseline Labelling every held-out customer \"stay\" is 73.42% accurate (1,033 of 1,407), and Logistic Regression's 73.35% accuracy is no better than doing nothing. So accuracy is not the number to read here; recall is: Logistic Regression catches 77.81% of churners, against 69.79% for Random Forest, whose 76.69% accuracy comes with fewer churners caught. Why Logistic Regression It was selected on the cross-validation criterion. Random Forest scores slightly higher on the test set, but test results do not override the selection rule. Errors, Logistic Regression Of 374 churners in the test set, 291 were caught and 83 missed; of 1,033 stayers, 292 were flagged by mistake. The margin is small: the cross-validated AUC lead is 0.0008, and I did not run repeated splits or report fold-to-fold variation, so another seed could change the choice. At a 0.50 threshold about half of the flagged customers are real churners (precision 49.91%), so a retention team would contact about two customers for every one who would leave.",
+        "numbers": [
+          "05",
+          "5",
+          "0.8463",
+          "0.8310",
+          "73.35%",
+          "49.91%",
+          "77.81%",
+          "1",
+          "0.6082",
+          "0.8455",
+          "0.8344",
+          "76.69%",
+          "54.83%",
+          "69.79%",
+          "0.6141",
+          "73.42%",
+          "1,033",
+          "1,407",
+          "374",
+          "291",
+          "83",
+          "292",
+          "0.0008",
+          "0.50"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-how-a-retention-team-could-use-this": {
+        "heading": "How a Retention Team Could Use This",
+        "text": "06 How a Retention Team Could Use This Review customers in the high-risk band (above 0.70) first. Look first at month-to-month contracts (42.7% churn) and at customers in their first 12 months (47.68% churn), and test annual-contract offers there. Read the probabilities as relative risk, not an exact chance of leaving, because they are not calibrated. These are suggestions to test, not measured outcomes: the project does not test whether retention offers work.",
+        "numbers": [
+          "06",
+          "0.70",
+          "42.7%",
+          "12",
+          "47.68%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "07-mistakes-i-caught-and-corrected": {
+        "heading": "Mistakes I Caught and Corrected",
+        "text": "07 Mistakes I Caught and Corrected Blank TotalCharges escaped my missing-value check because empty strings are not NaN. I coerced the column to numeric and dropped the 11 rows; all 11 had tenure zero. Encoding mismatch at prediction time: one-hot encoding a single customer with drop_first removed the only category present, so the row no longer matched the training columns. I now create every category, reindex to the saved ordered feature list and fill missing columns with zero. A recorded review estimated the old behaviour shifted the mean predicted churn probability by 20.48 percentage points and changed 1,566 of 7,032 predictions; I treat that as a historical estimate, not a rerun result. Leakage in a feature threshold: I first computed the high-value cutoff on the full dataset, so test data influenced a feature. It is now computed from training rows only and stored for the app. Cross-validation did not match final training: validation used different scaling, and SMOTE's neighbour search ran on unscaled features. I moved scaling before SMOTE inside every fold. Model selection overwritten: the test-set winner had replaced the cross-validation choice in the saved model label. I kept the cross-validation choice as the selected model and marked the test winner as informational. Tenure boundaries differed between training and the app. I standardised them (new up to 12, mid 13 to 48, loyal above 48) and added boundary tests. Risk bands versus predicted class: the app's bands (low up to 0.40, medium up to 0.70, high above 0.70) differ from the 0.50 class threshold, so a medium badge can come with a \"stay\" prediction. The app now explains this.",
+        "numbers": [
+          "07",
+          "11",
+          "20.48",
+          "1,566",
+          "7,032",
+          "12",
+          "13",
+          "48",
+          "0.40",
+          "0.70",
+          "0.50"
+        ],
+        "links": [],
+        "images": []
+      },
+      "08-the-live-app": {
+        "heading": "The Live App",
+        "text": "08 The Live App The Streamlit app takes one customer profile (tenure 1 to 72 months, monthly charges $0 to $150, total charges $0 to $10,000) and returns churn and retention probabilities, a risk band, a probability chart and example outreach actions. The suggested actions are static examples, not validated interventions, and the probabilities are not calibrated.",
+        "numbers": [
+          "08",
+          "1",
+          "72",
+          "$0",
+          "$150",
+          "$10,000"
+        ],
+        "links": [],
+        "images": []
+      },
+      "09-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "09 Visual Evidence Enlarge figure: Screenshot of the live Streamlit app: a sidebar showing Logistic Regression, AUC 0.8310, recall 0.7781 and 8,260 training samples, and a prediction for an example customer with a 74.7% churn probability, 25.3% retention probability, a HIGH risk label, four suggested actions and a probability bar chart. Screenshot of the live Streamlit app: a sidebar showing Logistic Regression, AUC 0.8310, recall 0.7781 and 8,260 training samples, and a prediction for an example customer with a 74.7% churn probability, 25.3% retention probability, a HIGH risk label, four suggested actions and a probability bar chart. Live Streamlit app, prediction view for an example customer. The sidebar's 8,260 training samples is the row count after SMOTE; the suggested actions are static examples and the probabilities are not calibrated. Enlarge figure: Two confusion matrices on the 1,407 held-out customers. Logistic Regression: 741 true negatives, 292 false positives, 83 false negatives, 291 true positives. Random Forest: 818 true negatives, 215 false positives, 113 false negatives, 261 true positives. Two confusion matrices on the 1,407 held-out customers. Logistic Regression: 741 true negatives, 292 false positives, 83 false negatives, 291 true positives. Random Forest: 818 true negatives, 215 false positives, 113 false negatives, 261 true positives. Held-out confusion matrices at the 0.50 threshold. Logistic Regression misses fewer churners (83 against 113) but flags more stayers (292 against 215). Enlarge figure: Two charts of churn rate by contract type: month-to-month 42.7%, one-year 11.3% and two-year 2.8%, shown as a stacked percentage bar and as horizontal bars. Two charts of churn rate by contract type: month-to-month 42.7%, one-year 11.3% and two-year 2.8%, shown as a stacked percentage bar and as horizontal bars. Churn rate by contract type. An association, not proof that contract type causes churn. Enlarge figure: Four bar charts checking the engineered features: churn rate by tenure group (new 47.68%, mid 23.64%, loyal 9.51%), by number of services (43.8% with none, 5.3% with eight), new versus existing customers (47.7% against 17.1%), and high versus normal monthly charges (35.2% against 18.0%). Four bar charts checking the engineered features: churn rate by tenure group (new 47.68%, mid 23.64%, loyal 9.51%), by number of services (43.8% with none, 5.3% with eight), new versus existing customers (47.7% against 17.1%), and high versus normal monthly charges (35.2% against 18.0%). Churn rate by engineered feature. Associations, not causes. Enlarge figure: Box plot and density plot of monthly charges by churn status; churned customers average $74.44 per month against $61.31 for customers who stayed. Box plot and density plot of monthly charges by churn status; churned customers average $74.44 per month against $61.31 for customers who stayed. Monthly charges by churn status; the diamonds and dashed lines mark the means. Enlarge figure: Horizontal bar chart of the top 15 Random Forest feature importances: tenure is highest at 0.1339, then two-year contract at 0.0906, fiber optic internet at 0.0855, total charges at 0.0702 and electronic check payment at 0.0679. Horizontal bar chart of the top 15 Random Forest feature importances: tenure is highest at 0.1339, then two-year contract at 0.0906, fiber optic internet at 0.0855, total charges at 0.0702 and electronic check payment at 0.0679. Top 15 Random Forest feature importances (impurity-based). This is the comparison model, not the deployed Logistic Regression, and it shows what the model used, not what causes churn.",
+        "numbers": [
+          "09",
+          "0.8310",
+          "0.7781",
+          "8,260",
+          "74.7%",
+          "25.3%",
+          "1,407",
+          "741",
+          "292",
+          "83",
+          "291",
+          "818",
+          "215",
+          "113",
+          "261",
+          "0.50",
+          "42.7%",
+          "11.3%",
+          "2.8%",
+          "47.68%",
+          "23.64%",
+          "9.51%",
+          "43.8%",
+          "5.3%",
+          "47.7%",
+          "17.1%",
+          "35.2%",
+          "18.0%",
+          "$74.44",
+          "$61.31",
+          "15",
+          "0.1339",
+          "0.0906",
+          "0.0855",
+          "0.0702",
+          "0.0679"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/customer-churn/cc-app-result.webp",
+            "alt": "Screenshot of the live Streamlit app: a sidebar showing Logistic Regression, AUC 0.8310, recall 0.7781 and 8,260 training samples, and a prediction for an example customer with a 74.7% churn probability, 25.3% retention probability, a HIGH risk label, four suggested actions and a probability bar chart."
+          },
+          {
+            "src": "/projects/customer-churn/cc-confusion.webp",
+            "alt": "Two confusion matrices on the 1,407 held-out customers. Logistic Regression: 741 true negatives, 292 false positives, 83 false negatives, 291 true positives. Random Forest: 818 true negatives, 215 false positives, 113 false negatives, 261 true positives."
+          },
+          {
+            "src": "/projects/customer-churn/cc-churn-by-contract.webp",
+            "alt": "Two charts of churn rate by contract type: month-to-month 42.7%, one-year 11.3% and two-year 2.8%, shown as a stacked percentage bar and as horizontal bars."
+          },
+          {
+            "src": "/projects/customer-churn/cc-feature-validation.webp",
+            "alt": "Four bar charts checking the engineered features: churn rate by tenure group (new 47.68%, mid 23.64%, loyal 9.51%), by number of services (43.8% with none, 5.3% with eight), new versus existing customers (47.7% against 17.1%), and high versus normal monthly charges (35.2% against 18.0%)."
+          },
+          {
+            "src": "/projects/customer-churn/cc-monthly-charges.webp",
+            "alt": "Box plot and density plot of monthly charges by churn status; churned customers average $74.44 per month against $61.31 for customers who stayed."
+          },
+          {
+            "src": "/projects/customer-churn/cc-feature-importance.webp",
+            "alt": "Horizontal bar chart of the top 15 Random Forest feature importances: tenure is highest at 0.1339, then two-year contract at 0.0906, fiber optic internet at 0.0855, total charges at 0.0702 and electronic check payment at 0.0679."
+          }
+        ]
+      },
+      "10-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "10 Limitations and Next Steps The data is one public dataset with a single 80/20 split, so performance on other customers or later periods is unknown. Probabilities are not calibrated, because SMOTE changes the training class balance; read them as relative risk, not an exact chance of leaving. The 0.50 threshold and the 0.40 and 0.70 risk bands were not chosen from a retention cost or capacity analysis. Logistic Regression's cross-validated lead is only 0.0008, and robustness across seeds and repeated splits is not shown. There is no subgroup or fairness assessment. The notebook still computes the engineered features inline, duplicating the module the app uses, so the two can drift. No financial impact is claimed: the project does not test a retention campaign or estimate customer value. Next steps: report fold-to-fold variation and repeated-split results, tie the threshold to a retention budget, check calibration and subgroup performance, and have training and the app import the same feature code.",
+        "numbers": [
+          "10",
+          "80",
+          "20",
+          "0.50",
+          "0.40",
+          "0.70",
+          "0.0008"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-what-i-did": {
+        "heading": "What I Did",
+        "text": "11 What I Did Solo project. I cleaned and explored the data, engineered and validated five features, compared two classifiers with leakage-safe cross-validation, built and deployed the Streamlit app, wrote the tests, and audited my own work, correcting the issues described above.",
+        "numbers": [
+          "11"
+        ],
+        "links": [],
+        "images": []
+      },
+      "12-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "12 Tools and Skills Tools Tools used on this project Python pandas NumPy scikit-learn imbalanced-learn matplotlib seaborn Streamlit Plotly pytest Jupyter Git/GitHub Skills shown Skills shown used on this project Churn Analysis Classification Cross-Validation SMOTE Inside Training Folds Data Leakage Prevention Feature Engineering Data Cleaning Model Evaluation (ROC-AUC, Precision, Recall) Model Deployment Automated Testing",
+        "numbers": [
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "13-links": {
+        "heading": "Links",
+        "text": "13 Links GitHub repository Live application",
+        "numbers": [
+          "13"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction"
+          },
+          {
+            "text": "Live application",
+            "href": "https://customer-churn-prediction-0001.streamlit.app/"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/product-sentiment/": {
+      "00-header": {
+        "heading": "Do food reviews agree with their star ratings?",
+        "text": "06 Product Review Sentiment Analysis NLP / Sentiment Analysis Do food reviews agree with their star ratings? Across 568,454 Amazon food reviews, VADER agrees with a star-rating proxy on 80.38% of reviews and labels 49.47% of one-star reviews positive: a lexicon-based workflow with a Plotly dashboard and a Streamlit app. Python · VADER · Plotly · Streamlit GitHub Live application",
+        "numbers": [
+          "06",
+          "568,454",
+          "80.38%",
+          "49.47%"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard"
+          },
+          {
+            "text": "Live application",
+            "href": "https://prduct-sentiment-dashboard.streamlit.app/"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "568,454 Amazon food reviews analysed 88.21% Reviews VADER labels positive 80.38% Agreement vs a 78.07% always-positive baseline (not accuracy) 49.47% One-star reviews VADER labels positive",
+        "numbers": [
+          "568,454",
+          "88.21%",
+          "80.38%",
+          "78.07%",
+          "49.47%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: A star rating squeezes a whole review into one number, and nobody can read half a million comments. I wanted to know whether practical text-analysis methods can summarise a large review collection: how the language labels relate to star ratings, which products and years show higher negative shares, and which phrases rank highly in each group. The project is descriptive. It does not train a classifier, and I treat star ratings as a rough proxy for sentiment, not as ground truth. Answer: as a first-pass summary, yes, with limits: VADER labels 88.21% of reviews positive and agrees with a star-rating proxy on 80.38%, but it labels 49.47% of one-star reviews positive, so its labels need human checks before decisions.",
+        "numbers": [
+          "01",
+          "88.21%",
+          "80.38%",
+          "49.47%"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source Amazon Fine Food Reviews (Stanford SNAP collection) Grain One row per review Size 568,454 reviews × 10 raw columns (about 300.9 MB); 17 columns in the processed file Period 8 October 1999 to 26 October 2012 Ratings 1 star: 52,268; 2 stars: 29,769; 3 stars: 42,640; 4 stars: 80,655; 5 stars: 363,122 Missing 26 ProfileName and 27 Summary values; no other raw column has missing values Limit There are no human-labelled sentiment values, so star ratings are the only comparison label",
+        "numbers": [
+          "02",
+          "568,454",
+          "10",
+          "300.9",
+          "17",
+          "8",
+          "1999",
+          "26",
+          "2012",
+          "1",
+          "52,268",
+          "2",
+          "29,769",
+          "3",
+          "42,640",
+          "4",
+          "80,655",
+          "5",
+          "363,122",
+          "27"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline": {
+        "heading": "Pipeline",
+        "text": "03 Pipeline Cleaning Two text paths. For VADER: strip HTML first, then URLs, and normalise whitespace while keeping the capitalisation, punctuation and emoticons VADER reads. For word and phrase analysis: lowercase, expand negative contractions, remove punctuation and digits, tokenise, and drop stopwords except \"not\", \"no\" and \"nor\". Scoring VADER compound score from -1 to +1: at or above +0.05 is positive, at or below -0.05 is negative, and anything between is neutral. TextBlob polarity and subjectivity were computed as a comparison. Proxy Star ratings mapped to three classes: 1 to 2 stars negative, 3 stars neutral, 4 to 5 stars positive. Summaries Label mix by star rating, product, year and review length; word clouds; and TF-IDF phrases of two to three words from a balanced sample of 5,000 reviews per class. Outputs A processed CSV, saved charts, a five-panel Plotly HTML dashboard and a Streamlit app that scores one typed review.",
+        "numbers": [
+          "03",
+          "-1",
+          "+1",
+          "+0.05",
+          "-0.05",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "5,000"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-data-quality-found-and-fixed": {
+        "heading": "Data Quality: Found and Fixed",
+        "text": "04 Data Quality: Found and Fixed Cleaning that erased sentiment cues: aggressive cleaning removes the capitalisation, punctuation and negation that VADER reads, so I built a separate VADER path and kept \"not\", \"no\" and \"nor\" in the phrase path. HTML and URL order: removing URLs before HTML could swallow real words inside links, so I strip HTML first and added regression examples for links, negation and word corruption. Empty text read as neutral: a review that is empty after cleaning scores 0.0 and looks neutral, so I added a vader_empty flag and mark empty TextBlob results as missing. The current processed file has no such rows, but the guard stays. Fragile paths and schema: the notebook now finds the project root from either folder, uses a strict column drop and asserts the expected 17-column schema.",
+        "numbers": [
+          "04",
+          "0.0",
+          "17"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-findings": {
+        "heading": "Findings",
+        "text": "05 Findings VADER labels 501,419 reviews positive (88.21%), 55,646 negative (9.79%) and 11,389 neutral (2.00%). It agrees with the star-rating proxy on 80.38% of reviews, with 111,534 disagreements. That is agreement with a proxy, not accuracy against human-labelled sentiment. A baseline that labels every review positive would agree with the proxy on 78.07% (443,777 of 568,454, the four- and five-star reviews), so VADER's 80.38% is 2.3 points above that baseline, and TextBlob's 75.94% falls below it. Overall agreement hides the minority classes: from the confusion matrix, VADER matches the proxy on 95.2% of positive-proxy reviews but only 40.1% of negative-proxy and 3.8% of neutral-proxy reviews. VADER labels 49.47% of one-star reviews and 65.11% of two-star reviews positive, which shows a large mismatch between the text label and the rating. TextBlob agrees with the proxy on 75.94% (saved notebook output, not recomputable from the processed CSV), and mean TextBlob subjectivity is 0.5501. Among 5,030 products with at least 20 reviews, the highest VADER-negative share is 66.7% (16 of 24 reviews). That is a small-group share, not a quality verdict. Yearly positive share (years with at least 100 reviews, 2003 to 2012) runs from 86.27% in 2004 to 93.18% in 2003. These are descriptive differences, not causes. Positive reviews average 81.66 words, negative 75.69 and neutral 41.34. This is an association only. Top TF-IDF phrases overlap across classes: \"not sure\" and \"grocery store\" appear in the top phrases of more than one group, so a top phrase is not necessarily distinctive.",
+        "numbers": [
+          "05",
+          "501,419",
+          "88.21%",
+          "55,646",
+          "9.79%",
+          "11,389",
+          "2.00%",
+          "80.38%",
+          "111,534",
+          "78.07%",
+          "443,777",
+          "568,454",
+          "2.3",
+          "75.94%",
+          "95.2%",
+          "40.1%",
+          "3.8%",
+          "49.47%",
+          "65.11%",
+          "0.5501",
+          "5,030",
+          "20",
+          "66.7%",
+          "16",
+          "24",
+          "100",
+          "2003",
+          "2012",
+          "86.27%",
+          "2004",
+          "93.18%",
+          "81.66",
+          "75.69",
+          "41.34"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-how-i-would-use-these-results": {
+        "heading": "How I Would Use These Results",
+        "text": "06 How I Would Use These Results Use VADER labels as a first-pass summary of a large review set, not as a verdict on any single review. Check low-rating reviews by hand: about half of one-star reviews get a positive text label. Compare products only above a minimum review count, and show the count next to every rate. Treat yearly and review-length differences as questions to investigate, not explanations. Measuring true sentiment accuracy would need a stratified, human-labelled sample, which this project does not have.",
+        "numbers": [
+          "06"
+        ],
+        "links": [],
+        "images": []
+      },
+      "07-mistakes-i-caught-and-corrected": {
+        "heading": "Mistakes I Caught and Corrected",
+        "text": "07 Mistakes I Caught and Corrected Agreement called accuracy: I first described agreement with star ratings as accuracy. Stars are not human-labelled sentiment and the three-way mapping loses information, so I renamed it \"agreement with the star-rating proxy.\" A confidence label that was not confidence: the app showed the absolute VADER compound score times 100 as \"Confidence,\" which reads like a probability. I renamed it \"Score Magnitude\" and explained that it measures distance from neutral. A neutral example that was not neutral: the app's example review scored -0.092, which is negative under my thresholds. I replaced it with one that scores 0.000 and tested the examples against the real scoring function. Product and yearly claims that changed: earlier output named different products and years and implied quality rankings. I recomputed from the processed table, applied minimum sizes (20 reviews per product, 100 per year) and relabelled the measure \"negative-label share.\" Word-frequency overreach: removing negators and calling phrases \"distinctive\" misled readers, so I kept negators and now describe results as top within-group phrases. Streamlit failures: the app imported functions that did not exist yet, and its example buttons did not fill the text box because widget state was set in the wrong order. I aligned the module and initialised state first.",
+        "numbers": [
+          "07",
+          "100",
+          "-0.092",
+          "0.000",
+          "20"
+        ],
+        "links": [],
+        "images": []
+      },
+      "08-dashboard-and-app": {
+        "heading": "Dashboard and App",
+        "text": "08 Dashboard and App The Plotly dashboard has five panels: label mix, sentiment by star rating, yearly shares, products by negative share and top TF-IDF phrases. The Streamlit app scores one typed review with the shared cleaner, shows the VADER compound score, the label and the TextBlob measures, and labels the score magnitude as distance from neutral, not confidence. The dashboard loads Plotly.js from a CDN, so it needs a network connection.",
+        "numbers": [
+          "08"
+        ],
+        "links": [],
+        "images": []
+      },
+      "09-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "09 Visual Evidence Enlarge figure: Five-panel Plotly dashboard titled Amazon Food Reviews — Sentiment Analysis Dashboard: a donut chart of label shares, bars of sentiment by star rating, yearly sentiment share lines for 2003 to 2012, the top 10 products by VADER-negative share, and the top TF-IDF phrases for positive and negative reviews. Five-panel Plotly dashboard titled Amazon Food Reviews — Sentiment Analysis Dashboard: a donut chart of label shares, bars of sentiment by star rating, yearly sentiment share lines for 2003 to 2012, the top 10 products by VADER-negative share, and the top TF-IDF phrases for positive and negative reviews. Plotly dashboard (interactive HTML). The product and year panels apply minimum review counts. Enlarge figure: Three-by-three confusion matrix of star-rating proxy labels (rows) against VADER labels (columns): 422,423 positive-proxy reviews labelled positive, 45,240 negative-proxy reviews labelled positive, 33,756 neutral-proxy reviews labelled positive, and 32,879 negative-proxy reviews labelled negative. Three-by-three confusion matrix of star-rating proxy labels (rows) against VADER labels (columns): 422,423 positive-proxy reviews labelled positive, 45,240 negative-proxy reviews labelled positive, 33,756 neutral-proxy reviews labelled positive, and 32,879 negative-proxy reviews labelled negative. VADER labels against the star-rating proxy, raw counts. The proxy is not ground truth. Enlarge figure: Heatmap of the percentage of reviews at each star rating that VADER labels positive, neutral or negative: 49.5% of one-star reviews and 65.1% of two-star reviews are labelled positive, rising to 95.8% at five stars. Heatmap of the percentage of reviews at each star rating that VADER labels positive, neutral or negative: 49.5% of one-star reviews and 65.1% of two-star reviews are labelled positive, rising to 95.8% at five stars. VADER label by star rating, as a percentage of each rating. Enlarge figure: Three bar charts of the top 15 TF-IDF phrases for positive, negative and neutral reviews: \"highly recommend\" leads the positive group and \"not recommend\" leads the negative group, and some phrases, such as \"not sure\" and \"grocery store\", appear in more than one group. Three bar charts of the top 15 TF-IDF phrases for positive, negative and neutral reviews: \"highly recommend\" leads the positive group and \"not recommend\" leads the negative group, and some phrases, such as \"not sure\" and \"grocery store\", appear in more than one group. Top within-group TF-IDF phrases (two to three words) from a balanced sample of 15,000 reviews. A top phrase is not necessarily unique to one group.",
+        "numbers": [
+          "09",
+          "2003",
+          "2012",
+          "10",
+          "422,423",
+          "45,240",
+          "33,756",
+          "32,879",
+          "49.5%",
+          "65.1%",
+          "95.8%",
+          "15",
+          "15,000"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/product-sentiment/sp-dashboard.webp",
+            "alt": "Five-panel Plotly dashboard titled Amazon Food Reviews — Sentiment Analysis Dashboard: a donut chart of label shares, bars of sentiment by star rating, yearly sentiment share lines for 2003 to 2012, the top 10 products by VADER-negative share, and the top TF-IDF phrases for positive and negative reviews."
+          },
+          {
+            "src": "/projects/product-sentiment/sp-confusion-matrix.webp",
+            "alt": "Three-by-three confusion matrix of star-rating proxy labels (rows) against VADER labels (columns): 422,423 positive-proxy reviews labelled positive, 45,240 negative-proxy reviews labelled positive, 33,756 neutral-proxy reviews labelled positive, and 32,879 negative-proxy reviews labelled negative."
+          },
+          {
+            "src": "/projects/product-sentiment/sp-vader-by-stars.webp",
+            "alt": "Heatmap of the percentage of reviews at each star rating that VADER labels positive, neutral or negative: 49.5% of one-star reviews and 65.1% of two-star reviews are labelled positive, rising to 95.8% at five stars."
+          },
+          {
+            "src": "/projects/product-sentiment/sp-tfidf-phrases.webp",
+            "alt": "Three bar charts of the top 15 TF-IDF phrases for positive, negative and neutral reviews: \"highly recommend\" leads the positive group and \"not recommend\" leads the negative group, and some phrases, such as \"not sure\" and \"grocery store\", appear in more than one group."
+          }
+        ]
+      },
+      "10-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "10 Limitations and Next Steps VADER and TextBlob are general lexicon methods and can miss sarcasm, mixed feelings and domain-specific language. Star ratings are an imperfect proxy, so 80.38% agreement is not accuracy. Positive reviews dominate (88.21%), so overall agreement can hide poor handling of negative reviews. Product and year summaries are descriptive and do not show product quality or causes. TextBlob's 75.94% comes from saved notebook output and cannot be recomputed from the processed CSV, which stores subjectivity but not polarity or labels. TF-IDF results depend on the 5,000-per-class sample, the cleaning and the settings. I have not shown a clean-machine rerun of the whole pipeline. Next steps: a stratified, human-labelled sample to measure true accuracy, exporting TextBlob polarity and labels so its agreement can be recomputed, one script that regenerates every output, and automated tests for the shared cleaner.",
+        "numbers": [
+          "10",
+          "80.38%",
+          "88.21%",
+          "75.94%",
+          "5,000"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-what-i-did": {
+        "heading": "What I Did",
+        "text": "11 What I Did Solo project. I cleaned and scored the reviews with VADER and TextBlob, designed the two cleaning paths, compared the labels with star ratings, built the product, yearly, length and TF-IDF summaries, created the Plotly dashboard and the Streamlit app, and audited my own work, correcting the labelling and cleaning issues described above.",
+        "numbers": [
+          "11"
+        ],
+        "links": [],
+        "images": []
+      },
+      "12-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "12 Tools and Skills Tools Tools used on this project Python pandas NumPy VADER TextBlob NLTK scikit-learn matplotlib seaborn Plotly Streamlit Jupyter Git/GitHub Skills shown Skills shown used on this project Sentiment Analysis Text Preprocessing TF-IDF Exploratory Data Analysis Data Cleaning Data Visualization Interactive Dashboards Metric Interpretation Edge-Case Testing",
+        "numbers": [
+          "12"
+        ],
+        "links": [],
+        "images": []
+      },
+      "13-links": {
+        "heading": "Links",
+        "text": "13 Links GitHub repository Live application",
+        "numbers": [
+          "13"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard"
+          },
+          {
+            "text": "Live application",
+            "href": "https://prduct-sentiment-dashboard.streamlit.app/"
+          }
+        ],
+        "images": []
+      }
+    },
+    "/projects/house-price/": {
+      "00-header": {
+        "heading": "What moves a house price?",
+        "text": "07 House Price Prediction Machine Learning / Regression What moves a house price? On 545 houses, a plain Linear Regression (test R² 0.6583) edged out a grid-searched Random Forest (0.5977), which overfit: training R² 0.8784 against 0.5977 on the held-out houses. Python · pandas · scikit-learn GitHub",
+        "numbers": [
+          "07",
+          "545",
+          "0.6583",
+          "0.5977",
+          "0.8784"
+        ],
+        "links": [
+          {
+            "text": "GitHub",
+            "href": "https://github.com/Venkatavishnuvardhanthota/House-Price-Prediction"
+          }
+        ],
+        "images": []
+      },
+      "00-metrics": {
+        "heading": "00-metrics",
+        "text": "0.6583 Test R², Linear Regression 0.5977 Test R², tuned Random Forest 966,320 Test MAE, Linear Regression (dataset units) 545 Houses, 16 features after engineering",
+        "numbers": [
+          "0.6583",
+          "0.5977",
+          "966,320",
+          "545",
+          "16"
+        ],
+        "links": [],
+        "images": []
+      },
+      "01-business-problem-and-decision": {
+        "heading": "Business Problem and Decision",
+        "text": "01 Business Problem and Decision The problem: Property prices are often judged by subjective comparisons or a single number such as price per unit of area, which ignores layout, stories, parking, road access and furnishing all at once. I used 545 houses to ask three questions: which attributes move with price, whether a tuned Random Forest beats a standardised linear baseline on a dataset this small, and whether the whole pipeline can be built cleanly enough to audit and reproduce. This is an analytical exercise, not a valuation tool. Answer: area, bathrooms and the engineered luxury score move most with price, a plain Linear Regression beat the tuned Random Forest on this split (test R² 0.6583 against 0.5977), and the pipeline is documented and audited.",
+        "numbers": [
+          "01",
+          "545",
+          "0.6583",
+          "0.5977"
+        ],
+        "links": [],
+        "images": []
+      },
+      "02-data": {
+        "heading": "Data",
+        "text": "02 Data Source Housing Prices dataset (Kaggle) Grain One row per house Size 545 houses; 13 raw columns (price plus 12 attributes); 0 missing values and 0 duplicate rows Attributes Area, bedrooms, bathrooms, stories, parking, six yes/no features (main road, guest room, basement, hot water heating, air conditioning, preferred area) and furnishing status Units Price and area carry no currency or measurement unit in the source, so everything is reported in dataset units",
+        "numbers": [
+          "02",
+          "545",
+          "13",
+          "12",
+          "0"
+        ],
+        "links": [],
+        "images": []
+      },
+      "03-pipeline": {
+        "heading": "Pipeline",
+        "text": "03 Pipeline Cleaning Checked for missing values and duplicates, audited the categories of every text column, mapped six yes/no columns to 1 and 0, and one-hot encoded furnishing status, dropping one level to avoid a redundant dummy column. Features Three engineered features: bed_bath_count (bedrooms + bathrooms), area_per_bed_bath (area divided by that count) and luxury_score (a count of five amenities: air conditioning, hot water heating, preferred area, guest room, basement). Split and scaling An 80/20 split with a fixed seed: 436 training houses and 109 test houses. StandardScaler was fitted on the training rows only, so no test information leaks into training. Models Linear Regression on the scaled features, and a Random Forest tuned by 5-fold cross-validated grid search over 108 combinations (540 fits) on the training rows. Best forest: 100 trees, max depth 7, minimum 2 houses per leaf; best cross-validated R² 0.6351. Evaluation MAE, RMSE and R² for both models on the same 109 held-out houses, plus training scores to check for overfitting. Artifacts Both models and the scaler saved with joblib, with library versions pinned to match.",
+        "numbers": [
+          "03",
+          "1",
+          "0",
+          "80",
+          "20",
+          "436",
+          "109",
+          "5",
+          "108",
+          "540",
+          "100",
+          "7",
+          "2",
+          "0.6351"
+        ],
+        "links": [],
+        "images": []
+      },
+      "04-findings": {
+        "heading": "Findings",
+        "text": "04 Findings Price is right-skewed: the mean is 4,766,729 against a median of 4,340,000 (skewness +1.21), with a tail up to 13,300,000. A log transform brings skewness down to +0.14. The strongest correlations with price are area (+0.54), bathrooms (+0.52), luxury_score (+0.51), bed_bath_count (+0.51) and air conditioning (+0.45). Unfurnished status is the one clear negative (-0.28). These are associations, not causes. Several features overlap: bed_bath_count correlates +0.89 with bedrooms and +0.75 with bathrooms, and luxury_score is built from five amenity columns. In the Random Forest, area carries 46.2% of the importance, and the three engineered features together carry 23.4%. In the linear model, area has the largest standardised coefficient: +946,722 per standard deviation of area. At a given area, unfurnished houses sit lower in price. This is descriptive. Both models underpredict the most expensive houses. The two test houses priced above 12 million (12.2M and 13.3M) were predicted at roughly 7M to 8.5M, which pushes RMSE well above MAE.",
+        "numbers": [
+          "04",
+          "4,766,729",
+          "4,340,000",
+          "+1.21",
+          "13,300,000",
+          "+0.14",
+          "+0.54",
+          "+0.52",
+          "+0.51",
+          "+0.45",
+          "-0.28",
+          "+0.89",
+          "+0.75",
+          "46.2%",
+          "23.4%",
+          "+946,722",
+          "12",
+          "12.2M",
+          "13.3M",
+          "7M",
+          "8.5M"
+        ],
+        "links": [],
+        "images": []
+      },
+      "05-model-comparison": {
+        "heading": "Model Comparison",
+        "text": "05 Model Comparison Linear Regression Test R² 0.6583, MAE 966,320, RMSE 1,314,226. Training R² 0.6896, a gap of 0.0313. Random Forest, tuned Test R² 0.5977, MAE 1,049,055, RMSE 1,426,042. Training R² 0.8784, a gap of 0.2807, which is clear overfitting. Difference Linear Regression is better on all three test metrics: R² higher by 0.0606, MAE lower by 82,735 (7.89%) and RMSE lower by 111,816 (7.84%). Scale The linear model's average miss (MAE 966,320) is about 20% of the mean price (4,766,729). Why the linear model held up, as hypotheses I did not test: price rises fairly smoothly with area, bathrooms, stories and amenities; 436 training houses leave few houses per forest leaf, so deep trees can memorise noise; and my area-per-room ratio gave the linear model an interaction term. This is one 80/20 split with 109 test houses, so the 0.06 gap in R² is a result for this split, not a general ranking of the two methods.",
+        "numbers": [
+          "05",
+          "0.6583",
+          "966,320",
+          "1,314,226",
+          "0.6896",
+          "0.0313",
+          "0.5977",
+          "1,049,055",
+          "1,426,042",
+          "0.8784",
+          "0.2807",
+          "0.0606",
+          "82,735",
+          "7.89%",
+          "111,816",
+          "7.84%",
+          "20%",
+          "4,766,729",
+          "436",
+          "80",
+          "20",
+          "109",
+          "0.06"
+        ],
+        "links": [],
+        "images": []
+      },
+      "06-mistakes-i-caught-and-corrected": {
+        "heading": "Mistakes I Caught and Corrected",
+        "text": "06 Mistakes I Caught and Corrected Unverified units: my first version labelled prices in rupees and area in square feet. The source documents neither, so I removed every currency symbol and unit, relabelled the charts \"dataset units,\" and regenerated them. A check that could not fail: my test for leftover text columns used select_dtypes(include='object'), which returns nothing under pandas 3.0 string types even if strings remain. I replaced it with select_dtypes(exclude='number'). A heatmap title that contradicted its colours: the title said green means positive and red negative, but the palette has no red. I corrected the title and regenerated the chart. Paths that only worked from one folder: the notebook failed when launched from the repository root. I resolve the project root with pathlib so it runs from either folder. Documentation drift: an early README listed files that did not exist and described an outlier check I never ran, and the notebook summary called regression results \"accuracy\" and left out RMSE. I rewrote both to match the repository and report MAE, RMSE and R² together. Unpinned libraries: the saved models were serialised with specific library versions, so I pinned those versions in requirements.txt.",
+        "numbers": [
+          "06",
+          "3.0"
+        ],
+        "links": [],
+        "images": []
+      },
+      "07-visual-evidence": {
+        "heading": "Visual Evidence",
+        "text": "07 Visual Evidence Enlarge figure: Two scatter plots of actual against predicted house prices on the 109 test houses, Linear Regression on the left (R² 0.6583) and Random Forest on the right (R² 0.5977), each with a dashed perfect-prediction diagonal; both models track the diagonal for prices below about 7 million and fall well below it for the most expensive houses. Two scatter plots of actual against predicted house prices on the 109 test houses, Linear Regression on the left (R² 0.6583) and Random Forest on the right (R² 0.5977), each with a dashed perfect-prediction diagonal; both models track the diagonal for prices below about 7 million and fall well below it for the most expensive houses. Actual versus predicted price on the 109 test houses, in dataset units. Python (matplotlib, seaborn). Enlarge figure: Horizontal bar chart of Random Forest feature importance: area is largest at 0.462, then bed_bath_count 0.100, bathrooms 0.085, luxury_score 0.081 and area_per_bed_bath 0.054, with every other feature below 0.05. Horizontal bar chart of Random Forest feature importance: area is largest at 0.462, then bed_bath_count 0.100, bathrooms 0.085, luxury_score 0.081 and area_per_bed_bath 0.054, with every other feature below 0.05. Random Forest feature importance (impurity-based). It shows what the model used, not what causes price. Enlarge figure: Scatter plot of house price against area, coloured by furnishing status; price rises with area, and unfurnished houses sit toward the lower price band. Scatter plot of house price against area, coloured by furnishing status; price rises with area, and unfurnished houses sit toward the lower price band. Price against area by furnishing status, in dataset units. Descriptive, not causal. Enlarge figure: Two histograms of house price: the raw distribution on the left is right-skewed, with a mean of 4.77 million above a median of 4.34 million, and the log-transformed distribution on the right is close to symmetric. Two histograms of house price: the raw distribution on the left is right-skewed, with a mean of 4.77 million above a median of 4.34 million, and the log-transformed distribution on the right is close to symmetric. Price distribution before and after a log transform, in dataset units. Enlarge figure: Lower-triangle correlation heatmap of price and 16 features; area (0.54), bathrooms (0.52), luxury_score (0.51) and bed_bath_count (0.51) correlate most strongly with price, and unfurnished status is negative (-0.28). Lower-triangle correlation heatmap of price and 16 features; area (0.54), bathrooms (0.52), luxury_score (0.51) and bed_bath_count (0.51) correlate most strongly with price, and unfurnished status is negative (-0.28). Pearson correlations among price and the 16 features. Several features overlap by construction.",
+        "numbers": [
+          "07",
+          "109",
+          "0.6583",
+          "0.5977",
+          "7",
+          "0.462",
+          "0.100",
+          "0.085",
+          "0.081",
+          "0.054",
+          "0.05",
+          "4.77",
+          "4.34",
+          "16",
+          "0.54",
+          "0.52",
+          "0.51",
+          "-0.28"
+        ],
+        "links": [],
+        "images": [
+          {
+            "src": "/projects/house-price/hp-actual-vs-predicted.webp",
+            "alt": "Two scatter plots of actual against predicted house prices on the 109 test houses, Linear Regression on the left (R² 0.6583) and Random Forest on the right (R² 0.5977), each with a dashed perfect-prediction diagonal; both models track the diagonal for prices below about 7 million and fall well below it for the most expensive houses."
+          },
+          {
+            "src": "/projects/house-price/hp-feature-importance.webp",
+            "alt": "Horizontal bar chart of Random Forest feature importance: area is largest at 0.462, then bed_bath_count 0.100, bathrooms 0.085, luxury_score 0.081 and area_per_bed_bath 0.054, with every other feature below 0.05."
+          },
+          {
+            "src": "/projects/house-price/hp-price-vs-area.webp",
+            "alt": "Scatter plot of house price against area, coloured by furnishing status; price rises with area, and unfurnished houses sit toward the lower price band."
+          },
+          {
+            "src": "/projects/house-price/hp-price-distribution.webp",
+            "alt": "Two histograms of house price: the raw distribution on the left is right-skewed, with a mean of 4.77 million above a median of 4.34 million, and the log-transformed distribution on the right is close to symmetric."
+          },
+          {
+            "src": "/projects/house-price/hp-correlation.webp",
+            "alt": "Lower-triangle correlation heatmap of price and 16 features; area (0.54), bathrooms (0.52), luxury_score (0.51) and bed_bath_count (0.51) correlate most strongly with price, and unfurnished status is negative (-0.28)."
+          }
+        ]
+      },
+      "08-limitations-and-next-steps": {
+        "heading": "Limitations and Next Steps",
+        "text": "08 Limitations and Next Steps The data is 545 houses and a single 80/20 split with 109 test houses, so scores depend on the split and the gap between the two models is small. Price and area have no documented unit, and the data has no location, age, build quality or market conditions, so about a third of the variation in price (R² 0.66) is left unexplained. Both models underpredict the most expensive houses, and both give point estimates only, with no prediction intervals. Two engineered features are exact sums of existing columns, so the design matrix has rank 14 of 16. Predictions are unaffected, but individual linear coefficients share weight and should not be read one by one. Everything here is association; no claim about cause is made. Next steps: repeated cross-validation for both models to test whether the gap holds, a log-transformed target, and prediction intervals.",
+        "numbers": [
+          "08",
+          "545",
+          "80",
+          "20",
+          "109",
+          "0.66",
+          "14",
+          "16"
+        ],
+        "links": [],
+        "images": []
+      },
+      "09-what-i-did": {
+        "heading": "What I Did",
+        "text": "09 What I Did Solo project. I cleaned and encoded the data, engineered the three features, built and tuned both models, evaluated them on a held-out set, produced the five charts, and audited my own notebook and README, correcting the issues described above.",
+        "numbers": [
+          "09"
+        ],
+        "links": [],
+        "images": []
+      },
+      "10-tools-and-skills": {
+        "heading": "Tools and Skills",
+        "text": "10 Tools and Skills Tools Tools used on this project Python pandas NumPy scikit-learn matplotlib seaborn joblib Jupyter Git/GitHub Skills shown Skills shown used on this project Regression Modelling Feature Engineering Data Cleaning Leakage-Free Train/Test Split Hyperparameter Tuning Overfitting Diagnostics Model Evaluation (MAE, RMSE, R²) Exploratory Analysis Correlation Analysis",
+        "numbers": [
+          "10"
+        ],
+        "links": [],
+        "images": []
+      },
+      "11-links": {
+        "heading": "Links",
+        "text": "11 Links GitHub repository",
+        "numbers": [
+          "11"
+        ],
+        "links": [
+          {
+            "text": "GitHub repository",
+            "href": "https://github.com/Venkatavishnuvardhanthota/House-Price-Prediction"
+          }
+        ],
+        "images": []
+      }
+    }
+  }
+}

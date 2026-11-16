@@ -1,0 +1,743 @@
+[
+  {
+    "skill": "SQL",
+    "groups": [
+      "Data Analytics",
+      "Programming & Tools"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn"
+    ],
+    "evidence": [
+      "ab-testing-analysis/sql/01_load_raw_data.sql",
+      "ab-testing-analysis/sql/02_conversion_rate_by_group.sql",
+      "ab-testing-analysis/sql/03_cumulative_conversions_by_hour.sql",
+      "Rossmann Store Sales/sql/01_create_tables.sql",
+      "Rossmann Store Sales/sql/02_load_data.sql",
+      "Rossmann Store Sales/sql/query1_train_store_joined.sql",
+      "banking-churn-analysis/sql/01_attrition_rate.sql",
+      "banking-churn-analysis/sql/02_attrition_by_card.sql",
+      "banking-churn-analysis/sql/03_behavioral_comparison.sql",
+      "banking-churn-analysis/sql/04_top50_churned.sql"
+    ]
+  },
+  {
+    "skill": "Excel",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "rossmann"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/excel/rossmann_preliminary_analysis.xlsx",
+      "Rossmann Store Sales/README.md:3 (Excel → MySQL → Python)",
+      "src/data/case-studies/rossmann.ts:41 (Preliminary pivot analysis)"
+    ]
+  },
+  {
+    "skill": "MySQL",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn"
+    ],
+    "evidence": [
+      "banking-churn-analysis/README.md:18 (MySQL — data storage and analytical SQL)",
+      "ab-testing-analysis/sql/01_load_raw_data.sql",
+      "Rossmann Store Sales/sql/01_create_tables.sql"
+    ]
+  },
+  {
+    "skill": "SQL Window Functions",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing",
+      "banking-churn"
+    ],
+    "evidence": [
+      "ab-testing-analysis/sql/03_cumulative_conversions_by_hour.sql:6 (SUM(SUM(converted)) OVER ()",
+      "banking-churn-analysis/sql/01_attrition_rate.sql:5 (SUM(COUNT(*)) OVER())"
+    ]
+  },
+  {
+    "skill": "Pandas",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:10 (import pandas as pd)",
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb:12 (import pandas as pd)",
+      "banking-churn-analysis/notebooks/eda.ipynb:10 (import pandas as pd)",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb:20 (import pandas as pd)",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:11 (import pandas as pd)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:20 (import pandas as pd)",
+      "House Price Prediction/notebooks/analysis.ipynb:434 (import pandas as pd)"
+    ]
+  },
+  {
+    "skill": "NumPy",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "rossmann",
+      "banking-churn",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb:13 (import numpy as np)",
+      "banking-churn-analysis/notebooks/eda.ipynb:11 (import numpy as np)",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:15 (import numpy as np)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:22 (import numpy as np)",
+      "House Price Prediction/notebooks/analysis.ipynb:435 (import numpy as np)"
+    ]
+  },
+  {
+    "skill": "Data Cleaning & Wrangling",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:120 (cleaned_marketing_data.csv)",
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb:90 (inspect shape, structure, nulls, duplicates)",
+      "banking-churn-analysis/notebooks/eda.ipynb:509 (bankchurners_cleaned.csv)",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb:568 (Sample Superstore Cleaned.csv)",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:39 (STEP 2: Cleaning data)",
+      "product-sentiment-dashboard/app/app.py:17 (clean_for_vader)",
+      "House Price Prediction/notebooks/analysis.ipynb:494 (Data types after cleaning)"
+    ]
+  },
+  {
+    "skill": "Pivot Tables",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "rossmann"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/excel/rossmann_preliminary_analysis.xlsx (xl/pivotTables/pivotTable1.xml, xl/pivotTables/pivotTable2.xml, xl/pivotTables/pivotTable3.xml)",
+      "src/data/case-studies/rossmann.ts:41 (Preliminary pivot analysis)"
+    ]
+  },
+  {
+    "skill": "Statistics",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:293 (from statsmodels.stats.proportion import proportions_ztest)"
+    ]
+  },
+  {
+    "skill": "Hypothesis Testing",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:293 (proportions_ztest)",
+      "src/data/case-studies/ab-testing.ts:39 (two-proportion z-test)"
+    ]
+  },
+  {
+    "skill": "A/B Testing",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:133 (PSA (control) conversion rate: 0.0179)",
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:103 (df['test group'].value_counts())"
+    ]
+  },
+  {
+    "skill": "Segment Analysis",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "ab-testing",
+      "banking-churn"
+    ],
+    "evidence": [
+      "src/data/case-studies/ab-testing.ts:66 (Exploratory segments by peak-exposure weekday)",
+      "src/data/case-studies/ab-testing.ts:127 (Segment comparisons are exploratory)",
+      "src/data/case-studies/banking-churn.ts:15 (which segments churn)"
+    ]
+  },
+  {
+    "skill": "EDA",
+    "groups": [
+      "Data Analytics"
+    ],
+    "projects": [
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "house-price"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb:90 (inspect shape, structure, nulls, duplicates)",
+      "banking-churn-analysis/notebooks/eda.ipynb:388 (value_counts())",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb:377 (display(df.describe().round(2)))",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:651 (display(df_raw.describe().round(2)))",
+      "House Price Prediction/notebooks/analysis.ipynb:454 (display(df.describe()))"
+    ]
+  },
+  {
+    "skill": "Power BI",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "rossmann",
+      "banking-churn",
+      "retail-sales"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/dashboard/RossmannSalesDashboard.pbix",
+      "banking-churn-analysis/dashboard/banking_churn_analysis.pbix",
+      "retail-sales-dashboard/dashboard/retail_sales_dashboard.pbix"
+    ]
+  },
+  {
+    "skill": "Tableau",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "ab-testing"
+    ],
+    "evidence": [
+      "ab-testing-analysis/dashboard/marketing_ab_test_dashboard.twbx",
+      "ab-testing-analysis/README.md:1 (SQL, Python, Tableau)"
+    ]
+  },
+  {
+    "skill": "Matplotlib",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb:11 (import matplotlib.pyplot as plt)",
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb:15 (import matplotlib.pyplot as plt)",
+      "banking-churn-analysis/notebooks/eda.ipynb:12 (import matplotlib.pyplot as plt)",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb:21 (import matplotlib.pyplot as plt)",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:12 (import matplotlib.pyplot as plt)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:21 (import matplotlib.pyplot as plt)",
+      "House Price Prediction/notebooks/analysis.ipynb:436 (import matplotlib.pyplot as plt)"
+    ]
+  },
+  {
+    "skill": "Seaborn",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb:14 (import seaborn as sns)",
+      "banking-churn-analysis/notebooks/eda.ipynb:13 (import seaborn as sns)",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb:22 (import seaborn as sns)",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:13 (import seaborn as sns)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:24 (import seaborn as sns)",
+      "House Price Prediction/notebooks/analysis.ipynb:437 (import seaborn as sns)"
+    ]
+  },
+  {
+    "skill": "Plotly",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "customer-churn",
+      "product-sentiment"
+    ],
+    "evidence": [
+      "customer-churn-prediction/app/app.py:353 (import plotly.graph_objects as go)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:32 (import plotly.express as px)"
+    ]
+  },
+  {
+    "skill": "Dashboard Development",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "product-sentiment"
+    ],
+    "evidence": [
+      "ab-testing-analysis/dashboard/marketing_ab_test_dashboard.twbx",
+      "Rossmann Store Sales/dashboard/RossmannSalesDashboard.pbix",
+      "banking-churn-analysis/dashboard/banking_churn_analysis.pbix",
+      "retail-sales-dashboard/dashboard/retail_sales_dashboard.pbix",
+      "product-sentiment-dashboard/app/app.py:1 (Customer Review Sentiment Analyzer)"
+    ]
+  },
+  {
+    "skill": "KPI Reporting",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "rossmann",
+      "banking-churn",
+      "retail-sales"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/dashboard/measures.md:5 (Core KPI Measures)",
+      "banking-churn-analysis/README.md:20 (interactive retention dashboard)",
+      "retail-sales-dashboard/README.md:3 (Power BI dashboard)"
+    ]
+  },
+  {
+    "skill": "DAX",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "rossmann",
+      "banking-churn",
+      "retail-sales"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/dashboard/measures.md:1 (Power BI DAX Measures)",
+      "src/data/case-studies/banking-churn.ts:100 (DAX FORMAT measure)",
+      "src/data/case-studies/retail-sales.ts:157 (Power Query)"
+    ]
+  },
+  {
+    "skill": "Power Query",
+    "groups": [
+      "Data Visualization & BI"
+    ],
+    "projects": [
+      "banking-churn",
+      "retail-sales"
+    ],
+    "evidence": [
+      "src/data/case-studies/banking-churn.ts:100 (Power Query typed the column as a number)",
+      "src/data/case-studies/retail-sales.ts:157 (Power Query)"
+    ]
+  },
+  {
+    "skill": "Python",
+    "groups": [
+      "Programming & Tools"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb",
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb",
+      "banking-churn-analysis/notebooks/eda.ipynb",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb",
+      "customer-churn-prediction/app/app.py",
+      "product-sentiment-dashboard/app/app.py",
+      "House Price Prediction/notebooks/analysis.ipynb"
+    ]
+  },
+  {
+    "skill": "Git",
+    "groups": [
+      "Programming & Tools"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/.git",
+      "ab-testing-analysis/README.md:444 (git clone https://github.com/Venkatavishnuvardhanthota/ab-testing-analysis.git)",
+      "Rossmann Store Sales/.git",
+      "banking-churn-analysis/.git",
+      "banking-churn-analysis/README.md:64 (git clone https://github.com/Venkatavishnuvardhanthota/banking-churn-analysis)",
+      "retail-sales-dashboard/.git",
+      "customer-churn-prediction/.git",
+      "customer-churn-prediction/README.md:178 (git clone https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction.git)",
+      "product-sentiment-dashboard/.git",
+      "House Price Prediction/.git"
+    ]
+  },
+  {
+    "skill": "GitHub",
+    "groups": [
+      "Programming & Tools"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/README.md:444 (github.com/Venkatavishnuvardhanthota/ab-testing-analysis.git)",
+      "Rossmann Store Sales/README.md:154 (github.com/Venkatavishnuvardhanthota)",
+      "banking-churn-analysis/README.md:64 (github.com/Venkatavishnuvardhanthota/banking-churn-analysis)",
+      "retail-sales-dashboard/README.md:142 (github.com/Venkatavishnuvardhanthota)",
+      "customer-churn-prediction/README.md:178 (github.com/Venkatavishnuvardhanthota/customer-churn-prediction.git)",
+      "product-sentiment-dashboard/README.md:172 (github.com/Venkatavishnuvardhanthota)",
+      "House Price Prediction/README.md:421 (github.com/Venkatavishnuvardhanthota)"
+    ]
+  },
+  {
+    "skill": "Jupyter Notebook",
+    "groups": [
+      "Programming & Tools"
+    ],
+    "projects": [
+      "ab-testing",
+      "rossmann",
+      "banking-churn",
+      "retail-sales",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "ab-testing-analysis/notebooks/ab_test_analysis.ipynb",
+      "Rossmann Store Sales/notebooks/01_eda_and_cleaning.ipynb",
+      "Rossmann Store Sales/notebooks/02_forecasting_models.ipynb",
+      "banking-churn-analysis/notebooks/eda.ipynb",
+      "retail-sales-dashboard/notebooks/exploratory.ipynb",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb",
+      "House Price Prediction/notebooks/analysis.ipynb"
+    ]
+  },
+  {
+    "skill": "Streamlit",
+    "groups": [
+      "Programming & Tools"
+    ],
+    "projects": [
+      "customer-churn",
+      "product-sentiment"
+    ],
+    "evidence": [
+      "customer-churn-prediction/app/app.py:1 (import streamlit as st)",
+      "product-sentiment-dashboard/app/app.py:4 (import streamlit as st)"
+    ]
+  },
+  {
+    "skill": "pytest",
+    "groups": [
+      "Programming & Tools"
+    ],
+    "projects": [
+      "customer-churn"
+    ],
+    "evidence": [
+      "customer-churn-prediction/tests/test_features.py:17 (@pytest.mark.parametrize)",
+      "customer-churn-prediction/tests/test_features.py:24 (def test_single_row_encoding_parity)",
+      "src/data/case-studies/customer-churn.ts:43 (pytest checks for tenure-group boundaries)"
+    ]
+  },
+  {
+    "skill": "Scikit-learn",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "rossmann",
+      "customer-churn",
+      "product-sentiment",
+      "house-price"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/notebooks/02_forecasting_models.ipynb:20 (from sklearn.metrics import)",
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:1750 (from sklearn.model_selection import train_test_split)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:36 (TfidfVectorizer)",
+      "House Price Prediction/notebooks/analysis.ipynb:653 (from sklearn.model_selection import train_test_split)"
+    ]
+  },
+  {
+    "skill": "Random Forest",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "customer-churn",
+      "house-price"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:1996 (RandomForestClassifier)",
+      "House Price Prediction/notebooks/analysis.ipynb:743 (RandomForestRegressor)"
+    ]
+  },
+  {
+    "skill": "Logistic Regression",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "customer-churn"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:1933 (from sklearn.linear_model import LogisticRegression)"
+    ]
+  },
+  {
+    "skill": "Linear Regression",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "house-price"
+    ],
+    "evidence": [
+      "House Price Prediction/notebooks/analysis.ipynb:707 (from sklearn.linear_model import LinearRegression)"
+    ]
+  },
+  {
+    "skill": "XGBoost",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "rossmann"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/notebooks/02_forecasting_models.ipynb:11 (XGBoost for feature-rich gradient boosting)"
+    ]
+  },
+  {
+    "skill": "Prophet",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "rossmann"
+    ],
+    "evidence": [
+      "Rossmann Store Sales/notebooks/02_forecasting_models.ipynb:17 (from prophet import Prophet)"
+    ]
+  },
+  {
+    "skill": "Feature Engineering",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "customer-churn",
+      "house-price"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:1266 (FEATURE 1: tenure_group created)",
+      "House Price Prediction/notebooks/analysis.ipynb:563 (area_per_bed_bath)"
+    ]
+  },
+  {
+    "skill": "SMOTE",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "customer-churn"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:1861 (BEFORE SMOTE)"
+    ]
+  },
+  {
+    "skill": "Cross-validation",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "customer-churn",
+      "house-price"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:2091 (StratifiedKFold, cross_val_score)",
+      "House Price Prediction/notebooks/analysis.ipynb:744 (GridSearchCV)"
+    ]
+  },
+  {
+    "skill": "AUC-ROC",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "customer-churn"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:2086 (roc_auc_score)"
+    ]
+  },
+  {
+    "skill": "Model Evaluation",
+    "groups": [
+      "Machine Learning"
+    ],
+    "projects": [
+      "rossmann",
+      "customer-churn",
+      "house-price"
+    ],
+    "evidence": [
+      "customer-churn-prediction/notebooks/01_eda_and_modeling.ipynb:2088 (classification_report)",
+      "Rossmann Store Sales/notebooks/02_forecasting_models.ipynb:20 (mean_absolute_percentage_error)",
+      "House Price Prediction/notebooks/analysis.ipynb:708 (mean_absolute_error, mean_squared_error, r2_score)"
+    ]
+  },
+  {
+    "skill": "VADER",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:30 (from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer)",
+      "product-sentiment-dashboard/app/app.py:51 (SentimentIntensityAnalyzer())"
+    ]
+  },
+  {
+    "skill": "TF-IDF",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:36 (from sklearn.feature_extraction.text import TfidfVectorizer)"
+    ]
+  },
+  {
+    "skill": "NLTK",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:25 (import nltk)"
+    ]
+  },
+  {
+    "skill": "TextBlob",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/app/app.py:108 (TextBlob)"
+    ]
+  },
+  {
+    "skill": "WordCloud",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/app/app.py:18 (clean_for_wordcloud)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:35 (from wordcloud import WordCloud)"
+    ]
+  },
+  {
+    "skill": "Sentiment Analysis",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:741 (scores  = analyzer.polarity_scores(review))",
+      "product-sentiment-dashboard/app/app.py:61 (def get_sentiment_label(compound))"
+    ]
+  },
+  {
+    "skill": "Text Preprocessing",
+    "groups": [
+      "Natural Language Processing"
+    ],
+    "projects": [
+      "product-sentiment"
+    ],
+    "evidence": [
+      "product-sentiment-dashboard/app/app.py:17 (clean_for_vader)",
+      "product-sentiment-dashboard/notebooks/01_sentiment_analysis.ipynb:25 (import nltk)"
+    ]
+  }
+]
