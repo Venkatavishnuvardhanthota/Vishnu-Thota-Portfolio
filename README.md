@@ -44,13 +44,13 @@ itself; nothing is estimated. Source code for all seven is public.
 
 | # | Project | Focus | Headline result | Stack |
 |---|---------|-------|-----------------|-------|
-| 01 | [Rossmann Store Sales Forecasting](https://github.com/Venkatavishnuvardhanthota/rossmann-sales-forecasting) | Forecasting | **17.13%** store-day MAPE on an 84-day chronological holdout; **8.20%** chain-wide daily MAPE · 1,115 stores | Prophet, XGBoost, Pandas, Scikit-learn |
+| 01 | [Rossmann Store Sales Forecasting](https://github.com/Venkatavishnuvardhanthota/rossmann-sales-forecasting) | Forecasting | **6.72%** chain-wide daily MAPE on an 84-day chronological holdout (12.93% store-day) · 1,115 stores | Prophet, XGBoost, Pandas, Scikit-learn |
 | 02 | [Marketing A/B Testing Analysis](https://github.com/Venkatavishnuvardhanthota/ab-testing-analysis) | Experimentation | **+43.1%** relative conversion lift on 588,101 records · two-proportion z-test, z = 7.37, p = 1.71e-13 | Python, Pandas, statistical testing |
-| 03 | [Customer Churn Prediction](https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction) | Classification | **AUC-ROC 0.8343** · 7,043 customers, 21 features, SMOTE-rebalanced | Random Forest, Scikit-learn, Streamlit |
-| 04 | [Product Review Sentiment Analysis](https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard) | NLP | **568,454** reviews analyzed · 88.2% positive · 79.6% VADER agreement with star ratings | VADER, TextBlob, TF-IDF, Plotly |
-| 05 | [Retail Sales Analysis](https://github.com/Venkatavishnuvardhanthota/retail-sales-dashboard) | Business intelligence | Technology leads at **$0.84M** revenue; Tables and Bookcases identified as loss-making | Python, Pandas, Power BI |
-| 06 | [Banking Churn Analysis](https://github.com/Venkatavishnuvardhanthota/banking-churn-analysis) | SQL / BI | **16.07%** attrition, **$13.24M** revenue at risk across 10,127 customers; transaction count is the strongest signal (r = −0.37) | MySQL, CTEs & window functions, Power BI / DAX |
-| 07 | [House Price Prediction](https://github.com/Venkatavishnuvardhanthota/House-Price-Prediction) | Regression | **R² 0.6583**, MAE **₹966,320** on 545 property records · GridSearchCV-tuned Random Forest scored **R² 0.5977** on the same split | Python, Pandas, Scikit-learn, Matplotlib |
+| 03 | [Customer Churn Prediction](https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction) | Classification | **Test ROC-AUC 0.8310** (Logistic Regression), recall **77.81%** · 7,043 customers, 36 model inputs, SMOTE-rebalanced | Scikit-learn, Logistic Regression, Random Forest, Streamlit |
+| 04 | [Product Review Sentiment Analysis](https://github.com/Venkatavishnuvardhanthota/product-sentiment-dashboard) | NLP | **568,454** reviews analyzed · 88.2% positive · 80.38% VADER agreement with star ratings | VADER, TextBlob, TF-IDF, Plotly |
+| 05 | [Retail Sales Analysis](https://github.com/Venkatavishnuvardhanthota/retail-sales-dashboard) | Business intelligence | **$2.30M** sales at a 12.47% margin; Furniture earns 2.49% while Tables, Bookcases and Supplies lose money | Python, Pandas, Power BI |
+| 06 | [Banking Churn Analysis](https://github.com/Venkatavishnuvardhanthota/banking-churn-analysis) | SQL / BI | **16.07%** attrition; **$13.24M** in credit limits across 10,127 customers (credit exposure, not lost revenue); transaction count is the strongest signal (r = −0.37) | MySQL, CTEs & window functions, Power BI / DAX |
+| 07 | [House Price Prediction](https://github.com/Venkatavishnuvardhanthota/House-Price-Prediction) | Regression | **R² 0.6583**, MAE **966,320** on 545 property records · GridSearchCV-tuned Random Forest scored **R² 0.5977** on the same split | Python, Pandas, Scikit-learn, Matplotlib |
 
 Each project route (`/projects/:id`) renders its case study from typed data, including
 deterministic inline-SVG charts generated from the verified metrics.
@@ -64,11 +64,11 @@ portfolio a visitor can actually use.
 
 ### Customer Churn Prediction
 
-Score a customer profile in the browser against a Random Forest model rebalanced with SMOTE.
+Score a customer profile in the browser against a Logistic Regression model rebalanced with SMOTE.
 
 - **Live:** <https://customer-churn-prediction-0001.streamlit.app/>
-- **Metric:** AUC-ROC **0.8343** · 7,043 customers · 21 input features
-- **Stack:** Python · Scikit-learn · Random Forest · SMOTE · Streamlit
+- **Metric:** Test ROC-AUC **0.8310** · recall **77.81%** · 7,043 customers
+- **Stack:** Python · Scikit-learn · Logistic Regression · SMOTE · Streamlit
 - **Source:** [customer-churn-prediction](https://github.com/Venkatavishnuvardhanthota/customer-churn-prediction)
 
 ### Product Review Sentiment Analysis
@@ -94,7 +94,7 @@ Five disciplines, each mapped to the projects where it was actually applied.
 | **Machine Learning** | Scikit-learn, Logistic Regression, Random Forest, XGBoost, Prophet, feature engineering, SMOTE, cross-validation, AUC-ROC, model evaluation |
 | **Data Visualization & BI** | Power BI, Tableau, Matplotlib, Seaborn, Plotly, DAX, dashboard development, KPI reporting |
 | **Natural Language Processing** | NLTK, VADER, TextBlob, TF-IDF, WordCloud, sentiment analysis, text preprocessing |
-| **Programming & Tools** | Java, Git, GitHub, Streamlit, Jupyter Notebook |
+| **Programming & Tools** | Python, SQL, Git, GitHub, Jupyter Notebook, Streamlit, pytest |
 
 ---
 

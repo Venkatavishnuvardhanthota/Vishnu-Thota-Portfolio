@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { build as esbuild } from 'esbuild'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { PROJECTS } from './src/data/projects'
 import { HOME_META, SOCIAL_IMAGE_URL, projectMeta, type PageMeta } from './src/data/site'
 
@@ -68,6 +70,71 @@ const SLOTS: Slot[] = [
 ]
 
 /**
+ * The Hero is the first content in the document and its role line is the LCP
+ * element, so it must paint before the bundle runs. This renders the same React
+ * component to static markup at build time and leaves it in #hero-root for
+ * main.tsx to hydrate in place — the browser paints the text in the first frame
+ * instead of waiting for React, and hydration adopts the existing nodes.
+ *
+ * The markup is generated from the component itself rather than copied, so the
+ * two cannot drift. React and React DOM stay external because the generated
+ * module is imported from this project, where Node resolves them normally.
+ */
+function staticHero() {
+  const START = '<!--hero-static-start-->'
+  const END = '<!--hero-static-end-->'
+  const PLACEHOLDER = '<div id="hero-root"></div>'
+  let root = ''
+
+  return {
+    name: 'static-hero',
+    apply: 'build' as const,
+    configResolved(config: { root: string }) {
+      root = config.root
+    },
+    async transformIndexHtml(html: string) {
+      if (!html.includes(PLACEHOLDER)) {
+        throw new Error('static-hero: index.html has no empty <div id="hero-root"></div>')
+      }
+      const result = await esbuild({
+        stdin: {
+          contents: [
+            "import React from 'react'",
+            "import { renderToStaticMarkup } from 'react-dom/server'",
+            "import HeroSection from './src/components/hero/HeroSection'",
+            'export default renderToStaticMarkup(React.createElement(HeroSection))',
+          ].join('\n'),
+          resolveDir: root,
+          sourcefile: 'hero-ssr-entry.tsx',
+          loader: 'tsx',
+        },
+        bundle: true,
+        write: false,
+        platform: 'node',
+        format: 'esm',
+        jsx: 'automatic',
+        loader: { '.css': 'empty' },
+        external: ['react', 'react-dom', 'react-dom/server', 'react/jsx-runtime'],
+        logLevel: 'silent',
+      })
+      /* React and React DOM stay external, so the generated module imports them
+         by name. It has to sit inside the project — where Node walks up to the
+         real node_modules — rather than in os.tmpdir(), which has none. */
+      const dir = join(root, 'node_modules', '.vite-temp')
+      mkdirSync(dir, { recursive: true })
+      const file = join(dir, `hero-ssr-${process.pid}.mjs`)
+      writeFileSync(file, result.outputFiles![0].text)
+      const mod = await import(pathToFileURL(file).href + `?v=${Date.now()}`)
+      const markup = String(mod.default)
+      if (!markup.startsWith('<section class="hero"')) {
+        throw new Error(`static-hero: unexpected markup ${markup.slice(0, 80)}`)
+      }
+      return html.replace(PLACEHOLDER, `${START}<div id="hero-root">${markup}</div>${END}`)
+    },
+  }
+}
+
+/**
  * Emits one static HTML document per project case study so a crawler reading the
  * original HTML of /projects/<id> sees that route's title, description, canonical
  * and open-graph tags instead of the homepage's. Google's JS-SEO guidance is that
@@ -91,7 +158,26 @@ function projectRoutePages() {
       outDir = resolve(config.root, config.build.outDir)
     },
     closeBundle() {
-      const template = readFileSync(join(outDir, 'index.html'), 'utf8')
+      let home: string
+      try {
+        home = readFileSync(join(outDir, 'index.html'), 'utf8')
+      } catch {
+        /* The build has already failed above this point and Vite is closing the
+           bundle; rethrowing here would replace the real error with this one. */
+        return
+      }
+      const HERO_BLOCK = /<!--hero-static-start-->[\s\S]*?<!--hero-static-end-->/
+      const heroBlocks = home.match(new RegExp(HERO_BLOCK.source, 'g')) ?? []
+      if (heroBlocks.length !== 1) {
+        throw new Error(
+          `project-route-pages: expected 1 static hero block in dist/index.html, found ${heroBlocks.length}`,
+        )
+      }
+      /* A route document never paints the home shell (body.route-detail hides
+         #main), so the hero is dropped from it. That removes the shell's h1 from
+         the route document — the case study owns the only heading — and saves
+         the markup from every deep link. */
+      const template = home.replace(HERO_BLOCK, '<div id="hero-root"></div>')
 
       for (const slot of SLOTS) {
         const found = template.match(new RegExp(slot.rx.source, 'g')) ?? []
@@ -131,5 +217,5 @@ function projectRoutePages() {
 }
 
 export default defineConfig({
-  plugins: [react(), projectRoutePages()],
+  plugins: [react(), staticHero(), projectRoutePages()],
 })
