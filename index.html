@@ -4,10 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Must run before the browser restores the scroll position: `scroll-behaviour:
-         smooth` below makes Chrome animate its own restore, which reads as the page
-         sliding after a reload. Anchor clicks are user gestures, so smooth returns on
-         the first one and link scrolling is unchanged. -->
     <script>
         (function () {
             'use strict';
@@ -265,7 +261,6 @@
         * { margin: 0; }
         html {
             -webkit-text-size-adjust: 100%;
-            scroll-behaviour: smooth;
             scroll-padding-top: calc(var(--nav-h) + 24px);
         }
         /* The Hero island renders into an empty div, so before React mounts the
@@ -1351,12 +1346,10 @@
            REDUCED MOTION
         ========================== */
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behaviour: auto; }
             *, *::before, *::after {
                 animation-duration: 0.001ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.001ms !important;
-                scroll-behaviour: auto !important;
             }
             .reveal { opacity: 1 !important; transform: none !important; }
             .figure.reveal { clip-path: none !important; }
