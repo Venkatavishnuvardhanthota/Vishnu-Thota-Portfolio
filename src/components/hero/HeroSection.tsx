@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import type { CSSProperties } from 'react';
 import '../../styles/hero.css';
 import { CONTACT_LINKS, RESUME_URL, type ContactLink } from '../../data/contact';
 import { APPLICATIONS } from '../../data/applications';
@@ -30,69 +30,148 @@ const NAME_WORDS = ['Venkata', 'Vishnu', 'Vardhan', 'Thota'];
    when, and only when, the file fails — the name is spelled out by the masthead
    above it, so nothing here repeats it in the normal state. */
 const NAME_PLATE = 'Venkata Vishnu Vardhan Thota';
-const ROLE = 'Data Analyst';
-const TOOLS = 'SQL · Excel · Power BI · Tableau · Python';
+const ROLE = 'Seeking: Data Analyst internship or entry-level role';
+/* Six tools, but the line is authored as two groups of glued sub-parts, because
+   the tools line has to answer to three different column widths and CSS only
+   gets to choose a break point it can also police:
+
+     wide   one row, every separator drawn between two tools;
+     middle two rows, one per group — "SQL · Excel · Power BI · Tableau" over
+            "Python · Machine learning", the flattest pairing available;
+     narrow one sub-part per row, so a 192px column never has to hold a run
+            wider than 'SQL · Excel'.
+
+   A group is `display:grid` over its sub-parts at the bottom tier and inline
+   above it, which is why the break model has two levels: a single flat list of
+   six parts cannot make two balanced rows out of a 264px column, because a
+   two-column grid asks for the SUM of its columns' contents (327px here), not
+   for the width of its widest row. The separators are drawn by CSS on the group
+   and on the sub-part they precede, and each tier drops the ones that would end
+   up heading a line — which is the defect the brief names, and the reason no
+   separator is typed into the text. */
+const TOOL_GROUPS = [
+  ['SQL\u00A0·\u00A0Excel', 'Power\u00A0BI', 'Tableau'],
+  ['Python', 'Machine\u00A0learning'],
+];
 const VALUE_LINE =
-  'I turn raw data into decisions with SQL, Excel and dashboards — ' +
-  'A/B tests, sales forecasting and churn analysis.';
-const STATUS = 'Available immediately · Internship or full-time';
-/* The one proof point the Hero links to. Its three figures are the A/B case
-   study's own numbers restated as a sentence — 588,101 records, +0.77 pp
-   absolute lift, p = 1.71e-13 — all three held in src/data/projects.ts rather
-   than derived here, because the sentence is copy and not a table. Change the
-   data and this string has to be checked against it by hand.
-   It is set as two fixed lines rather than one running string: as a single
-   string the column broke it wherever it happened to fall, which put the middle
-   dot at the head of a line. `line1`/`line2` are the two break points, and
-   nothing else may break. */
-const FEATURE = {
-  label: 'Featured result',
-  line1: 'A/B test on 588,101 users',
-  line2: '+0.77 pp conversion lift · p < 0.001',
-  to: '/projects/ab-testing',
-};
+  "I check the data before I trust it, then say what the answer can and can't support. " +
+  'Seven projects, from a 588,101-user ad test to a 1,115-store sales forecast.';
+/* Runs that must never be split by a line break. Both are one measurement with
+   its unit — "588,101-user" broken after the comma reads as a number with an
+   orphan suffix — and the only reason they appear here at all is that a break
+   opportunity is a property of the box, not of the text.
+   The strings are still authored whole above; splitting them at these tokens is
+   what keeps the wording byte-identical while CSS decides where the line may
+   fall, and every token sits between text runs, so the server markup and the
+   client render agree and hydration adopts the prerendered nodes.
+
+   'Data Analyst' used to sit in this list. It should not have: a glue is a
+   veto over `text-wrap: balance`, and on the role line it removed the only
+   break that made the three-line case even, forcing "Seeking: Data Analyst" /
+   "internship or" / "entry-level role" (300 / 176.3 / 210.8px) when the even
+   set is "Seeking: Data" / "Analyst internship" / "or entry-level role"
+   (188.4 / 249.8 / 249). Measured, the veto only ever bit in the three-line
+   configurations — at every two-line width the released glue wraps identically,
+   because pulling "Analyst" onto line 1 needs a third line. So it is not a
+   measurement and not a unit: it is a job title, and a title is not a number. */
+const GLUED = ['588,101-user', '1,115-store'];
+const glue = (line: string) =>
+  line
+    .split(new RegExp(`(${GLUED.join('|')})`))
+    .filter((part): part is string => Boolean(part))
+    .map((part, i) =>
+      GLUED.includes(part) ? <span className="hero__glue" key={i}>{part}</span> : part,
+    );
+const STATUS = 'Available immediately';
 /* Owner-supplied, and the only Hero line that is not read off a data file. The
-   About card and the Contact section still print the previous town — both live
-   outside this section, so they are reported rather than edited here. */
-const LOCATION = 'Proddatur, Andhra Pradesh, India';
+   tail is one non-breaking run: "Andhra Pradesh, India" is the place, and it is
+   the thing that must not be what sits alone on a second line. */
+const LOCATION = 'Proddatur, Kadapa, Andhra\u00A0Pradesh,\u00A0India';
 
 /** The proof line is assembled from the records the sections below render:
- *  PROJECTS is the list the case studies come from, APPLICATIONS the entries
- *  that answer as live Streamlit apps, and the record count is the sum of the
- *  two dataset sizes their own metric tables state — 588,101 A/B records and
- *  568,454 Amazon food reviews. A figure that stops matching the data drops out
- *  of the line instead of outliving its source. */
-const RECORD_SOURCES = ['588,101', '568,454'];
-const recordValues = PROJECTS.flatMap((project) => project.metrics.map((m) => m.v)).filter((v) =>
-  RECORD_SOURCES.includes(v)
-);
-const recordsAnalyzed =
-  recordValues.length === RECORD_SOURCES.length
-    ? recordValues.reduce((sum, v) => sum + Number(v.replace(/,/g, '')), 0)
-    : 0;
+ *  PROJECTS is the list the case studies come from and APPLICATIONS the entries
+ *  that answer as live Streamlit apps. The third claim is the credential count,
+ *  read off the Certifications section's two issuers (IBM and Google). */
 const liveApps = APPLICATIONS.filter((app) => app.status === 'Live').length;
 
-const PROOF = [
-  `${PROJECTS.length} projects`,
-  `${liveApps} live apps`,
-  recordsAnalyzed >= 1_000_000 ? '1M+ records' : null,
-]
-  .filter(Boolean)
-  .join(' · ');
+const PROOF_ITEMS = [
+  `${PROJECTS.length}\u00A0projects`,
+  `${liveApps}\u00A0live\u00A0apps`,
+  'IBM\u00A0&\u00A0Google\u00A0certified',
+];
 
 /* The degree and its end year are read from the Education record; "AI &" is the
    Hero's own short form of the field that section spells out in full. The stage
-   is worded as where the reader is now rather than as a graduating class. */
+   is worded as where the reader is now rather than as a graduating class, and it
+   is the second group of the line: "(2027)" alone under the degree is a
+   footnote, so the year travels with "Final year" and that pair travels on its
+   own row when the column cannot hold both groups. */
 const BTECH = EDUCATION.find((entry) => entry.id === 'btech');
-const EDUCATION_LINE = BTECH
-  ? `${BTECH.degree} ${BTECH.field.replace('Artificial Intelligence', 'AI')} · Final year (${BTECH.endYear})`
-  : '';
+const EDU_GROUPS = BTECH
+  ? [
+      `${BTECH.degree}\u00A0${BTECH.field
+        .replace('Artificial Intelligence', 'AI')
+        .replace(/\s/g, '\u00A0')}`,
+      `Final\u00A0year\u00A0(${BTECH.endYear})`,
+    ]
+  : [];
 
 const PROFILE_IDS = ['github', 'linkedin'];
 const profiles = PROFILE_IDS.map((id) => CONTACT_LINKS.find((l) => l.id === id)).filter(
   (l): l is ContactLink => Boolean(l)
 );
 const email = CONTACT_LINKS.find((l) => l.id === 'email');
+/* The address is printed with one break opportunity, placed before the @, so it
+   can fold onto two lines in a narrow column without ever splitting a token. */
+const [emailLocal, emailDomain] = (email?.value ?? '').split('@');
+
+/** One line of dot-joined groups, used by the two Hero lines that carry a
+ *  separator in a single flat run — the proof line and the degree line. The dot
+ *  is drawn by CSS on every group but the first so a line that has to stack can
+ *  drop it: a typed " · " sits at whichever side of the break the wrapping
+ *  algorithm chooses, and a middot leading or trailing a row is what none of
+ *  these lines should show. The space between groups is real markup, not part
+ *  of the drawing, because a stacked line has no separator at all — and "Data
+ *  Science" followed by "Final year" with nothing between them reads to a
+ *  screen reader as one word. The tools line uses the same mechanism twice
+ *  nested; see ToolsLine. */
+function DotLine({ className, parts }: { className: string; parts: string[] }) {
+  return (
+    <p className={className}>
+      {parts.map((part, i) => (
+        <span key={part} className={i ? 'hero__part hero__part--sep' : 'hero__part'}>
+          {i < parts.length - 1 ? `${part} ` : part}
+        </span>
+      ))}
+    </p>
+  );
+}
+
+/** The tools line is DotLine's model one level deeper: two groups, each of
+ *  which can itself be split into sub-parts at the narrow end. The space
+ *  between two groups is markup outside both of them, so a group's own row
+ *  costs exactly what its tools cost — a trailing space carried inside the
+ *  group would push "SQL · Excel · Power BI · Tableau" past the 264px column
+ *  the reader's window leaves at 150% browser zoom. */
+function ToolsLine() {
+  return (
+    <p className="hero__tools">
+      {TOOL_GROUPS.flatMap((group, i) => [
+        i ? ' ' : null,
+        <span
+          key={group.join('|')}
+          className={i ? 'hero__part hero__part--sep hero__group' : 'hero__part hero__group'}
+        >
+          {group.map((part, j) => (
+            <span key={part} className={j ? 'hero__sub hero__sub--sep' : 'hero__sub'}>
+              {j < group.length - 1 ? `${part} ` : part}
+            </span>
+          ))}
+        </span>,
+      ])}
+    </p>
+  );
+}
 
 /** Stroke marks at the header controls' own 1.5/24 weight, so the links row
  *  reads on the same line as the theme toggle rather than as filled brand art. */
@@ -152,36 +231,17 @@ const EMAIL_PATHS = [
  * source ratio the component states, and the element reserves that box before
  * the file decodes so nothing shifts.
  *
- * Entrance is driven by an `is-in` class rather than the shell's body.is-loaded,
- * because this section mounts after that class has already been applied.
+ * The entrance is a CSS animation rather than a class applied after hydration:
+ * the hero is present in the initial HTML, so waiting for JavaScript (or for the
+ * web fonts) to reveal it would postpone the LCP line. The animation starts with
+ * the stylesheet, keeps start states in opacity/transform only, and ends at the
+ * composed layout, so it cannot move anything.
  */
 export default function HeroSection() {
-  const [isIn, setIsIn] = useState(false);
   const [portraitMissing, setPortraitMissing] = useState(false);
 
-  useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reduce.matches || !document.fonts) {
-      setIsIn(true);
-      return;
-    }
-    let frame = 0;
-    // Wait for the web fonts so the masked lines never animate at the wrong
-    // metrics; the timer is the safety net if fonts.ready never settles.
-    const timer = window.setTimeout(() => setIsIn(true), 1400);
-    document.fonts.ready
-      .then(() => {
-        frame = requestAnimationFrame(() => setIsIn(true));
-      })
-      .catch(() => setIsIn(true));
-    return () => {
-      window.clearTimeout(timer);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
-
   return (
-    <section className={`hero${isIn ? ' is-in' : ''}`} aria-labelledby="hero-name">
+    <section className="hero" aria-labelledby="hero-name">
       {/* Two rows: the heading takes the whole first one and the figure starts
           the second, so the name is above the portrait in the flow rather than
           beside it, and the two copy blocks stand at the far edges of the
@@ -197,7 +257,7 @@ export default function HeroSection() {
                 }`}
               >
                 <span className="mask">
-                  <span style={{ transitionDelay: `${0.1 + i * 0.08}s` }}>{word}</span>
+                  <span style={{ '--hero-delay': `${0.1 + i * 0.08}s` } as CSSProperties}>{word}</span>
                 </span>
               </span>
             ))}
@@ -228,36 +288,10 @@ export default function HeroSection() {
           )}
         </figure>
 
-        <div className="hero__identity hero__rise" style={{ transitionDelay: '0.42s' }}>
-          <p className="hero__role">{ROLE}</p>
-          <p className="hero__tools">{TOOLS}</p>
-          <p className="hero__value">{VALUE_LINE}</p>
-          {/* One linked proof point, in flow between the value line and the pill:
-              it answers the paragraph above it and is not a second call to action,
-              so it carries the body's ink and the site's own underlined-link rule
-              rather than a button's surface. */}
-          <div className="hero__feature">
-            <p className="hero__feature-label">{FEATURE.label}</p>
-            {/* Two fixed lines, and the accessible name is those two lines joined
-                with a comma so it still reads as one sentence. The separator in
-                the second is glued to the word before it with a no-break space:
-                where the column is too narrow to hold the line at all (see the
-                escape in hero.css) that makes it wrap AFTER the dot, so a stray
-                "·" can never head a line even there. */}
-            <Link
-              className="hero__feature-link"
-              to={FEATURE.to}
-              aria-label={`${FEATURE.line1}, ${FEATURE.line2}`}
-            >
-              <span className="hero__feature-line">{FEATURE.line1}</span>
-              <span className="hero__feature-line">
-                {FEATURE.line2.replace(' · ', '\u00A0· ')}
-                <span className="arw" aria-hidden="true">
-                  →
-                </span>
-              </span>
-            </Link>
-          </div>
+        <div className="hero__identity hero__rise" style={{ '--hero-delay': '0.42s' } as CSSProperties}>
+          <p className="hero__role">{glue(ROLE)}</p>
+          <ToolsLine />
+          <p className="hero__value">{glue(VALUE_LINE)}</p>
           {/* The availability reads as the end of the argument, not as a banner
               over the page, and the actions follow it down the same column —
               in flow, so they stay with the content at every width. */}
@@ -275,38 +309,57 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="hero__proof hero__rise" style={{ transitionDelay: '0.5s' }}>
-          <p className="hero__proof-line">{PROOF}</p>
-          {EDUCATION_LINE && <p className="hero__meta">{EDUCATION_LINE}</p>}
-          <p className="hero__meta">{LOCATION}</p>
+        {/* The slot exists for one reason: the proof block is sized by its own
+            longest line and sits flush right, and a box sized by its contents
+            cannot also be the container those lines ask for their width. So the
+            slot takes the track and contains, and the block inside keeps the
+            width and the anchor it has always had. */}
+        <div className="hero__proof-slot">
+          <div className="hero__proof hero__rise" style={{ '--hero-delay': '0.5s' } as CSSProperties}>
+            <DotLine className="hero__proof-line" parts={PROOF_ITEMS} />
+            {EDU_GROUPS.length > 0 && <DotLine className="hero__meta hero__edu" parts={EDU_GROUPS} />}
+            <p className="hero__meta">{LOCATION}</p>
 
-          <ul className="hero__links">
-            {profiles.map((profile) => (
-              <li key={profile.id}>
-                <a
-                  href={profile.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BrandIcon paths={profile.id === 'github' ? GITHUB_PATHS : LINKEDIN_PATHS} />
-                  <span>{profile.label}</span>
-                  <span className="arw" aria-hidden="true">
-                    ↗
-                  </span>
-                </a>
-              </li>
-            ))}
-            {email && (
-              <li>
-                {/* The address itself, not the word "Email": a recruiter reading
-                    this should be able to select and copy it. */}
-                <a href={email.href}>
-                  <BrandIcon paths={EMAIL_PATHS} />
-                  <span>{email.value}</span>
-                </a>
-              </li>
-            )}
-          </ul>
+            <ul className="hero__links">
+              {profiles.map((profile) => (
+                <li key={profile.id}>
+                  <a
+                    href={profile.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BrandIcon paths={profile.id === 'github' ? GITHUB_PATHS : LINKEDIN_PATHS} />
+                    <span>{profile.label}</span>
+                    <span className="arw" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+                </li>
+              ))}
+              {email && (
+                <li>
+                  {/* The address itself, not the word "Email": a recruiter reading
+                      this should be able to select and copy it. */}
+                  <a className="hero__email" href={email.href}>
+                    <BrandIcon paths={EMAIL_PATHS} />
+                    <span>
+                      {/* One expression for the local part and the @, and the
+                          break opportunity after them: the address may only ever
+                          fold after the @, which is the one place a split leaves
+                          both halves readable. React builds two adjacent string
+                          children as two text nodes while the server render
+                          concatenates them into one, and that difference alone
+                          makes hydration bail out to a full client render — so
+                          the @ travels with the local part, not with the domain. */}
+                      {emailLocal + '@'}
+                      <wbr />
+                      {emailDomain}
+                    </span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

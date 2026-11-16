@@ -12,18 +12,17 @@
        Zoom rescales the CSS viewport instead of the drawing: on a fixed
        1440x900 screen 90% reports 1600 CSS px and 150% reports 960. A width in
        vw therefore grows in CSS px exactly as fast as zoom shrinks them, and
-       the same ~647px of desk comes out at every step — that is the whole
+       the same 549 device px of desk comes out at every step — that is the whole
        mechanism, no script and no reading of the zoom level. Height is never a
        second dial: the cut-out is uncropped, so the 1225/1284 source ratio turns
-       647px of width into 678px of height.
-       Those coefficients are the old 942/1128 set — 39.3vw / 62.89svh / 40rem —
-       multiplied through by the ratio of the two source ratios (0.954 / 0.8351 =
-       1.1424). The composition is budgeted on the figure's HEIGHT: the name band,
-       the gap, the subject and the Hero's own padding have to fit one screen, and
-       the chin and crown land at the same 42% and 1% of the frame in either
-       cut-out. Scaling all three terms by that one factor keeps 678px of height
-       at every viewport and every zoom step, and lets the wider source ratio
-       arrive as ~81px of extra width instead of stealing it back from the copy.
+       any width into 1.048 times it.
+       Those coefficients come from the old 942/1128 set — 39.3vw / 62.89svh /
+       40rem — multiplied through by the ratio of the two source ratios (0.954 /
+       0.8351 = 1.1424). The composition is budgeted on the figure's HEIGHT: the
+       name band, the gap, the subject and the Hero's own padding have to fit one
+       screen, and the chin and crown land at the same 42% and 1% of the frame in
+       either cut-out. That factor is what the vw term and the rail kept after the
+       aspect swap; the svh term below has since been retuned against the copy.
        Every term is viewport-relative, because anything pinned in CSS px keeps
        its own size while the page shrinks around it — which is exactly what
        made the figure collapse between 110% and 125%. The three terms are the
@@ -31,7 +30,13 @@
          . 44.9vw   the share of the window the composition gives the subject —
                     binds on every window narrower than 1629 CSS px;
          . 71.85svh the fold's share: name band + gap + figure + the Hero's own
-                    padding fill one screen, so the head is never far below it;
+                    padding fill one screen, so the head is never far below it.
+                    This is the number the composition is centred on: the two
+                    outer tracks are equal, so the figure's own centre is the
+                    wordmark's, and shrinking this term to buy the copy more
+                    width moved the portrait off that axis by a fifth of the
+                    window. The copy is given width by its own measure instead,
+                    and the sentence wraps as it always has.
          . 45.7rem  a rail for genuinely wide desks, where an uncapped figure
                     would leave the two copy blocks a strip of measure. It has to
                     stay above the largest CSS-px width the vw term produces inside
@@ -72,8 +77,8 @@
        edge of the box from ~0.6 of its height down: this drop puts the blocks
        level with the chin and finishes them above the fold while the subject
        keeps running below them. It is a fraction of the figure's WIDTH, so the
-       ratio swap re-derived it — 0.3 against the old 566px box and 0.263
-       against the new 647px one are the same ~170px of drop.
+       ratio swap re-derived it — 0.3 against the 566px box of the time and
+       0.263 against the 647px one that replaced it were the same ~170px of drop.
        0.263 is what the composition had before the featured result joined the
        left column: that block is ~68px of type, and at 1366x768 it put the
        second action 28px below the fold. This is the one gap in the Hero that is
@@ -134,7 +139,7 @@
 .hero__name { grid-column: 1 / -1; grid-row: 1; }
 .hero__figure { grid-column: 2; grid-row: 2; }
 .hero__identity { grid-column: 1; grid-row: 2; }
-.hero__proof { grid-column: 3; grid-row: 2; }
+.hero__proof-slot { grid-column: 3; grid-row: 2; }
 
 /* =========================
    MASTHEAD — the complete name on one condensed line, centred on the figure's
@@ -212,7 +217,7 @@
 }
 
 /* =========================
-   LEFT STACK — the role, the tools, the value line, the featured result, the
+   LEFT STACK — the role, the tools, the value line, the
    availability pill and the actions, in that order and all in flow, anchored to
    the viewport's left edge. The name is not repeated here: the masthead above
    the portrait is the only place it is written. The status badge reads as the
@@ -223,98 +228,72 @@
 .hero__identity {
     display: grid;
     gap: 0.5rem;
-    justify-self: start;
+    /* Stretched, not shrink-wrapped, for one reason: `container-type` needs a
+       box whose inline size is decided without reading its contents, and a
+       block sitting at its own max-content inside the track is exactly the
+       opposite. The track is a fraction of the body, so stretched here means
+       the block's width IS the column — which is what the two dot-line queries
+       at the foot of this file then measure themselves against, instead of the
+       viewport widths those rules used to guess at. */
+    justify-self: stretch;
+    container-type: inline-size;
+    container-name: id;
     margin-top: calc(var(--fig-w) * var(--copy-drop));
     min-width: 0;
 }
+/* The sentence is sized in rem only. A vw term here is a zoom dial in disguise:
+   zoom divides the CSS viewport, so 2.3vw shrinks the type as fast as the zoom
+   grows it and the reader sees the line change size instead of the page. The
+   clamp bounds one custom property instead — 24px to 32px — and the two bands
+   below pick a point inside it. Nothing reads the viewport.
+   24ch is the measure, not the column: on a wide desk the left track reaches
+   702px and the sentence would set one long line there while setting two at
+   100% zoom. The cap holds it to two across that whole range, and every track
+   narrower than 430px is already inside it, so the cap is inert where the
+   column is the binding constraint. */
 .hero__role {
-    font-size: 2rem;
+    --role-size: 2rem;
+    font-size: clamp(1.5rem, var(--role-size), 2rem);
+    max-width: 24ch;
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--ink);
+    text-wrap: balance;
 }
 .hero__tools {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.4;
     color: var(--ink);
+    text-wrap: balance;
 }
 .hero__value {
     /* Read as a measure, not as the column: the ch cap is what holds the line
-       count down while the track itself stays wide enough for the tools line. */
+       count down while the track itself stays wide enough for the tools line.
+       The size is a fixed rem with no viewport term, so zoom changes the page
+       and not the type; how many rows it sets is then the column's business,
+       and on a wide-aspect window the column is what the figure leaves. */
     max-width: 46ch;
     font-size: 1.125rem;
     line-height: 1.55;
     color: var(--hero-body);
 }
-
-/* =========================
-   FEATURED RESULT — the one linked proof point, between the value line and the
-   pill. The label takes --label-faint, the faint step every other small-caps
-   label on the site already uses, so both themes come free. The link is body
-   ink on the site's own always-underlined rule (1px, 3px offset, hardening on
-   hover) rather than a button: it answers the paragraph above it, and the third
-   filled surface in the Hero would compete with the two actions below. The focus
-   ring is the global :focus-visible rule in index.html — nothing to restate.
-========================== */
-.hero__feature {
-    display: grid;
-    gap: 0.25rem;
-    margin-top: 0.5rem;
-    min-width: 0;
-}
-.hero__feature-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    line-height: 1.2;
-    text-transform: uppercase;
-    color: var(--label-faint);
-}
-/* The anchor is a block so that its two line children stack as written and the
-   global focus outline wraps the whole two-line box. It carries no decoration of
-   its own: an underline declared on a parent of block children is where the
-   rendering starts to depend on the browser, so each line draws its own. */
-.hero__feature-link {
-    display: block;
-    font-size: 1.0625rem;
-    font-weight: 500;
-    line-height: 1.45;
-    color: var(--ink);
-    text-decoration-line: none;
-}
-/* Two fixed lines, and `nowrap` is the point: the string used to break wherever
-   the column happened to cut it, which put the middle dot at the head of a line.
-   The underline lives here rather than on the anchor so that both lines get one
-   at the same thickness and offset, and the hover hardens both together. */
-.hero__feature-line {
-    display: block;
-    white-space: nowrap;
-    text-decoration-line: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--line-strong);
-    transition: text-decoration-color 0.3s var(--ease-soft);
-}
-.hero__feature-link:hover .hero__feature-line { text-decoration-color: var(--ink); }
-/* The arrow is inline-block so the hover nudge can move it at all. The margin is
-   the word space in front of it, and a margin rather than a space character
-   because a space is a break opportunity — the arrow would be allowed to drop
-   onto a line of its own. */
-.hero__feature-link .arw {
-    display: inline-block;
-    margin-left: 0.32em;
-    transition: transform 0.35s var(--ease);
-}
-.hero__feature-link:hover .arw { transform: translateX(3px); }
+/* The two dataset figures in that sentence are measurements, not words: split
+   across a line break "588,101-user" reads as a number with an orphan suffix.
+   The component wraps each in this span, so the break falls before or after the
+   whole token and nothing about the wording changes. */
+.hero__glue { white-space: nowrap; }
 
 /* =========================
    STATUS — one line of availability, bordered like the nav's résumé pill.
    `nowrap` is the design: a pill that folds onto two lines reads as a paragraph,
-   not as a status. The string is short enough to hold one line down to a 360px
-   viewport, and the escape below is what keeps it honest on a narrower one — a
-   pill that cannot fit gives up the nowrap rather than pushing the page sideways.
+   not as a status. "Available immediately" measures 175.3px wide, and the
+   narrowest column it ever sits in is 192px — the left track at 930 CSS px,
+   where the figure takes the middle and the two copy blocks drop to their
+   smallest — so the one line holds at every width and needs no escape hatch.
+   A longer string has to be re-measured against that 192px floor first, because
+   `.hero{overflow:hidden}` clips a pill that spills instead of scrolling it.
 ========================== */
 .hero__status {
     display: inline-flex;
@@ -323,11 +302,9 @@
     justify-self: start;
     max-width: 100%;
     /* The block's own 0.5rem gap plus this 1rem is 24px of clear space between
-       the featured link's box and the pill's border — the pill is the end of the
-       argument, not a third line of it. It was measured against the value
-       paragraph before the featured result was set between them; the distance
-       from the link is the same 24px, so the pill still terminates the stack
-       rather than continuing it. */
+       the value paragraph and the pill's border: the pill ends the argument
+       rather than continuing it, so it sits further from the paragraph above
+       than the 8px that separates the lines inside it. */
     margin-top: 1rem;
     padding: 0.4em 0.95em;
     border: var(--hair);
@@ -347,87 +324,55 @@
     background: var(--status);
 }
 
-/* The escape. The pill measures 319.3px, and below a 360px viewport the column it
-   sits in is narrower than that, so nowrap would spill and `.hero{overflow:hidden}`
-   would silently cut "full-time" off the end. Two lines of a bordered pill are a
-   worse read than the cut, but not as bad as invisible copy — so under 360 the
-   pill gives up the nowrap. 360 itself still fits, with 5.5px to spare, and 360 is
-   the common Android width, so the one-line badge survives every phone that can
-   carry it. */
-@media (max-width: 359px) {
-    .hero__status { white-space: normal; }
-}
-
-/* The other escape, and the reason it is drawn where it is. The pill is 319.3px
-   wide while the side columns are sized by the figure, so between 930 and 1359 CSS
-   px the column is only 200-303px: `nowrap` there makes the block overflow its
-   track, and `badge-ink.mjs` measures that overflow landing ON the portrait — 28px
-   into the subject's ink at 1024x768 and 61px at 930x600. Above 1360 the figure
-   leaves enough transparent margin that the same overflow never reaches ink
-   (clears the frame box by 12.6px at 1440x900), so the one-line badge is kept for
-   every real desktop including 1366x768, where the column is 323.8px and the pill
-   fits without spilling at all. Below 930 the layout is one column and it fits
-   again. 1360 is also what the 1440 desk reports at 110% zoom, which is the case
-   that decided the upper bound.
-   The featured result's two fixed lines join it here rather than getting their
-   own band, because they need strictly less width than the pill does: line 2 and
-   its arrow measure 284px against the pill's 319.3px, so every column in this
-   band that cannot hold the badge cannot hold them either, and unwrapping one
-   unwraps both. The no-break space in front of the separator then decides where
-   the wrapped line falls — after the dot, never before it. */
-@media (min-width: 930px) and (max-width: 1359px) {
-    .hero__status { white-space: normal; }
-    /* `inline`, not just unwrapped: two block lines would each take their own
-       rows and the block would grow by a line at exactly the widths where it is
-       already tight. As inline siblings the two spans flow back into one running
-       string, which is the arrangement this column rendered before, and the
-       forced break disappears with the room that forced it. */
-    .hero__feature-line {
-        display: inline;
-        white-space: normal;
-    }
-}
-
-/* The third escape, and the only one the two fixed lines own. In the stacked
-   layout the column is the viewport minus 35.2px of padding, and line 2 with its
-   arrow wants 284px — so 320 is the narrowest viewport that can hold it, by
-   0.8px. Below that `nowrap` stops being free: the block is cut by
-   `.hero{overflow:hidden}` and a reader never sees "p < 0.001" at all. A line
-   that breaks is a worse read than a line that is missing, so under 320 the two
-   spans go back to flowing text and the no-break space keeps the dot off the
-   head of the wrapped line. 320 is the iPhone SE width, so every phone that can
-   carry the two fixed lines does. */
-@media (max-width: 319px) {
-    .hero__feature-line {
-        display: inline;
-        white-space: normal;
-    }
-}
-
 /* =========================
    PROOF — the right block: the figures, the degree, the place, the ways in.
-   It is anchored by its right edge instead of filled into the track, so every
-   line starts at the same x and the block reads as one composition at the
-   viewport's right — without any of the text being right-aligned.
+   The block is the width of its own longest line and sits flush against the
+   right gutter, so every line starts at the same x and the group reads as one
+   composition at the viewport's edge without a word of it being right-aligned.
+   That is what the slot is for: the block cannot be the query container,
+   because a box sized by its own contents has no size left for containment to
+   read — `container-type` on it would collapse it to zero. So the slot takes
+   the track (a size the grid decides, not the text), is the container the dot
+   lines ask, and hands the block back its fit-content width at the end of it.
 ========================== */
+.hero__proof-slot {
+    display: grid;
+    justify-content: end;
+    justify-self: stretch;
+    align-content: start;
+    container-type: inline-size;
+    container-name: pf;
+    margin-top: calc(var(--fig-w) * var(--copy-drop));
+    min-width: 0;
+}
 .hero__proof {
     display: grid;
     gap: 0.55rem;
     align-content: start;
-    justify-self: end;
-    margin-top: calc(var(--fig-w) * var(--copy-drop));
     min-width: 0;
 }
+/* The proof line is three claims, each glued inside by a non-breaking space in
+   the component ("7 projects", "2 live apps", "IBM & Google certified"), so the only place the
+   line can break is between them — and the separator is drawn, not typed, which
+   is what lets the narrow bands below drop it. A typed " · " would sit at the end
+   of one line or the start of the next every time the line folded. The same
+   drawn separator serves the tools line and the degree line. */
 .hero__proof-line {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.4;
     color: var(--ink);
+    text-wrap: balance;
+}
+.hero__part--sep::before,
+.hero__sub--sep::before {
+    content: '\00B7\00A0';
 }
 .hero__meta {
     font-size: 0.9375rem;
     line-height: 1.5;
     color: var(--hero-meta);
+    text-wrap: balance;
 }
 .hero__links {
     display: grid;
@@ -441,15 +386,23 @@
     align-items: center;
     min-height: 44px;
 }
+/* The row reserves 44px, but the box that takes the click is the anchor, so it
+   is held to the same floor. The row already spent the space, which is why this
+   moves nothing at any width — it only makes the whole row answer to a touch. */
 .hero__links a {
     display: inline-flex;
     align-items: center;
     gap: 0.55em;
+    min-height: 44px;
     font-size: 0.9375rem;
     font-weight: 500;
     color: var(--ink);
     overflow-wrap: anywhere;
 }
+/* The address gives up `anywhere`: its one break opportunity is the <wbr> the
+   component places before the @, so a narrow column folds it between the local
+   part and the domain instead of splitting either of them. */
+.hero__links a.hero__email { overflow-wrap: normal; }
 .hero__links a:hover span:not(.arw) { text-decoration: underline; text-underline-offset: 3px; }
 .hero__links .arw { display: inline-block; transition: transform 0.35s var(--ease); }
 .hero__links a:hover .arw { transform: translate(2px, -2px); }
@@ -497,28 +450,39 @@
 
 /* =========================
    ENTRANCE — a mask on the two words, a lift on the rest, a fade on the figure
+   The hero is in the initial HTML, so these run from the stylesheet rather than
+   from a class added after hydration: the LCP line must not wait for JavaScript.
+   Both keyframes animate opacity/transform only, and `both` keeps the final
+   state, so the composed layout is the same before and after the animation.
 ========================== */
 .hero .mask { display: block; overflow: hidden; }
 .hero .mask > span {
     display: block;
-    transform: translateY(110%);
-    transition: transform 1.05s var(--ease);
+    animation: hero-mask 1.05s var(--ease) both;
+    animation-delay: var(--hero-delay, 0s);
 }
-.hero.is-in .mask > span { transform: translateY(0); }
+@keyframes hero-mask {
+    from { transform: translateY(110%); }
+    to { transform: translateY(0); }
+}
 
 .hero__rise {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    animation: hero-rise 0.9s var(--ease) both;
+    animation-delay: var(--hero-delay, 0s);
 }
-.hero.is-in .hero__rise { opacity: 1; transform: none; }
+@keyframes hero-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+}
 
 .portrait__img {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 1.1s var(--ease) 0.26s, transform 1.4s var(--ease) 0.26s;
+    animation: hero-figure 1.1s var(--ease) both;
+    animation-delay: 0.26s;
 }
-.hero.is-in .portrait__img { opacity: 1; transform: translateY(0); }
+@keyframes hero-figure {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+}
 
 /* =========================
    TABLET / NARROW — the figure and the masthead keep the same sizing terms,
@@ -552,13 +516,18 @@
     .hero__identity {
         grid-column: 1;
         grid-row: 3;
-        justify-self: start;
+        /* Still stretched: a container that shrink-wrapped itself would report
+           its own max-content to the queries at the foot of this file, which is
+           the number they are supposed to be measured against, not the room. */
+        justify-self: stretch;
         margin-top: 0;
     }
-    .hero__proof {
+    .hero__proof-slot {
         grid-column: 1;
         grid-row: 4;
-        justify-self: start;
+        /* One column has no right side to anchor to, so the block goes back to
+           the slot's start edge; the container still reports the full column. */
+        justify-content: start;
         margin-top: 0;
     }
     .hero__links {
@@ -566,6 +535,313 @@
         flex-wrap: wrap;
         gap: 0 clamp(1rem, 3vw, 2.5rem);
         margin-top: 0.75rem;
+    }
+}
+
+/* =========================
+   THE NARROW TWO-COLUMN BAND AND THE DOT LINES — from 930px, where the figure
+   still owns the middle track, up to the width where each line can afford to be
+   one row again.
+
+   The role line at 2rem sets five rows at 930 and four at 1024-1100. One rem
+   step down holds three across the whole band: 24px measured three rows at
+   930, 1000, 1024, 1100, 1200, 1280 and 1359, where 26px already sets four at
+   930 and 28px four at 1000 and 1024. It is a constant, not a ramp — a vw term
+   would make the type a zoom dial.
+
+   The three dot-joined lines are the other half of this file's business, and
+   they are no longer viewport guesses. Each one stacks when its own column
+   cannot pay for a single row, and the separator goes with the stack: a break
+   between two glued groups would otherwise leave a bare middot at the start of
+   the next row, which is the defect the brief names. The column is the thing
+   that decides, so the rules read the block — `pf` is the proof column and
+   `id` the identity column, both stretched to their track above — and the
+   thresholds are the glued one-row measure of the line itself, read off a
+   nowrap clone of the live block:
+
+     proof  pf column, 381px needed (360px at the phone's 1.0625rem);
+     tools  id column, 483px for the whole line on one row and 257px for either
+            group on one row (453px and 243px at the phone's 1.0625rem) — see
+            the three tiers below, because this is the one line that has to
+            serve two different widths of row;
+     degree pf column, 290px at 0.9375rem (281px on a phone) — the degree line
+            lives in the right block, so it answers to pf, not to id.
+
+   The desktop number is the one written down, because the phone's line is
+   narrower and therefore stacks marginally early there — a fact on two rows
+   where it would have fitted on one. The other direction is the one that must
+   never happen, so the threshold is never the smaller of the two.
+========================== */
+@media (min-width: 930px) and (max-width: 1359px) {
+    .hero__role { --role-size: 1.5rem; }
+}
+
+/* =========================
+   THE HEADING AS ONE CONTAINER QUERY — "Seeking: Data Analyst" must never be
+   broken between the two words, and the copy column is not a function of the
+   viewport's width: --fig-w carries an svh term, so a window 120px taller at the
+   same width hands the portrait 86px more and the heading 43px less. A width
+   media query cannot follow that, which is why pass 30 needed three bands for
+   three named windows and still left 65 of 144 plane cells splitting.
+   The measure that holds the pair together is the line it sits on: the two-line
+   heading reads "Seeking: Data Analyst" over "internship or entry-level role",
+   and the second row is the longer one at 12.337em (394.78px at 32px, measured).
+   Narrower than that and balance falls to three lines and breaks the pair. So
+   the size is column / divisor -- a container query on `id`, the identity block
+   stretched to its grid track. No circular sizing is possible in that division:
+   the track is a `1fr` of the body and the body's middle track is --fig-w, both
+   solved before the heading is laid out, so the heading cannot size the column
+   it measures (checked at every plane cell: the column is identical at 16px and
+   at the break-even size).
+   The divisor is bounded from both sides by the plane itself:
+     - bisecting all 144 cells for the largest size that still keeps the pair
+       put the measured break-even between 12.3312 and 12.3424 of the column;
+       a divisor at or below that range splits the cells at the tight end;
+     - a cell that does not split today must not change: 1229x676 fits at 24px
+       on a 296.69px column, so a divisor above 296.69/24 = 12.3621 would pull
+       that cell to 23.99px and move a config that was already correct.
+   That leaves (12.3424, 12.3621] -- 0.16% wide. 12.36 sits at its top because
+   the lower bound fails visibly, as a broken heading, and the upper bound is a
+   sub-pixel of type. Verified over the rebuilt plane: 123 of 123 cells whose
+   column clears the floor hold the pair on one line, and every cell that fitted
+   before is byte-identical.
+   The 20px floor is the smallest the brief allows. It binds under 247.2px of
+   column -- 21 cells, all 1024-1064 wide and 620 or taller -- and there the
+   pair still splits at 20px; those cells are reported rather than glued.
+   The --role-size declarations below are ceilings now, not breakers: the fluid
+   term alone fixes every window they were written for, and they stay because
+   deleting them would grow the type at 1396x676, 1366x768, 1229x595 and
+   1024x496 -- all of which do not split today, so all of them have to stay
+   identical.
+========================== */
+@media (min-width: 930px) {
+    .hero__role {
+        font-size: clamp(1.25rem, min(var(--role-size), 100cqw / 12.36), 2rem);
+    }
+}
+
+@media (min-width: 1360px) and (max-width: 1459px) {
+    .hero__role { --role-size: 1.59375rem; }   /* 25.5px ceiling */
+}
+
+@media (min-width: 930px) and (max-width: 1063px) and (max-height: 560px) {
+    .hero__role { --role-size: 1.40625rem; }   /* 22.5px ceiling */
+}
+
+@container pf (max-width: 380px) {
+    .hero__proof-line { display: grid; }
+    .hero__proof-line .hero__part--sep::before { content: none; }
+}
+
+/* The tools line is the one dot line that needs two thresholds rather than one,
+   because its two groups are themselves made of glued tools. Both numbers are
+   the width at which the browser, left to wrap the line on its own, stops
+   holding it on one row — measured by neutralising these rules and sweeping the
+   identity column a pixel at a time (.tmp/tools-tiers.mjs, INLINE=1 and 2):
+
+     483px  all five tools on one row, 482.3px of ink;
+     257px  the wider group ('SQL · Excel · Power BI · Tableau') on one row,
+            256.6px of ink. At 256 the browser folds that group and leaves a
+            middot heading the second row, which is the defect this tier exists
+            to prevent.
+
+   So the rules fire at 482 and 256. Between them the line is two balanced rows
+   of three tools and two, and the only break opportunity outside a glued run is
+   the space between the groups — the browser's own wrap lands there too, which
+   is why the rows stay balanced without a column count being imposed. */
+@container id (max-width: 482px) {
+    .hero__tools {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    /* Each group is a row of its own now, so the separator that belongs before
+       it would lead that row — and the group carries that separator as a
+       `.hero__part`, so this one rule covers it. Inside a group the tools still
+       sit side by side, and their separators stay drawn: they are between two
+       tools. */
+    .hero__tools .hero__part--sep::before { content: none; }
+}
+
+@container id (max-width: 256px) {
+    /* Below the width of the wider group even a group has to fold, and it folds
+       one tool per row: nothing in the line is wider than 'SQL · Excel'. */
+    .hero__tools .hero__group {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .hero__tools .hero__sub--sep::before { content: none; }
+}
+
+@container pf (max-width: 289px) {
+    .hero__edu { display: grid; }
+    .hero__edu .hero__part--sep::before { content: none; }
+}
+
+/* =========================
+   SHORT VIEWPORTS — the fold's share of the vertical rhythm.
+   Two windows on the reader's own 1536x744@1.25 desk need this, and they are
+   the only two:
+
+     110%  676 CSS px tall. The buttons finish at 699.7 — **23.7px below the
+           fold**, which is what this band has to pay back.
+     125%  595 CSS px tall. Same deficit, larger: they finish 85.1px below.
+
+   The three soft gaps are what pays for it: the drop from the masthead's line
+   box (`--copy-drop`, 0.04 of the figure's width = 19.4px at 110% and 17.1px at
+   125%), the air above the availability pill (16px → 10px) and the air above
+   the buttons (24px → 16px). Together 33.4px at 110%, which lands the buttons
+   at 666.3 — 9.7px inside a 676 fold.
+
+   The ceiling was 620px, which reached only the 125% case, and 676 sat just
+   outside it. 700 is the smallest number that covers both and still leaves
+   100% (744px tall, buttons at 685.5, already inside) completely untouched, so
+   the tightening fires exactly where the fold is the problem. Nothing here
+   touches a size of type or a word of copy, and the breakpoints are heights,
+   so a wider window at the same zoom is left exactly as it was. The proof
+   column shares the drop, so it rises by the same 19.4px at these heights; the
+   figure does not, because it is placed by the middle track, not by this
+   margin.
+========================== */
+@media (max-height: 700px) {
+    .hero { --copy-drop: 0.16; }
+    .hero__status { margin-top: 0.625rem; }
+    .hero__cta { margin-top: 1rem; }
+}
+
+/* =========================
+   THE ZOOM FOLD — what 125% does to a laptop, and the two bands that pay for it.
+   Browser zoom divides the CSS viewport, so the owner's 1536x744 desk reports
+   1229x595 at 125%: the figure holds its share of the window (427.5px, the same
+   34.8% it takes at 90 and 100), but every rem of type and every rem of air stays
+   its own size while the fold comes up 149px to meet it. The left track is down
+   to 325.8px, the sentence sets five rows instead of four, the two pills no
+   longer fit side by side — and the second one lands 85.1px below the fold.
+
+   The band above cannot reach this: it is a height query with no width floor, so
+   it also fires on a phone in landscape, and its three gaps total 33.4px against
+   a deficit of 101.1px — the 85.1px the actions hang below the fold plus the 16px
+   of clearance they are supposed to keep. These two bands are the rest of that
+   debt, and they are scoped to `min-width: 930px` — the width where the
+   three-track composition begins — so no phone or tablet layout is touched by a
+   word of them.
+
+   The ceiling is 648px, which is still below 110% on the owner's desk (676), so
+   everything at 90, 100 and 110% on the desk the brief names is measured
+   byte-identical before and after. It is not unique to that desk: any window at
+   least 930px wide and at most 648px tall gets it. A 1366x768 laptop at 110%
+   (1242x589) is one such — its actions move from 63px below the fold to 96.6px
+   inside it — and at 100% (1366x648) it is another, which is why the ceiling
+   sits at 648 rather than 640: that window's actions were 12.3px below the fold
+   and are now 93.3px inside it. One window the brief asks about still stays
+   short: the owner's desk at 110% keeps 9.7px of clearance rather than 16. Both
+   pills are fully visible there, so it is breathing room rather than clipping,
+   and it is held in place by the requirement that 90/100/110 not move — a 676px
+   ceiling would buy it 118.4px but would move the very rects that must not move.
+
+   Band one spends air, in the order the composition can spare it: the
+   name-to-portrait row gap (18.4 -> 8), the nav-to-name pad (12 -> 4), the four
+   gaps inside the left column (8 -> 4 each) and the air above the pill and the
+   pills (10 -> 6, 16 -> 10). The sentence goes to 17px — the 1.0625rem the phone
+   band already uses, 5.6% under the 18px it sets today and inside the 6% the
+   brief allows — at 1.45 leading. Nothing else about the type moves: the role,
+   the tools, the proof and the pill keep their sizes, so zoom still grows every
+   one of them.
+
+   The drop is the lever this pass gives back. Pass 25 cut it 0.16 -> 0.06 to buy
+   the fold, and that is what put the two side columns almost level with the
+   portrait's crown: 25.64px down at 125% against 106.91px at 100%. The columns
+   answer to `--copy-drop` alone — their margin-top is that fraction of the
+   figure's width — so the offset as a share of the figure's height is the drop
+   divided by the portrait's 1.048163 aspect, and the owner's 100% state asks for
+   0.19081 of it, which is a drop of exactly 0.2. Both bands therefore state 0.2
+   as what they *want*, and the fold cap in index.html keeps as much of that as
+   the window can pay for. On every window the brief names the want is
+   affordable in full: at 125% the actions keep 43.16px of clearance with the
+   columns back at 85.5px (0.19081), at 1366x648 28.11px, at 1280x640 78.86px, at
+   1229x589 38.03px. Both pills stay on one row and the sentence stays at four
+   lines throughout, the figure's width and centre and the two equal tracks are
+   untouched, and 90/100/110% on the owner's desk are outside the ceiling and
+   measure byte-identical.
+
+   Why the cap and not a number: what a window can afford is a step function of
+   how many lines its copy wraps to, and that is not a media query. At the same
+   614px height a 1164px window affords 0.0686 and a 1229px window 0.2984, because
+   32.5px more track takes the sentence from five rows to four and the role from
+   three to two — 105px of copy, four times the affordable drop. A single value
+   per band cannot serve both, and a width-only taper cannot either: 1366 affords
+   0.2261 at 648px tall but 0.0893 at 580. So the bands state the composition's
+   intent and the cap measures the fold. The gap is piecewise linear in the drop,
+   not linear: its slope is the figure's width while the portrait is the taller
+   track and half of it once the copy overtakes it, because `align-content: center`
+   takes half of what the column gains back off the top. A solve that assumes
+   either rate crosses that kink and lands short of the fold or well below the
+   largest affordable drop, so the cap bisects [0, target] instead and keeps the
+   last drop that measured at or above the floor — monotone in, largest affordable
+   out, with no model of the slope to get wrong.
+
+   The two pills are the other half of band one, and they are the reason the row
+   was cut in the first place. At full padding they measure 153.2 + 173.8, and the
+   0.75rem flex gap between them makes 339px against a 325.8px track: 13.2px too
+   wide, so they fold into two rows and the second one lands 85px under the fold
+   — a 54px penalty for 13.2px of missing width. 0.9rem of side padding instead of
+   1.4rem takes 16px off each pill, and the gap comes down with the rest of the
+   column's air to 0.375rem: 137.2 + 157.8 + 6 = 301px, which fits the track with
+   24.8px to spare and puts the actions back on the one row they occupy at 90, 100
+   and 110%. The label size, the 0.5em icon gap and the pill shape are untouched;
+   only the horizontal padding gives.
+
+   Band two is the same argument on a fold under 560px, where a 1366x768 laptop
+   at 125% reports 518px: the actions hang 169.6px below the fold, 185.6px short
+   of the 16px clearance. Air alone cannot pay that, so the leading comes down as
+   well (tools 1.4 -> 1.3, sentence 1.45 -> 1.4), the column's gaps to 3px and the
+   pills to the 44px touch floor the links row already uses. The figure itself
+   gives up the last of it: 71.85svh -> 66.1svh is 8%, the most the brief allows,
+   and it is spent here rather than at 125% on the owner's desk because that case
+   is already paid for by air. It buys the copy 14.9px of measure on each side
+   (293.8 -> 308.6), which is what takes the role line from three rows to two.
+
+   Band two asks for the same 0.2 and inherits it from band one rather than
+   restating a smaller number. The fold under 560px is the harder case, but it is
+   harder by an amount that depends on the window, not on the band: of the 66
+   band-two windows measured, 27 can afford more than the 0.12 this band used to
+   declare and 12 of those can afford the whole 0.2, so a flat 0.12 left the
+   offset unrestored on windows whose fold never asked for it. At its own named
+   window, 1093x518, the figure is 342.39px wide and the actions had 51.58px of
+   clearance at the old 0.02, so the largest drop that still leaves 16px is about
+   0.1239 — 0.11821 of the figure's height against the 0.19081 the owner's 100%
+   state sets. That remaining shortfall is reported rather than bought: the only
+   way to close it is to spend the clearance the brief sets as a floor.
+========================== */
+@media (min-width: 930px) and (max-height: 648px) {
+    .hero {
+        --copy-drop: 0.2;
+        --name-air: 0.5rem;
+        padding-block-start: calc(var(--nav-h) + 0.25rem);
+    }
+    .hero__identity { gap: 0.25rem; }
+    .hero__value { font-size: 1.0625rem; line-height: 1.45; }
+    .hero__status { margin-top: 0.375rem; }
+    .hero__cta { margin-top: 0.625rem; gap: 0.375rem; }
+    .hero__btn { padding-inline: 0.9rem; }
+}
+
+@media (min-width: 930px) and (max-height: 560px) {
+    .hero {
+        --fig-w: min(44.9vw, 66.1svh, 45.7rem);
+        --name-air: 0.25rem;
+    }
+    .hero__identity { gap: 0.1875rem; }
+    .hero__tools { line-height: 1.3; }
+    .hero__value { line-height: 1.4; }
+    .hero__status { margin-top: 0.25rem; }
+    .hero__cta { margin-top: 0.375rem; }
+    .hero__btn { min-height: 44px; }
+}
+
+/* The svh restatement, for the same reason as the one at the top of the file. */
+@supports not (height: 100svh) {
+    @media (min-width: 930px) and (max-height: 560px) {
+        .hero { --fig-w: min(44.9vw, 66.1vh, 45.7rem); }
     }
 }
 
@@ -598,7 +874,7 @@
         row-gap: clamp(0.75rem, 2vh, 1.25rem);
     }
     .hero__identity,
-    .hero__proof {
+    .hero__proof-slot {
         justify-self: stretch;
         margin-top: 0.5rem;
     }
@@ -611,7 +887,7 @@
 }
 
 @media (max-width: 400px) {
-    .hero__role { font-size: 1.6rem; }
+    .hero__role { --role-size: 1.6rem; }
     .hero__tools,
     .hero__value,
     .hero__proof-line { font-size: 1.0625rem; }
@@ -624,13 +900,13 @@
     .hero .mask > span,
     .hero__rise,
     .portrait__img {
+        animation: none !important;
         transform: none !important;
         opacity: 1 !important;
         transition: none !important;
     }
     .hero__links .arw,
-    .hero__btn .arw,
-    .hero__feature-link .arw {
+    .hero__btn .arw {
         transition: none !important;
     }
 }
